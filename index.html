@@ -55,7 +55,7 @@
 
   // global properties
   const info = Vue.ref("")
-  const status = Vue.reactive({connected: false, isMessagingDisabled: false, isVotingDisabled: false})
+  const status = Vue.reactive({connected: false, isMessagingDisabled: false, isVotingDisabled: true})
   const huds = new HUDS("settings.yaml")
 
   app.config.globalProperties.huds = huds
@@ -71,7 +71,7 @@
       status.isMessagingDisabled = !status.isMessagingDisabled
     },
     toggleDisableVoting() {
-      status.disableVoting = !status.disableVoting
+      status.isVotingDisabled = !status.isVotingDisabled
     },
   }
   app.config.globalProperties.$info = {

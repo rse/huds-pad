@@ -1,5 +1,5 @@
 <template>
-  <div id="settings">
+  <div id="login">
     <span style="grid-area: label">
       <i style="grid-area: icon" class="icon fas fa-key"></i> LiVE Access Token:
     </span>
@@ -18,7 +18,7 @@
 </template>
 
 <style lang="less" scoped>
-#settings {
+#login {
   display: grid;
   grid-template:
       'label'
@@ -85,11 +85,11 @@ button {
 
   &:disabled {
     cursor: not-allowed;
-    color:            var(--color-std-fg-1);
+    color: var(--color-std-fg-1);
     background-color: var(--color-std-bg-4);
-    border-top:    1px solid var(--color-std-bg-5);
-    border-left:   1px solid var(--color-std-bg-5);
-    border-right:  1px solid var(--color-std-bg-1);
+    border-top: 1px solid var(--color-std-bg-5);
+    border-left: 1px solid var(--color-std-bg-5);
+    border-right: 1px solid var(--color-std-bg-1);
     border-bottom: 1px solid var(--color-std-bg-1);
   }
 }
@@ -98,21 +98,21 @@ button {
 <script>
 
 module.exports = {
-  name: "setting",
+  name: "login",
   data: () => ({
     liveAccessToken: ""
   }),
-  created () {
+  created() {
     this.connect()
     window.addEventListener("hashchange", () => {
       this.connect()
     }, false)
   },
   methods: {
-    updateHash () {
+    updateHash() {
       window.location.hash = this.liveAccessToken
     },
-    connect () {
+    connect() {
       if (!window.location.hash) {
         return
       }
@@ -144,6 +144,19 @@ module.exports = {
 
       client.on("reconnect", () => {
         this.$info.setMessage("Status: Reconnect")
+      })
+
+      client.on("message", (topic, message) => {
+        message = JSON.parse(message.toString());
+
+        if (typeof message.event !== "string" && message.event === "") {
+          return;
+        }
+
+        if (message.event === "votes.toggle") {
+          this.$status.toggleDisableMessaging();
+          this.$status.toggleDisableVoting();
+        }
       })
     }
   }

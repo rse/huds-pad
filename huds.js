@@ -37,18 +37,8 @@ class HUDS {
     }
 
     this.client = mqtt.connect(`${this.protocol}://${this.hostname}:${this.port}/mqtt`, options)
-
     this.client.subscribe(`stream/${this.channel}/receiver`, function (err) {
-      console.log()
     })
-    this.client.subscribe(`stream/ruzman/sender`, function (err) {
-      console.log()
-    })
-    this.client.on('message', function (topic, message) {
-      // message is Buffer
-      console.log(message.toString())
-    })
-
 
     return this.client
   }

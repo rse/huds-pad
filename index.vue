@@ -2,7 +2,7 @@
   <main>
     <index-widget-header v-bind:show-disconnect="$status.value.connected"></index-widget-header>
     <pad v-if="$status.value.connected"></pad>
-    <settings v-else></settings>
+    <login v-else></login>
     <index-widget-info></index-widget-info>
   </main>
 </template>
@@ -30,7 +30,7 @@ module.exports = {
   components: {
     "index-widget-header": Vue.loadComponent("index-widget-header.vue"),
     "pad": Vue.loadComponent("pad.vue"),
-    "settings": Vue.loadComponent("settings.vue"),
+    "login": Vue.loadComponent("login.vue"),
     "index-widget-info": Vue.loadComponent("index-widget-info.vue")
   }
 }

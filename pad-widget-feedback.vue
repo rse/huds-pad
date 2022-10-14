@@ -1,5 +1,5 @@
 <template>
-  <section id="vote">
+  <section id="feedback">
     <h2 id="title" style="grid-area: title">Feedback</h2>
     <button style="grid-area: button1"
             @click="sendFeedback('thumbsup')">
@@ -35,7 +35,7 @@
 </template>
 
 <style lang="less" scoped>
-#vote {
+#feedback {
   display: grid;
   grid-template:
          "title title title title title title"
