@@ -6,6 +6,15 @@ class HUDS {
   port
   id
 
+  constructor() {
+    const settings = this.loadSettingsFile()
+
+    this.protocol = settings.connection.protocol
+    this.hostname = settings.connection.hostname
+    this.port = settings.connection.port
+    this.id = settings.hud.id
+  }
+
   initClient(token1, token2) {
     let clientId = localStorage.getItem("huds-pad-client-id")
     if (clientId !== undefined) {
@@ -112,5 +121,16 @@ class HUDS {
         console.log("Disconnect failed", error.toString())
       }
     }
+  }
+
+  loadSettingsFile() {
+    let settingsFile = null
+    const xmlhttp = new XMLHttpRequest()
+    xmlhttp.open("GET", "settings.yaml", false)
+    xmlhttp.send()
+    if (xmlhttp.status === 200) {
+      settingsFile = xmlhttp.responseText
+    }
+    return jsyaml.load(settingsFile)
   }
 }

@@ -1,79 +1,88 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>HUD</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=320, initial-scale=1.0 user-scalable=no">
-        <script type="text/javascript" src="node_modules/pure-uuid/uuid.min.js"></script>
-        <script type="text/javascript" src="node_modules/vue/dist/vue.global.prod.js"></script>
-        <script type="text/javascript" src="node_modules/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
-        <script type="text/javascript" src="node_modules/mqtt/dist/mqtt.min.js"></script>
-        <script>less = { env: "production", logLevel: 0 };</script>
-        <script type="text/javascript" src="node_modules/less/dist/less.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-        <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
-        <script type="text/javascript" src="huds.js"></script>
-        <link rel="stylesheet" type="text/css" href="node_modules/typopro-web/web/TypoPRO-FiraSans/TypoPRO-FiraSans.css">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="index">
-            <index></index>
-        </div>
-        <script>
-            /*  initialize user interface  */
-            Vue.load = (name) => {
-                return window["vue3-sfc-loader"].loadModule(name, {
-                    moduleCache: {
-                        vue:  Vue,
-                        less: less
-                    },
-                    getFile (url) {
-                        return fetch(url).then((res) => res.ok ? res.text() :
-                            Promise.reject(Object.assign(new Error(`${url}: ${res.statusText}`), { res })))
-                    },
-                    addStyle (textContent) {
-                        const style = Object.assign(document.createElement("style"), { textContent })
-                        const ref = document.head.getElementsByTagName("style")[0] || null
-                        document.head.insertBefore(style, ref)
-                    },
-                    log (type, ...args) {
-                        console.log("vue3-sfc-loader", type, ...args)
-                    },
-                    additionalModuleHandlers: {
-                        ".css": (source, path, options) => {
-                            return less.render(source, { globalVars: vars }).then((result) => result.css)
-                        }
-                    }
-                })
-            }
-            Vue.loadComponent = (name) =>
-                Vue.defineAsyncComponent(() => Vue.load(name))
-            app = Vue.createApp({ components: { "index": Vue.loadComponent("index.vue") }})
-            app.mount("#index")
+<head>
+    <title>HUD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=320, initial-scale=1.0 user-scalable=no">
+    <script type="text/javascript" src="node_modules/js-yaml/dist/js-yaml.min.js"></script>
+    <script type="text/javascript" src="node_modules/pure-uuid/uuid.min.js"></script>
+    <script type="text/javascript" src="node_modules/vue/dist/vue.global.prod.js"></script>
+    <script type="text/javascript" src="node_modules/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
+    <script type="text/javascript" src="node_modules/mqtt/dist/mqtt.min.js"></script>
+    <script>less = {env: "production", logLevel: 0};</script>
+    <script type="text/javascript" src="node_modules/less/dist/less.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script type="text/javascript" src="huds.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/typopro-web/web/TypoPRO-FiraSans/TypoPRO-FiraSans.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="index">
+    <index></index>
+</div>
+<script>
+  /*  initialize user interface  */
+  Vue.load = (name) => {
+    return window["vue3-sfc-loader"].loadModule(name, {
+      moduleCache: {
+        vue: Vue,
+        less: less
+      },
+      getFile(url) {
+        return fetch(url).then((res) => res.ok ? res.text() :
+          Promise.reject(Object.assign(new Error(`${url}: ${res.statusText}`), {res})))
+      },
+      addStyle(textContent) {
+        const style = Object.assign(document.createElement("style"), {textContent})
+        const ref = document.head.getElementsByTagName("style")[0] || null
+        document.head.insertBefore(style, ref)
+      },
+      log(type, ...args) {
+        console.log("vue3-sfc-loader", type, ...args)
+      },
+      additionalModuleHandlers: {
+        ".css": (source, path, options) => {
+          return less.render(source, {globalVars: vars}).then((result) => result.css)
+        }
+      }
+    })
+  }
+  Vue.loadComponent = (name) =>
+    Vue.defineAsyncComponent(() => Vue.load(name))
+  app = Vue.createApp({components: {"index": Vue.loadComponent("index.vue")}})
+  app.mount("#index")
 
-            // global properties
-            const info = Vue.ref('')
-            const status = Vue.reactive({connected: false, isMessagingDisabled: false, isVotingDisabled: false})
-            const huds = new HUDS()
-            huds.id = "training"
-            huds.hostname = "127.0.0.1"
-            huds.port = "9001"
-            huds.protocol = "ws"
+  // global properties
+  const info = Vue.ref("")
+  const status = Vue.reactive({connected: false, isMessagingDisabled: false, isVotingDisabled: false})
+  const huds = new HUDS("settings.yaml")
 
-            app.config.globalProperties.huds = huds
-            app.config.globalProperties.$status = {
-              value: status,
-              setConnectionEstablished() {status.connected = true},
-              setConnectionClosed() {status.connected = false},
-              toggleDisableMessaging() {status.isMessagingDisabled = !status.isMessagingDisabled},
-              toggleDisableVoting() {status.disableVoting = !status.disableVoting},
-            }
-            app.config.globalProperties.$info = {
-              value: info,
-              setMessage(text) { info.value = text },
-              clearMessage() { info.value = "" },
-            }
-        </script>
-    </body>
+  app.config.globalProperties.huds = huds
+  app.config.globalProperties.$status = {
+    value: status,
+    setConnectionEstablished() {
+      status.connected = true
+    },
+    setConnectionClosed() {
+      status.connected = false
+    },
+    toggleDisableMessaging() {
+      status.isMessagingDisabled = !status.isMessagingDisabled
+    },
+    toggleDisableVoting() {
+      status.disableVoting = !status.disableVoting
+    },
+  }
+  app.config.globalProperties.$info = {
+    value: info,
+    setMessage(text) {
+      info.value = text
+    },
+    clearMessage() {
+      info.value = ""
+    },
+  }
+</script>
+</body>
 </html>
