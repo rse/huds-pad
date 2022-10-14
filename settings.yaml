@@ -1,7 +1,9 @@
+
 connection:
-  protocol: "ws"
-  hostname: "127.0.0.1"
-  port: "9001"
+    protocol: "ws"
+    hostname: "127.0.0.1"
+    port:     "9001"
 
 hud:
-  id: "training"
+    id:       "training"
+

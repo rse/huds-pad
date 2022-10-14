@@ -1,8 +1,11 @@
+
 version: "3.9"
+
 services:
-  frontend:
-    image: huds-pad
-    ports:
-      - "3003:8080"
-    volumes:
-      - ./settings.yaml:/home/huds-pad/settings.yaml
+    frontend:
+        image: huds-pad
+        ports:
+            - "3003:8080"
+        volumes:
+            - ./settings.yaml:/home/huds-pad/settings.yaml
+
