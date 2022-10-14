@@ -1,184 +1,79 @@
 <!DOCTYPE html>
-<html lang="de">
-<style>
-	body {
-		margin: 0;
-		padding: 0;
-	}
+<html>
+    <head>
+        <title>HUD</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=320, initial-scale=1.0 user-scalable=no">
+        <script type="text/javascript" src="node_modules/pure-uuid/uuid.min.js"></script>
+        <script type="text/javascript" src="node_modules/vue/dist/vue.global.prod.js"></script>
+        <script type="text/javascript" src="node_modules/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
+        <script type="text/javascript" src="node_modules/mqtt/dist/mqtt.min.js"></script>
+        <script>less = { env: "production", logLevel: 0 };</script>
+        <script type="text/javascript" src="node_modules/less/dist/less.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+        <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+        <script type="text/javascript" src="huds.js"></script>
+        <link rel="stylesheet" type="text/css" href="node_modules/typopro-web/web/TypoPRO-FiraSans/TypoPRO-FiraSans.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="index">
+            <index></index>
+        </div>
+        <script>
+            /*  initialize user interface  */
+            Vue.load = (name) => {
+                return window["vue3-sfc-loader"].loadModule(name, {
+                    moduleCache: {
+                        vue:  Vue,
+                        less: less
+                    },
+                    getFile (url) {
+                        return fetch(url).then((res) => res.ok ? res.text() :
+                            Promise.reject(Object.assign(new Error(`${url}: ${res.statusText}`), { res })))
+                    },
+                    addStyle (textContent) {
+                        const style = Object.assign(document.createElement("style"), { textContent })
+                        const ref = document.head.getElementsByTagName("style")[0] || null
+                        document.head.insertBefore(style, ref)
+                    },
+                    log (type, ...args) {
+                        console.log("vue3-sfc-loader", type, ...args)
+                    },
+                    additionalModuleHandlers: {
+                        ".css": (source, path, options) => {
+                            return less.render(source, { globalVars: vars }).then((result) => result.css)
+                        }
+                    }
+                })
+            }
+            Vue.loadComponent = (name) =>
+                Vue.defineAsyncComponent(() => Vue.load(name))
+            app = Vue.createApp({ components: { "index": Vue.loadComponent("index.vue") }})
+            app.mount("#index")
 
-	#content {
-		display: grid;
-		grid-template-areas:
-			"status"
-			"settings"
-			"attendee"
-			"message";
-	}
+            // global properties
+            const info = Vue.ref('')
+            const status = Vue.reactive({connected: false, isMessagingDisabled: false, isVotingDisabled: false})
+            const huds = new HUDS()
+            huds.id = "training"
+            huds.hostname = "127.0.0.1"
+            huds.port = "9001"
+            huds.protocol = "ws"
 
-	#status {
-		grid-area: status;
-		margin-bottom: 10px;
-		background-color: red;
-		font-size: 4;
-		font-weight: bold;
-		color: white;
-		line-height: 140%;
-	}
-
-	#settings {
-		grid-area: settings;
-	}
-
-	#attendee {
-		grid-area: attendee;
-	}
-
-	.buttons {
-		margin: 10px;
-	}
-
-	.buttons button {
-		line-height: 2em;
-	}
-</style>
-<head>
-	<title>huds-pad</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	<script type="text/javascript">
-
-		var client
-
-		function initClient() {
-			document.getElementById('status_messages').innerHTML = 'connecting'
-
-			let hostname = document.forms['settings']['hostname'].value
-			let port = parseInt(document.forms['settings']['port'].value)
-
-			// FIXME: clientId im localStore packen? und als Option hinzufügen?
-			// FIXME: Braucht secure ein "s"? /mqtts
-			client = mqtt.connect(`ws://${hostname}:${port}/mqtt`)
-
-			client.on('connect', () => {
-				document.getElementById('status_messages').innerHTML = `Connected to ${hostname} on port ${port}`
-				document.getElementById('status').innerHTML = 'Connected'
-			})
-
-			client.on('error', (err) => {
-				console.log('Connection error: ', err)
-				client.end()
-			})
-
-			client.on('close', () => {
-				document.getElementById('status').innerHTML = 'Connection Status: Not Connected'
-			})
-
-			client.on('reconnect', () => {
-				document.getElementById('status').innerHTML = 'Connection Failed - Retrying'
-			})
-		}
-
-		function disconnect() {
-			if (this.client.connected) {
-				try {
-					this.client.end()
-					this.client = {
-						connected: false,
-					}
-				} catch (error) {
-					console.log('Disconnect failed', error.toString())
-				}
-			}
-		}
-
-		function beginAttendance() {
-			return this.sendMessageToBroker('attendance', {
-				event: 'begin',
-				data: {
-					// FIXME: Image
-					name: document.forms['attendee']['name'].value
-					// FIXME: Privacy
-				}
-			})
-		}
-
-		function sendMessage() {
-			return this.sendMessageToBroker('message', {
-				text: document.forms['message']['text'].value
-			})
-		}
-
-		function sendMessageToBroker(event, data) {
-			this.assertConnection()
-			data = data || {}
-			data.client = client.options.clientId
-			msg = JSON.stringify({
-				id: document.forms['settings']['id'].value,
-				event: event,
-				data: data
-			})
-
-			// FIXME: Check 0-2 oder direkt im Code setzen:
-			const qos = parseInt(document.forms['settings']['qos'].value)
-			const topic = document.forms['settings']['topic'].value
-
-			document.getElementById('status_messages').innerHTML = `Sending message ${msg}`
-			client.publish(topic, msg, {qos: qos, retain: false})
-		}
-
-		function assertConnection() {
-			if (!this.client.connected) {
-				document.getElementById('status_messages').innerHTML = `<b>Not Connected so can't send</b>`
-				throw new Error('Not connected')
-			}
-		}
-	</script>
-</head>
-<body>
-<div id="content">
-	<div id="status">Connection Status: Not Connected</div>
-	<div id="settings">
-		<h3>Settings:</h3>
-		<form name="settings">
-			<span>Hostname:</span> 		<input type="text" name="hostname" value="127.0.0.1">
-			<span>Port:</span> 			<input type="text" name="port" value="9001">
-			<span>Publish Topic:</span> <input type="text" name="topic" value="stream/ruzman/sender">
-			<span>Publish QOS:</span> 	<input type="text" name="qos" value="2">
-			<span>ID:</span> 			<input type="text" name="id" value="training">
-		</form>
-		<div class="buttons">
-			<button onclick="initClient()">Connect</button>
-			<button onclick="disconnect()">Disconnect</button>
-		</div>
-	</div>
-	<div id="attendee">
-		<h3>Attendee:</h3>
-		<form name="attendee">
-			<span>Image:</span> 		<input type="text" name="image" value="NotImplemented">
-			<span>Name:</span> 			<input type="text" name="name" value="Zoltan">
-			<span>Privacy:</span> 		<input type="text" name="privacy" value="NotImplemented">
-		</form>
-		<div class="buttons">
-			<button onclick="beginAttendance()">Begin</button>
-			<!-- FIXME: Implement: -->
-			<button disabled onclick="refreshAttendance()">Refresh</button>
-			<button disabled onclick="endAttendance()">End</button>
-		</div>
-	</div>
-	<div id="message">
-		<h3>Messages:</h3>
-		<form name="message">
-			<span>Message:</span> 		<input type="text" name="text" value='hallo'>
-		</form>
-		<div class="buttons">
-			<button onclick="return sendMessage()">Submit</button>
-		</div>
-	</div>
-</div>
-
-<br>Status Broker Messages:
-<div id="status_messages"></div>
-</body>
+            app.config.globalProperties.huds = huds
+            app.config.globalProperties.$status = {
+              value: status,
+              setConnectionEstablished() {status.connected = true},
+              setConnectionClosed() {status.connected = false},
+              toggleDisableMessaging() {status.isMessagingDisabled = !status.isMessagingDisabled},
+              toggleDisableVoting() {status.disableVoting = !status.disableVoting},
+            }
+            app.config.globalProperties.$info = {
+              value: info,
+              setMessage(text) { info.value = text },
+              clearMessage() { info.value = "" },
+            }
+        </script>
+    </body>
 </html>

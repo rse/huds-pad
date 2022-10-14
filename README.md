@@ -2,7 +2,7 @@
 Head-Up Display Server (HUDS) Interaction Pad
 =============================================
 
-**Interaction Pad for Head-Up-Display Server (HUDS) Traing HUD**
+**Interaction Pad for Head-Up-Display Server (HUDS) Training HUD**
 
 <p/>
 <img src="https://nodei.co/npm/huds-pad.png?downloads=true&stars=true" alt=""/>

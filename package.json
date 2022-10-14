@@ -1,0 +1,25 @@
+{
+    "name": "huds-pad",
+    "version": "1.0.0",
+    "license": "MIT",
+    "main": "package.json",
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "6.1.1",
+        "less": "4.1.2",
+        "mqtt": "4.3.7",
+        "pure-uuid": "1.6.2",
+        "typopro-web": "4.2.6",
+        "vue": "3.2.36",
+        "vue3-sfc-loader": "rse/FOREIGN-vue3-sfc-loader#6d05173"
+    },
+    "devDependencies": {
+        "eslint": "8.16.0",
+        "eslint-config-standard": "17.0.0",
+        "eslint-plugin-import": "2.26.0",
+        "eslint-plugin-node": "11.1.0",
+        "eslint-plugin-vue": "9.0.1"
+    },
+    "scripts": {
+        "lint": "eslint --config eslint.yaml --ext js,vue *.vue"
+    }
+}
