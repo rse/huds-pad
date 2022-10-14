@@ -45,7 +45,7 @@ h1 {
 
 <script>
 module.exports = {
-  name: "index-widget-title",
+  name: "index-widget-header",
   props: ["showDisconnect"],
   methods: {
     disconnect () {

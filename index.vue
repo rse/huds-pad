@@ -1,6 +1,6 @@
 <template>
   <main>
-    <index-widget-title v-bind:show-disconnect="$status.value.connected"></index-widget-title>
+    <index-widget-header v-bind:show-disconnect="$status.value.connected"></index-widget-header>
     <pad v-if="$status.value.connected"></pad>
     <settings v-else></settings>
     <index-widget-info></index-widget-info>
@@ -28,7 +28,7 @@ main {
 module.exports = {
   name: "index",
   components: {
-    "index-widget-title": Vue.loadComponent("index-widget-title.vue"),
+    "index-widget-header": Vue.loadComponent("index-widget-header.vue"),
     "pad": Vue.loadComponent("pad.vue"),
     "settings": Vue.loadComponent("settings.vue"),
     "index-widget-info": Vue.loadComponent("index-widget-info.vue")
