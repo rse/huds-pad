@@ -25,7 +25,7 @@
 
 input {
     resize: none;
-    font-size: 14pt;
+    font-size: 16pt;
     border: 0;
     background-color: var(--color-std-bg-3);
     border-top: 1px solid var(--color-std-bg-1);
@@ -33,6 +33,7 @@ input {
     border-right: 1px solid var(--color-std-bg-5);
     border-bottom: 1px solid var(--color-std-bg-5);
     padding: 4px 10px 4px 10px;
+    border-radius: 4px;
 
     &::placeholder {
         color: var(--color-std-fg-0);
@@ -67,7 +68,9 @@ button {
     font-size: 16pt;
     line-height: 18pt;
     text-align: center;
+    margin-top: 2px;
     padding: 8px 0 8px 0;
+    border-radius: 4px;
 
     &:hover {
         color: var(--color-sig-fg-3);
