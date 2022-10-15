@@ -111,7 +111,7 @@ button {
     &.abstain {
         color: var(--color-std-fg-1);
         font-weight: normal;
-        font-size: 16pt;
+        font-size: 14pt;
         .icon {
             font-size: 75%;
             padding-left: 8px;
