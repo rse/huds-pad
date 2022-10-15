@@ -1,7 +1,8 @@
 
 - URL hash cleared on disconnect and no taken over into access token field
-- Enable/Disable of Message/Vote according to Quiz Enable/Disable
 - Support YES/NO Votings
+- Keep Vote Button selected and disable further vote
+- Clear Vote Button on next voting
 - Challenge/Mood has to be initially send to HUD when connecting
 - favicon.ico is required
 
