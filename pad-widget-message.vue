@@ -54,7 +54,7 @@ textarea {
     border-left: 1px solid var(--color-std-bg-1);
     border-right: 1px solid var(--color-std-bg-5);
     border-bottom: 1px solid var(--color-std-bg-5);
-    padding: 4px 10px 4px 10px;
+    padding: 4px 8px 4px 8px;
     position: relative;
     border-radius: 4px;
 
@@ -106,7 +106,7 @@ button {
     line-height: 18pt;
     text-align: center;
     border-radius: 4px;
-    padding: 12px 0 12px 0;
+    padding: 8px 0 8px 0;
 
     &:hover {
         border: 0;
