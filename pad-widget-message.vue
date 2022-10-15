@@ -61,6 +61,7 @@ textarea {
     &::placeholder {
         color: var(--color-std-fg-0);
         font-size: 10pt;
+        font-weight: 200;
     }
 
     &:hover, &:focus {
@@ -95,6 +96,7 @@ textarea {
 
 button {
     cursor: pointer;
+    color: var(--color-std-fg-3);
     background-color: var(--color-std-bg-3);
     border-top: 1px solid var(--color-std-bg-5);
     border-left: 1px solid var(--color-std-bg-5);

@@ -44,9 +44,13 @@ body, html {
     padding: 0;
     overflow-x: hidden;
     background: var(--color-std-bg-2);
+    font-family: "TypoPRO Source Sans Pro";
+    color: var(--color-std-fg-3);
+    font-weight: 400;
+    user-select: none;
 }
 
-* {
+textarea, input {
     font-family: "TypoPRO Source Sans Pro";
     color: var(--color-std-fg-3);
     font-weight: 400;

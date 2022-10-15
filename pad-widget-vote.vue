@@ -90,7 +90,7 @@ button {
         .icon {
             font-size: 75%;
             padding-left: 8px;
-            color: var(--color-std-fg-1) !important;
+            color: var(--color-std-bg-1);
         }
     }
 

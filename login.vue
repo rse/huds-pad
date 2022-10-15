@@ -37,6 +37,7 @@ input {
     &::placeholder {
         color: var(--color-std-fg-0);
         font-size: 10pt;
+        font-weight: 200;
     }
 
     &:hover, &:focus {
