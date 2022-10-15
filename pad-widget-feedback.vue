@@ -62,7 +62,7 @@ button {
     text-align: center;
     line-height: 0;
     padding-top: 8px;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
     padding-left: 0;
     padding-right: 0;
 
