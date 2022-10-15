@@ -47,12 +47,12 @@
             @click="vote('9')">
             9
         </button>
-        <button style="grid-area: choose1"
+        <button style="grid-area: choose1" class="choice"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('yes')">
             Yes <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         </button>
-        <button style="grid-area: choose2"
+        <button style="grid-area: choose2" class="choice"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('no')">
             No <span class="icon"><i class="fas fa-thumbs-down"></i></span>
@@ -69,12 +69,11 @@
 #vote {
     display: grid;
     grid-template:
-        "title title title title title title"
-        "button1 button1 button2 button2 button3 button3"
-        "button4 button4 button5 button5 button6 button6"
-        "button7 button7 button8 button8 button9 button9"
-        "choose1 choose1 choose1 choose2 choose2 choose2"
-        "abstain abstain abstain abstain abstain abstain";
+        "title title title"
+        "button1 button2 button3"
+        "button4 button5 button6"
+        "button7 button8 button9"
+        "choose1 choose2 abstain";
     grid-gap: 4px;
 }
 
@@ -99,10 +98,20 @@ button {
         color: var(--color-std-fg-1);
     }
 
+    &.choice {
+        color: var(--color-std-fg-1);
+        font-weight: normal;
+        font-size: 16pt;
+        .icon {
+            font-size: 75%;
+            padding-left: 8px;
+            color: var(--color-std-fg-1);
+        }
+    }
     &.abstain {
         color: var(--color-std-fg-1);
         font-weight: normal;
-        font-size: 14pt;
+        font-size: 16pt;
         .icon {
             font-size: 75%;
             padding-left: 8px;
