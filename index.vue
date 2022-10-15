@@ -19,8 +19,8 @@ main {
 
 @media only screen and (orientation: landscape) {
     main {
-        border-left: 1px solid var(--color-std-fg-4);
-        border-right: 1px solid var(--color-std-fg-4);
+        border-left:  1px solid var(--color-std-bg-5);
+        border-right: 1px solid var(--color-std-bg-0);
     }
 }
 </style>

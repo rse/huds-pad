@@ -1,15 +1,18 @@
 
 <template>
     <div class="pad-widget-title">
-        <button v-if="showDisconnect" @click="disconnect()">
-            <i class="icon fas fa-arrow-alt-circle-left"></i><br>
-        </button>
+        <div class="back">
+            <button v-show="showDisconnect" @click="disconnect()">
+                <i class="icon fas fa-arrow-alt-circle-left"></i><br>
+            </button>
+        </div>
         <h1>HUDS Pad</h1>
     </div>
 </template>
 
 <style lang="less" scoped>
 .pad-widget-title {
+    margin-top: 8px;
     display: flex;
     flex-direction: row;
 }
@@ -39,8 +42,17 @@ button {
     }
 }
 
+.back {
+    width: 40px;
+}
+
 h1 {
     line-height: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-grow: 1;
+    position: relative;
+    left: -20px;
 }
 </style>
 

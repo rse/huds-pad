@@ -1,19 +1,17 @@
 
 <template>
     <div id="login">
-        <span style="grid-area: label">
-            <i style="grid-area: icon" class="icon fas fa-key"></i> LiVE Access Token:
-        </span>
+        <h2>Access Token</h2>
         <input v-model="liveAccessToken"
             style="grid-area: input"
             type="text"
-            placeholder="Enter your LiVE access token..."
+            placeholder="Enter your Access Token..."
             v-on:keyup.enter="updateHash"
             @input="$info.clearMessage()">
         <button style="grid-area: connect"
             v-bind:disabled="!liveAccessToken"
             @click="updateHash">
-            CONNECT <i class="fas fa-arrow-alt-circle-right"></i>
+            CONNECT <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
     </div>
 </template>
@@ -25,13 +23,9 @@
     grid-gap: 4px;
 }
 
-h1 {
-    line-height: 0;
-}
-
 input {
     resize: none;
-    font-size: 12pt;
+    font-size: 14pt;
     border: 0;
     background-color: var(--color-std-bg-3);
     border-top: 1px solid var(--color-std-bg-1);
@@ -41,7 +35,7 @@ input {
     padding: 4px 10px 4px 10px;
 
     &::placeholder {
-        color: var(--color-std-fg-1);
+        color: var(--color-std-fg-0);
         font-size: 10pt;
     }
 
@@ -68,9 +62,10 @@ button {
     border-left: 1px solid var(--color-std-bg-5);
     border-right: 1px solid var(--color-std-bg-1);
     border-bottom: 1px solid var(--color-std-bg-1);
-    font-size: 14pt;
+    font-size: 16pt;
     line-height: 18pt;
     text-align: center;
+    padding: 8px 0 8px 0;
 
     &:hover {
         color: var(--color-sig-fg-3);
@@ -89,6 +84,10 @@ button {
         border-left: 1px solid var(--color-std-bg-5);
         border-right: 1px solid var(--color-std-bg-1);
         border-bottom: 1px solid var(--color-std-bg-1);
+    }
+    .icon {
+        margin-left: 8px;
+        font-size: 75%;
     }
 }
 </style>

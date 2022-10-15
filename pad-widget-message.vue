@@ -5,18 +5,18 @@
         <textarea id="text" v-model="text"
             rows="5"
             v-bind:disabled="$status.value.isMessagingDisabled"
-            v-bind:placeholder="'Type a message...'"
+            v-bind:placeholder="'Type a message to be send to the audience...'"
             v-on:keyup.escape="clearMessage()"
         ></textarea>
         <button id="clear"
             v-bind:disabled="!text || $status.value.isMessagingDisabled"
             @click="clearMessage">
-            Clear message <i class="icon fas fa-trash-alt"></i>
+            Clear <i class="icon fas fa-trash-alt"></i>
         </button>
         <button id="send"
             v-bind:disabled="!text || $status.value.isMessagingDisabled"
             @click="sendMessage">
-            Send message <i class="icon fas fa-share"></i>
+            Send <i class="icon fas fa-share"></i>
         </button>
     </section>
 </template>
@@ -47,7 +47,7 @@ textarea {
     grid-area: message;
     overflow: hidden;
     resize: none;
-    font-size: 12pt;
+    font-size: 14pt;
     border: 0;
     background-color: var(--color-std-bg-3);
     border-top: 1px solid var(--color-std-bg-1);
@@ -58,7 +58,7 @@ textarea {
     position: relative;
 
     &::placeholder {
-        color: var(--color-std-fg-1);
+        color: var(--color-std-fg-0);
         font-size: 10pt;
     }
 
@@ -72,9 +72,9 @@ textarea {
         border-right: 1px solid var(--color-sig-bg-5);
         border-bottom: 1px solid var(--color-sig-bg-5);
 
-      &::placeholder {
-          color: var(--color-sig-fg-1);
-      }
+        &::placeholder {
+            color: var(--color-sig-fg-1);
+        }
     }
 
     &:disabled {
@@ -86,9 +86,9 @@ textarea {
         border-right: 1px solid var(--color-std-bg-1);
         border-bottom: 1px solid var(--color-std-bg-1);
 
-      &::placeholder {
-          color: var(--color-std-fg-0);
-      }
+        &::placeholder {
+            color: var(--color-std-fg-0);
+        }
     }
 }
 
@@ -123,8 +123,12 @@ button {
         border-right: 1px solid var(--color-std-bg-1);
         border-bottom: 1px solid var(--color-std-bg-1);
         .icon {
-          color: var(--color-std-fg-0);
+            color: var(--color-std-fg-0);
         }
+    }
+    .icon {
+        margin-left: 8px;
+        font-size: 75%;
     }
 }
 </style>
