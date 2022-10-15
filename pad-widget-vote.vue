@@ -47,10 +47,10 @@
             @click="vote('9')">
             9
         </button>
-        <button style="grid-area: abstain"
+        <button style="grid-area: abstain" class="abstain"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('abstain')">
-            Abstain <span class="choice-icon"><i class="fas fa-ban"></i></span>
+            Abstain <span class="icon"><i class="fas fa-ban"></i></span>
         </button>
     </section>
 </template>
@@ -69,14 +69,30 @@
 
 button {
     cursor: pointer;
+    color: var(--color-std-fg-3) !important;
     background-color: var(--color-std-bg-3);
     border-top: 1px solid var(--color-std-bg-5);
     border-left: 1px solid var(--color-std-bg-5);
     border-right: 1px solid var(--color-std-bg-1);
     border-bottom: 1px solid var(--color-std-bg-1);
-    font-size: 14pt;
+    border-radius: 4px;
+    font-size: 22pt;
+    font-weight: bold;
     line-height: 18pt;
     text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+
+    &.abstain {
+        color: var(--color-std-fg-1) !important;
+        font-weight: normal;
+        font-size: 14pt;
+        .icon {
+            font-size: 75%;
+            padding-left: 8px;
+            color: var(--color-std-fg-1) !important;
+        }
+    }
 
     &:hover {
         border: 0;

@@ -53,9 +53,17 @@ body, html {
     background: var(--color-std-bg-2);
 }
 
+h1 {
+    font-weight: 200;
+    font-size: 18pt;
+    color: var(--color-std-fg-3);
+}
+
 h2 {
-    padding-top: 5px;
-    padding-bottom: 2px;
-    line-height: 0;
+    color: var(--color-std-fg-2);
+    font-size: 14pt;
+    font-weight: 200;
+    margin-top: 8px;
+    margin-bottom: -2px;
 }
 

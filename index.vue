@@ -14,7 +14,7 @@ main {
     padding: 0 10px;
     max-width: 500px;
     min-height: 100vh;
-    background: var(--color-std-bg-5);
+    background: var(--color-std-bg-3);
 }
 
 @media only screen and (orientation: landscape) {

@@ -1,15 +1,15 @@
 
 <template>
-    <div id="pad-widget-title">
+    <div class="pad-widget-title">
         <button v-if="showDisconnect" @click="disconnect()">
             <i class="icon fas fa-arrow-alt-circle-left"></i><br>
         </button>
-        <h1>Huds Pad</h1>
+        <h1>HUDS Pad</h1>
     </div>
 </template>
 
 <style lang="less" scoped>
-#pad-widget-title {
+.pad-widget-title {
     display: flex;
     flex-direction: row;
 }

@@ -52,11 +52,13 @@
 
 button {
     cursor: pointer;
+    color: var(--color-std-fg-3);
     background-color: var(--color-std-bg-3);
     border-top: 1px solid var(--color-std-bg-5);
     border-left: 1px solid var(--color-std-bg-5);
     border-right: 1px solid var(--color-std-bg-1);
     border-bottom: 1px solid var(--color-std-bg-1);
+    border-radius: 4px;
     font-size: 24pt;
     text-align: center;
     line-height: 0;
@@ -69,8 +71,10 @@ button {
     }
 
     .title {
+        font-weight: 300;
         font-size: 7pt;
         text-align: center;
+        line-height: 6pt;
     }
 
     &:hover {
