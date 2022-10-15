@@ -110,7 +110,7 @@ module.exports = {
             window.location.hash = this.liveAccessToken
         },
         connect () {
-            if (window.location.hash)
+            if (!window.location.hash)
                 return
 
             const liveAccessToken = window.location.hash.substring(1)
