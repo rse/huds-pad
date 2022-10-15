@@ -50,7 +50,7 @@
                 Vue.defineAsyncComponent(() => Vue.load(name))
             app = Vue.createApp({ components: { "index": Vue.loadComponent("index.vue") } })
             app.mount("#index")
-           
+
             /*  provide global properties  */
             const info   = Vue.ref("")
             const status = Vue.reactive({ connected: false, isMessagingDisabled: false, isVotingDisabled: true })

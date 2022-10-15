@@ -12,8 +12,8 @@ parserOptions:
         jsx:     false
 
 env:
-    browser:       false
-    node:          true
+    browser:       true
+    node:          false
     mocha:         false
     commonjs:      true
     worker:        false
