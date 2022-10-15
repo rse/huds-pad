@@ -106,7 +106,7 @@ module.exports = {
     isFeedbackDisabled: false
   }),
   methods: {
-    sendFeedback(value) {
+    sendFeedback (value) {
       if (this.isFeedbackDisabled)
         return
 

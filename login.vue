@@ -102,17 +102,17 @@ module.exports = {
   data: () => ({
     liveAccessToken: ""
   }),
-  created() {
+  created () {
     this.connect()
     window.addEventListener("hashchange", () => {
       this.connect()
     }, false)
   },
   methods: {
-    updateHash() {
+    updateHash () {
       window.location.hash = this.liveAccessToken
     },
-    connect() {
+    connect () {
       if (!window.location.hash) {
         return
       }
@@ -147,15 +147,15 @@ module.exports = {
       })
 
       client.on("message", (topic, message) => {
-        message = JSON.parse(message.toString());
+        message = JSON.parse(message.toString())
 
         if (typeof message.event !== "string" && message.event === "") {
-          return;
+          return
         }
 
         if (message.event === "votes.toggle") {
-          this.$status.toggleDisableMessaging();
-          this.$status.toggleDisableVoting();
+          this.$status.toggleDisableMessaging()
+          this.$status.toggleDisableVoting()
         }
       })
     }
