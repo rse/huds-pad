@@ -104,16 +104,17 @@ button {
     line-height: 18pt;
     text-align: center;
     border-radius: 4px;
+    padding: 4px 0 4px 0;
 
     &:hover {
         border: 0;
         outline: none;
         color: var(--color-sig-fg-5);
         background-color: var(--color-sig-bg-3);
-        border-top: 1px solid var(--color-sig-bg-1);
-        border-left: 1px solid var(--color-sig-bg-1);
-        border-right: 1px solid var(--color-sig-bg-5);
-        border-bottom: 1px solid var(--color-sig-bg-5);
+        border-top: 1px solid var(--color-sig-bg-5);
+        border-left: 1px solid var(--color-sig-bg-5);
+        border-right: 1px solid var(--color-sig-bg-1);
+        border-bottom: 1px solid var(--color-sig-bg-1);
     }
 
     &:disabled {
