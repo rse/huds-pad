@@ -56,6 +56,7 @@ textarea {
     border-bottom: 1px solid var(--color-std-bg-5);
     padding: 4px 10px 4px 10px;
     position: relative;
+    border-radius: 4px;
 
     &::placeholder {
         color: var(--color-std-fg-0);
@@ -102,6 +103,7 @@ button {
     font-size: 14pt;
     line-height: 18pt;
     text-align: center;
+    border-radius: 4px;
 
     &:hover {
         border: 0;
