@@ -142,11 +142,20 @@ module.exports = {
             })
             client.on("message", (topic, message) => {
                 message = JSON.parse(message.toString())
+                console.log(message)
                 if (typeof message.event !== "string" && message.event === "")
                     return
-                if (message.event === "votes.toggle") {
-                    this.$status.toggleDisableMessaging()
-                    this.$status.toggleDisableVoting()
+                if (message.event === "voting-begin") {
+                    this.$status.disabledMessaging(true)
+                    this.$status.disabledVoting(false)
+                }
+                else if (message.event === "voting-end") {
+                    this.$status.disabledMessaging(false)
+                    this.$status.disabledVoting(true)
+                }
+                else if (message.event === "voting-type") {
+                    if (typeof message.data?.type === "string")
+                        this.$status.setVotingType(message.data.type)
                 }
             })
         }

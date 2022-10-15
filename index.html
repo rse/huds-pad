@@ -53,20 +53,26 @@
 
             /*  provide global properties  */
             const info   = Vue.ref("")
-            const status = Vue.reactive({ connected: false, isMessagingDisabled: false, isVotingDisabled: true })
+            const status = Vue.reactive({
+                connected:           false,
+                isMessagingDisabled: false,
+                isVotingDisabled:    true,
+                votingType:          "propose"
+            })
             const huds   = new HUDS("settings.yaml")
             app.config.globalProperties.huds = huds
             app.config.globalProperties.$status = {
                 value: status,
-                setConnectionEstablished () { status.connected = true  },
-                setConnectionClosed ()      { status.connected = false },
-                toggleDisableMessaging ()   { status.isMessagingDisabled = !status.isMessagingDisabled },
-                toggleDisableVoting ()      { status.isVotingDisabled    = !status.isVotingDisabled    }
+                setConnectionEstablished ()  { status.connected = true  },
+                setConnectionClosed ()       { status.connected = false },
+                disabledMessaging (disabled) { status.isMessagingDisabled = disabled },
+                disabledVoting (disabled)    { status.isVotingDisabled    = disabled },
+                setVotingType (type)         { status.votingType = type }
             }
             app.config.globalProperties.$info = {
                 value: info,
-                setMessage(text) { info.value = text },
-                clearMessage()   { info.value = "" }
+                setMessage (text) { info.value = text },
+                clearMessage ()   { info.value = "" }
             }
         </script>
     </body>
