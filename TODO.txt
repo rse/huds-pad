@@ -3,4 +3,5 @@
 - Enable/Disable of Message/Vote according to Quiz Enable/Disable
 - Support YES/NO Votings
 - Challenge/Mood has to be initially send to HUD when connecting
+- favicon.ico is required
 
