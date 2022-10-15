@@ -106,7 +106,7 @@ button {
     line-height: 18pt;
     text-align: center;
     border-radius: 4px;
-    padding: 4px 0 4px 0;
+    padding: 12px 0 12px 0;
 
     &:hover {
         border: 0;
