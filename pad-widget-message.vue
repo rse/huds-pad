@@ -3,7 +3,7 @@
     <section id="message">
         <h2 id="title">Message</h2>
         <textarea id="text" v-model="text"
-            rows="5"
+            rows="4"
             v-bind:disabled="$status.value.isMessagingDisabled"
             v-bind:placeholder="'Type a message to be send to the audience...'"
             v-on:keyup.escape="clearMessage()"
@@ -117,6 +117,9 @@ button {
         border-left: 1px solid var(--color-sig-bg-5);
         border-right: 1px solid var(--color-sig-bg-1);
         border-bottom: 1px solid var(--color-sig-bg-1);
+        .icon {
+            color: var(--color-sig-fg-5);
+        }
     }
 
     &:disabled {
