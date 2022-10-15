@@ -63,6 +63,8 @@ button {
     line-height: 0;
     padding-top: 8px;
     padding-bottom: 12px;
+    padding-left: 0;
+    padding-right: 0;
 
     .icon {
         width: 100%;
@@ -73,7 +75,7 @@ button {
         font-weight: 300;
         font-size: 7pt;
         text-align: center;
-        line-height: 6pt;
+        line-height: 7pt;
     }
 
     &:hover {
