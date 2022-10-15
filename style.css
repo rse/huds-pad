@@ -54,7 +54,7 @@ textarea, input {
     font-family: "TypoPRO Source Sans Pro";
     color: var(--color-std-fg-3);
     font-weight: 400;
-    user-select: none;
+    user-select: text;
 }
 
 h1 {
