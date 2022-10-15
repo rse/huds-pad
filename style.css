@@ -1,3 +1,4 @@
+
 /*  global theme color definitions  */
 :root {
     --color-std-bg-1: #000000;
@@ -57,3 +58,4 @@ h2 {
     padding-bottom: 2px;
     line-height: 0;
 }
+

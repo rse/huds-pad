@@ -1,5 +1,6 @@
+
 <template>
-  <p>{{ $info.value.value }}</p>
+    <p>{{ $info.value.value }}</p>
 </template>
 
 <style lang="less" scoped>
@@ -7,6 +8,7 @@
 
 <script>
 module.exports = {
-  name: "index-widget-info"
+    name: "index-widget-info"
 }
 </script>
+
