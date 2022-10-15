@@ -1,7 +1,6 @@
 
 <template>
     <section>
-        <h2>Mood</h2>
         <input v-model.number="mood"
             v-bind:class="['range' + mood ]"
             type="range"
@@ -10,10 +9,18 @@
             step="1"
             @change="change"
         />
+        <div class="title">Mood</div>
     </section>
 </template>
 
 <style lang="less" scoped>
+.title {
+    font-size: 80%;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 4px;
+}
 input {
     width: 100%;
     color: var(--color-acc-fg-3);
@@ -21,6 +28,7 @@ input {
     background-color: var(--color-std-bg-3);
     outline: none;
     border-radius: 15px;
+    margin-top: 8px;
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
