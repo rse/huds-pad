@@ -4,5 +4,6 @@ mqtt:
     url:      "auto"
 
 huds:
-    id:       "training"
+    #id:       "training"
+    id:       "live-sender"
 
