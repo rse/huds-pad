@@ -26,7 +26,7 @@ button {
         width: 25px;
         text-align: center;
     }
-  
+
     &:hover, &:focus {
         border: 0;
         outline: none;

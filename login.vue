@@ -94,7 +94,6 @@ button {
 </style>
 
 <script>
-
 module.exports = {
     name: "login",
     data: () => ({

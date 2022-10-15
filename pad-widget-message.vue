@@ -56,12 +56,12 @@ textarea {
     border-bottom: 1px solid var(--color-std-bg-5);
     padding: 4px 10px 4px 10px;
     position: relative;
-   
+
     &::placeholder {
         color: var(--color-std-fg-1);
         font-size: 10pt;
     }
-   
+
     &:hover, &:focus {
         border: 0;
         outline: none;
@@ -71,12 +71,12 @@ textarea {
         border-left: 1px solid var(--color-sig-bg-1);
         border-right: 1px solid var(--color-sig-bg-5);
         border-bottom: 1px solid var(--color-sig-bg-5);
-   
+
       &::placeholder {
           color: var(--color-sig-fg-1);
       }
     }
-   
+
     &:disabled {
         cursor: not-allowed;
         color: var(--color-std-fg-0);
@@ -85,7 +85,7 @@ textarea {
         border-left: 1px solid var(--color-std-bg-5);
         border-right: 1px solid var(--color-std-bg-1);
         border-bottom: 1px solid var(--color-std-bg-1);
-   
+
       &::placeholder {
           color: var(--color-std-fg-0);
       }
