@@ -80,8 +80,8 @@ button {
     font-weight: bold;
     line-height: 18pt;
     text-align: center;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
     &.abstain {
         color: var(--color-std-fg-1);

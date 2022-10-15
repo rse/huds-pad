@@ -3,7 +3,7 @@
     <section id="message">
         <h2 id="title">Message</h2>
         <textarea id="text" v-model="text"
-            rows="4"
+            rows="3"
             v-bind:disabled="$status.value.isMessagingDisabled"
             v-bind:placeholder="'Type a message to be send to the audience...'"
             v-on:keyup.escape="clearMessage()"
