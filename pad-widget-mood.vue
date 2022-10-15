@@ -14,6 +14,9 @@
 </template>
 
 <style lang="less" scoped>
+section {
+    text-align: center;
+}
 .title {
     font-size: 80%;
     font-weight: 400;
@@ -22,7 +25,7 @@
     margin-bottom: 4px;
 }
 input {
-    width: 100%;
+    width: calc(100% - 10px);
     color: var(--color-acc-fg-3);
     -webkit-appearance: none;
     background-color: var(--color-std-bg-3);

@@ -1,37 +1,27 @@
 
 <template>
     <section class="feeling">
-        <h2>Feeling</h2>
-        <div class="box">
-            <pad-widget-challenge class="slider" v-on:change="(x) => sendFeeling(mood, x)"></pad-widget-challenge>
-            <pad-widget-mood      class="slider" v-on:change="(x) => sendFeeling(x, challenge)"></pad-widget-mood>
-        </div>
+        <h2 style="grid-area: title">Feeling</h2>
+        <pad-widget-challenge style="grid-area: challenge" class="slider" v-on:change="(x) => sendFeeling(mood, x)"></pad-widget-challenge>
+        <pad-widget-mood      style="grid-area: mood"      class="slider" v-on:change="(x) => sendFeeling(x, challenge)"></pad-widget-mood>
     </section>
 </template>
 
 <style lang="less" scoped>
     .feeling {
-        .box {
-            display: flex;
-            flex-direction: row;
-            .slider {
-                flex-grow: 1;
-                color: var(--color-std-fg-3);
-                background-color: var(--color-std-bg-3);
-                border-top: 1px solid var(--color-std-bg-5);
-                border-left: 1px solid var(--color-std-bg-5);
-                border-right: 1px solid var(--color-std-bg-1);
-                border-bottom: 1px solid var(--color-std-bg-1);
-                border-radius: 4px;
-            }
-            .slider:first-child {
-                margin-right: 2px;
-                padding-right: 10px;
-            }
-            .slider:last-child {
-                margin-left: 2px;
-                padding-left: 10px;
-            }
+        display: grid;
+        grid-template:
+             "title title"
+             "challenge mood";
+        grid-gap: 4px;
+        .slider {
+            color: var(--color-std-fg-3);
+            background-color: var(--color-std-bg-3);
+            border-top: 1px solid var(--color-std-bg-5);
+            border-left: 1px solid var(--color-std-bg-5);
+            border-right: 1px solid var(--color-std-bg-1);
+            border-bottom: 1px solid var(--color-std-bg-1);
+            border-radius: 4px;
         }
     }
 </style>

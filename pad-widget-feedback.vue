@@ -1,7 +1,7 @@
 
 <template>
     <section id="feedback">
-        <h2 id="title" style="grid-area: title">Feedback</h2>
+        <h2 style="grid-area: title">Feedback</h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('thumbsup')">
