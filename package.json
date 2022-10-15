@@ -10,6 +10,7 @@
         "mqtt":                           "4.3.7",
         "pure-uuid":                      "1.6.2",
         "typopro-web":                    "4.2.6",
+        "urijs":                          "1.19.11",
         "vue":                            "3.2.41",
         "vue3-sfc-loader":                "rse/FOREIGN-vue3-sfc-loader#6d05173"
     },

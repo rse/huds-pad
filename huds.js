@@ -1,18 +1,26 @@
 class HUDS {
   client
   channel
-  protocol
-  hostname
-  port
+  url
   id
 
   constructor() {
     const settings = this.loadSettingsFile()
 
-    this.protocol = settings.connection.protocol
-    this.hostname = settings.connection.hostname
-    this.port = settings.connection.port
-    this.id = settings.hud.id
+    this.url = settings.mqtt.url
+    this.id  = settings.huds.id
+
+    if (this.url === "auto") {
+        const uri = URI(window.location.href)
+        if (uri.protocol() === "http")
+            uri.protocol("ws")
+        else if (uri.protocol() === "https")
+            uri.protocol("wss")
+        uri.pathname("/mqtt/")
+        uri.search("")
+        uri.hash("")
+        this.url = uri.toString()
+    }
   }
 
   initClient(token1, token2) {
@@ -36,7 +44,7 @@ class HUDS {
       clientId: clientId
     }
 
-    this.client = mqtt.connect(`${this.protocol}://${this.hostname}:${this.port}/mqtt`, options)
+    this.client = mqtt.connect(this.url, options)
     this.client.subscribe(`stream/${this.channel}/receiver`, function (err) {
     })
 

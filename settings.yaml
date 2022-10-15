@@ -1,9 +1,8 @@
 
-connection:
-    protocol: "ws"
-    hostname: "127.0.0.1"
-    port:     "9001"
+mqtt:
+    #url:      "ws://127.0.0.1:9001/mqtt"
+    url:      "auto"
 
-hud:
+huds:
     id:       "training"
 
