@@ -39,18 +39,18 @@
     --color-sig-fg-5: #fff0d0;
 }
 
-* {
-    font-family: "TypoPRO Source Sans Pro";
-    color: var(--color-std-fg-3);
-    font-weight: 400;
-    user-select: none;
-}
-
 body, html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     background: var(--color-std-bg-2);
+}
+
+* {
+    font-family: "TypoPRO Source Sans Pro";
+    color: var(--color-std-fg-3);
+    font-weight: 400;
+    user-select: none;
 }
 
 h1 {
