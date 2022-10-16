@@ -128,6 +128,7 @@ module.exports = {
             /*  react on MQTT broker status  */
             client.on("connect", () => {
                 this.$info.setMessage("Status: Connected")
+                this.$info.clearError()
                 this.$status.setConnectionEstablished()
                 this.huds.beginAttendance()
                 this.huds.sendFeeling(3, 3)
