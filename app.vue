@@ -52,26 +52,15 @@ module.exports = {
         }, true)
 
         /*  prevent rubberband effect on app swipes in iOS Safari  */
-        window.overscroll = (el) => {
-            el.addEventListener("touchstart", () => {
-                let top           = el.scrollTop
-                let totalScroll   = el.scrollHeight
-                let currentScroll = top + el.offsetHeight
-                if (top === 0)
-                    el.scrollTop = 1
-                else if (currentScroll === totalScroll)
-                    el.scrollTop = top - 1
-            })
+        window.allowTouchMove = (el) => {
             el.addEventListener("touchmove", (ev) => {
-                if (el.offsetHeight < el.scrollHeight)
-                    ev._isScroller = true
+                ev._allowTouchMove = true
             })
         }
         document.body.addEventListener("touchmove", (ev) => {
-            if (!ev._isScroller)
+            if (!ev._allowTouchMove)
                 ev.preventDefault()
         }, { passive: false })
-        window.overscroll(document.body)
     }
 }
 </script>

@@ -99,6 +99,9 @@ module.exports = {
     data: () => ({
         value: 3
     }),
+    mounted () {
+        window.allowTouchMove(this.$el)
+    },
     methods: {
         change () {
             this.$emit("changed-value", this.value)
