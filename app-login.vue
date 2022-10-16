@@ -6,11 +6,11 @@
             style="grid-area: input"
             type="text"
             placeholder="Enter your Access Token..."
-            v-on:keyup.enter="updateHash"
-            @input="$info.clearMessage()">
+            v-on:keyup.enter="connect"
+            @input="exportHash">
         <button style="grid-area: connect"
             v-bind:disabled="!accessToken"
-            @click="updateHash">
+            @click="connect">
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
     </div>
@@ -91,36 +91,59 @@
 </style>
 
 <script>
+let suppressHashChangeAction = false
+let autoconnecttimer = null
 module.exports = {
     name: "app-login",
     data: () => ({
         accessToken: ""
     }),
     created () {
-        this.connect()
         window.addEventListener("hashchange", async () => {
-            await this.disconnect()
-            this.connect()
+            if (!suppressHashChangeAction)
+                this.importHash()
         }, false)
+        this.importHash()
     },
     methods: {
-        updateHash () {
-            window.location.hash = this.accessToken
+        importHash () {
+            if (this.accessToken !== window.location.hash) {
+                this.accessToken = window.location.hash.substring(1)
+                this.autoconnect()
+            }
+        },
+        exportHash () {
+            this.$info.clearError()
+            if (this.accessToken !== window.location.hash) {
+                suppressHashChangeAction = true
+                window.location.hash = "#" + this.accessToken
+                setTimeout(() => {
+                    suppressHashChangeAction = false
+                }, 100)
+            }
+        },
+        autoconnect () {
+            if (autoconnecttimer !== null)
+                clearTimeout(autoconnecttimer)
+            autoconnecttimer = setTimeout(async () => {
+                await this.disconnect().catch(() => {})
+                this.connect()
+            }, 1000)
         },
         connect () {
             /*  sanity check situation  */
-            if (!window.location.hash)
+            if (this.accessToken === "")
                 return
 
             /*  parse access token  */
-            const accessToken = window.location.hash.substring(1)
-            const match = accessToken.match(/^(.+?)-([^-]+)-([^-]+)$/)
+            const match = this.accessToken.match(/^(.+?)-([^-]+)-([^-]+)$/)
             if (match === null) {
                 this.$info.setMessage("Status: Failed to connect")
                 this.$info.setError("Error: Invalid access token format")
                 return
             }
             const [ , channel, token1, token2 ] = match
+            console.log(token1, token2)
 
             /*  connect to HUDS MQTT broker  */
             const client = this.huds.connect(channel, token1, token2)
@@ -147,8 +170,8 @@ module.exports = {
             client.on("error", (err) => {
                 this.$info.setMessage("Status: Communication Error")
                 this.$info.setError(err.toString())
-                if (this.client?.connected)
-                    this.client.end()
+                if (err.toString().match(/Not authorized/i))
+                    try { client.end() } catch (ev) { }
             })
             client.on("reconnect", () => {
                 this.$info.setMessage("Status: Reconnecting")
@@ -178,7 +201,9 @@ module.exports = {
             })
         },
         disconnect () {
-            this.huds.disconnect().catch(() => {})
+            this.$info.setMessage("Status: Disconnecting")
+            this.$info.clearError()
+            return this.huds.disconnect().catch(() => {})
         }
     }
 }
