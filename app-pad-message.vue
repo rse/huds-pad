@@ -13,7 +13,7 @@
         <textarea class="text" v-model="text"
             rows="3"
             v-bind:disabled="$status.value.isMessagingDisabled || justSent"
-            v-bind:placeholder="'Type a message to be send to the audience...'"
+            v-bind:placeholder="'Type a message to be send...'"
             v-on:keyup.escape="clearMessage()"
         ></textarea>
         <button class="clear"
