@@ -83,18 +83,18 @@ class HUDS {
     /*  send a message/feedback/feeling  */
     sendMessage (text) {
         return this.sendMessageToBroker("message", {
-            text: text
+            text
         })
     }
     sendFeedback (type) {
         return this.sendMessageToBroker("feedback", {
-            type: type
+            type
         })
     }
     sendFeeling (mood, challenge) {
         return this.sendMessageToBroker("feeling", {
-            challenge: challenge,
-            mood: mood
+            challenge,
+            mood
         })
     }
 
