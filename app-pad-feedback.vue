@@ -3,7 +3,7 @@
     <section id="feedback">
         <h2 id="title" style="grid-area: title">
             FEEDBACK
-            <span class="disabled" v-show="isFeedbackDisabled">(disabled)</span>
+            <span v-show="isFeedbackDisabled" class="disabled">(disabled)</span>
         </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"

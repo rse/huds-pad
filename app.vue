@@ -25,14 +25,14 @@
 </style>
 
 <script>
-    module.exports = {
-        name: "index",
-        components: {
-            "app-head":  Vue.loadComponent("app-head.vue"),
-            "app-pad":   Vue.loadComponent("app-pad.vue"),
-            "app-login": Vue.loadComponent("app-login.vue"),
-            "app-info":  Vue.loadComponent("app-info.vue")
-        }
+module.exports = {
+    name: "index",
+    components: {
+        "app-head":  Vue.loadComponent("app-head.vue"),
+        "app-pad":   Vue.loadComponent("app-pad.vue"),
+        "app-login": Vue.loadComponent("app-login.vue"),
+        "app-info":  Vue.loadComponent("app-info.vue")
     }
+}
 </script>
 

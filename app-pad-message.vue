@@ -3,7 +3,7 @@
     <section id="message">
         <h2 id="title" style="grid-area: title">
             MESSAGE
-            <span class="disabled" v-show="$status.value.isMessagingDisabled">(disabled)</span>
+            <span v-show="$status.value.isMessagingDisabled" class="disabled">(disabled)</span>
         </h2>
         <textarea id="text" v-model="text"
             rows="3"
