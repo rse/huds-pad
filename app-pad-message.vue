@@ -74,14 +74,14 @@
         &:focus {
             border: 0;
             outline: none;
-            color: var(--color-sig-fg-5);
-            background-color: var(--color-sig-bg-3);
-            border-top: 1px solid var(--color-sig-bg-1);
-            border-left: 1px solid var(--color-sig-bg-1);
-            border-right: 1px solid var(--color-sig-bg-5);
-            border-bottom: 1px solid var(--color-sig-bg-5);
+            color: var(--color-acc-fg-5);
+            background-color: var(--color-acc-bg-3);
+            border-top: 1px solid var(--color-acc-bg-1);
+            border-left: 1px solid var(--color-acc-bg-1);
+            border-right: 1px solid var(--color-acc-bg-5);
+            border-bottom: 1px solid var(--color-acc-bg-5);
             &::placeholder {
-                color: var(--color-sig-fg-1);
+                color: var(--color-acc-fg-1);
             }
         }
         &:disabled {
@@ -113,14 +113,14 @@
         .hoverable &:hover:not(:disabled) {
             border: 0;
             outline: none;
-            color: var(--color-sig-fg-5);
-            background-color: var(--color-sig-bg-4);
-            border-top: 1px solid var(--color-sig-bg-5);
-            border-left: 1px solid var(--color-sig-bg-5);
-            border-right: 1px solid var(--color-sig-bg-1);
-            border-bottom: 1px solid var(--color-sig-bg-1);
+            color: var(--color-acc-fg-5);
+            background-color: var(--color-acc-bg-4);
+            border-top: 1px solid var(--color-acc-bg-5);
+            border-left: 1px solid var(--color-acc-bg-5);
+            border-right: 1px solid var(--color-acc-bg-1);
+            border-bottom: 1px solid var(--color-acc-bg-1);
             .icon {
-                color: var(--color-sig-fg-5);
+                color: var(--color-acc-fg-5);
             }
         }
         &:disabled {
