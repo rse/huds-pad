@@ -7,5 +7,5 @@ services:
         ports:
             - "3003:8080"
         volumes:
-            - ./settings.yaml:/home/huds-pad/settings.yaml
+            - ./app.yaml:/home/huds-pad/settings.yaml
 

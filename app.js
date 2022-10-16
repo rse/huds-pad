@@ -5,8 +5,8 @@ class HUDS {
     url
     id
 
-    constructor() {
-        const settings = this.loadSettingsFile()
+    constructor (settingsFile) {
+        const settings = this.loadSettingsFile(settingsFile)
         this.url = settings.mqtt.url
         this.id  = settings.huds.id
         if (this.url === "auto") {
@@ -117,10 +117,10 @@ class HUDS {
         }
     }
 
-    loadSettingsFile () {
+    loadSettingsFile (file) {
         let settingsFile = null
         const xmlhttp = new XMLHttpRequest()
-        xmlhttp.open("GET", "settings.yaml", false)
+        xmlhttp.open("GET", file, false)
         xmlhttp.send()
         if (xmlhttp.status === 200)
             settingsFile = xmlhttp.responseText

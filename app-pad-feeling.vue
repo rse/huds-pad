@@ -2,8 +2,12 @@
 <template>
     <section class="feeling">
         <h2 style="grid-area: title">FEELING</h2>
-        <pad-widget-challenge style="grid-area: challenge" class="slider" v-on:change="(x) => sendFeeling(mood, x)"></pad-widget-challenge>
-        <pad-widget-mood      style="grid-area: mood"      class="slider" v-on:change="(x) => sendFeeling(x, challenge)"></pad-widget-mood>
+        <app-pad-feeling-challenge
+            style="grid-area: challenge" class="slider"
+            v-on:change="(x) => sendFeeling(mood, x)"></app-pad-feeling-challenge>
+        <app-pad-feeling-mood
+            style="grid-area: mood" class="slider"
+            v-on:change="(x) => sendFeeling(x, challenge)"></app-pad-feeling-mood>
     </section>
 </template>
 
@@ -30,8 +34,8 @@
 module.exports = {
     name: "pad-widget-feeling",
     components: {
-        "pad-widget-challenge": Vue.loadComponent("pad-widget-challenge.vue"),
-        "pad-widget-mood":      Vue.loadComponent("pad-widget-mood.vue")
+        "app-pad-feeling-challenge": Vue.loadComponent("app-pad-feeling-challenge.vue"),
+        "app-pad-feeling-mood":      Vue.loadComponent("app-pad-feeling-mood.vue")
     },
     data: () => ({
         mood: 3,

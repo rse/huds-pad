@@ -20,12 +20,12 @@
         <link rel="stylesheet" type="text/css" href="node_modules/typopro-web/web/TypoPRO-SourceSansPro/TypoPRO-SourceSansPro.css">
         <link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
         <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
-        <script type="text/javascript" src="huds.js"></script>
-        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="app.js"></script>
+        <link rel="stylesheet" href="app.css">
     </head>
     <body>
-        <div id="index">
-            <index></index>
+        <div id="app">
+            <app></app>
         </div>
         <script>
             /*  initialize user interface  */
@@ -53,8 +53,8 @@
             }
             Vue.loadComponent = (name) =>
                 Vue.defineAsyncComponent(() => Vue.load(name))
-            app = Vue.createApp({ components: { "index": Vue.loadComponent("index.vue") } })
-            app.mount("#index")
+            app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
+            app.mount("#app")
 
             /*  provide global properties  */
             const info   = Vue.ref("")
@@ -65,7 +65,7 @@
                 votingType:          "propose",
                 clearVoting:         false
             })
-            const huds = new HUDS("settings.yaml")
+            const huds = new HUDS("app.yaml")
             app.config.globalProperties.huds = huds
             app.config.globalProperties.$status = {
                 value: status,
