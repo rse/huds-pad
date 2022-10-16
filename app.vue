@@ -1,9 +1,9 @@
 
 <template>
     <main>
-        <app-head v-bind:show-disconnect="$status.value.connected"></app-head>
-        <app-pad v-if="$status.value.connected"></app-pad>
-        <app-login v-else></app-login>
+        <app-head></app-head>
+        <app-pad   v-show=" $status.value.connected"></app-pad>
+        <app-login v-show="!$status.value.connected"></app-login>
         <app-info></app-info>
     </main>
 </template>
