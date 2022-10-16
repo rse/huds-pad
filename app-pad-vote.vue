@@ -80,7 +80,7 @@
             v-bind:class="{ active: votingChoice === 'abstain' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('abstain')">
-            ABSTAIN <span class="icon"><i class="fas fa-ban"></i></span>
+            Abstain <span class="icon"><i class="fas fa-ban"></i></span>
         </button>
     </section>
 </template>
