@@ -1,7 +1,10 @@
 
 <template>
     <section id="message">
-        <h2 id="title" style="grid-area: title">Message <span class="disabled" v-show="$status.value.isMessagingDisabled">(disabled)</span></h2>
+        <h2 id="title" style="grid-area: title">
+            MESSAGE
+            <span class="disabled" v-show="$status.value.isMessagingDisabled">(disabled)</span>
+        </h2>
         <textarea id="text" v-model="text"
             rows="3"
             v-bind:disabled="$status.value.isMessagingDisabled"
@@ -46,7 +49,8 @@
 .disabled {
     font-size: 8pt;
     font-weight: 200;
-    color: var(--color-acc-fg-3);
+    color: var(--color-sig-fg-2);
+    margin-left: 4px;
 }
 
 textarea {

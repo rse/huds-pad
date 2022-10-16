@@ -1,7 +1,10 @@
 
 <template>
     <section id="feedback">
-        <h2 id="title" style="grid-area: title">Feedback <span class="disabled" v-show="isFeedbackDisabled">(disabled)</span></h2>
+        <h2 id="title" style="grid-area: title">
+            FEEDBACK
+            <span class="disabled" v-show="isFeedbackDisabled">(disabled)</span>
+        </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('thumbsup')">
@@ -53,7 +56,8 @@
 .disabled {
     font-size: 8pt;
     font-weight: 200;
-    color: var(--color-acc-fg-3);
+    color: var(--color-sig-fg-2);
+    margin-left: 4px;
 }
 
 button {

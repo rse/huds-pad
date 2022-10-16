@@ -1,7 +1,7 @@
 
 <template>
     <section class="feeling">
-        <h2 style="grid-area: title">Feeling</h2>
+        <h2 style="grid-area: title">FEELING</h2>
         <pad-widget-challenge style="grid-area: challenge" class="slider" v-on:change="(x) => sendFeeling(mood, x)"></pad-widget-challenge>
         <pad-widget-mood      style="grid-area: mood"      class="slider" v-on:change="(x) => sendFeeling(x, challenge)"></pad-widget-mood>
     </section>

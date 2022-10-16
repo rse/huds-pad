@@ -1,7 +1,10 @@
 
 <template>
     <section id="vote">
-        <h2 id="title" style="grid-area: title">Vote <span class="disabled" v-show="$status.value.isVotingDisabled">(disabled)</span></h2>
+        <h2 id="title" style="grid-area: title">
+            VOTE
+            <span class="disabled" v-show="$status.value.isVotingDisabled">(disabled)</span>
+        </h2>
         <button style="grid-area: button1"
             v-bind:class="{ active: votingChoice === '1' }"
             v-bind:disabled="$status.value.isVotingDisabled"
@@ -92,7 +95,8 @@
 .disabled {
     font-size: 8pt;
     font-weight: 200;
-    color: var(--color-acc-fg-3);
+    color: var(--color-sig-fg-2);
+    margin-left: 4px;
 }
 
 button {
