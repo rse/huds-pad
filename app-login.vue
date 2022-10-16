@@ -98,7 +98,8 @@ module.exports = {
     }),
     created () {
         this.connect()
-        window.addEventListener("hashchange", () => {
+        window.addEventListener("hashchange", async () => {
+            await this.disconnect()
             this.connect()
         }, false)
     },
@@ -137,12 +138,13 @@ module.exports = {
             })
             client.on("disconnect", () => {
                 this.$info.setMessage("Status: Disconnected")
+                this.$status.setConnectionClosed()
             })
             client.on("offline", () => {
                 this.$info.setMessage("Status: Offline")
             })
             client.on("error", (err) => {
-                this.$info.setMessage("Status: HUDS Communication Error")
+                this.$info.setMessage("Status: Communication Error")
                 this.$info.setError(err.toString())
                 if (this.client?.connected)
                     this.client.end()
@@ -173,6 +175,9 @@ module.exports = {
                     }
                 }
             })
+        },
+        disconnect () {
+            this.huds.disconnect().catch(() => {})
         }
     }
 }

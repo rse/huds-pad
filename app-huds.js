@@ -57,7 +57,7 @@ window.HUDS = class HUDS {
             username: token1,
             password: token2,
             clientId,
-            reconnectPeriod: 2000,
+            reconnectPeriod: 4 * 1000,
             connectTimeout: 30 * 1000
         })
         this.client.subscribe(`stream/${this.channel}/receiver`, () => {})
