@@ -38,14 +38,28 @@ module.exports = {
         "app-pad-feeling-mood":      Vue.loadComponent("app-pad-feeling-mood.vue")
     },
     data: () => ({
-        mood: 3,
+        mood:      3,
         challenge: 3
     }),
+    created () {
+        /*  regularly refresh feeling  */
+        setInterval(() => {
+            this.huds.sendFeeling(this.mood, this.challenge)
+        }, 10 * 60 * 1000)
+    },
     methods: {
         sendFeeling (mood, challenge) {
-            this.mood = mood
-            this.challenge = challenge
-            this.huds.sendFeeling(mood, challenge)
+            let changed = false
+            if (this.mood !== mood) {
+                this.mood = mood
+                changed = true
+            }
+            if (this.challenge !== challenge) {
+                this.challenge = challenge
+                changed = true
+            }
+            if (changed)
+                this.huds.sendFeeling(mood, challenge)
         }
     }
 }
