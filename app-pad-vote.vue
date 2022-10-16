@@ -98,7 +98,7 @@
     .disabled {
         font-size: 9pt;
         font-weight: 200;
-        color: var(--color-acc-fg-2);
+        color: var(--color-acc-fg-3);
         margin-left: 4px;
     }
     button {
