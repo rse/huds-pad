@@ -144,7 +144,8 @@ module.exports = {
             client.on("error", (err) => {
                 this.$info.setMessage("Status: HUDS Communication Error")
                 this.$info.setError(err.toString())
-                this.client.end()
+                if (this.client?.connected)
+                    this.client.end()
             })
             client.on("reconnect", () => {
                 this.$info.setMessage("Status: Reconnecting")
