@@ -29,6 +29,10 @@ input {
     color: var(--color-acc-fg-3);
     -webkit-appearance: none;
     background-color: var(--color-std-bg-3);
+    border-top: 1px solid var(--color-std-bg-1);
+    border-left: 1px solid var(--color-std-bg-1);
+    border-right: 1px solid var(--color-std-bg-5);
+    border-bottom: 1px solid var(--color-std-bg-5);
     outline: none;
     border-radius: 15px;
     margin-top: 8px;
