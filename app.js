@@ -2,9 +2,11 @@
 /*  HUDS communication  */
 class HUDS {
     constructor (settingsFile) {
+        this.channel = ""
+        this.client  = null
+
         /*  load settings  */
         const settings = this.loadSettingsFile(settingsFile)
-        this.client = ""
         this.url    = settings.mqtt.url
         this.id     = settings.huds.id
 
