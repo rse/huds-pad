@@ -3,7 +3,7 @@
     <section id="message">
         <h2 id="title" style="grid-area: title">
             MESSAGE
-            <span v-show="$status.value.isMessagingDisabled" class="disabled">(disabled)</span>
+            <span v-show="$status.value.isMessagingDisabled" class="disabled">(temporarily disabled)</span>
         </h2>
         <textarea id="text" v-model="text"
             rows="3"
@@ -31,7 +31,7 @@
         "title title"
         "message message"
         "clear send";
-    grid-gap: 4px;
+    grid-gap: 2px;
 }
 
 #title {

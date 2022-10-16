@@ -3,7 +3,7 @@
     <section id="feedback">
         <h2 id="title" style="grid-area: title">
             FEEDBACK
-            <span v-show="isFeedbackDisabled" class="disabled">(disabled)</span>
+            <span v-show="isFeedbackDisabled" class="disabled">(temporarily disabled)</span>
         </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
@@ -50,7 +50,7 @@
     grid-template:
          "title title title title title title"
          "button1 button2 button3 button4 button5 button6";
-    grid-gap: 4px;
+    grid-gap: 2px;
 }
 
 .disabled {

@@ -20,7 +20,7 @@
 #login {
     display: grid;
     grid-template: 'label' 'input' 'connect';
-    grid-gap: 4px;
+    grid-gap: 2px;
 }
 
 input {

@@ -3,7 +3,7 @@
     <section id="vote">
         <h2 id="title" style="grid-area: title">
             VOTE
-            <span v-show="$status.value.isVotingDisabled" class="disabled">(disabled)</span>
+            <span v-show="$status.value.isVotingDisabled" class="disabled">(temporarily disabled)</span>
         </h2>
         <button style="grid-area: button1"
             v-bind:class="{ active: votingChoice === '1' }"
@@ -89,7 +89,7 @@
         "button4 button5 button6"
         "button7 button8 button9"
         "choose1 choose2 abstain";
-    grid-gap: 4px;
+    grid-gap: 2px;
 }
 
 .disabled {
