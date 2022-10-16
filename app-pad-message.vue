@@ -3,7 +3,9 @@
     <section class="app-pad-message">
         <h2 class="title" style="grid-area: title">
             MESSAGE
-            <span v-show="$status.value.isMessagingDisabled" class="disabled">(temporarily disabled)</span>
+            <span v-show="$status.value.isMessagingDisabled" class="disabled">
+                (temporarily disabled until current voting ends)
+            </span>
         </h2>
         <textarea class="text" v-model="text"
             rows="3"

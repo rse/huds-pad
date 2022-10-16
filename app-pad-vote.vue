@@ -3,7 +3,12 @@
     <section class="app-pad-vote">
         <h2 class="title" style="grid-area: title">
             VOTE
-            <span v-show="$status.value.isVotingDisabled" class="disabled">(temporarily disabled)</span>
+            <span v-show="$status.value.isVotingDisabled && votingChoice == ''" class="disabled">
+                (temporarily disabled until new voting starts)
+            </span>
+            <span v-show="$status.value.isVotingDisabled && votingChoice != ''" class="disabled">
+                (temporarily disabled until current voting ends)
+            </span>
         </h2>
         <button style="grid-area: button1"
             v-bind:class="{ active: votingChoice === '1' }"

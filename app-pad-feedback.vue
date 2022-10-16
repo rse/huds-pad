@@ -3,7 +3,9 @@
     <section class="app-pad-feedback">
         <h2 style="grid-area: title">
             FEEDBACK
-            <span v-show="isFeedbackDisabled" class="disabled">(temporarily disabled)</span>
+            <span v-show="isFeedbackDisabled" class="disabled">
+                (temporarily disabled for throttling reasons)
+            </span>
         </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
