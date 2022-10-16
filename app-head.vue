@@ -6,7 +6,10 @@
                 <i class="icon fas fa-arrow-alt-circle-left"></i><br>
             </button>
         </div>
-        <h1><i class="icon fas fa-thumbs-up"></i> HUDS Pad</h1>
+        <h1>
+            <span class="title1">HUDS</span>
+            <span class="title2">Pad</span>
+        </h1>
         <div class="qrcode">
             <button @click="$status.toggleQRCode()">
                 <i class="icon fas fa-qrcode"></i><br>
@@ -51,17 +54,15 @@
     }
     h1 {
         line-height: 0;
-        margin-top: 2px;
-        margin-bottom: 20px;
+        margin-top: 12px;
+        margin-bottom: 12px;
         text-align: center;
         flex-grow: 1;
-        position: relative;
-        left: -20px;
-        .icon {
-            display: inline-block;
-            color: var(--color-std-fg-1);
-            font-size: 16pt;
-            margin-right: 8px;
+        .title1 {
+            font-weight: 900;
+            letter-spacing: -1px;
+            padding-left: 4px;
+            padding-right: 2px;
         }
     }
 }
