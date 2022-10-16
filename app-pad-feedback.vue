@@ -27,13 +27,13 @@
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('smile')">
             <i class="icon fas fa-grin-wink"></i>
-            <span class="title">Smile</span>
+            <span class="title">&nbsp;Smile&nbsp;</span>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
-            <span class="title">Frown</span>
+            <span class="title">&nbsp;Frown&nbsp;</span>
         </button>
         <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
