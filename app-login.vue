@@ -123,7 +123,7 @@ module.exports = {
                 return
             }
 
-            const [, channel, token1, token2] = match
+            const [ , channel, token1, token2 ] = match
             this.huds.channel = channel
             const client = this.huds.initClient(token1, token2)
             client.on("connect", () => {
@@ -141,8 +141,7 @@ module.exports = {
             })
             client.on("message", (topic, message) => {
                 message = JSON.parse(message.toString())
-                console.log(message)
-                if (typeof message.event !== "string" && message.event === "")
+                if (typeof message?.event !== "string")
                     return
                 if (message.event === "voting-begin") {
                     this.$status.disabledMessaging(true)
