@@ -1,4 +1,5 @@
 
+/*  HUDS communication  */
 class HUDS {
     client
     channel
@@ -31,10 +32,10 @@ class HUDS {
 
         const options = {
             will: {
-              topic:   `stream/${this.channel}/sender`,
-              payload: this.createMessage("attendance", { event: "end" }),
-              qos:     2,
-              retain:  false
+                topic:   `stream/${this.channel}/sender`,
+                payload: this.createMessage("attendance", { event: "end" }),
+                qos:     2,
+                retain:  false
             },
             username:  token1,
             password:  token2,
@@ -128,9 +129,10 @@ class HUDS {
     }
 }
 
+/*  main application procedure  */
 class App {
     static main () {
-        /*  initialize user interface  */
+        /*  provide custom Vue loader  */
         Vue.load = (name) => {
             return window["vue3-sfc-loader"].loadModule(name, {
                 moduleCache: { vue: Vue, less: less },
@@ -147,19 +149,19 @@ class App {
                     console.log("vue3-sfc-loader", type, ...args)
                 },
                 additionalModuleHandlers: {
-                    ".css": (source, path, options) => {
-                        return less.render(source, { globalVars: vars }).then((result) => result.css)
-                    }
+                    ".css": (source, path, options) =>
+                        less.render(source, { globalVars: vars }).then((result) => result.css)
                 }
             })
         }
         Vue.loadComponent = (name) =>
             Vue.defineAsyncComponent(() => Vue.load(name))
+
+        /*  initialize user interface  */
         let app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
         app.mount("#app")
 
-        /*  provide global properties  */
-        const info   = Vue.ref("")
+        /*  provide global $status property  */
         const status = Vue.reactive({
             connected:           false,
             isMessagingDisabled: false,
@@ -167,8 +169,6 @@ class App {
             votingType:          "propose",
             clearVoting:         false
         })
-        const huds = new HUDS("app.yaml")
-        app.config.globalProperties.huds = huds
         app.config.globalProperties.$status = {
             value: status,
             setConnectionEstablished ()  { status.connected = true  },
@@ -178,11 +178,18 @@ class App {
             setVotingType (type)         { status.votingType = type },
             clearVoting ()               { status.clearVoting = !status.clearVoting }
         }
+
+        /*  provide global $info property  */
+        const info = Vue.ref("")
         app.config.globalProperties.$info = {
             value: info,
             setMessage (text) { info.value = text },
             clearMessage ()   { info.value = "" }
         }
+
+        /*  provide global huds property  */
+        const huds = new HUDS("app.yaml")
+        app.config.globalProperties.huds = huds
     }
 }
 
