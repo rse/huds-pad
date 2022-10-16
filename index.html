@@ -62,9 +62,10 @@
                 connected:           false,
                 isMessagingDisabled: false,
                 isVotingDisabled:    true,
-                votingType:          "propose"
+                votingType:          "propose",
+                clearVoting:         false
             })
-            const huds   = new HUDS("settings.yaml")
+            const huds = new HUDS("settings.yaml")
             app.config.globalProperties.huds = huds
             app.config.globalProperties.$status = {
                 value: status,
@@ -72,7 +73,8 @@
                 setConnectionClosed ()       { status.connected = false },
                 disabledMessaging (disabled) { status.isMessagingDisabled = disabled },
                 disabledVoting (disabled)    { status.isVotingDisabled    = disabled },
-                setVotingType (type)         { status.votingType = type }
+                setVotingType (type)         { status.votingType = type },
+                clearVoting ()               { status.clearVoting = !status.clearVoting }
             }
             app.config.globalProperties.$info = {
                 value: info,

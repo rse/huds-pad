@@ -148,14 +148,18 @@ module.exports = {
                 if (message.event === "voting-begin") {
                     this.$status.disabledMessaging(true)
                     this.$status.disabledVoting(false)
+                    this.$status.clearVoting()
                 }
                 else if (message.event === "voting-end") {
                     this.$status.disabledMessaging(false)
                     this.$status.disabledVoting(true)
+                    this.$status.clearVoting()
                 }
                 else if (message.event === "voting-type") {
-                    if (typeof message.data?.type === "string")
+                    if (typeof message.data?.type === "string") {
                         this.$status.setVotingType(message.data.type)
+                        this.$status.clearVoting()
+                    }
                 }
             })
         }

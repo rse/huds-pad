@@ -3,61 +3,73 @@
     <section id="vote">
         <h2 id="title" style="grid-area: title">Vote</h2>
         <button style="grid-area: button1"
+            v-bind:class="{ active: votingChoice === '1' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('1')">
             1
         </button>
         <button style="grid-area: button2"
+            v-bind:class="{ active: votingChoice === '2' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('2')">
             2
         </button>
         <button style="grid-area: button3"
+            v-bind:class="{ active: votingChoice === '3' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('3')">
             3
         </button>
         <button style="grid-area: button4"
+            v-bind:class="{ active: votingChoice === '4' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('4')">
             4
         </button>
         <button style="grid-area: button5"
+            v-bind:class="{ active: votingChoice === '5' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('5')">
             5
         </button>
         <button style="grid-area: button6"
+            v-bind:class="{ active: votingChoice === '6' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('6')">
             6
         </button>
         <button style="grid-area: button7"
+            v-bind:class="{ active: votingChoice === '7' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('7')">
             7
         </button>
         <button style="grid-area: button8"
+            v-bind:class="{ active: votingChoice === '8' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('8')">
             8
         </button>
         <button style="grid-area: button9"
+            v-bind:class="{ active: votingChoice === '9' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('9')">
             9
         </button>
         <button style="grid-area: choose1" class="choice"
+            v-bind:class="{ active: votingChoice === 'yes' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('yes')">
             Yes <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         </button>
         <button style="grid-area: choose2" class="choice"
+            v-bind:class="{ active: votingChoice === 'no' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('no')">
             No <span class="icon"><i class="fas fa-thumbs-down"></i></span>
         </button>
         <button style="grid-area: abstain" class="abstain"
+            v-bind:class="{ active: votingChoice === 'abstain' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('abstain')">
             Abstain <span class="icon"><i class="fas fa-ban"></i></span>
@@ -145,15 +157,40 @@ button {
             color: var(--color-std-fg-0) !important;
         }
     }
+
+    &.active {
+        border: 0;
+        outline: none;
+        color: var(--color-acc-fg-5) !important;
+        background-color: var(--color-acc-bg-3);
+        border-top: 1px solid var(--color-acc-bg-5);
+        border-left: 1px solid var(--color-acc-bg-5);
+        border-right: 1px solid var(--color-acc-bg-1);
+        border-bottom: 1px solid var(--color-acc-bg-1);
+        .icon {
+            color: var(--color-acc-fg-5) !important;
+        }
+    }
 }
 </style>
 
 <script>
 module.exports = {
     name: "pad-widget-vote",
+    data: () => ({
+        votingChoice: ""
+    }),
+    created () {
+        this.$watch("$status.value.clearVoting", () => {
+            console.log("FUCLK")
+            this.votingChoice = ""
+        })
+    },
     methods: {
         vote (value) {
             this.huds.sendMessage(value)
+            this.$status.disabledVoting(true)
+            setTimeout(() => { this.votingChoice = value }, 100)
         }
     }
 }
