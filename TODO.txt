@@ -2,5 +2,4 @@
 - URL hash cleared on disconnect and could be taken over at least into the access token input field?
 - Challenge/Mood has to be initially send to HUD when connecting
 - Challenge/Mood is send by accident sometimes?
-- favicon.ico is required
 
