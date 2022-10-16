@@ -179,7 +179,7 @@ button {
 
 <script>
 module.exports = {
-    name: "pad-widget-vote",
+    name: "app-pad-vote",
     data: () => ({
         votingChoice: ""
     }),

@@ -62,7 +62,7 @@ h1 {
 
 <script>
 module.exports = {
-    name: "index-widget-header",
+    name: "app-head",
     props: [ "showDisconnect" ],
     methods: {
         disconnect () {

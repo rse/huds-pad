@@ -32,7 +32,7 @@
 
 <script>
 module.exports = {
-    name: "pad-widget-feeling",
+    name: "app-pad-feeling",
     components: {
         "app-pad-feeling-challenge": Vue.loadComponent("app-pad-feeling-challenge.vue"),
         "app-pad-feeling-mood":      Vue.loadComponent("app-pad-feeling-mood.vue")

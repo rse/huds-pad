@@ -26,7 +26,7 @@
 
 <script>
 module.exports = {
-    name: "index",
+    name: "app",
     components: {
         "app-head":  Vue.loadComponent("app-head.vue"),
         "app-pad":   Vue.loadComponent("app-pad.vue"),

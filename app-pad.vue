@@ -13,7 +13,7 @@
 
 <script>
 module.exports = {
-    name: "pad",
+    name: "app-pad",
     components: {
         "app-pad-message":  Vue.loadComponent("app-pad-message.vue"),
         "app-pad-vote":     Vue.loadComponent("app-pad-vote.vue"),

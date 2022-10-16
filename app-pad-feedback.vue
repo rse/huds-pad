@@ -118,7 +118,7 @@ button {
 
 <script>
 module.exports = {
-    name: "pad-widget-feedback",
+    name: "app-pad-feedback",
     data: () => ({
         isFeedbackDisabled: false
     }),

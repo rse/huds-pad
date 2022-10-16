@@ -15,7 +15,7 @@
 
 <script>
 module.exports = {
-    name: "index-widget-info"
+    name: "app-info"
 }
 </script>
 

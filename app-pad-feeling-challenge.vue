@@ -103,7 +103,7 @@ input {
 
 <script>
 module.exports = {
-    name: "pad-widget-challenge",
+    name: "app-pad-feeling-challenge",
     data: () => ({
         challenge: 3
     }),

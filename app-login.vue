@@ -98,7 +98,7 @@ button {
 
 <script>
 module.exports = {
-    name: "login",
+    name: "app-login",
     data: () => ({
         liveAccessToken: ""
     }),

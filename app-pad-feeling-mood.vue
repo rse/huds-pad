@@ -122,7 +122,7 @@ input {
 
 <script>
 module.exports = {
-    name: "pad-widget-mood",
+    name: "app-pad-feeling-mood",
     data: () => ({
         mood: 3
     }),

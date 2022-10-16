@@ -152,7 +152,7 @@ button {
 
 <script>
 module.exports = {
-    name: "pad-widget-message",
+    name: "app-pad-message",
     data: () => ({
         text: ""
     }),
