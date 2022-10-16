@@ -63,19 +63,19 @@
             v-bind:class="{ active: votingChoice === 'yes' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('yes')">
-            Yes <span class="icon"><i class="fas fa-thumbs-up"></i></span>
+            YES <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         </button>
         <button style="grid-area: choose2" class="choice"
             v-bind:class="{ active: votingChoice === 'no' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('no')">
-            No <span class="icon"><i class="fas fa-thumbs-down"></i></span>
+            NO <span class="icon"><i class="fas fa-thumbs-down"></i></span>
         </button>
         <button style="grid-area: abstain" class="abstain"
             v-bind:class="{ active: votingChoice === 'abstain' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('abstain')">
-            Abstain <span class="icon"><i class="fas fa-ban"></i></span>
+            ABSTAIN <span class="icon"><i class="fas fa-ban"></i></span>
         </button>
     </section>
 </template>
@@ -114,18 +114,12 @@ button {
     text-align: center;
     padding-top: 8px;
     padding-bottom: 8px;
-    .icon {
-        font-size: 75%;
-        padding-left: 8px;
-        color: var(--color-std-fg-1) !important;
-    }
 
     &.choice {
         color: var(--color-std-fg-1);
         font-weight: normal;
-        font-size: 16pt;
+        font-size: 14pt;
         .icon {
-            font-size: 75%;
             padding-left: 8px;
             color: var(--color-std-fg-1);
         }
@@ -133,9 +127,8 @@ button {
     &.abstain {
         color: var(--color-std-fg-1);
         font-weight: normal;
-        font-size: 14pt;
+        font-size: 12pt;
         .icon {
-            font-size: 75%;
             padding-left: 8px;
             color: var(--color-std-fg-1);
         }

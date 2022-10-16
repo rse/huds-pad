@@ -9,37 +9,37 @@
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('thumbsup')">
             <i class="icon fas fa-thumbs-up"></i>
-            <span class="title">Show<br/>Consent</span>
+            <span class="title">Consent</span>
         </button>
         <button style="grid-area: button2"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('thumbsdn')">
             <i class="icon fas fa-thumbs-down"></i>
-            <span class="title">Show<br/>Refusal</span>
+            <span class="title">Refusal</span>
         </button>
         <button style="grid-area: button3"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('surprise')">
             <i class="icon fas fa-surprise"></i>
-            <span class="title">Show<br/>Surprise</span>
+            <span class="title">Surprise</span>
         </button>
         <button style="grid-area: button4"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('smile')">
             <i class="icon fas fa-grin-wink"></i>
-            <span class="title">Show<br/>Smile</span>
+            <span class="title">Smile</span>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
-            <span class="title">Show<br/>Frown</span>
+            <span class="title">Frown</span>
         </button>
         <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('sadness')">
             <i class="icon fas fa-sad-tear"></i>
-            <span class="title">Show<br/>Sadness</span>
+            <span class="title">Sadness</span>
         </button>
     </section>
 </template>

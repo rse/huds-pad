@@ -14,12 +14,12 @@
         <button id="clear"
             v-bind:disabled="!text || $status.value.isMessagingDisabled"
             @click="clearMessage">
-            Clear <i class="icon fas fa-trash-alt"></i>
+            CLEAR <i class="icon fas fa-trash-alt"></i>
         </button>
         <button id="send"
             v-bind:disabled="!text || $status.value.isMessagingDisabled"
             @click="sendMessage">
-            Send <i class="icon fas fa-share"></i>
+            SEND <i class="icon fas fa-share"></i>
         </button>
     </section>
 </template>
@@ -112,7 +112,7 @@ button {
     border-left: 1px solid var(--color-std-bg-5);
     border-right: 1px solid var(--color-std-bg-1);
     border-bottom: 1px solid var(--color-std-bg-1);
-    font-size: 14pt;
+    font-size: 12pt;
     line-height: 18pt;
     text-align: center;
     border-radius: 4px;
