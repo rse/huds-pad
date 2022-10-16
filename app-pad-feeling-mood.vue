@@ -21,10 +21,11 @@
         font-weight: 400;
         text-align: center;
         width: 100%;
+        margin-top: -4px;
         margin-bottom: 4px;
     }
     input {
-        width: calc(100% - 10px);
+        width: calc(100% - 20px);
         color: var(--color-acc-fg-3);
         -webkit-appearance: none;
         background-color: var(--color-std-bg-3);
