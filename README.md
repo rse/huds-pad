@@ -18,3 +18,8 @@ This is **HUDS Pad**, the trainee client-side web application
 based on [HUDS](https://github.com/rse/huds) and its
 [Training HUD](https://github.com/rse/huds-hud-training).
 
+Sneak Preview
+-------------
+
+![Screenshot](screenshot.png)
+
