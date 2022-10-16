@@ -6,7 +6,7 @@
                 <i class="icon fas fa-arrow-alt-circle-left"></i><br>
             </button>
         </div>
-        <h1>HUDS Pad</h1>
+        <h1><i class="icon fas fa-thumbs-up"></i> HUDS Pad</h1>
     </div>
 </template>
 
@@ -52,11 +52,18 @@ button {
 
 h1 {
     line-height: 0;
+    margin-top: 2px;
     margin-bottom: 20px;
     text-align: center;
     flex-grow: 1;
     position: relative;
     left: -20px;
+    .icon {
+        display: inline-block;
+        color: var(--color-std-fg-1);
+        font-size: 16pt;
+        margin-right: 8px;
+    }
 }
 </style>
 
