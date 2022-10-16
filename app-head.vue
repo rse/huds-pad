@@ -17,7 +17,7 @@
 
 <style lang="less" scoped>
 .app-pad-head {
-    margin-top: 8px;
+    padding-top: 8px;
     display: flex;
     flex-direction: row;
     button {
