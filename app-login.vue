@@ -1,7 +1,7 @@
 
 <template>
     <div class="app-login">
-        <h2>Access Token</h2>
+        <h2>ACCESS TOKEN</h2>
         <input v-model="accessToken"
             style="grid-area: input"
             type="text"
