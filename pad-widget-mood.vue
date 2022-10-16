@@ -18,7 +18,7 @@ section {
     text-align: center;
 }
 .title {
-    font-size: 80%;
+    font-size: 8pt;
     font-weight: 400;
     text-align: center;
     width: 100%;

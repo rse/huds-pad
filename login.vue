@@ -11,7 +11,7 @@
         <button style="grid-area: connect"
             v-bind:disabled="!liveAccessToken"
             @click="updateHash">
-            CONNECT <i class="icon fas fa-arrow-alt-circle-right"></i>
+            Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
     </div>
 </template>
@@ -36,7 +36,7 @@ input {
     border-radius: 4px;
 
     &::placeholder {
-        color: var(--color-std-fg-0);
+        color: var(--color-std-fg-1);
         font-size: 10pt;
         font-weight: 200;
     }
@@ -92,7 +92,6 @@ button {
     }
     .icon {
         margin-left: 8px;
-        font-size: 75%;
     }
 }
 </style>

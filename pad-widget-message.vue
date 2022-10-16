@@ -14,12 +14,12 @@
         <button id="clear"
             v-bind:disabled="!text || $status.value.isMessagingDisabled"
             @click="clearMessage">
-            CLEAR <i class="icon fas fa-trash-alt"></i>
+            Clear <i class="icon fas fa-trash-alt"></i>
         </button>
         <button id="send"
             v-bind:disabled="!text || $status.value.isMessagingDisabled"
             @click="sendMessage">
-            SEND <i class="icon fas fa-share"></i>
+            Send <i class="icon fas fa-share"></i>
         </button>
     </section>
 </template>
@@ -69,7 +69,7 @@ textarea {
     border-radius: 4px;
 
     &::placeholder {
-        color: var(--color-std-fg-0);
+        color: var(--color-std-fg-1);
         font-size: 10pt;
         font-weight: 200;
     }
@@ -146,7 +146,6 @@ button {
     }
     .icon {
         margin-left: 8px;
-        font-size: 75%;
     }
 }
 </style>

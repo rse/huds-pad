@@ -69,7 +69,7 @@ button {
     border-right: 1px solid var(--color-std-bg-1);
     border-bottom: 1px solid var(--color-std-bg-1);
     border-radius: 4px;
-    font-size: 24pt;
+    font-size: 22pt;
     text-align: center;
     line-height: 0;
     padding-top: 8px;
@@ -84,7 +84,7 @@ button {
 
     .title {
         font-weight: 300;
-        font-size: 7pt;
+        font-size: 8pt;
         text-align: center;
         line-height: 7pt;
     }

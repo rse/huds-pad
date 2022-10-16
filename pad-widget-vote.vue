@@ -63,19 +63,19 @@
             v-bind:class="{ active: votingChoice === 'yes' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('yes')">
-            YES <span class="icon"><i class="fas fa-thumbs-up"></i></span>
+            Yes <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         </button>
         <button style="grid-area: choose2" class="choice"
             v-bind:class="{ active: votingChoice === 'no' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('no')">
-            NO <span class="icon"><i class="fas fa-thumbs-down"></i></span>
+            No <span class="icon"><i class="fas fa-thumbs-down"></i></span>
         </button>
         <button style="grid-area: abstain" class="abstain"
             v-bind:class="{ active: votingChoice === 'abstain' }"
             v-bind:disabled="$status.value.isVotingDisabled"
             @click="vote('abstain')">
-            ABSTAIN <span class="icon"><i class="fas fa-ban"></i></span>
+            Abstain <span class="icon"><i class="fas fa-ban"></i></span>
         </button>
     </section>
 </template>
@@ -118,7 +118,7 @@ button {
     &.choice {
         color: var(--color-std-fg-1);
         font-weight: normal;
-        font-size: 14pt;
+        font-size: 16pt;
         .icon {
             padding-left: 8px;
             color: var(--color-std-fg-1);
