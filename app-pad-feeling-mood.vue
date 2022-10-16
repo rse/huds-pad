@@ -132,7 +132,7 @@ module.exports = {
     }),
     methods: {
         change () {
-            this.$emit("change", this.mood)
+            this.$emit("changed-value", this.mood)
         }
     }
 }

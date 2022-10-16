@@ -4,10 +4,10 @@
         <h2 style="grid-area: title">FEELING</h2>
         <app-pad-feeling-challenge
             style="grid-area: challenge" class="slider"
-            v-on:change="(x) => sendFeeling(mood, x)"></app-pad-feeling-challenge>
+            v-on:changed-value="(x) => sendFeeling(mood, x)"></app-pad-feeling-challenge>
         <app-pad-feeling-mood
             style="grid-area: mood" class="slider"
-            v-on:change="(x) => sendFeeling(x, challenge)"></app-pad-feeling-mood>
+            v-on:changed-value="(x) => sendFeeling(x, challenge)"></app-pad-feeling-mood>
     </section>
 </template>
 
@@ -31,6 +31,8 @@
 </style>
 
 <script>
+let timer1 = null
+let timer2 = null
 module.exports = {
     name: "app-pad-feeling",
     components: {
@@ -43,7 +45,7 @@ module.exports = {
     }),
     created () {
         /*  regularly refresh feeling  */
-        setInterval(() => {
+        timer1 = setInterval(() => {
             this.huds.sendFeeling(this.mood, this.challenge)
         }, 10 * 60 * 1000)
     },
@@ -58,8 +60,14 @@ module.exports = {
                 this.challenge = challenge
                 changed = true
             }
-            if (changed)
-                this.huds.sendFeeling(mood, challenge)
+            if (changed) {
+                if (timer2 !== null)
+                    clearTimeout(timer2)
+                timer2 = setTimeout(() => {
+                    this.huds.sendFeeling(this.mood, this.challenge)
+                    timer2 = null
+                }, 2 * 1000)
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 <template>
     <section>
         <input v-model.number="challenge"
-            v-bind:class="['range' + challenge ]"
+            v-bind:class="[ 'range' + challenge ]"
             type="range"
             min="1"
             max="5"
@@ -113,7 +113,7 @@ module.exports = {
     }),
     methods: {
         change () {
-            this.$emit("change", this.challenge)
+            this.$emit("changed-value", this.challenge)
         }
     }
 }
