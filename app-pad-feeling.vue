@@ -66,7 +66,7 @@ module.exports = {
                 timer2 = setTimeout(() => {
                     this.huds.sendFeeling(this.mood, this.challenge)
                     timer2 = null
-                }, 2 * 1000)
+                }, 1000)
             }
         }
     }
