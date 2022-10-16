@@ -102,7 +102,7 @@ class HUDS {
     sendMessageToBroker (event, data) {
         return new Promise((resolve, reject) => {
             if (!this.client.connected)
-                reject(new Error("Not connected"))
+                reject(new Error("Not connected to MQTT broker"))
             const msg = this.createMessage(event, data)
             this.client.publish(`stream/${this.channel}/sender`, msg, { qos: 2, retain: false }, (err) => {
                 if (err) reject(err)
