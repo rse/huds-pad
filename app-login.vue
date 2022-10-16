@@ -106,9 +106,11 @@ module.exports = {
             window.location.hash = this.accessToken
         },
         connect () {
+            /*  sanity check situation  */
             if (!window.location.hash)
                 return
 
+            /*  parse access token  */
             const accessToken = window.location.hash.substring(1)
             const match = accessToken.match(/^(.+?)-([^-]+)-([^-]+)$/)
             if (match === null) {
@@ -116,20 +118,37 @@ module.exports = {
                 return
             }
             const [ , channel, token1, token2 ] = match
+
+            /*  connect to HUDS MQTT broker  */
             const client = this.huds.connect(channel, token1, token2)
+
+            /*  react on MQTT broker status  */
             client.on("connect", () => {
                 this.$info.setMessage("Status: Connected")
                 this.$status.setConnectionEstablished()
                 this.huds.beginAttendance()
+                this.huds.sendFeeling(3, 3)
+            })
+            client.on("close", () => {
+                this.$info.setMessage("Status: Disconnected")
+                this.$status.setConnectionClosed()
+            })
+            client.on("disconnect", () => {
+                this.$info.setMessage("Status: Disconnected")
+            })
+            client.on("offline", () => {
+                this.$info.setMessage("Status: Offline")
             })
             client.on("error", (err) => {
-                this.$info.setMessage("Status: Error")
+                this.$info.setMessage(`Status: Error (${err})`)
                 console.error(err)
                 this.client.end()
             })
             client.on("reconnect", () => {
                 this.$info.setMessage("Status: Reconnecting")
             })
+
+            /*  react on MQTT messages  */
             client.on("message", (topic, message) => {
                 message = JSON.parse(message.toString())
                 if (typeof message?.event !== "string")
