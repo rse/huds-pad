@@ -6,6 +6,7 @@
         </h2>
         <div class="qrcode">
             <canvas ref="qrcode" class="canvas"></canvas>
+            <div class="url">{{ url }}</div>
         </div>
     </div>
 </template>
@@ -26,6 +27,11 @@
         border-radius: 4px;
         width: 100%;
         text-align: center;
+        .url {
+            margin-top: -10px;
+            margin-bottom: 20px;
+            color: var(--color-std-fg-5);
+        }
     }
 }
 </style>
@@ -33,6 +39,14 @@
 <script>
 module.exports = {
     name: "app-qrcode",
+    data: () => ({
+        url: window.location.href
+    }),
+    created () {
+        window.addEventListener("hashchange", () => {
+            this.url = window.location.href
+        }, false)
+    },
     mounted () {
         QRCode.toCanvas(this.$refs.qrcode, window.location.href, {
             errorCorrectionLevel: "M",
@@ -41,8 +55,7 @@ module.exports = {
                 dark:  "#ffffffff",
                 light: "#00000000"
             }
-        }, (err) => {
-        })
+        }, (err) => {})
     }
 }
 </script>
