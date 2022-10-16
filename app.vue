@@ -13,11 +13,11 @@
 main {
     margin: 0 auto;
     padding: 0 10px;
-    max-width: 450px;
+    max-width: 480px;
     min-height: 100vh;
     background: var(--color-std-bg-3);
 }
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 480px) {
     main {
         border-left:  1px solid var(--color-std-bg-5);
         border-right: 1px solid var(--color-std-bg-0);
