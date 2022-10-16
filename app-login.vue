@@ -128,7 +128,7 @@ module.exports = {
             autoconnecttimer = setTimeout(async () => {
                 await this.disconnect().catch(() => {})
                 this.connect()
-            }, 1000)
+            }, 500)
         },
         connect () {
             /*  sanity check situation  */
