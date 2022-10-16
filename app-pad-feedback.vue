@@ -1,7 +1,7 @@
 
 <template>
-    <section id="feedback">
-        <h2 id="title" style="grid-area: title">
+    <section class="app-pad-feedback">
+        <h2 style="grid-area: title">
             FEEDBACK
             <span v-show="isFeedbackDisabled" class="disabled">(temporarily disabled)</span>
         </h2>
@@ -45,72 +45,65 @@
 </template>
 
 <style lang="less" scoped>
-#feedback {
+.app-pad-feedback {
     display: grid;
     grid-template:
          "title title title title title title"
          "button1 button2 button3 button4 button5 button6";
     grid-gap: 2px;
-}
-
-.disabled {
-    font-size: 8pt;
-    font-weight: 200;
-    color: var(--color-sig-fg-2);
-    margin-left: 4px;
-}
-
-button {
-    cursor: pointer;
-    color: var(--color-std-fg-3);
-    background-color: var(--color-std-bg-3);
-    border-top: 1px solid var(--color-std-bg-5);
-    border-left: 1px solid var(--color-std-bg-5);
-    border-right: 1px solid var(--color-std-bg-1);
-    border-bottom: 1px solid var(--color-std-bg-1);
-    border-radius: 4px;
-    font-size: 22pt;
-    text-align: center;
-    line-height: 0;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 0;
-    padding-right: 0;
-
-    .icon {
-        width: 100%;
-        padding-bottom: 3px;
-    }
-
-    .title {
-        font-weight: 300;
+    .disabled {
         font-size: 8pt;
-        text-align: center;
-        line-height: 7pt;
+        font-weight: 200;
+        color: var(--color-sig-fg-2);
+        margin-left: 4px;
     }
-
-    &:hover {
-        border: 0;
-        outline: none;
-        color: var(--color-sig-fg-5);
-        background-color: var(--color-sig-bg-3);
-        border-top: 1px solid var(--color-sig-bg-5);
-        border-left: 1px solid var(--color-sig-bg-5);
-        border-right: 1px solid var(--color-sig-bg-1);
-        border-bottom: 1px solid var(--color-sig-bg-1);
-    }
-
-    &:disabled {
-        cursor: not-allowed;
-        color: var(--color-std-fg-0);
+    button {
+        cursor: pointer;
+        color: var(--color-std-fg-3);
         background-color: var(--color-std-bg-3);
         border-top: 1px solid var(--color-std-bg-5);
         border-left: 1px solid var(--color-std-bg-5);
         border-right: 1px solid var(--color-std-bg-1);
         border-bottom: 1px solid var(--color-std-bg-1);
-
+        border-radius: 4px;
+        font-size: 22pt;
+        text-align: center;
+        line-height: 0;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 0;
+        padding-right: 0;
         .icon {
+            width: 100%;
+            padding-bottom: 3px;
+        }
+        .title {
+            font-weight: 300;
+            font-size: 8pt;
+            text-align: center;
+            line-height: 7pt;
+        }
+        &:hover {
+            border: 0;
+            outline: none;
+            color: var(--color-sig-fg-5);
+            background-color: var(--color-sig-bg-3);
+            border-top: 1px solid var(--color-sig-bg-5);
+            border-left: 1px solid var(--color-sig-bg-5);
+            border-right: 1px solid var(--color-sig-bg-1);
+            border-bottom: 1px solid var(--color-sig-bg-1);
+        }
+        &:disabled {
+            cursor: not-allowed;
             color: var(--color-std-fg-0);
+            background-color: var(--color-std-bg-3);
+            border-top: 1px solid var(--color-std-bg-5);
+            border-left: 1px solid var(--color-std-bg-5);
+            border-right: 1px solid var(--color-std-bg-1);
+            border-bottom: 1px solid var(--color-std-bg-1);
+            .icon {
+                color: var(--color-std-fg-0);
+            }
         }
     }
 }

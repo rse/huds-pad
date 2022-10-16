@@ -1,6 +1,6 @@
 
 <template>
-    <section id="vote">
+    <section class="app-pad-vote">
         <h2 id="title" style="grid-area: title">
             VOTE
             <span v-show="$status.value.isVotingDisabled" class="disabled">(temporarily disabled)</span>
@@ -81,7 +81,7 @@
 </template>
 
 <style lang="less" scoped>
-#vote {
+.app-pad-vote {
     display: grid;
     grid-template:
         "title title title"
@@ -90,88 +90,82 @@
         "button7 button8 button9"
         "choose1 choose2 abstain";
     grid-gap: 2px;
-}
-
-.disabled {
-    font-size: 8pt;
-    font-weight: 200;
-    color: var(--color-sig-fg-2);
-    margin-left: 4px;
-}
-
-button {
-    cursor: pointer;
-    color: var(--color-std-fg-3) !important;
-    background-color: var(--color-std-bg-3);
-    border-top: 1px solid var(--color-std-bg-5);
-    border-left: 1px solid var(--color-std-bg-5);
-    border-right: 1px solid var(--color-std-bg-1);
-    border-bottom: 1px solid var(--color-std-bg-1);
-    border-radius: 4px;
-    font-size: 22pt;
-    font-weight: bold;
-    line-height: 18pt;
-    text-align: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
-
-    &.choice {
-        color: var(--color-std-fg-1);
-        font-weight: normal;
-        font-size: 16pt;
-        .icon {
-            padding-left: 8px;
-            color: var(--color-std-fg-1);
-        }
+    .disabled {
+        font-size: 8pt;
+        font-weight: 200;
+        color: var(--color-sig-fg-2);
+        margin-left: 4px;
     }
-    &.abstain {
-        color: var(--color-std-fg-1);
-        font-weight: normal;
-        font-size: 12pt;
-        .icon {
-            padding-left: 8px;
-            color: var(--color-std-fg-1);
-        }
-    }
-
-    &:hover {
-        border: 0;
-        outline: none;
-        color: var(--color-sig-fg-5) !important;
-        background-color: var(--color-sig-bg-3);
-        border-top: 1px solid var(--color-sig-bg-5);
-        border-left: 1px solid var(--color-sig-bg-5);
-        border-right: 1px solid var(--color-sig-bg-1);
-        border-bottom: 1px solid var(--color-sig-bg-1);
-        .icon {
-            color: var(--color-sig-fg-5) !important;
-        }
-    }
-
-    &:disabled {
-        cursor: not-allowed;
-        color: var(--color-std-fg-0) !important;
+    button {
+        cursor: pointer;
+        color: var(--color-std-fg-3) !important;
         background-color: var(--color-std-bg-3);
         border-top: 1px solid var(--color-std-bg-5);
         border-left: 1px solid var(--color-std-bg-5);
         border-right: 1px solid var(--color-std-bg-1);
         border-bottom: 1px solid var(--color-std-bg-1);
-        .icon {
-            color: var(--color-std-fg-0) !important;
+        border-radius: 4px;
+        font-size: 22pt;
+        font-weight: bold;
+        line-height: 18pt;
+        text-align: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        &.choice {
+            color: var(--color-std-fg-1);
+            font-weight: normal;
+            font-size: 16pt;
+            .icon {
+                padding-left: 8px;
+                color: var(--color-std-fg-1);
+            }
         }
-    }
-
-    &.active {
-        border: 0;
-        outline: none;
-        color: var(--color-acc-fg-5) !important;
-        background-color: var(--color-acc-bg-3);
-        border-top: 1px solid var(--color-acc-bg-5);
-        border-left: 1px solid var(--color-acc-bg-5);
-        border-right: 1px solid var(--color-acc-bg-1);
-        border-bottom: 1px solid var(--color-acc-bg-1);
-        .icon {
+        &.abstain {
+            color: var(--color-std-fg-1);
+            font-weight: normal;
+            font-size: 12pt;
+            .icon {
+                padding-left: 8px;
+                color: var(--color-std-fg-1);
+            }
+        }
+        &:hover {
+            border: 0;
+            outline: none;
+            color: var(--color-sig-fg-5) !important;
+            background-color: var(--color-sig-bg-3);
+            border-top: 1px solid var(--color-sig-bg-5);
+            border-left: 1px solid var(--color-sig-bg-5);
+            border-right: 1px solid var(--color-sig-bg-1);
+            border-bottom: 1px solid var(--color-sig-bg-1);
+            .icon {
+                color: var(--color-sig-fg-5) !important;
+            }
+        }
+        &:disabled {
+            cursor: not-allowed;
+            color: var(--color-std-fg-0) !important;
+            background-color: var(--color-std-bg-3);
+            border-top: 1px solid var(--color-std-bg-5);
+            border-left: 1px solid var(--color-std-bg-5);
+            border-right: 1px solid var(--color-std-bg-1);
+            border-bottom: 1px solid var(--color-std-bg-1);
+            .icon {
+                color: var(--color-std-fg-0) !important;
+            }
+        }
+        &.active {
+            border: 0;
+            outline: none;
             color: var(--color-acc-fg-5) !important;
+            background-color: var(--color-acc-bg-3);
+            border-top: 1px solid var(--color-acc-bg-5);
+            border-left: 1px solid var(--color-acc-bg-5);
+            border-right: 1px solid var(--color-acc-bg-1);
+            border-bottom: 1px solid var(--color-acc-bg-1);
+            .icon {
+                color: var(--color-acc-fg-5) !important;
+            }
         }
     }
 }
