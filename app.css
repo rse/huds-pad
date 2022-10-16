@@ -60,7 +60,7 @@ textarea, input {
 h1 {
     font-weight: 200;
     font-size: 20pt;
-    color: var(--color-std-fg-3);
+    color: var(--color-acc-fg-3);
 }
 
 h2 {

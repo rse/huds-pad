@@ -96,9 +96,9 @@
         "choose1 choose2 abstain";
     grid-gap: 2px;
     .disabled {
-        font-size: 8pt;
+        font-size: 9pt;
         font-weight: 200;
-        color: var(--color-sig-fg-2);
+        color: var(--color-acc-fg-2);
         margin-left: 4px;
     }
     button {

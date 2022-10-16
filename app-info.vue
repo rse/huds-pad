@@ -5,11 +5,11 @@
 
 <style lang="less">
 .app-info {
-    margin-top: 8px;
+    margin-top: 0px;
     width: 100%;
     font-weight: 200;
     text-align: center;
-    color: var(--color-std-fg-1);
+    color: var(--color-std-fg-2);
 }
 </style>
 

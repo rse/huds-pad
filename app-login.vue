@@ -125,28 +125,28 @@ module.exports = {
 
             /*  react on MQTT broker status  */
             client.on("connect", () => {
-                this.$info.setMessage("Status: Connected")
+                this.$info.setMessage("STATUS: Connected")
                 this.$status.setConnectionEstablished()
                 this.huds.beginAttendance()
                 this.huds.sendFeeling(3, 3)
             })
             client.on("close", () => {
-                this.$info.setMessage("Status: Disconnected")
+                this.$info.setMessage("STATUS: Disconnected")
                 this.$status.setConnectionClosed()
             })
             client.on("disconnect", () => {
-                this.$info.setMessage("Status: Disconnected")
+                this.$info.setMessage("STATUS: Disconnected")
             })
             client.on("offline", () => {
-                this.$info.setMessage("Status: Offline")
+                this.$info.setMessage("STATUS: Offline")
             })
             client.on("error", (err) => {
-                this.$info.setMessage(`Status: Error (${err})`)
+                this.$info.setMessage(`STATUS: Error (${err})`)
                 console.error(err)
                 this.client.end()
             })
             client.on("reconnect", () => {
-                this.$info.setMessage("Status: Reconnecting")
+                this.$info.setMessage("STATUS: Reconnecting")
             })
 
             /*  react on MQTT messages  */

@@ -54,9 +54,9 @@
          "button1 button2 button3 button4 button5 button6";
     grid-gap: 2px;
     .disabled {
-        font-size: 8pt;
+        font-size: 9pt;
         font-weight: 200;
-        color: var(--color-sig-fg-2);
+        color: var(--color-acc-fg-2);
         margin-left: 4px;
     }
     button {
