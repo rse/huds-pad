@@ -185,7 +185,6 @@ module.exports = {
     }),
     created () {
         this.$watch("$status.value.clearVoting", () => {
-            console.log("FUCLK")
             this.votingChoice = ""
         })
     },

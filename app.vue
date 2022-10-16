@@ -9,19 +9,19 @@
 </template>
 
 <style lang="less" scoped>
+main {
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 450px;
+    min-height: 100vh;
+    background: var(--color-std-bg-3);
+}
+@media only screen and (min-width: 450px) {
     main {
-        margin: 0 auto;
-        padding: 0 10px;
-        max-width: 450px;
-        min-height: 100vh;
-        background: var(--color-std-bg-3);
+        border-left:  1px solid var(--color-std-bg-5);
+        border-right: 1px solid var(--color-std-bg-0);
     }
-    @media only screen and (min-width: 450px) {
-        main {
-            border-left:  1px solid var(--color-std-bg-5);
-            border-right: 1px solid var(--color-std-bg-0);
-        }
-    }
+}
 </style>
 
 <script>
