@@ -30,7 +30,7 @@
         .url {
             margin-top: -10px;
             margin-bottom: 20px;
-            color: var(--color-std-fg-5);
+            color: var(--color-acc-fg-5);
         }
     }
 }

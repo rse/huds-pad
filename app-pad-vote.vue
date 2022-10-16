@@ -127,8 +127,8 @@
         }
         &.abstain {
             color: var(--color-std-fg-1);
-            font-weight: 200;
-            font-size: 12pt;
+            font-weight: normal;
+            font-size: 14pt;
             .icon {
                 padding-left: 8px;
                 color: var(--color-std-fg-1);
