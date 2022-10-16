@@ -3,7 +3,7 @@
     <div class="app-info">{{ $info.value.value }}</div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-info {
     margin-top: 8px;
     width: 100%;

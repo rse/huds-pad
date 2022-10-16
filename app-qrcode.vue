@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-qrcode {
     display: grid;
     grid-template:

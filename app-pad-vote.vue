@@ -85,7 +85,7 @@
     </section>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-pad-vote {
     display: grid;
     grid-template:
@@ -134,7 +134,7 @@
                 color: var(--color-std-fg-1);
             }
         }
-        &:hover {
+        .hoverable &:hover:not(:disabled) {
             border: 0;
             outline: none;
             color: var(--color-sig-fg-5) !important;

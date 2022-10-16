@@ -46,7 +46,7 @@
     </section>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-pad-feedback {
     display: grid;
     grid-template:
@@ -85,7 +85,7 @@
             text-align: center;
             line-height: 7pt;
         }
-        &:hover {
+        .hoverable &:hover:not(:disabled) {
             border: 0;
             outline: none;
             color: var(--color-sig-fg-5);
@@ -125,7 +125,7 @@ module.exports = {
             this.huds.sendFeedback(value)
             setTimeout(() => {
                 this.isFeedbackDisabled = false
-            }, 30 * 1000)
+            }, 3 * 1000)
         }
     }
 }

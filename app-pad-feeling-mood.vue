@@ -13,7 +13,7 @@
     </section>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 section {
     text-align: center;
     .title {
@@ -56,7 +56,7 @@ section {
             border-right: 1px solid var(--color-std-bg-5);
             border-bottom: 1px solid var(--color-std-bg-5);
         }
-        &:hover {
+        .hoverable &:hover {
             background-color: var(--color-sig-bg-3);
             &::-webkit-slider-runnable-track {
                 background-color: var(--color-sig-bg-3);

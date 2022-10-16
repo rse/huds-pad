@@ -18,7 +18,7 @@
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-pad-head {
     padding-top: 8px;
     display: flex;
@@ -35,7 +35,7 @@
             width: 25px;
             text-align: center;
         }
-        &:hover, &:focus {
+        .hoverable &:hover {
             border: 0;
             outline: none;
             color: var(--color-sig-fg-5);

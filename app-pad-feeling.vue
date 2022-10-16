@@ -11,7 +11,7 @@
     </section>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-pad-feeling {
     display: grid;
     grid-template:

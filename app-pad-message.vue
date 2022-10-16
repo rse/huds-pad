@@ -29,7 +29,7 @@
     </section>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-pad-message {
     display: grid;
     grid-template:
@@ -71,7 +71,8 @@
             font-size: 10pt;
             font-weight: 200;
         }
-        &:hover, &:focus {
+        .hoverable &:hover:not(:disabled),
+        &:focus {
             border: 0;
             outline: none;
             color: var(--color-sig-fg-5);
@@ -110,7 +111,7 @@
         text-align: center;
         border-radius: 4px;
         padding: 8px 0 8px 0;
-        &:hover {
+        .hoverable &:hover:not(:disabled) {
             border: 0;
             outline: none;
             color: var(--color-sig-fg-5);

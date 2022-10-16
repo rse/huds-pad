@@ -16,7 +16,7 @@
     </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .app-login {
     display: grid;
     grid-template: 'label' 'input' 'connect';
@@ -37,7 +37,8 @@
             font-size: 10pt;
             font-weight: 200;
         }
-        &:hover, &:focus {
+        .hoverable &:hover,
+        &:focus {
             border: 0;
             outline: none;
             color: var(--color-sig-fg-5);
@@ -65,7 +66,7 @@
         margin-top: 2px;
         padding: 8px 0 8px 0;
         border-radius: 4px;
-        &:hover {
+        .hoverable &:hover:not(:disabled) {
             color: var(--color-sig-fg-3);
             background-color: var(--color-sig-bg-4);
             border-top: 1px solid var(--color-sig-bg-5);
