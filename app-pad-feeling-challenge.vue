@@ -1,6 +1,6 @@
 
 <template>
-    <section>
+    <section class="app-pad-feeling-challenge">
         <input v-model.number="challenge"
             v-bind:class="[ 'range' + challenge ]"
             type="range"
@@ -14,7 +14,7 @@
 </template>
 
 <style lang="less">
-section {
+.app-pad-feeling-challenge {
     text-align: center;
     .title {
         font-size: 8pt;

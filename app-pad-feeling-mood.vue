@@ -1,6 +1,6 @@
 
 <template>
-    <section>
+    <section class="app-pad-feeling-mood">
         <input v-model.number="mood"
             v-bind:class="['range' + mood ]"
             type="range"
@@ -14,7 +14,7 @@
 </template>
 
 <style lang="less">
-section {
+.app-pad-feeling-mood {
     text-align: center;
     .title {
         font-size: 8pt;
