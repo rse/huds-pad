@@ -122,10 +122,8 @@ module.exports = {
                 this.$info.setMessage("Error: Invalid access token format")
                 return
             }
-
             const [ , channel, token1, token2 ] = match
-            this.huds.channel = channel
-            const client = this.huds.initClient(token1, token2)
+            const client = this.huds.connect(channel, token1, token2)
             client.on("connect", () => {
                 this.$info.setMessage("Status: Connected")
                 this.$status.setConnectionEstablished()
@@ -141,7 +139,7 @@ module.exports = {
             })
             client.on("message", (topic, message) => {
                 message = JSON.parse(message.toString())
-                if (typeof message?.event !== "string")
+                ef (typeof message?.event !== "string")
                     return
                 if (message.event === "voting-begin") {
                     this.$status.disabledMessaging(true)
