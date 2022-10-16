@@ -27,7 +27,7 @@
         line-height: 12pt;
         background: none;
         cursor: pointer;
-        border: 1px solid transparent;
+        border: 0;
         .icon {
             display: inline-block;
             color: var(--color-std-fg-1);
@@ -39,11 +39,6 @@
             border: 0;
             outline: none;
             color: var(--color-acc-fg-5);
-            background-color: var(--color-acc-bg-3);
-            border-top: 1px solid var(--color-acc-bg-5);
-            border-left: 1px solid var(--color-acc-bg-5);
-            border-right: 1px solid var(--color-acc-bg-1);
-            border-bottom: 1px solid var(--color-acc-bg-1);
             .icon {
                 color: var(--color-acc-fg-1);
             }
