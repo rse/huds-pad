@@ -6,20 +6,23 @@
             <span v-show="$status.value.isMessagingDisabled" class="disabled">
                 (temporarily disabled until current voting ends)
             </span>
+            <span v-show="!$status.value.isMessagingDisabled && justSent" class="disabled">
+                (temporarily disabled for throttling purposes)
+            </span>
         </h2>
         <textarea class="text" v-model="text"
             rows="3"
-            v-bind:disabled="$status.value.isMessagingDisabled"
+            v-bind:disabled="$status.value.isMessagingDisabled || justSent"
             v-bind:placeholder="'Type a message to be send to the audience...'"
             v-on:keyup.escape="clearMessage()"
         ></textarea>
         <button class="clear"
-            v-bind:disabled="!text || $status.value.isMessagingDisabled"
+            v-bind:disabled="!text || $status.value.isMessagingDisabled || justSent"
             @click="clearMessage">
             Clear <i class="icon fas fa-trash-alt"></i>
         </button>
         <button class="send"
-            v-bind:disabled="!text || $status.value.isMessagingDisabled"
+            v-bind:disabled="!text || $status.value.isMessagingDisabled || justSent"
             @click="sendMessage">
             Send <i class="icon fas fa-share"></i>
         </button>
@@ -143,13 +146,18 @@
 module.exports = {
     name: "app-pad-message",
     data: () => ({
-        text: ""
+        text: "",
+        justSent: false
     }),
     methods: {
         sendMessage () {
             if (this.text && !this.$status.value.isMessagingDisabled) {
                 this.huds.sendMessage(this.text)
                 this.clearMessage()
+                this.justSent = true
+                setTimeout(() => {
+                    this.justSent = false
+                }, 15 * 1000)
             }
         },
         clearMessage () {
