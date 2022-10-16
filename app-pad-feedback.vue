@@ -125,7 +125,7 @@ module.exports = {
             this.huds.sendFeedback(value)
             setTimeout(() => {
                 this.isFeedbackDisabled = false
-            }, 3 * 1000)
+            }, 30 * 1000)
         }
     }
 }
