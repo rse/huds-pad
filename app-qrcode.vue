@@ -1,0 +1,49 @@
+
+<template>
+    <div class="app-qrcode">
+        <h2 class="title" style="grid-area: title">
+            QRCODE
+        </h2>
+        <div class="qrcode">
+            <canvas ref="qrcode" class="canvas"></canvas>
+        </div>
+    </div>
+</template>
+
+<style lang="less" scoped>
+.app-qrcode {
+    display: grid;
+    grid-template:
+        "title"
+        "qrcode";
+    grid-gap: 2px;
+    .qrcode {
+        background-color: var(--color-std-bg-2);
+        border-top: 1px solid var(--color-std-bg-1);
+        border-left: 1px solid var(--color-std-bg-1);
+        border-right: 1px solid var(--color-std-bg-5);
+        border-bottom: 1px solid var(--color-std-bg-5);
+        border-radius: 4px;
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+
+<script>
+module.exports = {
+    name: "app-qrcode",
+    mounted () {
+        QRCode.toCanvas(this.$refs.qrcode, window.location.href, {
+            errorCorrectionLevel: "M",
+            width: 350,
+            color: {
+                dark:  "#ffffffff",
+                light: "#00000000"
+            }
+        }, (err) => {
+        })
+    }
+}
+</script>
+
