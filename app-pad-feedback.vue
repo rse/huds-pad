@@ -60,7 +60,7 @@
     button {
         cursor: pointer;
         color: var(--color-std-fg-3);
-        background-color: var(--color-std-bg-3);
+        background-color: var(--color-std-bg-4);
         border-top: 1px solid var(--color-std-bg-5);
         border-left: 1px solid var(--color-std-bg-5);
         border-right: 1px solid var(--color-std-bg-1);
