@@ -46,6 +46,8 @@ window.HUDS = class HUDS {
 
         /*  connect to MQTT broker  */
         this.channel = channel
+        if (this.client !== null)
+            this.disconnect().catch(() => {})
         this.client = mqtt.connect(this.url, {
             will: {
                 /*  use an MQTT "last will" message to end attendance (implicitly)  */

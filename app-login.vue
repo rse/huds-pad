@@ -143,7 +143,6 @@ module.exports = {
                 return
             }
             const [ , channel, token1, token2 ] = match
-            console.log(token1, token2)
 
             /*  connect to HUDS MQTT broker  */
             const client = this.huds.connect(channel, token1, token2)
