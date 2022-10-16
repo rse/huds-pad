@@ -1,7 +1,7 @@
 
 <template>
     <section class="app-pad-vote">
-        <h2 id="title" style="grid-area: title">
+        <h2 class="title" style="grid-area: title">
             VOTE
             <span v-show="$status.value.isVotingDisabled" class="disabled">(temporarily disabled)</span>
         </h2>
