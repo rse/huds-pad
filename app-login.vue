@@ -115,7 +115,8 @@ module.exports = {
             const accessToken = window.location.hash.substring(1)
             const match = accessToken.match(/^(.+?)-([^-]+)-([^-]+)$/)
             if (match === null) {
-                this.$info.setMessage("Error: Invalid access token format")
+                this.$info.setMessage("Status: Failed to connect")
+                this.$info.setError("Error: Invalid access token format")
                 return
             }
             const [ , channel, token1, token2 ] = match
@@ -125,28 +126,28 @@ module.exports = {
 
             /*  react on MQTT broker status  */
             client.on("connect", () => {
-                this.$info.setMessage("STATUS: Connected")
+                this.$info.setMessage("Status: Connected")
                 this.$status.setConnectionEstablished()
                 this.huds.beginAttendance()
                 this.huds.sendFeeling(3, 3)
             })
             client.on("close", () => {
-                this.$info.setMessage("STATUS: Disconnected")
+                this.$info.setMessage("Status: Disconnected")
                 this.$status.setConnectionClosed()
             })
             client.on("disconnect", () => {
-                this.$info.setMessage("STATUS: Disconnected")
+                this.$info.setMessage("Status: Disconnected")
             })
             client.on("offline", () => {
-                this.$info.setMessage("STATUS: Offline")
+                this.$info.setMessage("Status: Offline")
             })
             client.on("error", (err) => {
-                this.$info.setMessage(`STATUS: Error (${err})`)
-                console.error(err)
+                this.$info.setMessage("Status: HUDS Communication Error")
+                this.$info.setError(err.toString())
                 this.client.end()
             })
             client.on("reconnect", () => {
-                this.$info.setMessage("STATUS: Reconnecting")
+                this.$info.setMessage("Status: Reconnecting")
             })
 
             /*  react on MQTT messages  */

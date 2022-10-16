@@ -53,11 +53,15 @@ window.App = class App {
         }
 
         /*  provide global $info property  */
-        const info = Vue.ref("")
+        const msg = Vue.ref("")
+        const err = Vue.ref("")
         app.config.globalProperties.$info = {
-            value: info,
-            setMessage (text) { info.value = text },
-            clearMessage ()   { info.value = "" }
+            msg,
+            err,
+            setMessage   (text) { msg.value = text },
+            clearMessage ()     { msg.value = ""   },
+            setError     (text) { err.value = text },
+            clearError   ()     { err.value = ""   }
         }
 
         /*  provide global huds property  */

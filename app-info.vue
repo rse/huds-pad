@@ -1,6 +1,9 @@
 
 <template>
-    <div class="app-info">{{ $info.value.value }}</div>
+    <div class="app-info">
+        <div v-show="$info.msg.value" class="msg">{{ $info.msg.value }}</div>
+        <div v-show="$info.err.value" class="err">{{ $info.err.value }}</div>
+    </div>
 </template>
 
 <style lang="less">
@@ -10,7 +13,12 @@
     width: 100%;
     font-weight: 200;
     text-align: center;
-    color: var(--color-std-fg-2);
+    .msg {
+        color: var(--color-std-fg-2);
+    }
+    .err {
+        color: var(--color-sig-fg-2);
+    }
 }
 </style>
 

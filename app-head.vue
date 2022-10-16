@@ -72,6 +72,7 @@ module.exports = {
             this.huds.client.once("close", () => {
                 window.location.hash = ""
                 this.$info.clearMessage()
+                this.$info.clearError()
             })
             this.huds.disconnect()
         }
