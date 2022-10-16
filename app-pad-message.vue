@@ -10,8 +10,7 @@
                 (temporarily disabled for throttling purposes)
             </span>
         </h2>
-        <textarea class="text" v-model="text"
-            rows="3"
+        <textarea v-model="text" class="text" rows="3"
             v-bind:disabled="$status.value.isMessagingDisabled || justSent"
             v-bind:placeholder="'Type a message to be send...'"
             v-on:keyup.escape="clearMessage()"

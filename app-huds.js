@@ -1,6 +1,6 @@
 
 /*  HUDS communication  */
-class HUDS {
+window.HUDS = class HUDS {
     constructor (settingsFile) {
         this.channel = ""
         this.client  = null
@@ -60,12 +60,12 @@ class HUDS {
             reconnectPeriod: 1000,
             connectTimeout: 30 * 1000
         })
-        this.client.subscribe(`stream/${this.channel}/receiver`, (err) => {})
+        this.client.subscribe(`stream/${this.channel}/receiver`, () => {})
         return this.client
     }
 
     /*  begin/end attendance (explicitly)  */
-    beginAttendance() {
+    beginAttendance () {
         return this.sendMessageToBroker("attendance", {
             event: "begin",
             data: {
@@ -116,8 +116,8 @@ class HUDS {
         data.client = localStorage.getItem("huds-pad-client-id")
         return JSON.stringify({
             id:    this.id,
-            event: event,
-            data:  data
+            event,
+            data
         })
     }
 

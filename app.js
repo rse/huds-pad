@@ -1,13 +1,14 @@
 
 /*  main application procedure  */
-class App {
+window.App = class App {
     static main () {
         /*  provide custom Vue loader  */
         Vue.load = (name) => {
             return window["vue3-sfc-loader"].loadModule(name, {
-                moduleCache: { vue: Vue, less: less },
+                moduleCache: { vue: Vue, less },
                 getFile (url) {
-                    return fetch(url).then((res) => res.ok ? res.text() :
+                    return fetch(url).then((res) => res.ok ?
+                        res.text() :
                         Promise.reject(Object.assign(new Error(`${url}: ${res.statusText}`), { res })))
                 },
                 addStyle (textContent) {
@@ -20,7 +21,7 @@ class App {
                 },
                 additionalModuleHandlers: {
                     ".css": (source, path, options) =>
-                        less.render(source, { globalVars: vars }).then((result) => result.css)
+                        less.render(source, { globalVars: {} }).then((result) => result.css)
                 }
             })
         }
@@ -28,7 +29,7 @@ class App {
             Vue.defineAsyncComponent(() => Vue.load(name))
 
         /*  initialize user interface  */
-        let app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
+        const app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
         app.mount("#app")
 
         /*  provide global $status property  */

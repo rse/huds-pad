@@ -31,8 +31,7 @@
 </style>
 
 <script>
-let timer1 = null
-let timer2 = null
+let timer = null
 module.exports = {
     name: "app-pad-feeling",
     components: {
@@ -45,7 +44,7 @@ module.exports = {
     }),
     created () {
         /*  regularly refresh feeling  */
-        timer1 = setInterval(() => {
+        setInterval(() => {
             this.huds.sendFeeling(this.mood, this.challenge)
         }, 10 * 60 * 1000)
     },
@@ -61,11 +60,11 @@ module.exports = {
                 changed = true
             }
             if (changed) {
-                if (timer2 !== null)
-                    clearTimeout(timer2)
-                timer2 = setTimeout(() => {
+                if (timer !== null)
+                    clearTimeout(timer)
+                timer = setTimeout(() => {
                     this.huds.sendFeeling(this.mood, this.challenge)
-                    timer2 = null
+                    timer = null
                 }, 1000)
             }
         }

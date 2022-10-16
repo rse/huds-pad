@@ -21,6 +21,14 @@ env:
 
 globals:
     Vue:           true
+    QRCode:        true
+    jsyaml:        true
+    URI:           true
+    UUID:          true
+    mqtt:          true
+    less:          true
+    HUDS:          true
+    App:           true
 
 rules:
     #   modified rules

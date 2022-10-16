@@ -55,7 +55,7 @@ module.exports = {
                 dark:  "#ffffffff",
                 light: "#00000000"
             }
-        }, (err) => {})
+        }, () => {})
     }
 }
 </script>
