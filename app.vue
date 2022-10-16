@@ -2,8 +2,9 @@
 <template>
     <main>
         <app-head></app-head>
-        <app-pad   v-show=" $status.value.connected"></app-pad>
-        <app-login v-show="!$status.value.connected"></app-login>
+        <app-qrcode v-show="$status.value.showqrcode"></app-qrcode>
+        <app-pad    v-show=" $status.value.connected"></app-pad>
+        <app-login  v-show="!$status.value.connected"></app-login>
         <app-info></app-info>
     </main>
 </template>
@@ -28,10 +29,11 @@ main {
 module.exports = {
     name: "app",
     components: {
-        "app-head":  Vue.loadComponent("app-head.vue"),
-        "app-pad":   Vue.loadComponent("app-pad.vue"),
-        "app-login": Vue.loadComponent("app-login.vue"),
-        "app-info":  Vue.loadComponent("app-info.vue")
+        "app-head":   Vue.loadComponent("app-head.vue"),
+        "app-qrcode": Vue.loadComponent("app-qrcode.vue"),
+        "app-pad":    Vue.loadComponent("app-pad.vue"),
+        "app-login":  Vue.loadComponent("app-login.vue"),
+        "app-info":   Vue.loadComponent("app-info.vue")
     }
 }
 </script>

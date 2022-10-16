@@ -7,6 +7,11 @@
             </button>
         </div>
         <h1><i class="icon fas fa-thumbs-up"></i> HUDS Pad</h1>
+        <div class="qrcode">
+            <button @click="$status.toggleQRCode()">
+                <i class="icon fas fa-qrcode"></i><br>
+            </button>
+        </div>
     </div>
 </template>
 

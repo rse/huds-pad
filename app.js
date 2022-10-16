@@ -171,6 +171,7 @@ class App {
 
         /*  provide global $status property  */
         const status = Vue.reactive({
+            showqrcode:          false,
             connected:           false,
             isMessagingDisabled: false,
             isVotingDisabled:    true,
@@ -179,6 +180,7 @@ class App {
         })
         app.config.globalProperties.$status = {
             value: status,
+            toggleQRCode ()              { status.showqrcode = !status.showqrcode },
             setConnectionEstablished ()  { status.connected = true  },
             setConnectionClosed ()       { status.connected = false },
             disabledMessaging (disabled) { status.isMessagingDisabled = disabled },
