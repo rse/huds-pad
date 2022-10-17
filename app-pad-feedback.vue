@@ -35,8 +35,8 @@
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('thumbsup')">
-            <i class="icon fas fa-thumbs-up"></i>
-            <span class="title">Consent</span>
+            <i class="icon positive fas fa-thumbs-up"></i>
+            <span class="title positive">Consent</span>
         </button>
         <button style="grid-area: button2"
             v-bind:disabled="isFeedbackDisabled"
@@ -47,14 +47,14 @@
         <button style="grid-area: button3"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('surprise')">
-            <i class="icon fas fa-surprise"></i>
-            <span class="title">Surprise</span>
+            <i class="icon positive fas fa-surprise"></i>
+            <span class="title positive">Surprise</span>
         </button>
         <button style="grid-area: button4"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('smile')">
-            <i class="icon fas fa-grin-wink"></i>
-            <span class="title">Smile</span>
+            <i class="icon positive fas fa-grin-wink"></i>
+            <span class="title positive">Smile</span>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
@@ -101,12 +101,18 @@
         .icon {
             width: 100%;
             padding-bottom: 6px;
+            &.positive {
+                color: var(--color-acc-fg-3);
+            }
         }
         .title {
             font-weight: normal;
             font-size: 8pt;
             text-align: center;
             line-height: 8pt;
+            &.positive {
+                color: var(--color-acc-fg-3);
+            }
         }
         .hoverable &:hover:not(:disabled) {
             border: 0;
