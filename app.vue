@@ -15,7 +15,7 @@ main {
     padding: 0 10px;
     max-width: 480px;
     min-height: 100vh;
-    background: var(--color-std-bg-3);
+    background-color: var(--color-std-bg-3);
 }
 @media only screen and (min-width: 480px) {
     main {
