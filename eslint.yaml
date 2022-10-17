@@ -27,6 +27,7 @@ globals:
     UUID:             true
     mqtt:             true
     less:             true
+    anime:            true
     FontFaceObserver: true
     HUDS:             true
     App:              true
