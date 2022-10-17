@@ -73,7 +73,7 @@ window.HUDS = class HUDS {
             data: {
                 name:    this.client.id,
                 image:   "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
-                privacy: "private"
+                privacy: "public"
             }
         })
     }
