@@ -85,7 +85,7 @@
         border-left: 1px solid var(--color-std-bg-5);
         border-right: 1px solid var(--color-std-bg-1);
         border-bottom: 1px solid var(--color-std-bg-1);
-        font-size: 16pt;
+        font-size: 14pt;
         line-height: 18pt;
         text-align: center;
         margin-top: 2px;
