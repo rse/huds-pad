@@ -29,13 +29,13 @@
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('smile')">
             <i class="icon fas fa-grin-wink"></i>
-            <span class="title">&nbsp;Smile&nbsp;</span>
+            <span class="title">Smile</span>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
-            <span class="title">&nbsp;Frown&nbsp;</span>
+            <span class="title">Frown</span>
         </button>
         <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
@@ -52,6 +52,7 @@
     grid-template:
          "title title title title title title"
          "button1 button2 button3 button4 button5 button6";
+    grid-template-columns: repeat(6, minmax(45px, 1fr));
     grid-gap: 2px;
     .disabled {
         font-size: 9pt;
