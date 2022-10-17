@@ -44,7 +44,7 @@ body, html {
     padding: 0;
     overflow-x: hidden;
     font-family: "TypoPRO Source Sans Pro";
-    background: var(--color-std-bg-1);
+    background-color: var(--color-std-bg-1);
     color: var(--color-std-fg-3);
     font-weight: normal;
     user-select: none;
@@ -52,7 +52,7 @@ body, html {
 
 textarea, input, button {
     font-family: "TypoPRO Source Sans Pro";
-    background: var(--color-std-bg-1);
+    background-color: var(--color-std-bg-1);
     color: var(--color-std-fg-3);
     font-weight: normal;
     user-select: text;
