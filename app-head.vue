@@ -6,10 +6,12 @@
                 <i class="icon fas fa-arrow-alt-circle-left"></i><br>
             </button>
         </div>
-        <h1>
-            <span class="title1">HUDS</span>
-            <span class="title2">Pad</span>
-        </h1>
+        <div class="title">
+            <h1 ref="h1">
+                <span class="title1">HUDS</span>
+                <span class="title2">Pad</span>
+            </h1>
+        </div>
         <div class="qrcode">
             <button @click="$status.toggleQRCode()">
                 <i class="icon fas fa-qrcode"></i><br>
@@ -47,17 +49,22 @@
     .back {
         width: 40px;
     }
-    h1 {
-        line-height: 0;
-        margin-top: 12px;
-        margin-bottom: 12px;
-        text-align: center;
+    .title {
         flex-grow: 1;
-        .title1 {
-            font-weight: 900;
-            letter-spacing: -1px;
-            padding-left: 4px;
-            padding-right: 2px;
+        perspective: 300px;
+        h1 {
+            transform-origin: 50% 50%;
+            transform-style:  preserve-3d;
+            line-height: 0;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            text-align: center;
+            .title1 {
+                font-weight: 900;
+                letter-spacing: -1px;
+                padding-left: 4px;
+                padding-right: 2px;
+            }
         }
     }
 }
@@ -66,6 +73,10 @@
 <script>
 module.exports = {
     name: "app-head",
+    mounted () {
+        setTimeout( () => { this.animate() },      4 * 1000)
+        setInterval(() => { this.animate() }, 1 * 60 * 1000)
+    },
     methods: {
         disconnect () {
             this.huds.endAttendance()
@@ -74,7 +85,24 @@ module.exports = {
                 this.$info.clearError()
             })
             this.huds.disconnect()
-        }
+        },
+        animate: (function () {
+            /*  animate the logo  */
+            let i = 0
+            return function () {
+                const tl = anime.timeline({
+                    targets:  this.$refs.h1,
+                    duration: 2000,
+                    easing:   "easeInOutQuad"
+                })
+                if (i++ % 2 === 0)
+                    /*  rotate around the X-axis  */
+                    tl.add({ rotateX: [ 0, 360 ] })
+                else
+                    /*  rotate around the Y-axis  */
+                    tl.add({ rotateY: [ 0, 360 ] })
+            }
+        })()
     }
 }
 </script>
