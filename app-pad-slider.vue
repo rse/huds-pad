@@ -28,7 +28,7 @@
         .left,
         .right {
             font-size: 8pt;
-            font-weight: 200;
+            font-weight: 300;
         }
         .title {
             flex-grow: 1;

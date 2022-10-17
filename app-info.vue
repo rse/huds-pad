@@ -11,7 +11,7 @@
     margin-top: 0px;
     margin-bottom: 0px;
     width: 100%;
-    font-weight: 200;
+    font-weight: 300;
     text-align: center;
     .msg {
         color: var(--color-std-fg-2);

@@ -47,7 +47,7 @@
     }
     .disabled {
         font-size: 9pt;
-        font-weight: 200;
+        font-weight: 300;
         color: var(--color-acc-fg-3);
         margin-left: 4px;
     }
@@ -68,7 +68,7 @@
         &::placeholder {
             color: var(--color-std-fg-1);
             font-size: 10pt;
-            font-weight: 200;
+            font-weight: 300;
         }
         .hoverable &:hover:not(:disabled),
         &:focus {

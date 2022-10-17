@@ -35,7 +35,7 @@
         &::placeholder {
             color: var(--color-std-fg-1);
             font-size: 10pt;
-            font-weight: 200;
+            font-weight: 300;
         }
         .hoverable &:hover,
         &:focus {

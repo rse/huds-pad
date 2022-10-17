@@ -55,7 +55,7 @@
     grid-gap: 2px;
     .disabled {
         font-size: 9pt;
-        font-weight: 200;
+        font-weight: 300;
         color: var(--color-acc-fg-3);
         margin-left: 4px;
     }
