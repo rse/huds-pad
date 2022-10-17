@@ -12,23 +12,24 @@ parserOptions:
         jsx:     false
 
 env:
-    browser:       true
-    node:          false
-    mocha:         false
-    commonjs:      true
-    worker:        false
-    serviceworker: false
+    browser:          true
+    node:             false
+    mocha:            false
+    commonjs:         true
+    worker:           false
+    serviceworker:    false
 
 globals:
-    Vue:           true
-    QRCode:        true
-    jsyaml:        true
-    URI:           true
-    UUID:          true
-    mqtt:          true
-    less:          true
-    HUDS:          true
-    App:           true
+    Vue:              true
+    QRCode:           true
+    jsyaml:           true
+    URI:              true
+    UUID:             true
+    mqtt:             true
+    less:             true
+    FontFaceObserver: true
+    HUDS:             true
+    App:              true
 
 rules:
     #   modified rules
