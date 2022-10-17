@@ -62,7 +62,7 @@
         border-left: 1px solid var(--color-std-bg-1);
         border-right: 1px solid var(--color-std-bg-5);
         border-bottom: 1px solid var(--color-std-bg-5);
-        padding: 4px 8px 4px 8px;
+        padding: 4px 8px;
         position: relative;
         border-radius: 4px;
         &::placeholder {
@@ -109,7 +109,7 @@
         line-height: 18pt;
         text-align: center;
         border-radius: 4px;
-        padding: 8px 0 8px 0;
+        padding: 8px 0;
         .hoverable &:hover:not(:disabled) {
             border: 0;
             outline: none;

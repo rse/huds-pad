@@ -8,8 +8,8 @@
 
 <style lang="less">
 .app-info {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
     width: 100%;
     font-weight: 300;
     text-align: center;

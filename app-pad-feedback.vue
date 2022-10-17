@@ -50,8 +50,8 @@
 .app-pad-feedback {
     display: grid;
     grid-template:
-         "title title title title title title"
-         "button1 button2 button3 button4 button5 button6";
+        "title title title title title title"
+        "button1 button2 button3 button4 button5 button6";
     grid-template-columns: repeat(6, minmax(45px, 1fr));
     grid-gap: 2px;
     .disabled {
@@ -72,10 +72,7 @@
         font-size: 22pt;
         text-align: center;
         line-height: 0;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        padding-left: 0;
-        padding-right: 0;
+        padding: 8px 0;
         .icon {
             width: 100%;
             padding-bottom: 6px;
