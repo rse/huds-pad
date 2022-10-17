@@ -74,6 +74,7 @@
 module.exports = {
     name: "app-head",
     mounted () {
+        /*  animate the title initially and then every 5 minutes  */
         setTimeout( () => { this.animate() },      4 * 1000)
         setInterval(() => { this.animate() }, 5 * 60 * 1000)
     },
@@ -87,7 +88,7 @@ module.exports = {
             this.huds.disconnect()
         },
         animate: (function () {
-            /*  animate the logo  */
+            /*  animate the title  */
             let i = 0
             return function () {
                 const tl = anime.timeline({
