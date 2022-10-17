@@ -75,7 +75,7 @@ module.exports = {
     name: "app-head",
     mounted () {
         setTimeout( () => { this.animate() },      4 * 1000)
-        setInterval(() => { this.animate() }, 1 * 60 * 1000)
+        setInterval(() => { this.animate() }, 5 * 60 * 1000)
     },
     methods: {
         disconnect () {
