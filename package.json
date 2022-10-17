@@ -1,8 +1,20 @@
 {
     "name":                                 "huds-pad",
-    "version":                              "1.0.0",
+    "version":                              "0.0.0",
+    "homepage":                             "https://github.com/rse/huds-pad",
+    "description":                          "Head-Up-Display Server (HUDS)",
+    "author": {
+        "name":                             "Dr. Ralf S. Engelschall",
+        "email":                            "rse@engelschall.com",
+        "url":                              "http://engelschall.com"
+    },
     "license":                              "MIT",
-    "main":                                 "package.json",
+    "repository": {
+        "type":                             "git",
+        "url":                              "https://github.com/rse/huds-pad"
+    },
+    "browser":                              "index.html",
+    "main":                                 "index.html",
     "dependencies": {
         "@fortawesome/fontawesome-free":    "6.2.0",
         "js-yaml":                          "4.1.0",
