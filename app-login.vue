@@ -159,10 +159,7 @@ module.exports = {
                 this.huds.beginAttendance()
                 this.huds.sendFeeling(3, 3)
                 if (!attendanceRefreshTimer)
-                    attendanceRefreshTimer = setInterval(() => {
-                        this.huds.refreshAttendance()
-                    },  10 * 60 * 1000)
-
+                    attendanceRefreshTimer = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
             })
             client.on("close", () => {
                 this.$info.setMessage("Status: Disconnected")
