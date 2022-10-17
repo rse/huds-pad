@@ -58,7 +58,7 @@ module.exports = {
             })
         }
         document.body.addEventListener("touchmove", (ev) => {
-            if (!ev._allowTouchMove)
+            if (!ev._allowTouchMove && window.innerHeight === this.$refs.main.clientHeight)
                 ev.preventDefault()
         }, { passive: false })
     }
