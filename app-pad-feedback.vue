@@ -77,13 +77,13 @@
         padding-right: 0;
         .icon {
             width: 100%;
-            padding-bottom: 3px;
+            padding-bottom: 6px;
         }
         .title {
-            font-weight: 300;
+            font-weight: normal;
             font-size: 8pt;
             text-align: center;
-            line-height: 7pt;
+            line-height: 8pt;
         }
         .hoverable &:hover:not(:disabled) {
             border: 0;

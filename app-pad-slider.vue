@@ -33,7 +33,7 @@
         .title {
             flex-grow: 1;
             font-size: 8pt;
-            font-weight: 400;
+            font-weight: normal;
             text-align: center;
             width: 100%;
         }
