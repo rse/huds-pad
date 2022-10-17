@@ -88,7 +88,7 @@
                 font-weight: 900;
                 letter-spacing: -1px;
                 padding-left: 4px;
-                padding-right: 2px;
+                padding-right: 4px;
             }
         }
     }
