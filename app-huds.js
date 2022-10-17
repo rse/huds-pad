@@ -77,6 +77,11 @@ window.HUDS = class HUDS {
             }
         })
     }
+    refreshAttendance () {
+        return this.sendMessageToBroker("attendance", {
+            event: "refresh"
+        })
+    }
     endAttendance () {
         return this.sendMessageToBroker("attendance", {
             event: "end"
