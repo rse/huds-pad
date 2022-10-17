@@ -50,7 +50,7 @@ module.exports = {
     mounted () {
         QRCode.toCanvas(this.$refs.qrcode, window.location.href, {
             errorCorrectionLevel: "M",
-            width: 350,
+            width: Math.min(350, window.innerWidth - 25),
             color: {
                 dark:  "#ffffffff",
                 light: "#00000000"
