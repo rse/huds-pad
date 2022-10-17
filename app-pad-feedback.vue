@@ -134,6 +134,15 @@
             border-bottom: 1px solid var(--color-std-bg-1);
             .icon {
                 color: var(--color-std-fg-0);
+                &.positive {
+                    color: var(--color-acc-fg-0);
+                }
+            }
+            .title {
+                color: var(--color-std-fg-0);
+                &.positive {
+                    color: var(--color-acc-fg-0);
+                }
             }
         }
     }

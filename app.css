@@ -43,6 +43,7 @@
     --color-acc-bg-4: #4477aa;
     --color-acc-bg-5: #5588bb;
 
+    --color-acc-fg-0: #6090c0;
     --color-acc-fg-1: #80b0e0;
     --color-acc-fg-2: #88b8e8;
     --color-acc-fg-3: #90c0f0;
@@ -55,6 +56,7 @@
     --color-sig-bg-4: #c07830;
     --color-sig-bg-5: #d08840;
 
+    --color-sig-fg-0: #c0b090;
     --color-sig-fg-1: #e0d0b0;
     --color-sig-fg-2: #e8d8b8;
     --color-sig-fg-3: #f0e0c0;
