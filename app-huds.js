@@ -112,6 +112,7 @@ window.HUDS = class HUDS {
     /*  send a message/feedback/feeling  */
     sendMessage (text) {
         return this.sendMessageToBroker("message", {
+            title: "Attendee Message",
             text
         })
     }
