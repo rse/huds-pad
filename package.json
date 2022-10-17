@@ -12,6 +12,7 @@
         "typopro-web":                    "4.2.6",
         "urijs":                          "1.19.11",
         "qrcode":                         "1.5.1",
+        "fontfaceobserver":               "2.3.0",
         "vue":                            "3.2.41",
         "vue3-sfc-loader":                "rse/FOREIGN-vue3-sfc-loader#6d05173"
     },

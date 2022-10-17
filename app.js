@@ -30,7 +30,6 @@ window.App = class App {
 
         /*  initialize user interface  */
         const app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
-        app.mount("#app")
 
         /*  provide global $status property  */
         const status = Vue.reactive({
@@ -67,6 +66,18 @@ window.App = class App {
         /*  provide global huds property  */
         const huds = new HUDS("app.yaml")
         app.config.globalProperties.huds = huds
+
+        /*  ensure all fonts are loaded  */
+        const fonts = [
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 300 } },
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 400 } },
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 700 } },
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 900 } }
+        ]
+        Promise.all(fonts.map((font) => (new FontFaceObserver(font.family, font.spec)).load())).then(() => {
+            /*  mount UI  */
+            app.mount("#app")
+        })
     }
 }
 
