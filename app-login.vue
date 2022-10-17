@@ -172,7 +172,7 @@ module.exports = {
                 this.$info.setMessage("Status: Communication Error")
                 this.$info.setError(err.toString())
                 if (err.toString().match(/Not authorized/i))
-                    try { client.end() } catch (ev) { }
+                    try { client.end() } catch (ev) { } /* eslint brace-style: off */
             })
             client.on("reconnect", () => {
                 this.$info.setMessage("Status: Reconnecting")
