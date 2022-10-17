@@ -116,8 +116,8 @@ module.exports = {
         exportHash () {
             this.$info.clearError()
             if (this.accessToken !== window.location.hash) {
-              this.accessToken = this.accessToken.trim()
-              suppressHashChangeAction = true
+                this.accessToken = this.accessToken.trim()
+                suppressHashChangeAction = true
                 window.location.hash = "#" + this.accessToken
                 setTimeout(() => {
                     suppressHashChangeAction = false
