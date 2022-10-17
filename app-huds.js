@@ -71,7 +71,8 @@ window.HUDS = class HUDS {
         return this.sendMessageToBroker("attendance", {
             event: "begin",
             data: {
-                name: this.client.id,
+                name:    this.client.id,
+                image:   "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
                 privacy: "private"
             }
         })
