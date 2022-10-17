@@ -111,7 +111,7 @@
         border-bottom: 1px solid var(--color-std-bg-1);
         border-radius: 4px;
         font-size: 22pt;
-        font-weight: bold;
+        font-weight: 900;
         line-height: 18pt;
         text-align: center;
         padding-top: 8px;
