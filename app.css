@@ -43,8 +43,8 @@ body, html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background: var(--color-std-bg-1);
     font-family: "TypoPRO Source Sans Pro";
+    background: var(--color-std-bg-1);
     color: var(--color-std-fg-3);
     font-weight: 400;
     user-select: none;
@@ -52,15 +52,16 @@ body, html {
 
 textarea, input, button {
     font-family: "TypoPRO Source Sans Pro";
+    background: var(--color-std-bg-1);
     color: var(--color-std-fg-3);
     font-weight: 400;
     user-select: text;
 }
 
 h1 {
+    color: var(--color-acc-fg-3);
     font-weight: 200;
     font-size: 20pt;
-    color: var(--color-acc-fg-3);
 }
 
 h2 {

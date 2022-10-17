@@ -55,7 +55,7 @@
         grid-area: message;
         overflow: hidden;
         resize: none;
-        font-size: 14pt;
+        font-size: 16pt;
         border: 0;
         background-color: var(--color-std-bg-2);
         border-top: 1px solid var(--color-std-bg-1);
