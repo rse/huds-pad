@@ -26,7 +26,7 @@
 
 <template>
     <div class="app-login">
-        <h2>ACCESS TOKEN</h2>
+        <h2 style="grid-area: label">ACCESS TOKEN</h2>
         <input v-model="accessToken"
             style="grid-area: input"
             type="text"
@@ -38,13 +38,16 @@
             @click="connect">
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
+        <div style="grid-area: banner" class="banner">
+            <img src="app-banner.svg" alt="Your live feedback channel!">
+        </div>
     </div>
 </template>
 
 <style lang="less">
 .app-login {
     display: grid;
-    grid-template: "label" "input" "connect";
+    grid-template: "label" "input" "connect" "banner";
     grid-gap: 2px;
     input {
         resize: none;
@@ -110,6 +113,14 @@
         }
         .icon {
             margin-left: 8px;
+        }
+    }
+    .banner {
+        width: auto;
+        text-align: center;
+        img {
+            margin-top: 20px;
+            width: 80%;
         }
     }
 }
