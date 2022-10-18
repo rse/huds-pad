@@ -1,6 +1,6 @@
 <!--
 **
-**  HUDS -- Head-Up-Display Server (HUDS)
+**  HUDS - Head-Up-Display Server (HUDS)
 **  Copyright (c) 2022 Dr. Ralf S. Engelschall <rse@engelschall.com>
 **
 **  Permission is hereby granted, free of charge, to any person obtaining
