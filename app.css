@@ -97,3 +97,11 @@ h2 {
     margin-bottom: -2px;
 }
 
+a, a:visited {
+    color: var(--color-acc-fg-3);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--color-acc-fg-5);
+}
+
