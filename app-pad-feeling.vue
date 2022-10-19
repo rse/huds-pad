@@ -70,7 +70,7 @@ module.exports = {
     }),
     created () {
         /*  regularly refresh feeling  */
-        setInterval(() => {
+        this.$status.feelingRefreshInterval = setInterval(() => {
             this.huds.sendFeeling(this.mood, this.challenge)
         }, 10 * 60 * 1000)
     },

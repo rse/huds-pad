@@ -129,7 +129,7 @@
 <script>
 let suppressHashChangeAction = false
 let autoconnecttimer = null
-let attendanceRefreshTimer = null
+let attendanceRefreshInterval = null
 
 module.exports = {
     name: "app-login",
@@ -194,14 +194,16 @@ module.exports = {
                 this.$status.setConnectionEstablished()
                 this.huds.beginAttendance()
                 this.huds.sendFeeling(3, 3)
-                if (!attendanceRefreshTimer)
-                    attendanceRefreshTimer = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
+                if (!attendanceRefreshInterval)
+                    attendanceRefreshInterval = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
             })
             client.on("close", () => {
                 this.$info.setMessage("Status: Disconnected")
                 this.$status.setConnectionClosed()
-                if (attendanceRefreshTimer)
-                    clearInterval(attendanceRefreshTimer)
+                if (attendanceRefreshInterval)
+                    clearInterval(attendanceRefreshInterval)
+                if (this.$status.feelingRefreshInterval)
+                    clearInterval(this.$status.feelingRefreshInterval)
             })
             client.on("disconnect", () => {
                 this.$info.setMessage("Status: Disconnected")
