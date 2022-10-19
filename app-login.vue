@@ -34,7 +34,7 @@
             v-on:keyup.enter="connect"
             @input="exportHash">
         <button style="grid-area: connect"
-            v-bind:disabled="!accessToken"
+            v-bind:disabled="!accessToken || connectionRunning"
             @click="connect">
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
@@ -134,7 +134,8 @@ let attendanceRefreshInterval = null
 module.exports = {
     name: "app-login",
     data: () => ({
-        accessToken: ""
+        accessToken: "",
+        connectionRunning: false
     }),
     created () {
         window.addEventListener("hashchange", async () => {
@@ -172,8 +173,10 @@ module.exports = {
         },
         connect () {
             /*  sanity check situation  */
-            if (this.accessToken === "")
+            if (this.accessToken === "" || this.connectionRunning)
                 return
+
+            this.connectionRunning = true
 
             /*  parse access token  */
             const match = this.accessToken.match(/^(.+?)-([^-]+)-([^-]+)$/)
@@ -198,7 +201,8 @@ module.exports = {
                     attendanceRefreshInterval = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
             })
             client.on("close", () => {
-                this.$info.setMessage("Status: Disconnected")
+              this.connectionRunning = false
+              this.$info.setMessage("Status: Disconnected")
                 this.$status.setConnectionClosed()
                 if (attendanceRefreshInterval)
                     clearInterval(attendanceRefreshInterval)
