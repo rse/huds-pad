@@ -176,8 +176,6 @@ module.exports = {
             if (this.accessToken === "" || this.connectionRunning)
                 return
 
-            this.connectionRunning = true
-
             /*  parse access token  */
             const match = this.accessToken.match(/^(.+?)-([^-]+)-([^-]+)$/)
             if (match === null) {
@@ -188,6 +186,7 @@ module.exports = {
             const [ , channel, token1, token2 ] = match
 
             /*  connect to HUDS MQTT broker  */
+            this.connectionRunning = true
             const client = this.huds.connect(channel, token1, token2)
 
             /*  react on MQTT broker status  */
