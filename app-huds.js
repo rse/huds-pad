@@ -159,6 +159,7 @@ window.HUDS = class HUDS {
             try {
                 this.client.end()
                 this.client = { connected: false }
+                resolve()
             }
             catch (error) {
                 reject(error)
