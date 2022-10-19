@@ -200,8 +200,8 @@ module.exports = {
                     attendanceRefreshInterval = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
             })
             client.on("close", () => {
-              this.connectionRunning = false
-              this.$info.setMessage("Status: Disconnected")
+                this.connectionRunning = false
+                this.$info.setMessage("Status: Disconnected")
                 this.$status.setConnectionClosed()
                 if (attendanceRefreshInterval)
                     clearInterval(attendanceRefreshInterval)
