@@ -77,13 +77,16 @@ window.App = class App {
         /*  provide global $info property  */
         const msg = Vue.ref("")
         const err = Vue.ref("")
+        const clients = Vue.ref(0)
         app.config.globalProperties.$info = {
             msg,
             err,
+            clients,
             setMessage   (text) { msg.value = text },
             clearMessage ()     { msg.value = ""   },
             setError     (text) { err.value = text },
-            clearError   ()     { err.value = ""   }
+            clearError   ()     { err.value = ""   },
+            setClients   (num)  { clients.value = num }
         }
 
         /*  provide global huds property  */

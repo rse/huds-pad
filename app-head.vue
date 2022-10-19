@@ -26,10 +26,14 @@
 
 <template>
     <div class="app-pad-head">
-        <div class="back">
+        <div class="left">
             <button v-show="$status.value.connected" @click="disconnect()">
-                <i class="icon fas fa-arrow-alt-circle-left"></i><br>
+                <i class="icon fas fa-arrow-alt-circle-left"></i>
             </button>
+            <div v-show="$status.value.connected" class="attendees">
+                <i class="icon fas fa-users"></i>
+                {{ $info.clients.value }}
+            </div>
         </div>
         <div class="title">
             <h1 ref="h1">
@@ -37,9 +41,9 @@
                 <span class="title2">Pad</span>
             </h1>
         </div>
-        <div class="qrcode">
+        <div class="right">
             <button @click="$status.toggleQRCode()">
-                <i class="icon fas fa-qrcode"></i><br>
+                <i class="icon fas fa-qrcode"></i>
             </button>
         </div>
     </div>
@@ -71,8 +75,13 @@
             }
         }
     }
-    .back {
-        width: 40px;
+    .left {
+        width: 110px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        height: 32px;
     }
     .title {
         flex-grow: 1;
@@ -90,6 +99,21 @@
                 padding-left: 4px;
                 padding-right: 4px;
             }
+        }
+    }
+    .right {
+        width: 110px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 32px;
+    }
+    .attendees {
+        padding-left: 4px;
+        color: var(--color-std-fg-3);
+        .icon {
+            font-size: 80%;
+            color: var(--color-std-fg-1);
         }
     }
 }
