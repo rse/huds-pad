@@ -190,7 +190,14 @@ module.exports = {
             const client = this.huds.connect(channel, token1, token2)
 
             /*  react on MQTT broker status  */
-            client.on("connect", () => {
+            client.on("connect", async () => {
+                const isValidStream = await this.checkValidStream().catch((err) => false)
+                if (!isValidStream) {
+                    try { client.end() } catch (ev) { } /* eslint brace-style: off */
+                    this.$info.setMessage("Status: Connection Error")
+                    this.$info.setError("Error: Connection Refused: Not authorized")
+                    return
+                }
                 this.$info.setMessage("Status: Connected")
                 this.$info.clearError()
                 this.$status.setConnectionEstablished()
@@ -258,6 +265,47 @@ module.exports = {
             this.$info.setMessage("Status: Disconnecting")
             this.$info.clearError()
             return this.huds.disconnect().catch(() => {})
+        },
+        checkValidStream () {
+            /*  Notice: MQTT provides no way to check for the existance of a topic/channel, so
+                the only way to check if the topic/channel "stream/<id>/receiver" is a one, is
+                to subscribe to a sub-topic, send a dummy message and check if one can receive
+                the dummy message back again.  */
+            return new Promise((resolve, reject) => {
+                const timer = setTimeout(() => {
+                    reject(new Error("timeout on loopback communication"))
+                }, 500)
+                const channel = `stream/${this.huds.channel}/receiver/${this.huds.clientId}/loopback`
+                const msg = "<ping>"
+                this.huds.client.subscribe(channel, (err, granted) => {
+                    if (err) {
+                        clearTimeout(timer)
+                        reject(err)
+                    }
+                    else {
+                        const cb = (topic, message) => {
+                            if (topic === channel) {
+                                clearTimeout(timer)
+                                this.huds.client.unsubscribe(channel)
+                                this.huds.client.removeListener("message", cb)
+                                if (message.toString() === msg)
+                                    resolve(true)
+                                else
+                                    reject(new Error("invalid message received"))
+                            }
+                        }
+                        this.huds.client.on("message", cb)
+                        this.huds.client.publish(channel, msg, { qos: 2, retain: false }, (err) => {
+                            if (err) {
+                                clearTimeout(timer)
+                                this.huds.client.unsubscribe(channel)
+                                this.huds.client.removeListener("message", cb)
+                                reject(err)
+                            }
+                        })
+                    }
+                })
+            })
         }
     }
 }

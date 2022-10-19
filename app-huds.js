@@ -25,8 +25,9 @@
 /*  HUDS communication  */
 window.HUDS = class HUDS {
     constructor (settingsFile) {
-        this.channel = ""
-        this.client  = null
+        this.channel  = ""
+        this.client   = null
+        this.clientId = null
 
         /*  load settings  */
         const settings = this.loadSettingsFile(settingsFile)
@@ -61,10 +62,10 @@ window.HUDS = class HUDS {
     /*  connect to MQTT broker  */
     connect (channel, token1, token2) {
         /*  determine client UUID  */
-        let clientId = localStorage.getItem("huds-pad-client-id")
-        if (clientId !== undefined) {
-            clientId = (new UUID(1)).format()
-            localStorage.setItem("huds-pad-client-id", clientId)
+        this.clientId = localStorage.getItem("huds-pad-client-id")
+        if (this.clientId !== undefined) {
+            this.clientId = (new UUID(1)).format()
+            localStorage.setItem("huds-pad-client-id", this.clientId)
         }
 
         /*  connect to MQTT broker  */
@@ -81,7 +82,7 @@ window.HUDS = class HUDS {
             },
             username: token1,
             password: token2,
-            clientId,
+            clientId: this.clientId,
             reconnectPeriod: 4 * 1000,
             connectTimeout: 30 * 1000
         })
