@@ -227,23 +227,29 @@ module.exports = {
 
             /*  react on MQTT messages  */
             client.on("message", (topic, message) => {
-                message = JSON.parse(message.toString())
-                if (typeof message?.event !== "string")
-                    return
-                if (message.event === "voting-begin") {
-                    this.$status.disabledMessaging(true)
-                    this.$status.disabledVoting(false)
-                    this.$status.clearVoting()
+                if (topic === "$SYS/broker/clients/connected") {
+                    let clients = parseInt(message.toString())
+                    this.$info.setClients(clients)
                 }
-                else if (message.event === "voting-end") {
-                    this.$status.disabledMessaging(false)
-                    this.$status.disabledVoting(true)
-                    this.$status.clearVoting()
-                }
-                else if (message.event === "voting-type") {
-                    if (typeof message.data?.type === "string") {
-                        this.$status.setVotingType(message.data.type)
+                else if (topic === `stream/${this.huds.channel}/receiver`) {
+                    message = JSON.parse(message.toString())
+                    if (typeof message?.event !== "string")
+                        return
+                    if (message.event === "voting-begin") {
+                        this.$status.disabledMessaging(true)
+                        this.$status.disabledVoting(false)
                         this.$status.clearVoting()
+                    }
+                    else if (message.event === "voting-end") {
+                        this.$status.disabledMessaging(false)
+                        this.$status.disabledVoting(true)
+                        this.$status.clearVoting()
+                    }
+                    else if (message.event === "voting-type") {
+                        if (typeof message.data?.type === "string") {
+                            this.$status.setVotingType(message.data.type)
+                            this.$status.clearVoting()
+                        }
                     }
                 }
             })

@@ -85,7 +85,10 @@ window.HUDS = class HUDS {
             reconnectPeriod: 4 * 1000,
             connectTimeout: 30 * 1000
         })
-        this.client.subscribe(`stream/${this.channel}/receiver`, () => {})
+        this.client.once("connect", () => {
+            this.client.subscribe(`stream/${this.channel}/receiver`, () => {})
+            this.client.subscribe("$SYS/broker/clients/connected", () => {})
+        })
         return this.client
     }
 
