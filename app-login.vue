@@ -316,7 +316,7 @@ module.exports = {
             })
         },
         isReconnecting () {
-          return this.huds.client ? this.huds.client.reconnecting : false
+            return this.huds.client ? this.huds.client.reconnecting : false
         }
     }
 }
