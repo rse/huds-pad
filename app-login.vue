@@ -179,7 +179,7 @@ module.exports = {
         },
         connect () {
             /*  sanity check situation  */
-            if (this.accessToken === "" || this.connectionRunning)
+            if (this.accessToken === "" || this.connectionRunning || this.huds.client?.reconnecting)
                 return
 
             /*  parse access token  */
