@@ -90,7 +90,7 @@
             transform-origin: 50% 50%;
             transform-style:  preserve-3d;
             line-height: 0;
-            margin-top: 12px;
+            margin-top: 14px;
             margin-bottom: 12px;
             text-align: center;
             .title1 {
