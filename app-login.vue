@@ -168,11 +168,11 @@ module.exports = {
                 }, 100)
             }
         },
-        autoconnect () {
+        async autoconnect () {
             if (autoconnecttimer !== null)
                 clearTimeout(autoconnecttimer)
+            await this.disconnect().catch(() => {})
             autoconnecttimer = setTimeout(async () => {
-                await this.disconnect().catch(() => {})
                 this.reconnecting = false
                 this.connect()
             }, 500)
@@ -269,10 +269,10 @@ module.exports = {
                 }
             })
         },
-        disconnect () {
+        async disconnect () {
             this.$info.setMessage("Status: Disconnecting")
             this.$info.clearError()
-            return this.huds.disconnect().catch(() => {})
+            return this.huds.disconnect()
         },
         checkValidStream () {
             /*  Notice: MQTT provides no way to check for the existance of a topic/channel, so
