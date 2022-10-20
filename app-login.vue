@@ -34,7 +34,7 @@
             v-on:keyup.enter="connect"
             @input="exportHash">
         <button style="grid-area: connect"
-            v-bind:disabled="!accessToken || connectionRunning"
+            v-bind:disabled="!accessToken || connectionRunning || reconnecting"
             @click="connect">
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
@@ -135,7 +135,8 @@ module.exports = {
     name: "app-login",
     data: () => ({
         accessToken: "",
-        connectionRunning: false
+        connectionRunning: false,
+        reconnecting: false
     }),
     created () {
         window.addEventListener("hashchange", async () => {
@@ -152,8 +153,12 @@ module.exports = {
                 this.autoconnect()
             }
         },
-        exportHash () {
+        async exportHash () {
             this.$info.clearError()
+            if (this.isReconnecting()) {
+                await this.disconnect().catch(() => {})
+                this.reconnecting = false
+            }
             if (this.accessToken !== window.location.hash) {
                 this.accessToken = this.accessToken.trim()
                 suppressHashChangeAction = true
@@ -168,6 +173,7 @@ module.exports = {
                 clearTimeout(autoconnecttimer)
             autoconnecttimer = setTimeout(async () => {
                 await this.disconnect().catch(() => {})
+                this.reconnecting = false
                 this.connect()
             }, 500)
         },
@@ -208,7 +214,8 @@ module.exports = {
             })
             client.on("close", () => {
                 this.connectionRunning = false
-                this.$info.setMessage("Status: Disconnected")
+                if (!this.isReconnecting())
+                    this.$info.setMessage("Status: Disconnected")
                 this.$status.setConnectionClosed()
                 if (attendanceRefreshInterval)
                     clearInterval(attendanceRefreshInterval)
@@ -230,6 +237,7 @@ module.exports = {
             })
             client.on("reconnect", () => {
                 this.$info.setMessage("Status: Reconnecting")
+                this.reconnecting = true
             })
 
             /*  react on MQTT messages  */
@@ -306,6 +314,9 @@ module.exports = {
                     }
                 })
             })
+        },
+        isReconnecting () {
+          return this.huds.client ? this.huds.client.reconnecting : false
         }
     }
 }
