@@ -63,7 +63,7 @@ window.HUDS = class HUDS {
     connect (channel, token1, token2) {
         /*  determine client UUID  */
         this.clientId = localStorage.getItem("huds-pad-client-id")
-        if (this.clientId !== undefined) {
+        if (!this.clientId) {
             this.clientId = (new UUID(1)).format()
             localStorage.setItem("huds-pad-client-id", this.clientId)
         }
