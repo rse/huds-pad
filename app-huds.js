@@ -27,7 +27,7 @@ window.HUDS = class HUDS {
     constructor (settingsFile) {
         this.channel  = ""
         this.client   = null
-        this.clientId = null
+        this.clientId = (new UUID(1)).format()
 
         /*  load settings  */
         const settings = this.loadSettingsFile(settingsFile)
@@ -61,9 +61,6 @@ window.HUDS = class HUDS {
 
     /*  connect to MQTT broker  */
     connect (channel, token1, token2) {
-        /*  determine client UUID  */
-        this.clientId = (new UUID(1)).format()
-
         /*  connect to MQTT broker  */
         this.channel = channel
         this.client = mqtt.connect(this.url, {
