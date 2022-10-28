@@ -244,6 +244,8 @@ module.exports = {
             client.on("message", (topic, message) => {
                 if (topic === "$SYS/broker/clients/connected") {
                     let clients = parseInt(message.toString())
+                    if (clients > 1)
+                        clients-- /* there will be always US plus the HUDS, so drop the HUDS */
                     this.$info.setClients(clients)
                 }
                 else if (topic === `stream/${this.huds.channel}/receiver`) {
