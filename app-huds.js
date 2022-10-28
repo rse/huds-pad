@@ -62,11 +62,7 @@ window.HUDS = class HUDS {
     /*  connect to MQTT broker  */
     connect (channel, token1, token2) {
         /*  determine client UUID  */
-        this.clientId = localStorage.getItem("huds-pad-client-id")
-        if (!this.clientId) {
-            this.clientId = (new UUID(1)).format()
-            localStorage.setItem("huds-pad-client-id", this.clientId)
-        }
+        this.clientId = (new UUID(1)).format()
 
         /*  connect to MQTT broker  */
         this.channel = channel
@@ -145,7 +141,7 @@ window.HUDS = class HUDS {
 
     /*  create an arbitrary MQTT message for HUDS  */
     createMessage (event, data = {}) {
-        data.client = localStorage.getItem("huds-pad-client-id")
+        data.client = this.clientId
         return JSON.stringify({
             id:    this.id,
             event,
