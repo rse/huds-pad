@@ -100,7 +100,7 @@ window.App = class App {
             { family: "TypoPRO Source Sans Pro", spec: { weight: 700 } },
             { family: "TypoPRO Source Sans Pro", spec: { weight: 900 } }
         ]
-        Promise.all(fonts.map((font) => (new FontFaceObserver(font.family, font.spec)).load())).then(() => {
+        Promise.all(fonts.map((font) => (new FontFaceObserver(font.family, font.spec)).load(null, 3000))).catch(() => true).then(() => {
             /*  mount UI  */
             app.mount("#app")
         })
