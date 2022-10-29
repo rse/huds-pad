@@ -28,6 +28,7 @@
     <main ref="main" v-bind:class="{ hoverable: hoverable }">
         <app-head></app-head>
         <app-info></app-info>
+        <app-about  v-show="$status.value.showabout"></app-about>
         <app-qrcode v-show="$status.value.showqrcode"></app-qrcode>
         <app-pad    v-show=" $status.value.connected"></app-pad>
         <app-login  v-show="!$status.value.connected"></app-login>
@@ -55,6 +56,7 @@ module.exports = {
     name: "app",
     components: {
         "app-head":   Vue.loadComponent("app-head.vue"),
+        "app-about":  Vue.loadComponent("app-about.vue"),
         "app-qrcode": Vue.loadComponent("app-qrcode.vue"),
         "app-pad":    Vue.loadComponent("app-pad.vue"),
         "app-login":  Vue.loadComponent("app-login.vue"),

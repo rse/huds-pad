@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="title">
-            <h1 ref="h1">
+            <h1 ref="h1" @click="$status.toggleAbout()">
                 <span class="title1">HUDS</span>
                 <span class="title2">Pad</span>
             </h1>

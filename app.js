@@ -59,6 +59,7 @@ window.App = class App {
             const status = Vue.reactive({
                 online:              true,
                 showqrcode:          false,
+                showabout:           false,
                 connected:           false,
                 isMessagingDisabled: false,
                 isVotingDisabled:    true,
@@ -69,6 +70,7 @@ window.App = class App {
                 value: status,
                 setOnline (online)           { status.online = online },
                 toggleQRCode ()              { status.showqrcode = !status.showqrcode },
+                toggleAbout ()               { status.showabout  = !status.showabout  },
                 setConnectionEstablished ()  { status.connected = true  },
                 setConnectionClosed ()       { status.connected = false },
                 disabledMessaging (disabled) { status.isMessagingDisabled = disabled },
