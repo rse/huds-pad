@@ -73,14 +73,22 @@ module.exports = {
         }, false)
     },
     mounted () {
-        QRCode.toCanvas(this.$refs.qrcode, window.location.href, {
-            errorCorrectionLevel: "M",
-            width: Math.min(350, window.innerWidth - 25),
-            color: {
-                dark:  "#ffffffff",
-                light: "#00000000"
-            }
-        }, () => {})
+        this.renderQRCode()
+        this.$watch("url", () => {
+            this.renderQRCode()
+        })
+    },
+    methods: {
+        renderQRCode () {
+            QRCode.toCanvas(this.$refs.qrcode, this.url, {
+                errorCorrectionLevel: "M",
+                width: Math.min(350, window.innerWidth - 25),
+                color: {
+                    dark:  "#ffffffff",
+                    light: "#00000000"
+                }
+            }, () => {})
+        }
     }
 }
 </script>
