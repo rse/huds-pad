@@ -31,11 +31,13 @@
             style="grid-area: input"
             type="text"
             placeholder="Enter your Access Token..."
+            v-tippy="{ placement: 'top', content: 'Access Token for connecting<br/>to the live session.' }"
             v-on:keyup.enter="connect"
             @input="exportHash">
         <button style="grid-area: connect"
             v-bind:disabled="!accessToken || connectionRunning || reconnecting"
-            @click="connect">
+            @click="connect"
+            v-tippy="{ placement: 'bottom', content: 'Connect to the<br/>live session.' }">
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
         <div style="grid-area: banner" class="banner">

@@ -27,22 +27,26 @@
 <template>
     <div class="app-pad-head">
         <div class="left">
-            <button v-show="$status.value.connected" @click="disconnect()">
+            <button v-show="$status.value.connected" @click="disconnect()"
+                v-tippy="{ placement: 'bottom', content: 'Disconnect connection<br/>with the live session.' }">
                 <i class="icon fas fa-arrow-alt-circle-left"></i>
             </button>
-            <div v-show="$status.value.connected && $info.clients.value > 0" class="attendees">
+            <div v-show="$status.value.connected && $info.clients.value > 0" class="attendees"
+                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at MQTT broker.' }">
                 <i class="icon fas fa-users"></i>
                 {{ $info.clients.value }}
             </div>
         </div>
         <div class="title">
-            <h1 ref="h1" @click="$status.toggleAbout()">
+            <h1 ref="h1" @click="$status.toggleAbout()"
+                v-tippy="{ placement: 'bottom', content: 'Toggle the information<br/>about this application.' }">
                 <span class="title1">HUDS</span>
                 <span class="title2">Pad</span>
             </h1>
         </div>
         <div class="right">
-            <div class="traffic" @click="$status.toggleLogTraffic()">
+            <div class="traffic" @click="$status.toggleLogTraffic()"
+                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for MQTT network traffic.' }">
                 <div v-show="!$status.value.logTraffic" v-bind:class="{ active: $status.value.activeTraffic }">
                     <i class="icon fa-solid fa-circle"></i>
                 </div>
@@ -50,7 +54,8 @@
                     <i class="icon fa-solid fa-circle-stop"></i>
                 </div>
             </div>
-            <div class="online">
+            <div class="online"
+                v-tippy="{ placement: 'bottom', content: 'Indicator for network<br/>online status.' }">
                 <div v-show="$status.value.online">
                     <i class="icon yes fa-solid fa-plug-circle-check"></i>
                 </div>
@@ -58,7 +63,8 @@
                     <i class="icon no fa-solid fa-plug-circle-xmark"></i>
                 </div>
             </div>
-            <button @click="$status.toggleQRCode()">
+            <button @click="$status.toggleQRCode()"
+                v-tippy="{ placement: 'bottom', content: 'Show a QR code for the<br/>easy transitioning to a</br>mobile device.' }">
                 <i class="icon fas fa-qrcode"></i>
             </button>
         </div>

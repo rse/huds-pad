@@ -38,72 +38,84 @@
         <button style="grid-area: button1"
             v-bind:class="{ active: votingChoice === '1' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #1<br/>(one attempt only).' }"
             @click="vote('1')">
             1
         </button>
         <button style="grid-area: button2"
             v-bind:class="{ active: votingChoice === '2' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #2<br/>(one attempt only).' }"
             @click="vote('2')">
             2
         </button>
         <button style="grid-area: button3"
             v-bind:class="{ active: votingChoice === '3' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #3<br/>(one attempt only).' }"
             @click="vote('3')">
             3
         </button>
         <button style="grid-area: button4"
             v-bind:class="{ active: votingChoice === '4' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #4<br/>(one attempt only).' }"
             @click="vote('4')">
             4
         </button>
         <button style="grid-area: button5"
             v-bind:class="{ active: votingChoice === '5' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #5<br/>(one attempt only).' }"
             @click="vote('5')">
             5
         </button>
         <button style="grid-area: button6"
             v-bind:class="{ active: votingChoice === '6' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #6<br/>(one attempt only).' }"
             @click="vote('6')">
             6
         </button>
         <button style="grid-area: button7"
             v-bind:class="{ active: votingChoice === '7' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #7<br/>(one attempt only).' }"
             @click="vote('7')">
             7
         </button>
         <button style="grid-area: button8"
             v-bind:class="{ active: votingChoice === '8' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #8<br/>(one attempt only).' }"
             @click="vote('8')">
             8
         </button>
         <button style="grid-area: button9"
             v-bind:class="{ active: votingChoice === '9' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'quiz'"
+            v-tippy="{ placement: 'top', content: 'Vote for answer #9<br/>(one attempt only).' }"
             @click="vote('9')">
             9
         </button>
         <button style="grid-area: choose1" class="choice"
             v-bind:class="{ active: votingChoice === 'yes' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'judge'"
+            v-tippy="{ placement: 'bottom', content: 'Vote with a YES answer<br/>(one attempt only).' }"
             @click="vote('yes')">
             YES <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         </button>
         <button style="grid-area: choose2" class="choice"
             v-bind:class="{ active: votingChoice === 'no' }"
             v-bind:disabled="$status.value.isVotingDisabled || $status.value.votingType !== 'judge'"
+            v-tippy="{ placement: 'bottom', content: 'Vote with a NO answer<br/>(one attempt only).' }"
             @click="vote('no')">
             NO <span class="icon"><i class="fas fa-thumbs-down"></i></span>
         </button>
         <button style="grid-area: abstain" class="abstain"
             v-bind:class="{ active: votingChoice === 'abstain' }"
             v-bind:disabled="$status.value.isVotingDisabled"
+            v-tippy="{ placement: 'bottom', content: 'Indicate your abstain<br/>from the voting<br/>(one attempt only).' }"
             @click="vote('abstain')">
             Abstain <span class="icon"><i class="fas fa-ban"></i></span>
         </button>

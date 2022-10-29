@@ -54,6 +54,14 @@ window.App = class App {
 
             /*  initialize user interface  */
             const app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
+            app.use(VueTippy.plugin, {
+                defaultProps: {
+                    allowHTML: true,
+                    placement: "right",
+                    theme: "translucent",
+                    delay: [ 600, 50 ]
+                }
+            })
 
             /*  provide global $status property  */
             const status = Vue.reactive({

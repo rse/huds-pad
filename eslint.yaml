@@ -44,6 +44,7 @@ env:
 
 globals:
     Vue:              true
+    VueTippy:         true
     QRCode:           true
     jsyaml:           true
     URI:              true
@@ -87,4 +88,5 @@ rules:
     "vue/v-on-style":                    off
     "vue/component-tags-order":          off
     "vue/first-attribute-linebreak":     off
+    "vue/attributes-order":              off
 

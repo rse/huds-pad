@@ -27,7 +27,9 @@
         "fontfaceobserver":                 "2.3.0",
         "animejs":                          "3.2.1",
         "vue":                              "3.2.41",
-        "vue3-sfc-loader":                  "0.8.4"
+        "vue3-sfc-loader":                  "0.8.4",
+        "vue-tippy":                        "6.0.0-alpha.65",
+        "tippy.js":                         "6.3.7"
     },
     "devDependencies": {
         "eslint":                           "8.26.0",

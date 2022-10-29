@@ -39,14 +39,17 @@
             v-bind:disabled="$status.value.isMessagingDisabled || justSent"
             v-bind:placeholder="'Type a message to be send...'"
             v-on:keyup.escape="clearMessage()"
+            v-tippy="{ placement: 'top', content: 'The message to be send<br/>anonymously to the live session.' }"
         ></textarea>
         <button class="clear"
             v-bind:disabled="!text || $status.value.isMessagingDisabled || justSent"
+            v-tippy="{ placement: 'bottom', content: 'Clear the message.' }"
             @click="clearMessage">
             Clear <i class="icon fas fa-trash-alt"></i>
         </button>
         <button class="send"
             v-bind:disabled="!text || $status.value.isMessagingDisabled || justSent"
+            v-tippy="{ placement: 'bottom', content: 'Send the message.' }"
             @click="sendMessage">
             Send <i class="icon fas fa-share"></i>
         </button>
