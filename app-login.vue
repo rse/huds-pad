@@ -58,7 +58,7 @@
         border-left: 1px solid var(--color-std-bg-1);
         border-right: 1px solid var(--color-std-bg-5);
         border-bottom: 1px solid var(--color-std-bg-5);
-        padding: 4px 10px;
+        padding: 8px 12px;
         border-radius: 4px;
         &::placeholder {
             color: var(--color-std-fg-1);
@@ -92,7 +92,7 @@
         line-height: 18pt;
         text-align: center;
         margin-top: 2px;
-        padding: 8px 0;
+        padding: 10px 0;
         border-radius: 4px;
         .hoverable &:hover:not(:disabled) {
             color: var(--color-acc-fg-3);
