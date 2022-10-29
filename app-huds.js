@@ -60,6 +60,8 @@ window.HUDS = class HUDS {
         /*  connect to MQTT broker  */
         this.channel = channel
         this.client = mqtt.connect(this.url, {
+            protocolId: "MQTT",
+            protocolVersion: 5,
             will: {
                 /*  use an MQTT "last will" message to end attendance (implicitly)  */
                 topic:   `stream/${this.channel}/sender`,
