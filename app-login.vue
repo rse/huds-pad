@@ -298,6 +298,7 @@ module.exports = {
                 if (timer !== null)
                     clearTimeout(timer)
                 timer = setTimeout(() => {
+                    timer = null
                     this.$status.setActiveTraffic(false)
                 }, 250)
                 if (this.$status.value.logTraffic)
@@ -308,6 +309,7 @@ module.exports = {
                 if (timer !== null)
                     clearTimeout(timer)
                 timer = setTimeout(() => {
+                    timer = null
                     this.$status.setActiveTraffic(false)
                 }, 250)
                 if (this.$status.value.logTraffic)
