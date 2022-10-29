@@ -197,7 +197,7 @@ module.exports = {
 
             /*  react on MQTT broker status  */
             client.on("connect", async () => {
-                const isValidStream = await this.checkValidStream().catch((err) => false)
+                const isValidStream = await this.checkValidStream().catch(() => false)
                 if (!isValidStream) {
                     try { client.end() } catch (ev) { } /* eslint brace-style: off */
                     this.$info.setMessage("Status: Connection Error")
@@ -249,7 +249,12 @@ module.exports = {
                     this.$info.setClients(clients)
                 }
                 else if (topic === `stream/${this.huds.channel}/receiver`) {
-                    message = JSON.parse(message.toString())
+                    try {
+                        message = JSON.parse(message.toString())
+                    }
+                    catch (ex) {
+                        message = null
+                    }
                     if (typeof message?.event !== "string")
                         return
                     if (message.event === "voting-begin") {
