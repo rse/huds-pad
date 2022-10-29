@@ -31,8 +31,8 @@ window.HUDS = class HUDS {
 
         /*  load settings  */
         const settings = this.loadSettingsFile(settingsFile)
-        this.url    = settings.mqtt.url
-        this.id     = settings.huds.id
+        this.url = settings.mqtt.url
+        this.id  = settings.huds.id
 
         /*  optionally automatically determine MQTT broker URL  */
         if (this.url === "auto") {
@@ -71,15 +71,20 @@ window.HUDS = class HUDS {
                 qos:     2,
                 retain:  false
             },
-            username: token1,
-            password: token2,
-            clientId: this.clientId,
-            reconnectPeriod: 4 * 1000,
-            connectTimeout: 30 * 1000
+            username:        token1,
+            password:        token2,
+            clientId:        this.clientId,
+            clean:           true,
+            resubscribe:     true,
+            keepalive:       60,        /* 60s */
+            reconnectPeriod: 4  * 1000, /*  4s */
+            connectTimeout:  30 * 1000  /* 30s */
         })
-        this.client.once("connect", () => {
-            this.client.subscribe(`stream/${this.channel}/receiver`, () => {})
-            this.client.subscribe("$SYS/broker/clients/connected", () => {})
+        this.client.once("connect", (connack) => {
+            if (!connack.sessionPresent) {
+                this.client.subscribe(`stream/${this.channel}/receiver`, () => {})
+                this.client.subscribe("$SYS/broker/clients/connected", () => {})
+            }
         })
         return this.client
     }
