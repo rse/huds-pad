@@ -13,10 +13,15 @@ Head-Up Display Server (HUDS) Interaction Pad
 Abstract
 --------
 
-This is **HUDS Pad**, the trainee client-side web application
-(for desktop and mobile devices) for interacting with a live event-stream of a training
-based on [HUDS](https://github.com/rse/huds) and its
+This is **HUDS Pad**, the attendee client-side web application
+(for desktop and mobile devices) for interacting with a live video-streaming session
+leveraging [Dr. Ralf S. Engelschall](https://engelschall.com)'s
+[Head-Up-Display Server (HUDS)](https://github.com/rse/huds) and its
 [Training HUD](https://github.com/rse/huds-hud-training).
+
+It allows attendees to anonymously send textual messages, give their
+vote on proposals, judgements and quizzes, send feedback with emojis,
+and share their feeling through challenge and mood indicators.
 
 Sneak Preview
 -------------
