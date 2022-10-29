@@ -153,14 +153,10 @@
         text-align: center;
         position: relative;
         top: 4px;
+        color: var(--color-std-fg-1);
     }
-    .traffic {
-        .icon {
-            color: var(--color-std-fg-1);
-        }
-        .active .icon {
-            color: var(--color-acc-fg-1);
-        }
+    .traffic .active .icon {
+        color: var(--color-acc-fg-1);
     }
 }
 </style>

@@ -65,7 +65,8 @@
         font-size: 12pt;
         line-height: 125%;
         p {
-            margin: 6px 0 0 0;
+            margin: 0;
+            margin-top: 6px;
             padding: 0;
             text-indent: 30px;
         }
