@@ -57,6 +57,7 @@ window.App = class App {
 
             /*  provide global $status property  */
             const status = Vue.reactive({
+                online:              true,
                 showqrcode:          false,
                 connected:           false,
                 isMessagingDisabled: false,
@@ -66,6 +67,7 @@ window.App = class App {
             })
             app.config.globalProperties.$status = {
                 value: status,
+                setOnline (online)           { status.online = online },
                 toggleQRCode ()              { status.showqrcode = !status.showqrcode },
                 setConnectionEstablished ()  { status.connected = true  },
                 setConnectionClosed ()       { status.connected = false },

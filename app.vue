@@ -86,6 +86,16 @@ module.exports = {
             if (!ev._allowTouchMove && window.innerHeight === this.$refs.main.clientHeight)
                 ev.preventDefault()
         }, { passive: false })
+
+        /*  observe network connectivity  */
+        this.$status.setOnline(navigator.onLine)
+        window.addEventListener("offline", (ev) => {
+            this.$status.setOnline(false)
+        })
+        window.addEventListener("online", (ev) => {
+            this.$status.setOnline(true)
+            this.huds.refreshAttendance()
+        })
     }
 }
 </script>

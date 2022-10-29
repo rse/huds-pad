@@ -42,6 +42,14 @@
             </h1>
         </div>
         <div class="right">
+            <div class="online">
+                <div v-show="$status.value.online">
+                    <i class="icon yes fa-solid fa-plug-circle-check"></i>
+                </div>
+                <div v-show="!$status.value.online">
+                    <i class="icon no fa-solid fa-plug-circle-xmark"></i>
+                </div>
+            </div>
             <button @click="$status.toggleQRCode()">
                 <i class="icon fas fa-qrcode"></i>
             </button>
@@ -114,6 +122,20 @@
         .icon {
             font-size: 80%;
             color: var(--color-std-fg-1);
+        }
+    }
+    .online .icon {
+        display: inline-block;
+        font-size: 12pt;
+        width: 25px;
+        text-align: center;
+        position: relative;
+        top: 5px;
+        &.yes {
+            color: var(--color-std-fg-1);
+        }
+        &.no {
+            color: var(--color-sig-fg-1);
         }
     }
 }
