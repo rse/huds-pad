@@ -82,8 +82,10 @@ window.HUDS = class HUDS {
         })
         this.client.once("connect", (connack) => {
             if (!connack.sessionPresent) {
-                this.client.subscribe(`stream/${this.channel}/receiver`, () => {})
-                this.client.subscribe("$SYS/broker/clients/connected", () => {})
+                this.client.subscribe([
+                    `stream/${this.channel}/receiver`,
+                    "$SYS/broker/clients/connected"
+                ], () => {})
             }
         })
         return this.client
