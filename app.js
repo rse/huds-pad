@@ -99,6 +99,13 @@ window.App = class App {
             await huds.load("app.yaml")
             app.config.globalProperties.huds = huds
 
+            /*  load program information  */
+            const data = await fetch("package.json", {
+                method: "GET",
+                credentials: "same-origin"
+            }).then((response) => response.text())
+            app.config.globalProperties.pkg = JSON.parse(data)
+
             /*  ensure all fonts are loaded  */
             const fonts = [
                 { family: "TypoPRO Source Sans Pro", spec: { weight: 300 } },
