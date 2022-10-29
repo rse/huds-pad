@@ -24,13 +24,20 @@
 
 /*  HUDS communication  */
 window.HUDS = class HUDS {
-    constructor (settingsFile) {
+    constructor () {
         this.channel  = ""
         this.client   = null
         this.clientId = (new UUID(1)).format()
+    }
 
+    /*  load settings  */
+    async load (settingsFile) {
         /*  load settings  */
-        const settings = this.loadSettingsFile(settingsFile)
+        const data = await fetch(settingsFile, {
+            method: "GET",
+            credentials: "same-origin"
+        }).then((response) => response.text())
+        const settings = jsyaml.load(data)
         this.url = settings.mqtt.url
         this.id  = settings.huds.id
 
@@ -46,17 +53,6 @@ window.HUDS = class HUDS {
             uri.hash("")
             this.url = uri.toString()
         }
-    }
-
-    /*  synchronously load settings file  */
-    loadSettingsFile (file) {
-        let settingsFile = null
-        const xmlhttp = new XMLHttpRequest()
-        xmlhttp.open("GET", file, false)
-        xmlhttp.send()
-        if (xmlhttp.status === 200)
-            settingsFile = xmlhttp.responseText
-        return jsyaml.load(settingsFile)
     }
 
     /*  connect to MQTT broker  */
