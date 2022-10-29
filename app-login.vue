@@ -261,11 +261,13 @@ module.exports = {
                     if (message.event === "voting-begin") {
                         this.$status.disabledMessaging(true)
                         this.$status.disabledVoting(false)
+                        this.$status.setVotingType("propose")
                         this.$status.clearVoting()
                     }
                     else if (message.event === "voting-end") {
                         this.$status.disabledMessaging(false)
                         this.$status.disabledVoting(true)
+                        this.$status.setVotingType("propose")
                         this.$status.clearVoting()
                     }
                     else if (message.event === "voting-type") {
