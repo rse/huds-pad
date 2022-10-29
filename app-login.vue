@@ -211,6 +211,7 @@ module.exports = {
                 this.huds.sendFeeling(3, 3)
                 if (!attendanceRefreshInterval)
                     attendanceRefreshInterval = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
+                this.reconnecting = false
             })
             client.on("close", () => {
                 this.connectionRunning = false
