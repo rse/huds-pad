@@ -30,7 +30,7 @@
             <button v-show="$status.value.connected" @click="disconnect()">
                 <i class="icon fas fa-arrow-alt-circle-left"></i>
             </button>
-            <div v-show="$status.value.connected" class="attendees">
+            <div v-show="$status.value.connected && $info.clients.value > 0" class="attendees">
                 <i class="icon fas fa-users"></i>
                 {{ $info.clients.value }}
             </div>
