@@ -245,6 +245,8 @@ module.exports = {
             client.on("message", (topic, message) => {
                 if (topic === "$SYS/broker/clients/connected") {
                     let clients = parseInt(message.toString())
+                    if (this.$status.value.logTraffic)
+                        console.log(`HUDS: RECV: topic=${topic} message=${clients}`)
                     if (clients > 1)
                         clients-- /* there will be always US plus the HUDS, so drop the HUDS */
                     this.$info.setClients(clients)
@@ -256,6 +258,8 @@ module.exports = {
                     catch (ex) {
                         message = null
                     }
+                    if (this.$status.value.logTraffic)
+                        console.log(`HUDS: RECV: topic=${topic} message=${JSON.stringify(message)}`)
                     if (typeof message?.event !== "string")
                         return
                     if (message.event === "voting-begin") {
@@ -285,6 +289,29 @@ module.exports = {
                         }
                     }
                 }
+            })
+
+            /*  track MQTT communication  */
+            let timer = null
+            client.on("packetsend", (packet) => {
+                this.$status.setActiveTraffic(true)
+                if (timer !== null)
+                    clearTimeout(timer)
+                timer = setTimeout(() => {
+                    this.$status.setActiveTraffic(false)
+                }, 250)
+                if (this.$status.value.logTraffic)
+                    console.log(`MQTT: SEND: packet=${JSON.stringify(packet)}`)
+            })
+            client.on("packetreceive", (packet) => {
+                this.$status.setActiveTraffic(true)
+                if (timer !== null)
+                    clearTimeout(timer)
+                timer = setTimeout(() => {
+                    this.$status.setActiveTraffic(false)
+                }, 250)
+                if (this.$status.value.logTraffic)
+                    console.log(`MQTT: RECV: packet=${JSON.stringify(packet)}`)
             })
         },
         async disconnect () {

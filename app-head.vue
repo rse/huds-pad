@@ -42,6 +42,14 @@
             </h1>
         </div>
         <div class="right">
+            <div class="traffic" @click="$status.toggleLogTraffic()">
+                <div v-show="!$status.value.logTraffic" v-bind:class="{ active: $status.value.activeTraffic }">
+                    <i class="icon fa-solid fa-circle"></i>
+                </div>
+                <div v-show="$status.value.logTraffic" v-bind:class="{ active: $status.value.activeTraffic }">
+                    <i class="icon fa-solid fa-circle-stop"></i>
+                </div>
+            </div>
             <div class="online">
                 <div v-show="$status.value.online">
                     <i class="icon yes fa-solid fa-plug-circle-check"></i>
@@ -136,6 +144,22 @@
         }
         &.no {
             color: var(--color-sig-fg-1);
+        }
+    }
+    .traffic .icon {
+        display: inline-block;
+        font-size: 10pt;
+        width: 25px;
+        text-align: center;
+        position: relative;
+        top: 4px;
+    }
+    .traffic {
+        .icon {
+            color: var(--color-std-fg-1);
+        }
+        .active .icon {
+            color: var(--color-acc-fg-1);
         }
     }
 }
