@@ -283,8 +283,8 @@ module.exports = {
         },
         checkValidStream () {
             /*  Notice: MQTT provides no way to check for the existance of a topic/channel, so
-                the only way to check if the topic/channel "stream/<id>/receiver" is a one, is
-                to subscribe to a sub-topic, send a dummy message and check if one can receive
+                the only way to check if the topic/channel "stream/<id>/receiver" is an existing one,
+                is to subscribe to a sub-topic, send a dummy message and check if one can receive
                 the dummy message back again.  */
             return new Promise((resolve, reject) => {
                 const timer = setTimeout(() => {
