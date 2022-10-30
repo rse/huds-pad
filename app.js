@@ -65,10 +65,17 @@ window.App = class App {
             })
 
             /*  provide global $status property  */
+            let showhints = localStorage.getItem("huds-pad-show-hints")
+            if (typeof showhints !== "string" || !showhints.match(/^(?:yes|no)$/)) {
+                showhints = "yes"
+                localStorage.setItem("huds-pad-show-hints", showhints)
+            }
             const status = Vue.reactive({
                 online:              true,
                 showqrcode:          false,
                 showabout:           false,
+                showhints:           showhints === "yes",
+                tippyTrigger:        showhints === "yes" ? "mouseenter focus" : "manual",
                 logTraffic:          false,
                 activeTraffic:       false,
                 connected:           false,
@@ -82,6 +89,11 @@ window.App = class App {
                 setOnline (online)           { status.online = online },
                 toggleQRCode ()              { status.showqrcode = !status.showqrcode },
                 toggleAbout ()               { status.showabout  = !status.showabout  },
+                toggleHints ()               {
+                    status.showhints = !status.showhints
+                    localStorage.setItem("huds-pad-show-hints", status.showhints ? "yes" : "no")
+                    status.tippyTrigger = status.showhints ? "mouseenter focus" : "manual"
+                },
                 toggleLogTraffic ()          { status.logTraffic = !status.logTraffic },
                 setActiveTraffic (active)    { status.activeTraffic = active },
                 setConnectionEstablished ()  { status.connected = true  },

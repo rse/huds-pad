@@ -28,25 +28,25 @@
     <div class="app-pad-head">
         <div class="left">
             <button v-show="$status.value.connected" @click="disconnect()"
-                v-tippy="{ placement: 'bottom', content: 'Disconnect connection<br/>with the live session.' }">
+                v-tippy="{ placement: 'bottom', content: 'Disconnect connection<br/>with the live session.', trigger: $status.value.tippyTrigger }">
                 <i class="icon fas fa-arrow-alt-circle-left"></i>
             </button>
             <div v-show="$status.value.connected && $info.clients.value > 0" class="attendees"
-                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at MQTT broker.' }">
+                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at MQTT broker.', trigger: $status.value.tippyTrigger }">
                 <i class="icon fas fa-users"></i>
                 {{ $info.clients.value }}
             </div>
         </div>
         <div class="title">
             <h1 ref="h1" @click="$status.toggleAbout()"
-                v-tippy="{ placement: 'bottom', content: 'Toggle the information<br/>about this application.' }">
+                v-tippy="{ placement: 'bottom', content: 'Toggle the information<br/>about this application.', trigger: $status.value.tippyTrigger }">
                 <span class="title1">HUDS</span>
                 <span class="title2">Pad</span>
             </h1>
         </div>
         <div class="right">
             <div class="traffic" @click="$status.toggleLogTraffic()"
-                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for MQTT network traffic.' }">
+                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for MQTT network traffic.', trigger: $status.value.tippyTrigger }">
                 <div v-show="!$status.value.logTraffic" v-bind:class="{ active: $status.value.activeTraffic }">
                     <i class="icon fa-solid fa-circle"></i>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="online"
-                v-tippy="{ placement: 'bottom', content: 'Indicator for network<br/>online status.' }">
+                v-tippy="{ placement: 'bottom', content: 'Indicator for network<br/>online status.', trigger: $status.value.tippyTrigger }">
                 <div v-show="$status.value.online">
                     <i class="icon yes fa-solid fa-plug-circle-check"></i>
                 </div>
@@ -63,9 +63,17 @@
                     <i class="icon no fa-solid fa-plug-circle-xmark"></i>
                 </div>
             </div>
-            <button @click="$status.toggleQRCode()"
-                v-tippy="{ placement: 'bottom', content: 'Show a QR code for the<br/>easy transitioning to a</br>mobile device.' }">
-                <i class="icon fas fa-qrcode"></i>
+            <button class="qrcode" @click="$status.toggleQRCode()"
+                v-tippy="{ placement: 'bottom', content: 'Show a QR code for the<br/>easy transitioning to a</br>mobile device.', trigger: $status.value.tippyTrigger }">
+                <div v-bind:class="{ active: $status.value.showqrcode }">
+                    <i class="icon fas fa-qrcode"></i>
+                </div>
+            </button>
+            <button class="hints" @click="$status.toggleHints()"
+                v-tippy="{ placement: 'bottom', content: 'Indicator and toggle for hint<br/>popups on user interface controls.' }">
+                <div v-bind:class="{ active: $status.value.showhints }">
+                    <i class="icon fa-solid fa-circle-info"></i>
+                </div>
             </button>
         </div>
     </div>
@@ -84,8 +92,8 @@
         .icon {
             display: inline-block;
             color: var(--color-std-fg-1);
-            font-size: 18pt;
-            width: 25px;
+            font-size: 16pt;
+            width: 20px;
             text-align: center;
         }
         .hoverable &:hover {
@@ -131,7 +139,7 @@
         height: 32px;
     }
     .attendees {
-        padding-left: 4px;
+        padding-left: 2px;
         color: var(--color-std-fg-3);
         .icon {
             font-size: 80%;
@@ -141,9 +149,10 @@
     .online .icon {
         display: inline-block;
         font-size: 12pt;
-        width: 25px;
+        width: 20px;
         text-align: center;
         position: relative;
+        padding-right: 2px;
         top: 5px;
         &.yes {
             color: var(--color-std-fg-1);
@@ -155,13 +164,19 @@
     .traffic .icon {
         display: inline-block;
         font-size: 10pt;
-        width: 25px;
+        width: 20px;
         text-align: center;
         position: relative;
         top: 4px;
         color: var(--color-std-fg-1);
     }
     .traffic .active .icon {
+        color: var(--color-acc-fg-1);
+    }
+    .hints .active .icon {
+        color: var(--color-acc-fg-1);
+    }
+    .qrcode .active .icon {
         color: var(--color-acc-fg-1);
     }
 }

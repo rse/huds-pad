@@ -30,12 +30,12 @@
         <app-pad-slider
             style="grid-area: challenge" class="slider"
             title="CHALLENGE" left="sub" right="over"
-            v-tippy="{ placement: 'top', content: 'Indicate your challenge with<br/>the current session content.' }"
+            v-tippy="{ placement: 'top', content: 'Indicate your challenge with<br/>the current session content.', trigger: $status.value.tippyTrigger }"
             v-on:changed-value="(x) => sendFeeling(mood, x)"></app-pad-slider>
         <app-pad-slider
             style="grid-area: mood" class="slider"
             title="MOOD" left="tired" right="excited"
-            v-tippy="{ placement: 'top', content: 'Indicate your mood at<br/>the current time.' }"
+            v-tippy="{ placement: 'top', content: 'Indicate your mood at<br/>the current time.', trigger: $status.value.tippyTrigger }"
             v-on:changed-value="(x) => sendFeeling(x, challenge)"></app-pad-slider>
     </section>
 </template>
