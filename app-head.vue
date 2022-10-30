@@ -168,6 +168,7 @@
         text-align: center;
         position: relative;
         top: 4px;
+        left: 2px;
         color: var(--color-std-fg-1);
     }
     .traffic .active .icon {
