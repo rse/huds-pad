@@ -56,6 +56,7 @@ window.App = class App {
             const app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
             app.use(VueTippy.plugin, {
                 defaultProps: {
+                    touch: false,
                     allowHTML: true,
                     placement: "right",
                     theme: "translucent",
