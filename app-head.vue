@@ -173,6 +173,9 @@
     .traffic .active .icon {
         color: var(--color-acc-fg-1);
     }
+    main:not(.hoverable) & .hints {
+        display: none;
+    }
     .hints .active .icon {
         color: var(--color-acc-fg-1);
     }
