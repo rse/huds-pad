@@ -154,7 +154,7 @@
         text-align: center;
         position: relative;
         padding-right: 2px;
-        top: 6px;
+        top: 5px;
         &.yes {
             color: var(--color-std-fg-1);
         }
@@ -168,7 +168,7 @@
         width: 20px;
         text-align: center;
         position: relative;
-        top: 6px;
+        top: 5px;
         left: 2px;
         color: var(--color-std-fg-1);
     }
