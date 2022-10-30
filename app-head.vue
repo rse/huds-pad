@@ -141,6 +141,7 @@
     .attendees {
         padding-left: 2px;
         color: var(--color-std-fg-3);
+        font-size: 12pt;
         .icon {
             font-size: 80%;
             color: var(--color-std-fg-1);
@@ -153,7 +154,7 @@
         text-align: center;
         position: relative;
         padding-right: 2px;
-        top: 5px;
+        top: 6px;
         &.yes {
             color: var(--color-std-fg-1);
         }
@@ -167,7 +168,7 @@
         width: 20px;
         text-align: center;
         position: relative;
-        top: 5px;
+        top: 6px;
         left: 2px;
         color: var(--color-std-fg-1);
     }
