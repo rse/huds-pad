@@ -35,7 +35,7 @@
         <app-pad-slider
             style="grid-area: mood" class="slider"
             title="MOOD" left="tired" right="excited"
-            v-tippy="{ placement: 'top', content: 'Indicate your mood at<br/>at the current time.' }"
+            v-tippy="{ placement: 'top', content: 'Indicate your mood at<br/>the current time.' }"
             v-on:changed-value="(x) => sendFeeling(x, challenge)"></app-pad-slider>
     </section>
 </template>
