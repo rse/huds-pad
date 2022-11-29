@@ -73,7 +73,8 @@ module.exports = {
     created () {
         /*  regularly refresh feeling  */
         this.$status.feelingRefreshInterval = setInterval(() => {
-            this.huds.sendFeeling(this.mood, this.challenge)
+            if (this.huds?.client?.connected)
+                this.huds.sendFeeling(this.mood, this.challenge)
         }, 10 * 60 * 1000)
     },
     methods: {
