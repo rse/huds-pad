@@ -75,7 +75,7 @@ window.HUDS = class HUDS {
             clean:           true,
             resubscribe:     true,
             keepalive:       60,        /* 60s */
-            reconnectPeriod: 4  * 1000, /*  4s */
+            reconnectPeriod: 2  * 1000, /*  2s */
             connectTimeout:  30 * 1000  /* 30s */
         })
         this.client.once("connect", (connack) => {
