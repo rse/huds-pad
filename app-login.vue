@@ -220,10 +220,14 @@ module.exports = {
                 if (!this.isReconnecting())
                     this.$info.setMessage("Status: Disconnected")
                 this.$status.setConnectionClosed()
-                if (attendanceRefreshInterval)
+                if (attendanceRefreshInterval) {
                     clearInterval(attendanceRefreshInterval)
-                if (this.$status.feelingRefreshInterval)
+                    attendanceRefreshInterval = null
+                }
+                if (this.$status.feelingRefreshInterval) {
                     clearInterval(this.$status.feelingRefreshInterval)
+                    this.$status.feelingRefreshInterval = null
+                }
             })
             client.on("disconnect", () => {
                 this.$info.setMessage("Status: Disconnected")
