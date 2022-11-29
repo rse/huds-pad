@@ -54,6 +54,8 @@ window.App = class App {
 
             /*  initialize user interface  */
             const app = Vue.createApp({ components: { "app": Vue.loadComponent("app.vue") } })
+
+            /*  add Vue tooltip plugin  */
             app.use(VueTippy.plugin, {
                 defaultProps: {
                     touch: false,
@@ -64,7 +66,7 @@ window.App = class App {
                 }
             })
 
-            /*  provide global $status property  */
+            /*  provide global Vue "$status" property  */
             let showhints = localStorage.getItem("huds-pad-show-hints")
             if (typeof showhints !== "string" || !showhints.match(/^(?:yes|no)$/)) {
                 showhints = "yes"
@@ -104,7 +106,7 @@ window.App = class App {
                 clearVoting ()               { status.clearVoting = !status.clearVoting }
             }
 
-            /*  provide global $info property  */
+            /*  provide global Vue "$info" property  */
             const msg = Vue.ref("")
             const err = Vue.ref("")
             const clients = Vue.ref(0)
@@ -119,7 +121,7 @@ window.App = class App {
                 setClients   (num)  { clients.value = num }
             }
 
-            /*  provide global huds property  */
+            /*  provide global Vue "huds" property  */
             const huds = new HUDS()
             await huds.load("app.yaml")
             app.config.globalProperties.huds = huds
@@ -141,7 +143,7 @@ window.App = class App {
             await Promise.all(fonts.map((font) => (new FontFaceObserver(font.family, font.spec)).load(null, 3000)))
                 .catch(() => true)
 
-            /*  mount UI  */
+            /*  finally mount user interface  */
             app.mount("#app")
         })().catch((err) => {
             console.error(`app: ERROR: top-level: ${err}`)
