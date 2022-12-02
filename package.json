@@ -1,6 +1,6 @@
 {
     "name":                                 "huds-pad",
-    "version":                              "1.2.5",
+    "version":                              "1.2.6",
     "homepage":                             "https://github.com/rse/huds-pad",
     "description":                          "Head-Up-Display Server (HUDS)",
     "author": {
@@ -32,7 +32,7 @@
         "tippy.js":                         "6.3.7"
     },
     "devDependencies": {
-        "eslint":                           "8.28.0",
+        "eslint":                           "8.29.0",
         "eslint-config-standard":           "17.0.0",
         "eslint-plugin-import":             "2.26.0",
         "eslint-plugin-node":               "11.1.0",
