@@ -209,8 +209,8 @@ module.exports = {
                 this.$info.setMessage("Status: Connected")
                 this.$info.clearError()
                 this.$status.setConnectionEstablished()
-                this.huds.beginAttendance()
-                this.huds.sendFeeling(3, 3)
+                await this.huds.beginAttendance()
+                await this.huds.sendFeeling(3, 3)
                 if (!attendanceRefreshInterval)
                     attendanceRefreshInterval = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
                 this.reconnecting = false
@@ -325,6 +325,7 @@ module.exports = {
         async disconnect () {
             this.$info.setMessage("Status: Disconnecting")
             this.$info.clearError()
+            await this.huds.endAttendance().catch(() => {})
             return this.huds.disconnect()
         },
         checkValidStream () {
