@@ -43,10 +43,14 @@
         "stylelint-config-html":            "1.1.0",
         "stylelint-config-standard-vue":    "1.0.0",
         "stylelint-config-recommended-vue": "1.4.0",
-        "http-server":                      "14.1.1"
+        "http-server":                      "14.1.1",
+        "nodemon":                          "2.0.20",
+        "stmux":                            "1.8.4"
     },
     "scripts": {
         "lint":                             "eslint --config eslint.yaml --ext js,vue *.vue *.js && stylelint --config stylelint.yaml *.css *.vue",
-        "start":                            "http-server -p 8080"
+        "lint-watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,css,js",
+        "start":                            "http-server -p 8080 -d -c-1",
+        "dev":                              "stmux -w always -e ERROR -m beep,system -- [ \"npm run lint-watch\" : \"npm start\" ]"
     }
 }
