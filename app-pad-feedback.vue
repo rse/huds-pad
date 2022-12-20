@@ -34,42 +34,42 @@
         </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your consent with<br/>the current session content.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'Indicate your consent with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsup')">
             <i class="icon positive fas fa-thumbs-up"></i>
             <span class="title positive">Consent</span>
         </button>
         <button style="grid-area: button2"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your refusal with<br/>the current session content.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'Indicate your refusal with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsdn')">
             <i class="icon fas fa-thumbs-down"></i>
             <span class="title">Refusal</span>
         </button>
         <button style="grid-area: button3"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your surprise with<br/>the current session content.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'Indicate your surprise with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('surprise')">
             <i class="icon positive fas fa-surprise"></i>
             <span class="title positive">Surprise</span>
         </button>
         <button style="grid-area: button4"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your smile with<br/>the current session content.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'Indicate your smile with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('smile')">
             <i class="icon positive fas fa-grin-wink"></i>
             <span class="title positive">Smile</span>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your frown with<br/>the current session content.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'Indicate your frown with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
             <span class="title">Frown</span>
         </button>
         <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your sadness with<br/>the current session content.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'Indicate your sadness with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('sadness')">
             <i class="icon fas fa-sad-tear"></i>
             <span class="title">Sadness</span>

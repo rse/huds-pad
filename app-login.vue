@@ -31,13 +31,13 @@
             style="grid-area: input"
             type="text"
             placeholder="Enter your Access Token..."
-            v-tippy="{ placement: 'top', content: 'Access Token for connecting<br/>to the live session.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'Access Token for connecting<br/>to the live session.', trigger: $global.value.tippyTrigger }"
             v-on:keyup.enter="connect"
             @input="exportHash">
         <button style="grid-area: connect"
             v-bind:disabled="!accessToken || connectionRunning || reconnecting"
             @click="connect"
-            v-tippy="{ placement: 'bottom', content: 'Connect to the<br/>live session.', trigger: $status.value.tippyTrigger }">
+            v-tippy="{ placement: 'bottom', content: 'Connect to the<br/>live session.', trigger: $global.value.tippyTrigger }">
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
         <div style="grid-area: banner" class="banner">
@@ -156,7 +156,7 @@ module.exports = {
             }
         },
         async exportHash () {
-            this.$info.clearError()
+            this.$global.clearError()
             if (this.isReconnecting()) {
                 await this.disconnect().catch(() => {})
                 this.reconnecting = false
@@ -187,8 +187,8 @@ module.exports = {
             /*  parse access token  */
             const match = this.accessToken.match(/^(.+?)-([^-]+)-([^-]+)$/)
             if (match === null) {
-                this.$info.setMessage("Status: Failed to connect")
-                this.$info.setError("Error: Invalid access token format")
+                this.$global.setMessage("Status: Failed to connect")
+                this.$global.setError("Error: Invalid access token format")
                 return
             }
             const [ , channel, token1, token2 ] = match
@@ -202,13 +202,13 @@ module.exports = {
                 const isValidStream = await this.checkValidStream().catch(() => false)
                 if (!isValidStream) {
                     try { client.end() } catch (ev) { } /* eslint brace-style: off */
-                    this.$info.setMessage("Status: Connection Error")
-                    this.$info.setError("Error: Connection Refused: Not authorized")
+                    this.$global.setMessage("Status: Connection Error")
+                    this.$global.setError("Error: Connection Refused: Not authorized")
                     return
                 }
-                this.$info.setMessage("Status: Connected")
-                this.$info.clearError()
-                this.$status.setConnectionEstablished()
+                this.$global.setMessage("Status: Connected")
+                this.$global.clearError()
+                this.$global.setConnectionEstablished()
                 await this.huds.beginAttendance()
                 await this.huds.sendFeeling(3, 3)
                 if (!attendanceRefreshInterval)
@@ -218,32 +218,32 @@ module.exports = {
             client.on("close", () => {
                 this.connectionRunning = false
                 if (!this.isReconnecting())
-                    this.$info.setMessage("Status: Disconnected")
-                this.$status.setConnectionClosed()
+                    this.$global.setMessage("Status: Disconnected")
+                this.$global.setConnectionClosed()
                 if (attendanceRefreshInterval) {
                     clearInterval(attendanceRefreshInterval)
                     attendanceRefreshInterval = null
                 }
-                if (this.$status.feelingRefreshInterval) {
-                    clearInterval(this.$status.feelingRefreshInterval)
-                    this.$status.feelingRefreshInterval = null
+                if (this.$global.value.feelingRefreshInterval) {
+                    clearInterval(this.$global.value.feelingRefreshInterval)
+                    this.$global.value.feelingRefreshInterval = null
                 }
             })
             client.on("disconnect", () => {
-                this.$info.setMessage("Status: Disconnected")
-                this.$status.setConnectionClosed()
+                this.$global.setMessage("Status: Disconnected")
+                this.$global.setConnectionClosed()
             })
             client.on("offline", () => {
-                this.$info.setMessage("Status: Offline")
+                this.$global.setMessage("Status: Offline")
             })
             client.on("error", (err) => {
-                this.$info.setMessage("Status: Communication Error")
-                this.$info.setError(err.toString())
+                this.$global.setMessage("Status: Communication Error")
+                this.$global.setError(err.toString())
                 if (err.toString().match(/Not authorized/i))
                     try { client.end() } catch (ev) { } /* eslint brace-style: off */
             })
             client.on("reconnect", () => {
-                this.$info.setMessage("Status: Reconnecting")
+                this.$global.setMessage("Status: Reconnecting")
                 this.reconnecting = true
             })
 
@@ -251,11 +251,11 @@ module.exports = {
             client.on("message", (topic, message) => {
                 if (topic === "$SYS/broker/clients/connected") {
                     let clients = parseInt(message.toString())
-                    if (this.$status.value.logTraffic)
+                    if (this.$global.value.logTraffic)
                         console.log(`HUDS: RECV: topic=${topic} message=${clients}`)
                     if (clients > 1)
                         clients-- /* there will be always US plus the HUDS, so drop the HUDS */
-                    this.$info.setClients(clients)
+                    this.$global.setClients(clients)
                 }
                 else if (topic === `stream/${this.huds.channel}/receiver`) {
                     try {
@@ -264,34 +264,34 @@ module.exports = {
                     catch (ex) {
                         message = null
                     }
-                    if (this.$status.value.logTraffic)
+                    if (this.$global.value.logTraffic)
                         console.log(`HUDS: RECV: topic=${topic} message=${JSON.stringify(message)}`)
                     if (typeof message?.event !== "string")
                         return
                     if (message.event === "voting-begin") {
-                        this.$status.disabledMessaging(false)
-                        this.$status.disabledVoting(true)
-                        this.$status.setVotingType("propose")
-                        this.$status.clearVoting()
+                        this.$global.disabledMessaging(false)
+                        this.$global.disabledVoting(true)
+                        this.$global.setVotingType("propose")
+                        this.$global.clearVoting()
                     }
                     else if (message.event === "voting-end") {
-                        this.$status.disabledMessaging(false)
-                        this.$status.disabledVoting(true)
-                        this.$status.setVotingType("propose")
-                        this.$status.clearVoting()
+                        this.$global.disabledMessaging(false)
+                        this.$global.disabledVoting(true)
+                        this.$global.setVotingType("propose")
+                        this.$global.clearVoting()
                     }
                     else if (message.event === "voting-type") {
                         if (typeof message.data?.type === "string") {
                             if (message.data.type === "propose") {
-                                this.$status.disabledMessaging(false)
-                                this.$status.disabledVoting(true)
+                                this.$global.disabledMessaging(false)
+                                this.$global.disabledVoting(true)
                             }
                             else {
-                                this.$status.disabledMessaging(true)
-                                this.$status.disabledVoting(false)
+                                this.$global.disabledMessaging(true)
+                                this.$global.disabledVoting(false)
                             }
-                            this.$status.setVotingType(message.data.type)
-                            this.$status.clearVoting()
+                            this.$global.setVotingType(message.data.type)
+                            this.$global.clearVoting()
                         }
                     }
                 }
@@ -300,31 +300,31 @@ module.exports = {
             /*  track MQTT communication  */
             let timer = null
             client.on("packetsend", (packet) => {
-                this.$status.setActiveTraffic(true)
+                this.$global.setActiveTraffic(true)
                 if (timer !== null)
                     clearTimeout(timer)
                 timer = setTimeout(() => {
                     timer = null
-                    this.$status.setActiveTraffic(false)
+                    this.$global.setActiveTraffic(false)
                 }, 250)
-                if (this.$status.value.logTraffic)
+                if (this.$global.value.logTraffic)
                     console.log(`MQTT: SEND: packet=${JSON.stringify(packet)}`)
             })
             client.on("packetreceive", (packet) => {
-                this.$status.setActiveTraffic(true)
+                this.$global.setActiveTraffic(true)
                 if (timer !== null)
                     clearTimeout(timer)
                 timer = setTimeout(() => {
                     timer = null
-                    this.$status.setActiveTraffic(false)
+                    this.$global.setActiveTraffic(false)
                 }, 250)
-                if (this.$status.value.logTraffic)
+                if (this.$global.value.logTraffic)
                     console.log(`MQTT: RECV: packet=${JSON.stringify(packet)}`)
             })
         },
         async disconnect () {
-            this.$info.setMessage("Status: Disconnecting")
-            this.$info.clearError()
+            this.$global.setMessage("Status: Disconnecting")
+            this.$global.clearError()
             await this.huds.endAttendance().catch(() => {})
             return this.huds.disconnect()
         },

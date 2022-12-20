@@ -70,8 +70,7 @@ const App = class App {
             })
 
             /*  provide global properties  */
-            app.config.globalProperties.$status = global.$status
-            app.config.globalProperties.$info   = global.$info
+            app.config.globalProperties.$global = global
 
             /*  provide global Vue "huds" property  */
             const huds = new HUDS()

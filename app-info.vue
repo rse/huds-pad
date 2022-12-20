@@ -26,8 +26,8 @@
 
 <template>
     <div class="app-info">
-        <div v-show="$info.msg.value" class="msg">{{ $info.msg.value }}</div>
-        <div v-show="$info.err.value" class="err">{{ $info.err.value }}</div>
+        <div v-show="$global.value.msg" class="msg">{{ $global.value.msg }}</div>
+        <div v-show="$global.value.err" class="err">{{ $global.value.err }}</div>
     </div>
 </template>
 

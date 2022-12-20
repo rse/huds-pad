@@ -28,10 +28,10 @@
     <main ref="main" v-bind:class="{ hoverable: hoverable }">
         <app-head></app-head>
         <app-info></app-info>
-        <app-about  v-show="$status.value.showabout"></app-about>
-        <app-qrcode v-show="$status.value.showqrcode"></app-qrcode>
-        <app-pad    v-show=" $status.value.connected"></app-pad>
-        <app-login  v-show="!$status.value.connected"></app-login>
+        <app-about  v-show="$global.value.showabout"></app-about>
+        <app-qrcode v-show="$global.value.showqrcode"></app-qrcode>
+        <app-pad    v-show=" $global.value.connected"></app-pad>
+        <app-login  v-show="!$global.value.connected"></app-login>
     </main>
 </template>
 
@@ -90,12 +90,12 @@ module.exports = {
         }, { passive: false })
 
         /*  observe network connectivity  */
-        this.$status.setOnline(navigator.onLine)
+        this.$global.setOnline(navigator.onLine)
         window.addEventListener("offline", (ev) => {
-            this.$status.setOnline(false)
+            this.$global.setOnline(false)
         })
         window.addEventListener("online", (ev) => {
-            this.$status.setOnline(true)
+            this.$global.setOnline(true)
             this.huds.refreshAttendance()
         })
     }

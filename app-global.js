@@ -22,61 +22,53 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/*  provide global Vue "$status" property  */
 let showhints = localStorage.getItem("huds-pad-show-hints")
 if (typeof showhints !== "string" || !showhints.match(/^(?:yes|no)$/)) {
     showhints = "yes"
     localStorage.setItem("huds-pad-show-hints", showhints)
 }
-const status = Vue.reactive({
-    online:              true,
-    showqrcode:          false,
-    showabout:           false,
-    showhints:           showhints === "yes",
-    tippyTrigger:        showhints === "yes" ? "mouseenter focus" : "manual",
-    logTraffic:          false,
-    activeTraffic:       false,
-    connected:           false,
-    isMessagingDisabled: false,
-    isVotingDisabled:    true,
-    votingType:          "propose",
-    clearVoting:         false
+
+const global = Vue.reactive({
+    online:                 true,
+    showqrcode:             false,
+    showabout:              false,
+    showhints:              showhints === "yes",
+    tippyTrigger:           showhints === "yes" ? "mouseenter focus" : "manual",
+    logTraffic:             false,
+    activeTraffic:          false,
+    connected:              false,
+    isMessagingDisabled:    false,
+    isVotingDisabled:       true,
+    votingType:             "propose",
+    clearVoting:            false,
+    feelingRefreshInterval: null,
+    msg:                    "",
+    err:                    "",
+    clients:                0
 })
-const $status = {
-    value: status,
-    setOnline (online)           { status.online = online },
-    toggleQRCode ()              { status.showqrcode = !status.showqrcode },
-    toggleAbout ()               { status.showabout  = !status.showabout  },
+
+export default {
+    value: global,
+    setOnline (online)           { this.value.online = online },
+    toggleQRCode ()              { this.value.showqrcode = !this.value.showqrcode },
+    toggleAbout ()               { this.value.showabout  = !this.value.showabout  },
     toggleHints ()               {
-        status.showhints = !status.showhints
-        localStorage.setItem("huds-pad-show-hints", status.showhints ? "yes" : "no")
-        status.tippyTrigger = status.showhints ? "mouseenter focus" : "manual"
+        this.value.showhints = !this.value.showhints
+        localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
+        this.value.tippyTrigger = this.value.showhints ? "mouseenter focus" : "manual"
     },
-    toggleLogTraffic ()          { status.logTraffic = !status.logTraffic },
-    setActiveTraffic (active)    { status.activeTraffic = active },
-    setConnectionEstablished ()  { status.connected = true  },
-    setConnectionClosed ()       { status.connected = false },
-    disabledMessaging (disabled) { status.isMessagingDisabled = disabled },
-    disabledVoting (disabled)    { status.isVotingDisabled    = disabled },
-    setVotingType (type)         { status.votingType = type },
-    clearVoting ()               { status.clearVoting = !status.clearVoting }
+    toggleLogTraffic ()          { this.value.logTraffic = !this.value.logTraffic },
+    setActiveTraffic (active)    { this.value.activeTraffic = active },
+    setConnectionEstablished ()  { this.value.connected = true  },
+    setConnectionClosed ()       { this.value.connected = false },
+    disabledMessaging (disabled) { this.value.isMessagingDisabled = disabled },
+    disabledVoting (disabled)    { this.value.isVotingDisabled    = disabled },
+    setVotingType (type)         { this.value.votingType = type },
+    clearVoting ()               { this.value.clearVoting = !status.clearVoting },
+    setMessage (text)            { this.value.msg = text },
+    clearMessage ()              { this.value.msg = ""   },
+    setError (text)              { this.value.err = text },
+    clearError ()                { this.value.err = ""   },
+    setClients (num)             { this.value.clients = num }
 }
-
-/*  provide global Vue "$info" property  */
-const msg = Vue.ref("")
-const err = Vue.ref("")
-const clients = Vue.ref(0)
-const $info = {
-    msg,
-    err,
-    clients,
-    setMessage   (text) { msg.value = text },
-    clearMessage ()     { msg.value = ""   },
-    setError     (text) { err.value = text },
-    clearError   ()     { err.value = ""   },
-    setClients   (num)  { clients.value = num }
-}
-
-/*  export results  */
-export default { $status, $info }
 

@@ -27,51 +27,51 @@
 <template>
     <div class="app-pad-head">
         <div class="left">
-            <button v-show="$status.value.connected" @click="disconnect()"
-                v-tippy="{ placement: 'bottom', content: 'Disconnect connection<br/>with the live session.', trigger: $status.value.tippyTrigger }">
+            <button v-show="$global.value.connected" @click="disconnect()"
+                v-tippy="{ placement: 'bottom', content: 'Disconnect connection<br/>with the live session.', trigger: $global.value.tippyTrigger }">
                 <i class="icon fas fa-arrow-alt-circle-left"></i>
             </button>
-            <div v-show="$status.value.connected && $info.clients.value > 0" class="attendees"
-                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at MQTT broker.', trigger: $status.value.tippyTrigger }">
+            <div v-show="$global.value.connected && $global.value.clients > 0" class="attendees"
+                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at MQTT broker.', trigger: $global.value.tippyTrigger }">
                 <i class="icon fas fa-users"></i>
-                {{ $info.clients.value }}
+                {{ $global.value.clients }}
             </div>
         </div>
         <div class="title">
-            <h1 ref="h1" @click="$status.toggleAbout()"
-                v-tippy="{ placement: 'bottom', content: 'Toggle the information<br/>about this application.', trigger: $status.value.tippyTrigger }">
+            <h1 ref="h1" @click="$global.toggleAbout()"
+                v-tippy="{ placement: 'bottom', content: 'Toggle the information<br/>about this application.', trigger: $global.value.tippyTrigger }">
                 <span class="title1">HUDS</span>
                 <span class="title2">Pad</span>
             </h1>
         </div>
         <div class="right">
-            <div class="traffic" @click="$status.toggleLogTraffic()"
-                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for MQTT network traffic.', trigger: $status.value.tippyTrigger }">
-                <div v-show="!$status.value.logTraffic" v-bind:class="{ active: $status.value.activeTraffic }">
+            <div class="traffic" @click="$global.toggleLogTraffic()"
+                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for MQTT network traffic.', trigger: $global.value.tippyTrigger }">
+                <div v-show="!$global.value.logTraffic" v-bind:class="{ active: $global.value.activeTraffic }">
                     <i class="icon fa-solid fa-circle"></i>
                 </div>
-                <div v-show="$status.value.logTraffic" v-bind:class="{ active: $status.value.activeTraffic }">
+                <div v-show="$global.value.logTraffic" v-bind:class="{ active: $global.value.activeTraffic }">
                     <i class="icon fa-solid fa-circle-stop"></i>
                 </div>
             </div>
             <div class="online"
-                v-tippy="{ placement: 'bottom', content: 'Indicator for network<br/>online status.', trigger: $status.value.tippyTrigger }">
-                <div v-show="$status.value.online">
+                v-tippy="{ placement: 'bottom', content: 'Indicator for network<br/>online status.', trigger: $global.value.tippyTrigger }">
+                <div v-show="$global.value.online">
                     <i class="icon yes fa-solid fa-plug-circle-check"></i>
                 </div>
-                <div v-show="!$status.value.online">
+                <div v-show="!$global.value.online">
                     <i class="icon no fa-solid fa-plug-circle-xmark"></i>
                 </div>
             </div>
-            <button class="qrcode" @click="$status.toggleQRCode()"
-                v-tippy="{ placement: 'bottom', content: 'Show a QR code for the<br/>easy transitioning to a</br>mobile device.', trigger: $status.value.tippyTrigger }">
-                <div v-bind:class="{ active: $status.value.showqrcode }">
+            <button class="qrcode" @click="$global.toggleQRCode()"
+                v-tippy="{ placement: 'bottom', content: 'Show a QR code for the<br/>easy transitioning to a</br>mobile device.', trigger: $global.value.tippyTrigger }">
+                <div v-bind:class="{ active: $global.value.showqrcode }">
                     <i class="icon fas fa-qrcode"></i>
                 </div>
             </button>
-            <button class="hints" @click="$status.toggleHints()"
+            <button class="hints" @click="$global.toggleHints()"
                 v-tippy="{ placement: 'bottom', content: 'Indicator and toggle for hint<br/>popups on user interface controls.' }">
-                <div v-bind:class="{ active: $status.value.showhints }">
+                <div v-bind:class="{ active: $global.value.showhints }">
                     <i class="icon fa-solid fa-circle-info"></i>
                 </div>
             </button>
@@ -199,8 +199,8 @@ module.exports = {
         disconnect () {
             this.huds.endAttendance()
             this.huds.client.once("close", () => {
-                this.$info.clearMessage()
-                this.$info.clearError()
+                this.$global.clearMessage()
+                this.$global.clearError()
             })
             this.huds.disconnect()
         },

@@ -28,28 +28,28 @@
     <section class="app-pad-message">
         <h2 class="title" style="grid-area: title">
             MESSAGE
-            <span v-show="$status.value.isMessagingDisabled" class="disabled">
+            <span v-show="$global.value.isMessagingDisabled" class="disabled">
                 (temporarily disabled until current voting ends)
             </span>
-            <span v-show="!$status.value.isMessagingDisabled && justSent" class="disabled">
+            <span v-show="!$global.value.isMessagingDisabled && justSent" class="disabled">
                 (temporarily disabled for throttling purposes)
             </span>
         </h2>
         <textarea v-model="text" class="text" rows="4"
-            v-bind:disabled="$status.value.isMessagingDisabled || justSent"
+            v-bind:disabled="$global.value.isMessagingDisabled || justSent"
             v-bind:placeholder="'Type a message to be send...'"
             v-on:keyup.escape="clearMessage()"
-            v-tippy="{ placement: 'top', content: 'The message to be send<br/>anonymously to the live session.', trigger: $status.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: 'The message to be send<br/>anonymously to the live session.', trigger: $global.value.tippyTrigger }"
         ></textarea>
         <button class="clear"
-            v-bind:disabled="!text || $status.value.isMessagingDisabled || justSent"
-            v-tippy="{ placement: 'bottom', content: 'Clear the message.', trigger: $status.value.tippyTrigger }"
+            v-bind:disabled="!text || $global.value.isMessagingDisabled || justSent"
+            v-tippy="{ placement: 'bottom', content: 'Clear the message.', trigger: $global.value.tippyTrigger }"
             @click="clearMessage">
             Clear <i class="icon fas fa-trash-alt"></i>
         </button>
         <button class="send"
-            v-bind:disabled="!text || $status.value.isMessagingDisabled || justSent"
-            v-tippy="{ placement: 'bottom', content: 'Send the message.', trigger: $status.value.tippyTrigger }"
+            v-bind:disabled="!text || $global.value.isMessagingDisabled || justSent"
+            v-tippy="{ placement: 'bottom', content: 'Send the message.', trigger: $global.value.tippyTrigger }"
             @click="sendMessage">
             Send <i class="icon fas fa-share"></i>
         </button>
@@ -179,7 +179,7 @@ module.exports = {
     }),
     methods: {
         sendMessage () {
-            if (this.text && !this.$status.value.isMessagingDisabled) {
+            if (this.text && !this.$global.value.isMessagingDisabled) {
                 this.huds.sendMessage(this.text)
                 this.clearMessage()
                 this.justSent = true
