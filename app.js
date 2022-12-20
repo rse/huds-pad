@@ -22,8 +22,11 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/*  main application procedure  */
-window.App = class App {
+import HUDS   from "./app-huds.js"
+import global from "./app-global.js"
+
+/*  main application  */
+const App = class App {
     static main () {
         (async () => {
             /*  provide custom Vue loader  */
@@ -66,60 +69,9 @@ window.App = class App {
                 }
             })
 
-            /*  provide global Vue "$status" property  */
-            let showhints = localStorage.getItem("huds-pad-show-hints")
-            if (typeof showhints !== "string" || !showhints.match(/^(?:yes|no)$/)) {
-                showhints = "yes"
-                localStorage.setItem("huds-pad-show-hints", showhints)
-            }
-            const status = Vue.reactive({
-                online:              true,
-                showqrcode:          false,
-                showabout:           false,
-                showhints:           showhints === "yes",
-                tippyTrigger:        showhints === "yes" ? "mouseenter focus" : "manual",
-                logTraffic:          false,
-                activeTraffic:       false,
-                connected:           false,
-                isMessagingDisabled: false,
-                isVotingDisabled:    true,
-                votingType:          "propose",
-                clearVoting:         false
-            })
-            app.config.globalProperties.$status = {
-                value: status,
-                setOnline (online)           { status.online = online },
-                toggleQRCode ()              { status.showqrcode = !status.showqrcode },
-                toggleAbout ()               { status.showabout  = !status.showabout  },
-                toggleHints ()               {
-                    status.showhints = !status.showhints
-                    localStorage.setItem("huds-pad-show-hints", status.showhints ? "yes" : "no")
-                    status.tippyTrigger = status.showhints ? "mouseenter focus" : "manual"
-                },
-                toggleLogTraffic ()          { status.logTraffic = !status.logTraffic },
-                setActiveTraffic (active)    { status.activeTraffic = active },
-                setConnectionEstablished ()  { status.connected = true  },
-                setConnectionClosed ()       { status.connected = false },
-                disabledMessaging (disabled) { status.isMessagingDisabled = disabled },
-                disabledVoting (disabled)    { status.isVotingDisabled    = disabled },
-                setVotingType (type)         { status.votingType = type },
-                clearVoting ()               { status.clearVoting = !status.clearVoting }
-            }
-
-            /*  provide global Vue "$info" property  */
-            const msg = Vue.ref("")
-            const err = Vue.ref("")
-            const clients = Vue.ref(0)
-            app.config.globalProperties.$info = {
-                msg,
-                err,
-                clients,
-                setMessage   (text) { msg.value = text },
-                clearMessage ()     { msg.value = ""   },
-                setError     (text) { err.value = text },
-                clearError   ()     { err.value = ""   },
-                setClients   (num)  { clients.value = num }
-            }
+            /*  provide global properties  */
+            app.config.globalProperties.$status = global.$status
+            app.config.globalProperties.$info   = global.$info
 
             /*  provide global Vue "huds" property  */
             const huds = new HUDS()
@@ -150,4 +102,7 @@ window.App = class App {
         })
     }
 }
+
+/*  bootstrap application  */
+App.main()
 

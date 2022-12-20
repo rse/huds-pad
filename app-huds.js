@@ -23,7 +23,7 @@
 */
 
 /*  HUDS communication  */
-window.HUDS = class HUDS {
+export default class HUDS {
     constructor () {
         this.channel  = ""
         this.client   = null
