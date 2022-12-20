@@ -64,7 +64,7 @@ export default {
     disabledMessaging (disabled) { this.value.isMessagingDisabled = disabled },
     disabledVoting (disabled)    { this.value.isVotingDisabled    = disabled },
     setVotingType (type)         { this.value.votingType = type },
-    clearVoting ()               { this.value.clearVoting = !status.clearVoting },
+    clearVoting ()               { this.value.clearVoting = !this.value.clearVoting },
     setMessage (text)            { this.value.msg = text },
     clearMessage ()              { this.value.msg = ""   },
     setError (text)              { this.value.err = text },
