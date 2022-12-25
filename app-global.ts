@@ -22,6 +22,8 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import * as Vue from "vue"
+
 let showhints = localStorage.getItem("huds-pad-show-hints")
 if (typeof showhints !== "string" || !showhints.match(/^(?:yes|no)$/)) {
     showhints = "yes"
@@ -49,7 +51,7 @@ const global = Vue.reactive({
 
 export default {
     value: global,
-    setOnline (online)           { this.value.online = online },
+    setOnline (online: boolean)  { this.value.online = online },
     toggleQRCode ()              { this.value.showqrcode = !this.value.showqrcode },
     toggleAbout ()               { this.value.showabout  = !this.value.showabout  },
     toggleHints ()               {
@@ -57,18 +59,18 @@ export default {
         localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
         this.value.tippyTrigger = this.value.showhints ? "mouseenter focus" : "manual"
     },
-    toggleLogTraffic ()          { this.value.logTraffic = !this.value.logTraffic },
-    setActiveTraffic (active)    { this.value.activeTraffic = active },
-    setConnectionEstablished ()  { this.value.connected = true  },
-    setConnectionClosed ()       { this.value.connected = false },
-    disabledMessaging (disabled) { this.value.isMessagingDisabled = disabled },
-    disabledVoting (disabled)    { this.value.isVotingDisabled    = disabled },
-    setVotingType (type)         { this.value.votingType = type },
-    clearVoting ()               { this.value.clearVoting = !this.value.clearVoting },
-    setMessage (text)            { this.value.msg = text },
-    clearMessage ()              { this.value.msg = ""   },
-    setError (text)              { this.value.err = text },
-    clearError ()                { this.value.err = ""   },
-    setClients (num)             { this.value.clients = num }
+    toggleLogTraffic ()                   { this.value.logTraffic = !this.value.logTraffic },
+    setActiveTraffic (active: boolean)    { this.value.activeTraffic = active },
+    setConnectionEstablished ()           { this.value.connected = true  },
+    setConnectionClosed ()                { this.value.connected = false },
+    disabledMessaging (disabled: boolean) { this.value.isMessagingDisabled = disabled },
+    disabledVoting (disabled: boolean)    { this.value.isVotingDisabled    = disabled },
+    setVotingType (type: string)          { this.value.votingType = type },
+    clearVoting ()                        { this.value.clearVoting = !this.value.clearVoting },
+    setMessage (text: string)             { this.value.msg = text },
+    clearMessage ()                       { this.value.msg = ""   },
+    setError (text: string)               { this.value.err = text },
+    clearError ()                         { this.value.err = ""   },
+    setClients (num: number)              { this.value.clients = num }
 }
 

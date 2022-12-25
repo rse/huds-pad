@@ -117,21 +117,29 @@
 }
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+</script>
+
+<script lang="ts">
+export default defineComponent({
     name: "app-pad-slider",
-    props: [ "title", "left", "right" ],
+    props: {
+        title: { type: String, default: "" },
+        left:  { type: String, default: "" },
+        right: { type: String, default: "" }
+    },
     data: () => ({
         value: 3
     }),
     mounted () {
-        window.allowTouchMove(this.$el)
+        (window as any).allowTouchMove(this.$el)
     },
     methods: {
         change () {
             this.$emit("changed-value", this.value)
         }
     }
-}
+})
 </script>
 

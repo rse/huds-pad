@@ -187,8 +187,14 @@
 }
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+import anime from "animejs"
+</script>
+
+<script lang="ts">
+let i = 0
+export default defineComponent({
     name: "app-head",
     mounted () {
         /*  animate the title initially and then every 5 minutes  */
@@ -204,24 +210,20 @@ module.exports = {
             })
             this.huds.disconnect()
         },
-        animate: (function () {
-            /*  animate the title  */
-            let i = 0
-            return function () {
-                const tl = anime.timeline({
-                    targets:  this.$refs.h1,
-                    duration: 2000,
-                    easing:   "easeInOutQuad"
-                })
-                if (i++ % 2 === 0)
-                    /*  rotate around the X-axis  */
-                    tl.add({ rotateX: [ 0, 360 ] })
-                else
-                    /*  rotate around the Y-axis  */
-                    tl.add({ rotateY: [ 0, 360 ] })
-            }
-        })()
+        animate () {
+            const tl = anime.timeline({
+                targets:  (this.$refs.h1 as HTMLElement),
+                duration: 2000,
+                easing:   "easeInOutQuad"
+            })
+            if (i++ % 2 === 0)
+                /*  rotate around the X-axis  */
+                tl.add({ rotateX: [ 0, 360 ] })
+            else
+                /*  rotate around the Y-axis  */
+                tl.add({ rotateY: [ 0, 360 ] })
+        }
     }
-}
+})
 </script>
 

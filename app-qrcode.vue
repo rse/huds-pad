@@ -61,8 +61,13 @@
 }
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+import QRCode from "qrcode"
+</script>
+
+<script lang="ts">
+export default defineComponent({
     name: "app-qrcode",
     data: () => ({
         url: window.location.href
@@ -90,6 +95,6 @@ module.exports = {
             }, () => {})
         }
     }
-}
+})
 </script>
 

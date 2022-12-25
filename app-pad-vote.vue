@@ -213,8 +213,12 @@
 }
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+</script>
+
+<script lang="ts">
+export default defineComponent({
     name: "app-pad-vote",
     data: () => ({
         votingChoice: ""
@@ -225,12 +229,12 @@ module.exports = {
         })
     },
     methods: {
-        vote (value) {
+        vote (value: string) {
             this.huds.sendMessage(value)
             this.$global.disabledVoting(true)
             setTimeout(() => { this.votingChoice = value }, 100)
         }
     }
-}
+})
 </script>
 

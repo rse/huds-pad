@@ -51,54 +51,67 @@ main {
 }
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+import AppHead   from "./app-head.vue"
+import AppAbout  from "./app-about.vue"
+import AppQRCode from "./app-qrcode.vue"
+import AppPad    from "./app-pad.vue"
+import AppLogin  from "./app-login.vue"
+import AppInfo   from "./app-info.vue"
+</script>
+
+<script lang="ts">
+export default defineComponent({
     name: "app",
     components: {
-        "app-head":   Vue.loadComponent("app-head.vue"),
-        "app-about":  Vue.loadComponent("app-about.vue"),
-        "app-qrcode": Vue.loadComponent("app-qrcode.vue"),
-        "app-pad":    Vue.loadComponent("app-pad.vue"),
-        "app-login":  Vue.loadComponent("app-login.vue"),
-        "app-info":   Vue.loadComponent("app-info.vue")
+        "app-head":   AppHead,
+        "app-about":  AppAbout,
+        "app-qrcode": AppQRCode,
+        "app-pad":    AppPad,
+        "app-login":  AppLogin,
+        "app-info":   AppInfo
     },
     data: () => ({
         hoverable: false
     }),
+    created () {
+        /*  prevent rubberband effect on app swipes in iOS Safari  */
+        (window as any).allowTouchMove = (el: HTMLElement) => {
+            el.addEventListener("touchmove", (ev: Event) => {
+                (ev as any)._allowTouchMove = true
+            })
+        }
+    },
     mounted () {
         /*  avoid distracting :hover on touch devices  */
         let lastTouchTime = 0
         document.addEventListener("touchstart", () => {
-            lastTouchTime = new Date()
+            lastTouchTime = (new Date()).getUTCMilliseconds()
             this.hoverable = false
         }, true)
         document.addEventListener("mousemove", () => {
-            if (new Date() - lastTouchTime < 500)
+            if ((new Date()).getUTCMilliseconds() - lastTouchTime < 500)
                 return
             this.hoverable = true
         }, true)
 
         /*  prevent rubberband effect on app swipes in iOS Safari  */
-        window.allowTouchMove = (el) => {
-            el.addEventListener("touchmove", (ev) => {
-                ev._allowTouchMove = true
-            })
-        }
-        document.body.addEventListener("touchmove", (ev) => {
-            if (!ev._allowTouchMove && window.innerHeight === this.$refs.main.clientHeight)
+        document.body.addEventListener("touchmove", (ev: Event) => {
+            if (!(ev as any)._allowTouchMove && window.innerHeight === (this.$refs.main as HTMLElement).clientHeight)
                 ev.preventDefault()
         }, { passive: false })
 
         /*  observe network connectivity  */
         this.$global.setOnline(navigator.onLine)
-        window.addEventListener("offline", (ev) => {
+        window.addEventListener("offline", (ev: Event) => {
             this.$global.setOnline(false)
         })
-        window.addEventListener("online", (ev) => {
+        window.addEventListener("online", (ev: Event) => {
             this.$global.setOnline(true)
             this.huds.refreshAttendance()
         })
     }
-}
+})
 </script>
 

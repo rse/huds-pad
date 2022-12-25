@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<!--
-**
-**  HUDS - Head-Up-Display Server (HUDS)
+/*
+**  HUDS -- Head-Up-Display Server (HUDS)
 **  Copyright (c) 2022 Dr. Ralf S. Engelschall <rse@engelschall.com>
 **
 **  Permission is hereby granted, free of charge, to any person obtaining
@@ -22,31 +20,18 @@
 **  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 **  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-**
--->
-<html>
-    <head>
-        <title>HUDS Pad</title>
+*/
 
-        <meta charset="utf-8">
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <style type="text/css">body, html { margin: 0; padding: 0; background-color: #000000; }</style>
+import HUDS    from "./app-huds"
+import $global from "./app-global"
 
-        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-touch-fullscreen" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <link rel="icon" type="image/png" href="app-icon.png" />
-        <link rel="apple-touch-icon" href="app-icon.png" />
-        <link rel="apple-touch-icon" sizes="512x512" href="app-icon.png" />
+declare module "@vue/runtime-core" {
+    interface ComponentCustomProperties {
+        pkg:     any,
+        huds:    HUDS,
+        $global: $global
+    }
+}
 
-        <link rel="stylesheet" href="./app.css">
-    </head>
-    <body>
-        <div id="app">
-            <app></app>
-        </div>
-        <script type="module" src="./app.ts"></script>
-    </body>
-</html>
+export {}
+

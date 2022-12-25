@@ -22,22 +22,28 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import URI        from "urijs"
+import MQTT       from "mqtt"
+import MQTTPacket from "mqtt-packet"
+import UUID       from "pure-uuid"
+import jsYAML     from "js-yaml"
+
 /*  HUDS communication  */
 export default class HUDS {
-    constructor () {
-        this.channel  = ""
-        this.client   = null
-        this.clientId = (new UUID(1)).format()
-    }
+    channel   = ""
+    client    = <MQTT.MqttClient>{ connected: false }
+    clientId  = (new UUID(1)).format()
+    url       = ""
+    id        = ""
 
     /*  load settings  */
-    async load (settingsFile) {
+    async load (settingsFile: string) {
         /*  load settings  */
         const data = await fetch(settingsFile, {
             method: "GET",
             credentials: "same-origin"
         }).then((response) => response.text())
-        const settings = jsyaml.load(data)
+        const settings: any = jsYAML.load(data)
         this.url = settings.mqtt.url
         this.id  = settings.huds.id
 
@@ -56,10 +62,10 @@ export default class HUDS {
     }
 
     /*  connect to MQTT broker  */
-    connect (channel, token1, token2) {
+    connect (channel: string, token1: string, token2: string) {
         /*  connect to MQTT broker  */
         this.channel = channel
-        this.client = mqtt.connect(this.url, {
+        this.client = MQTT.connect(this.url, {
             protocolId: "MQTT",
             protocolVersion: 5,
             will: {
@@ -78,7 +84,7 @@ export default class HUDS {
             reconnectPeriod: 2  * 1000, /*  2s */
             connectTimeout:  30 * 1000  /* 30s */
         })
-        this.client.once("connect", (connack) => {
+        this.client.once("connect", (connack: MQTTPacket.IConnackPacket) => {
             if (!connack.sessionPresent) {
                 this.client.subscribe([
                     `stream/${this.channel}/receiver`,
@@ -110,18 +116,18 @@ export default class HUDS {
     }
 
     /*  send a message/feedback/feeling  */
-    sendMessage (text) {
+    sendMessage (text: string) {
         return this.sendMessageToBroker("message", {
             title: "Attendee Message",
             text
         })
     }
-    sendFeedback (type) {
+    sendFeedback (type: string) {
         return this.sendMessageToBroker("feedback", {
             type
         })
     }
-    sendFeeling (mood, challenge) {
+    sendFeeling (mood: number, challenge: number) {
         return this.sendMessageToBroker("feeling", {
             challenge,
             mood
@@ -129,20 +135,20 @@ export default class HUDS {
     }
 
     /*  send an arbitrary message to the MQTT broker  */
-    sendMessageToBroker (event, data) {
+    sendMessageToBroker (event: string, data: any = {}) {
         return new Promise((resolve, reject) => {
             if (!this.client.connected)
                 reject(new Error("Not connected to MQTT broker"))
             const msg = this.createMessage(event, data)
-            this.client.publish(`stream/${this.channel}/sender`, msg, { qos: 2, retain: false }, (err) => {
+            this.client.publish(`stream/${this.channel}/sender`, msg, { qos: 2, retain: false }, (err: Error | undefined) => {
                 if (err) reject(err)
-                else     resolve()
+                else     resolve(true)
             })
         })
     }
 
     /*  create an arbitrary MQTT message for HUDS  */
-    createMessage (event, data = {}) {
+    createMessage (event: string, data: any = {}) {
         data.client = this.clientId
         return JSON.stringify({
             id:    this.id,
@@ -154,12 +160,12 @@ export default class HUDS {
     /*  disconnect from MQTT broker  */
     disconnect () {
         return new Promise((resolve, reject) => {
-            if (!this.client.connected)
+            if (!this.client?.connected)
                 reject(new Error("still not connected"))
             try {
-                this.client.end()
-                this.client = { connected: false }
-                resolve()
+                this.client?.end()
+                this.client = <MQTT.MqttClient>{ connected: false }
+                resolve(true)
             }
             catch (error) {
                 reject(error)

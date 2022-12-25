@@ -170,8 +170,12 @@
 }
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+</script>
+
+<script lang="ts">
+export default defineComponent({
     name: "app-pad-message",
     data: () => ({
         text: "",
@@ -192,6 +196,6 @@ module.exports = {
             this.text = ""
         }
     }
-}
+})
 </script>
 

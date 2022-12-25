@@ -59,12 +59,17 @@
 }
 </style>
 
-<script>
-let timer = null
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+import AppPadSlider from "./app-pad-slider.vue"
+</script>
+
+<script lang="ts">
+let timer: ReturnType<typeof setTimeout> | null = null
+export default defineComponent({
     name: "app-pad-feeling",
     components: {
-        "app-pad-slider": Vue.loadComponent("app-pad-slider.vue")
+        "app-pad-slider": AppPadSlider
     },
     data: () => ({
         mood:      3,
@@ -78,7 +83,7 @@ module.exports = {
         }, 10 * 60 * 1000)
     },
     methods: {
-        sendFeeling (mood, challenge) {
+        sendFeeling (mood: number, challenge: number) {
             let changed = false
             if (this.mood !== mood) {
                 this.mood = mood
@@ -98,6 +103,6 @@ module.exports = {
             }
         }
     }
-}
+})
 </script>
 

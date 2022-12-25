@@ -155,14 +155,18 @@
 }
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+</script>
+
+<script lang="ts">
+export default defineComponent({
     name: "app-pad-feedback",
     data: () => ({
         isFeedbackDisabled: false
     }),
     methods: {
-        sendFeedback (value) {
+        sendFeedback (value: string) {
             if (this.isFeedbackDisabled)
                 return
             this.isFeedbackDisabled = true
@@ -172,6 +176,6 @@ module.exports = {
             }, 30 * 1000)
         }
     }
-}
+})
 </script>
 

@@ -41,7 +41,7 @@
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
         <div style="grid-area: banner" class="banner">
-            <img src="app-banner.svg" alt="Your live feedback channel!">
+            <img src="./app-banner.svg" alt="Your live feedback channel!">
         </div>
     </div>
 </template>
@@ -128,12 +128,16 @@
 }
 </style>
 
-<script>
-let suppressHashChangeAction = false
-let autoconnecttimer = null
-let attendanceRefreshInterval = null
+<script setup lang="ts">
+import { defineComponent } from "vue"
+</script>
 
-module.exports = {
+<script lang="ts">
+let suppressHashChangeAction = false
+let autoconnecttimer: ReturnType<typeof setTimeout> | null = null
+let attendanceRefreshInterval: ReturnType<typeof setInterval> | null = null
+
+export default defineComponent({
     name: "app-login",
     data: () => ({
         accessToken: "",
@@ -248,7 +252,7 @@ module.exports = {
             })
 
             /*  react on MQTT messages  */
-            client.on("message", (topic, message) => {
+            client.on("message", (topic: string, message: any) => {
                 if (topic === "$SYS/broker/clients/connected") {
                     let clients = parseInt(message.toString())
                     if (this.$global.value.logTraffic)
@@ -298,8 +302,8 @@ module.exports = {
             })
 
             /*  track MQTT communication  */
-            let timer = null
-            client.on("packetsend", (packet) => {
+            let timer: ReturnType<typeof setTimeout> | null = null
+            client.on("packetsend", (packet: any) => {
                 this.$global.setActiveTraffic(true)
                 if (timer !== null)
                     clearTimeout(timer)
@@ -310,7 +314,7 @@ module.exports = {
                 if (this.$global.value.logTraffic)
                     console.log(`MQTT: SEND: packet=${JSON.stringify(packet)}`)
             })
-            client.on("packetreceive", (packet) => {
+            client.on("packetreceive", (packet: any) => {
                 this.$global.setActiveTraffic(true)
                 if (timer !== null)
                     clearTimeout(timer)
@@ -345,7 +349,7 @@ module.exports = {
                         reject(err)
                     }
                     else {
-                        const cb = (topic, message) => {
+                        const cb = (topic: string, message: any) => {
                             if (topic === channel) {
                                 clearTimeout(timer)
                                 this.huds.client.unsubscribe(channel)
@@ -373,6 +377,6 @@ module.exports = {
             return this.huds.client ? this.huds.client.reconnecting : false
         }
     }
-}
+})
 </script>
 

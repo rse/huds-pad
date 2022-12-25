@@ -1,6 +1,6 @@
 {
     "name":                                 "huds-pad",
-    "version":                              "1.2.6",
+    "version":                              "2.0.0",
     "homepage":                             "https://github.com/rse/huds-pad",
     "description":                          "Head-Up-Display Server (HUDS)",
     "author": {
@@ -16,41 +16,67 @@
     "browser":                              "index.html",
     "main":                                 "index.html",
     "dependencies": {
-        "@fortawesome/fontawesome-free":    "6.2.1",
+        "vue":                              "3.2.45",
+        "vue-tippy":                        "6.0.0-alpha.65",
+        "tippy.js":                         "6.3.7",
         "js-yaml":                          "4.1.0",
-        "less":                             "4.1.3",
         "mqtt":                             "4.3.7",
         "pure-uuid":                        "1.6.2",
-        "typopro-web":                      "4.2.6",
         "urijs":                            "1.19.11",
         "qrcode":                           "1.5.1",
-        "fontfaceobserver":                 "2.3.0",
         "animejs":                          "3.2.1",
-        "vue":                              "3.2.45",
-        "vue3-sfc-loader":                  "0.8.4",
-        "vue-tippy":                        "6.0.0-alpha.65",
-        "tippy.js":                         "6.3.7"
+        "fontfaceobserver":                 "2.3.0",
+        "@fortawesome/fontawesome-free":    "6.2.1",
+        "typopro-web":                      "4.2.6",
+
+        "@types/urijs":                     "1.19.19",
+        "@types/animejs":                   "3.1.6",
+        "@types/qrcode":                    "1.5.0",
+        "@types/js-yaml":                   "4.0.5",
+        "@types/fontfaceobserver":          "2.1.0"
     },
     "devDependencies": {
         "eslint":                           "8.30.0",
+        "@typescript-eslint/parser":        "5.47.0",
+        "@typescript-eslint/eslint-plugin": "5.47.0",
+        "@vue/eslint-config-typescript":    "11.0.2",
         "eslint-config-standard":           "17.0.0",
         "eslint-plugin-import":             "2.26.0",
-        "eslint-plugin-node":               "11.1.0",
         "eslint-plugin-vue":                "9.8.0",
-        "postcss-less":                     "6.0.0",
+
         "stylelint":                        "14.16.0",
         "stylelint-config-standard":        "29.0.0",
         "stylelint-config-html":            "1.1.0",
         "stylelint-config-standard-vue":    "1.0.0",
         "stylelint-config-recommended-vue": "1.4.0",
-        "http-server":                      "14.1.1",
+
+        "htmllint":                         "0.8.0",
+        "htmllint-cli":                     "0.0.7",
+
+        "less":                             "4.1.3",
+
+        "stmux":                            "1.8.5",
+        "npm-run-all":                      "4.1.5",
         "nodemon":                          "2.0.20",
-        "stmux":                            "1.8.5"
+        "vite":                             "4.0.3",
+        "@vitejs/plugin-vue":               "4.0.0",
+        "@rollup/plugin-yaml":              "4.0.1",
+        "vue-tsc":                          "1.0.17",
+        "typescript":                       "4.9.4",
+        "rimraf":                           "3.0.2"
     },
     "scripts": {
-        "lint":                             "eslint --config eslint.yaml --ext js,vue *.vue *.js && stylelint --config stylelint.yaml *.css *.vue",
-        "lint-watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,css,js",
-        "start":                            "http-server -p 8080 -d -c-1",
-        "dev":                              "stmux -w always -e ERROR -m beep,system -- [ \"npm run lint-watch\" : \"npm start\" ]"
+        "dev":                              "stmux -w always -m beep,system -- [ \"npm run lint:watch\" : \"npm start\" ]",
+        "lint:watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,css,ts,vue",
+        "lint":                             "npm-run-all --print-label --silent --sequential lint:vue-tsc lint:eslint lint:stylelint lint:htmllint",
+        "lint:vue-tsc":                     "vue-tsc --project tsconfig.json --noEmit",
+        "lint:eslint":                      "eslint --config eslint.yaml --ext ts,vue *.vue *.ts",
+        "lint:stylelint":                   "stylelint --config stylelint.yaml *.css *.vue",
+        "lint:htmllint":                    "htmllint --rc htmllintrc.json *.html",
+        "start":                            "vite --logLevel info --mode development --host --port 8080",
+        "build":                            "vite build --logLevel info --mode production",
+        "preview":                          "vite preview --logLevel info --host --port 8080",
+        "clean":                            "rimraf dist",
+        "clean:dist":                       "rimraf dist node_modules"
     }
 }

@@ -36,15 +36,23 @@
 <style lang="less">
 </style>
 
-<script>
-module.exports = {
+<script setup lang="ts">
+import { defineComponent } from "vue"
+import appPadMessage  from "./app-pad-message.vue"
+import appPadVote     from "./app-pad-vote.vue"
+import appPadFeedback from "./app-pad-feedback.vue"
+import appPadFeeling  from "./app-pad-feeling.vue"
+</script>
+
+<script lang="ts">
+export default defineComponent({
     name: "app-pad",
     components: {
-        "app-pad-message":  Vue.loadComponent("app-pad-message.vue"),
-        "app-pad-vote":     Vue.loadComponent("app-pad-vote.vue"),
-        "app-pad-feedback": Vue.loadComponent("app-pad-feedback.vue"),
-        "app-pad-feeling":  Vue.loadComponent("app-pad-feeling.vue")
+        "app-pad-message":  appPadMessage,
+        "app-pad-vote":     appPadVote,
+        "app-pad-feedback": appPadFeedback,
+        "app-pad-feeling":  appPadFeeling
     }
-}
+})
 </script>
 
