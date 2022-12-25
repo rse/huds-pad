@@ -45,7 +45,7 @@
         "stylelint-config-recommended-vue": "1.4.0",
         "http-server":                      "14.1.1",
         "nodemon":                          "2.0.20",
-        "stmux":                            "1.8.4"
+        "stmux":                            "1.8.5"
     },
     "scripts": {
         "lint":                             "eslint --config eslint.yaml --ext js,vue *.vue *.js && stylelint --config stylelint.yaml *.css *.vue",
