@@ -71,13 +71,13 @@
         "dev":                              "stmux -w always -m beep,system -- [ \"npm run lint:watch\" : \"npm start\" ]",
         "lint:watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,css,ts,vue",
         "lint":                             "npm-run-all --print-label --silent --sequential lint:vue-tsc lint:eslint lint:stylelint lint:htmllint",
-        "lint:vue-tsc":                     "vue-tsc --project etc-tsconfig.json --noEmit",
+        "lint:vue-tsc":                     "vue-tsc --project etc-tsc.json --noEmit",
         "lint:eslint":                      "eslint --config etc-eslint.yaml --ext ts,vue *.vue *.ts",
         "lint:stylelint":                   "stylelint --config etc-stylelint.yaml *.css *.vue",
-        "lint:htmllint":                    "htmllint --rc etc-htmllintrc.json *.html",
-        "start":                            "vite --config etc-vite.config.ts --logLevel info --mode development",
-        "build":                            "vite --config etc-vite.config.ts build --logLevel info --mode production",
-        "preview":                          "vite --config etc-vite.config.ts preview --logLevel info",
+        "lint:htmllint":                    "htmllint --rc etc-htmllint.json *.html",
+        "start":                            "vite --config etc-vite.ts --logLevel info --mode development",
+        "build":                            "vite --config etc-vite.ts build --logLevel info --mode production",
+        "preview":                          "vite --config etc-vite.ts preview --logLevel info",
         "clean":                            "rimraf dist",
         "clean:dist":                       "rimraf dist node_modules"
     }
