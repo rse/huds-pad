@@ -50,45 +50,47 @@ import pkg              from "./package.json"
 /*  import internal dependencies (style)  */
 import                       "./app.css"
 
-(async () => {
-    /*  initialize user interface  */
-    const app = Vue.createApp(App)
+document.addEventListener("DOMContentLoaded", (ev: Event) => {
+    (async () => {
+        /*  initialize user interface  */
+        const app = Vue.createApp(App)
 
-    /*  add Vue tooltip plugin  */
-    app.use(VueTippy, {
-        defaultProps: {
-            touch: false,
-            allowHTML: true,
-            placement: "right",
-            theme: "translucent",
-            delay: [ 600, 50 ]
-        }
+        /*  add Vue tooltip plugin  */
+        app.use(VueTippy, {
+            defaultProps: {
+                touch: false,
+                allowHTML: true,
+                placement: "right",
+                theme: "translucent",
+                delay: [ 600, 50 ]
+            }
+        })
+
+        /*  provide global properties  */
+        app.config.globalProperties.$global = global
+
+        /*  provide global Vue "huds" property  */
+        const huds = new HUDS()
+        await huds.load(new URL("./app.yaml", import.meta.url).href)
+        app.config.globalProperties.huds = huds
+
+        /*  load program information  */
+        app.config.globalProperties.pkg = pkg
+
+        /*  ensure all fonts are loaded  */
+        const fonts = [
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 300 } },
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 400 } },
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 700 } },
+            { family: "TypoPRO Source Sans Pro", spec: { weight: 900 } }
+        ]
+        await Promise.all(fonts.map((font) => (new FontFaceObserver(font.family, font.spec)).load(null, 3000)))
+            .catch(() => true)
+
+        /*  finally mount user interface  */
+        app.mount("#app")
+    })().catch((err) => {
+        console.error(`app: ERROR: top-level: ${err}`)
     })
-
-    /*  provide global properties  */
-    app.config.globalProperties.$global = global
-
-    /*  provide global Vue "huds" property  */
-    const huds = new HUDS()
-    await huds.load(new URL("./app.yaml", import.meta.url).href)
-    app.config.globalProperties.huds = huds
-
-    /*  load program information  */
-    app.config.globalProperties.pkg = pkg
-
-    /*  ensure all fonts are loaded  */
-    const fonts = [
-        { family: "TypoPRO Source Sans Pro", spec: { weight: 300 } },
-        { family: "TypoPRO Source Sans Pro", spec: { weight: 400 } },
-        { family: "TypoPRO Source Sans Pro", spec: { weight: 700 } },
-        { family: "TypoPRO Source Sans Pro", spec: { weight: 900 } }
-    ]
-    await Promise.all(fonts.map((font) => (new FontFaceObserver(font.family, font.spec)).load(null, 3000)))
-        .catch(() => true)
-
-    /*  finally mount user interface  */
-    app.mount("#app")
-})().catch((err) => {
-    console.error(`app: ERROR: top-level: ${err}`)
 })
 
