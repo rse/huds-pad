@@ -80,9 +80,7 @@
 <style lang="stylus">
 .app-pad-feedback
     display: grid
-    grid-template: \
-        "title title title title title title" \
-        "button1 button2 button3 button4 button5 button6"
+    grid-template: "title title title title title title" "button1 button2 button3 button4 button5 button6"
     grid-template-columns: repeat(6, minmax(45px, 1fr))
     grid-gap: 2px
     .disabled

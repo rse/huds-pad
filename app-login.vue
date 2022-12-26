@@ -49,11 +49,7 @@
 <style lang="stylus">
 .app-login
     display: grid
-    grid-template: \
-        "label" \
-        "input" \
-        "connect" \
-        "banner"
+    grid-template: "label" "input" "connect" "banner"
     grid-gap: 2px
     input
         resize: none

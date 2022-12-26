@@ -43,9 +43,7 @@
 <style lang="stylus">
 .app-pad-feeling
     display: grid
-    grid-template: \
-        "title title" \
-        "challenge mood"
+    grid-template: "title title" "challenge mood"
     grid-gap: 2px
     .slider
         color: var(--color-std-fg-3)

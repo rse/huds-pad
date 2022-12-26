@@ -49,9 +49,7 @@
 <style lang="stylus">
 .app-about
     display: grid
-    grid-template: \
-        "title" \
-        "about"
+    grid-template: "title" "about"
     grid-gap: 2px
     .about
         background-color:        var(--color-std-bg-2)

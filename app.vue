@@ -42,6 +42,7 @@ main
     max-width: 480px
     min-height: 100vh
     background-color: var(--color-std-bg-3)
+
 @media only screen and (min-width: 480px)
     main
         border-left:  1px solid var(--color-std-bg-5)

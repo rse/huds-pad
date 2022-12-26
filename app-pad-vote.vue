@@ -125,12 +125,7 @@
 <style lang="stylus">
 .app-pad-vote
     display: grid
-    grid-template: \
-        "title title title" \
-        "button1 button2 button3" \
-        "button4 button5 button6" \
-        "button7 button8 button9" \
-        "choose1 choose2 abstain"
+    grid-template: "title title title" "button1 button2 button3" "button4 button5 button6" "button7 button8 button9" "choose1 choose2 abstain"
     grid-gap: 2px
     .disabled
         font-size: 9pt

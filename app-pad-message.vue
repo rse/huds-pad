@@ -59,10 +59,7 @@
 <style lang="stylus">
 .app-pad-message
     display: grid
-    grid-template: \
-        "title title" \
-        "message message" \
-        "clear send"
+    grid-template: "title title" "message message" "clear send"
     grid-gap: 2px
     .title
         grid-area: title

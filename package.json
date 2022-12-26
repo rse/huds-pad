@@ -49,6 +49,7 @@
         "stylelint-config-html":            "1.1.0",
         "stylelint-config-standard-vue":    "1.0.0",
         "stylelint-config-recommended-vue": "1.4.0",
+        "stylelint-stylus":                 "0.17.0",
 
         "htmllint":                         "0.7.2",
         "htmllint-cli":                     "0.0.7",
@@ -69,11 +70,11 @@
     ],
     "scripts": {
         "dev":                              "stmux -w always -m beep,system -- [ \"npm run lint:watch\" : \"npm start\" ]",
-        "lint:watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,css,ts,vue",
+        "lint:watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,styl,ts,vue",
         "lint":                             "npm-run-all --print-label --silent --sequential lint:vue-tsc lint:eslint lint:stylelint lint:htmllint",
         "lint:vue-tsc":                     "vue-tsc --project etc-tsc.json --noEmit",
         "lint:eslint":                      "eslint --config etc-eslint.yaml --ext ts,vue *.vue *.ts",
-        "lint:stylelint":                   "stylelint --config etc-stylelint.yaml *.css *.vue",
+        "lint:stylelint":                   "stylelint --config etc-stylelint.yaml *.styl *.vue",
         "lint:htmllint":                    "htmllint --rc etc-htmllint.json *.html",
         "start":                            "vite --config etc-vite.ts --logLevel info --mode development",
         "build":                            "vite --config etc-vite.ts build --logLevel info --mode production",

@@ -39,9 +39,7 @@
 <style lang="stylus">
 .app-qrcode
     display: grid
-    grid-template: \
-        "title" \
-        "qrcode"
+    grid-template: "title" "qrcode"
     grid-gap: 2px
     .qrcode
         background-color: var(--color-std-bg-2)
