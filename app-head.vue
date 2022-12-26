@@ -95,7 +95,6 @@
             font-size: 16pt
             width: 20px
             text-align: center
-
         .hoverable &:hover
             border: 0
             outline: none
