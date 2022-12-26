@@ -50,7 +50,7 @@
         "stylelint-config-standard-vue":    "1.0.0",
         "stylelint-config-recommended-vue": "1.4.0",
 
-        "htmllint":                         "0.8.0",
+        "htmllint":                         "0.7.2",
         "htmllint-cli":                     "0.0.7",
 
         "less":                             "4.1.3",
@@ -69,13 +69,13 @@
         "dev":                              "stmux -w always -m beep,system -- [ \"npm run lint:watch\" : \"npm start\" ]",
         "lint:watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,css,ts,vue",
         "lint":                             "npm-run-all --print-label --silent --sequential lint:vue-tsc lint:eslint lint:stylelint lint:htmllint",
-        "lint:vue-tsc":                     "vue-tsc --project tsconfig.json --noEmit",
-        "lint:eslint":                      "eslint --config eslint.yaml --ext ts,vue *.vue *.ts",
-        "lint:stylelint":                   "stylelint --config stylelint.yaml *.css *.vue",
-        "lint:htmllint":                    "htmllint --rc htmllintrc.json *.html",
-        "start":                            "vite --logLevel info --mode development",
-        "build":                            "vite build --logLevel info --mode production",
-        "preview":                          "vite preview --logLevel info",
+        "lint:vue-tsc":                     "vue-tsc --project etc-tsconfig.json --noEmit",
+        "lint:eslint":                      "eslint --config etc-eslint.yaml --ext ts,vue *.vue *.ts",
+        "lint:stylelint":                   "stylelint --config etc-stylelint.yaml *.css *.vue",
+        "lint:htmllint":                    "htmllint --rc etc-htmllintrc.json *.html",
+        "start":                            "vite --config etc-vite.config.ts --logLevel info --mode development",
+        "build":                            "vite --config etc-vite.config.ts build --logLevel info --mode production",
+        "preview":                          "vite --config etc-vite.config.ts preview --logLevel info",
         "clean":                            "rimraf dist",
         "clean:dist":                       "rimraf dist node_modules"
     }
