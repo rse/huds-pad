@@ -22,14 +22,15 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import { defineConfig } from "vite"
-import VuePlugin        from "@vitejs/plugin-vue"
-import YAMLPlugin       from "@rollup/plugin-yaml"
+import * as Vite  from "vite"
+import VuePlugin  from "@vitejs/plugin-vue"
+import YAMLPlugin from "@rollup/plugin-yaml"
 
-export default defineConfig({
+export default Vite.defineConfig({
     base: "",
     assetsInclude: [ "app.yaml" ],
     plugins: [
+        Vite.splitVendorChunkPlugin(),
         VuePlugin(),
         YAMLPlugin()
     ],
@@ -46,9 +47,9 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 entryFileNames: "[name].js",
-                chunkFileNames: "[name]-[hash 4].[ext]",
+                chunkFileNames: "[name]-[hash:8].js",
                 assetFileNames: (assetInfo) => {
-                    let spec = "asset-[name]-[hash:4].[ext]"
+                    let spec = "asset-[name]-[hash:8].[ext]"
                     if (assetInfo.name === "app.yaml")
                         spec = "index.yaml"
                     return spec
