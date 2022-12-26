@@ -48,7 +48,7 @@ import global           from "./app-global"
 import pkg              from "./package.json"
 
 /*  import internal dependencies (style)  */
-import                       "./app.css"
+import                       "./app.less"
 
 document.addEventListener("DOMContentLoaded", (ev: Event) => {
     (async () => {
