@@ -73,9 +73,9 @@
         "lint:eslint":                      "eslint --config eslint.yaml --ext ts,vue *.vue *.ts",
         "lint:stylelint":                   "stylelint --config stylelint.yaml *.css *.vue",
         "lint:htmllint":                    "htmllint --rc htmllintrc.json *.html",
-        "start":                            "vite --logLevel info --mode development --host --port 8080",
+        "start":                            "vite --logLevel info --mode development",
         "build":                            "vite build --logLevel info --mode production",
-        "preview":                          "vite preview --logLevel info --host --port 8080",
+        "preview":                          "vite preview --logLevel info",
         "clean":                            "rimraf dist",
         "clean:dist":                       "rimraf dist node_modules"
     }
