@@ -79,112 +79,93 @@
     </div>
 </template>
 
-<style lang="less">
-.app-pad-head {
-    padding-top: 8px;
-    display: flex;
-    flex-direction: row;
-    button {
-        line-height: 12pt;
-        background: none;
-        cursor: pointer;
-        border: 0;
-        .icon {
-            display: inline-block;
-            color: var(--color-std-fg-1);
-            font-size: 16pt;
-            width: 20px;
-            text-align: center;
-        }
-        .hoverable &:hover {
-            border: 0;
-            outline: none;
-            color: var(--color-acc-fg-5);
-            .icon {
-                color: var(--color-acc-fg-1);
-            }
-        }
-    }
-    .left {
-        width: 110px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        height: 32px;
-    }
-    .title {
-        flex-grow: 1;
-        perspective: 300px;
-        h1 {
-            transform-origin: 50% 50%;
-            transform-style:  preserve-3d;
-            line-height: 0;
-            margin-top: 14px;
-            margin-bottom: 12px;
-            text-align: center;
-            .title1 {
-                font-weight: 900;
-                letter-spacing: -1px;
-                padding-left: 4px;
-                padding-right: 4px;
-            }
-        }
-    }
-    .right {
-        width: 110px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        height: 32px;
-    }
-    .attendees {
-        padding-left: 2px;
-        color: var(--color-std-fg-3);
-        font-size: 12pt;
-        .icon {
-            font-size: 80%;
-            color: var(--color-std-fg-1);
-        }
-    }
-    .online .icon {
-        display: inline-block;
-        font-size: 12pt;
-        width: 20px;
-        text-align: center;
-        position: relative;
-        padding-right: 2px;
-        top: 5px;
-        &.yes {
-            color: var(--color-std-fg-1);
-        }
-        &.no {
-            color: var(--color-sig-fg-1);
-        }
-    }
-    .traffic .icon {
-        display: inline-block;
-        font-size: 10pt;
-        width: 20px;
-        text-align: center;
-        position: relative;
-        top: 5px;
-        left: 2px;
-        color: var(--color-std-fg-1);
-    }
-    .traffic .active .icon {
-        color: var(--color-acc-fg-1);
-    }
-    main:not(.hoverable) & .hints {
-        display: none;
-    }
-    .hints .active .icon {
-        color: var(--color-acc-fg-1);
-    }
-    .qrcode .active .icon {
-        color: var(--color-acc-fg-1);
-    }
-}
+<style lang="stylus">
+.app-pad-head
+    padding-top: 8px
+    display: flex
+    flex-direction: row
+    button
+        line-height: 12pt
+        background: none
+        cursor: pointer
+        border: 0
+        .icon
+            display: inline-block
+            color: var(--color-std-fg-1)
+            font-size: 16pt
+            width: 20px
+            text-align: center
+
+        .hoverable &:hover
+            border: 0
+            outline: none
+            color: var(--color-acc-fg-5)
+            .icon
+                color: var(--color-acc-fg-1)
+    .left
+        width: 110px
+        display: flex
+        flex-direction: row
+        justify-content: flex-start
+        align-items: center
+        height: 32px
+    .title
+        flex-grow: 1
+        perspective: 300px
+        h1
+            transform-origin: 50% 50%
+            transform-style:  preserve-3d
+            line-height: 0
+            margin-top: 14px
+            margin-bottom: 12px
+            text-align: center
+            .title1
+                font-weight: 900
+                letter-spacing: -1px
+                padding-left: 4px
+                padding-right: 4px
+    .right
+        width: 110px
+        display: flex
+        flex-direction: row
+        justify-content: flex-end
+        height: 32px
+    .attendees
+        padding-left: 2px
+        color: var(--color-std-fg-3)
+        font-size: 12pt
+        .icon
+            font-size: 80%
+            color: var(--color-std-fg-1)
+    .online .icon
+        display: inline-block
+        font-size: 12pt
+        width: 20px
+        text-align: center
+        position: relative
+        padding-right: 2px
+        top: 5px
+        &.yes
+            color: var(--color-std-fg-1)
+        &.no
+            color: var(--color-sig-fg-1)
+    .traffic .icon
+        display: inline-block
+        font-size: 10pt
+        width: 20px
+        text-align: center
+        position: relative
+        top: 5px
+        left: 2px
+        color: var(--color-std-fg-1)
+    .traffic .active .icon
+        color: var(--color-acc-fg-1)
+    main:not(.hoverable) & .hints
+        display: none
+    .hints .active .icon
+        color: var(--color-acc-fg-1)
+    .qrcode .active .icon
+        color: var(--color-acc-fg-1)
 </style>
 
 <script setup lang="ts">

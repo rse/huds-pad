@@ -1,4 +1,4 @@
-<!--
+    <!--
 **
 **  HUDS - Head-Up-Display Server (HUDS)
 **  Copyright (c) 2022 Dr. Ralf S. Engelschall <rse@engelschall.com>
@@ -35,30 +35,27 @@
     </main>
 </template>
 
-<style lang="less">
-main {
-    margin: 0 auto;
-    padding: 0 10px;
-    max-width: 480px;
-    min-height: 100vh;
-    background-color: var(--color-std-bg-3);
-}
-@media only screen and (min-width: 480px) {
-    main {
-        border-left:  1px solid var(--color-std-bg-5);
-        border-right: 1px solid var(--color-std-bg-0);
-    }
-}
+<style lang="stylus">
+main
+    margin: 0 auto
+    padding: 0 10px
+    max-width: 480px
+    min-height: 100vh
+    background-color: var(--color-std-bg-3)
+@media only screen and (min-width: 480px)
+    main
+        border-left:  1px solid var(--color-std-bg-5)
+        border-right: 1px solid var(--color-std-bg-0)
 </style>
 
 <script setup lang="ts">
 import { defineComponent } from "vue"
-import AppHead   from "./app-head.vue"
-import AppAbout  from "./app-about.vue"
-import AppQRCode from "./app-qrcode.vue"
-import AppPad    from "./app-pad.vue"
-import AppLogin  from "./app-login.vue"
-import AppInfo   from "./app-info.vue"
+import AppHead             from "./app-head.vue"
+import AppAbout            from "./app-about.vue"
+import AppQRCode           from "./app-qrcode.vue"
+import AppPad              from "./app-pad.vue"
+import AppLogin            from "./app-login.vue"
+import AppInfo             from "./app-info.vue"
 </script>
 
 <script lang="ts">

@@ -77,82 +77,69 @@
     </section>
 </template>
 
-<style lang="less">
-.app-pad-feedback {
-    display: grid;
-    grid-template:
-        "title title title title title title"
-        "button1 button2 button3 button4 button5 button6";
-    grid-template-columns: repeat(6, minmax(45px, 1fr));
-    grid-gap: 2px;
-    .disabled {
-        font-size: 9pt;
-        font-weight: 300;
-        color: var(--color-acc-fg-3);
-        margin-left: 4px;
-    }
-    button {
-        cursor: pointer;
-        color: var(--color-std-fg-3);
-        background-color: var(--color-std-bg-4);
-        border-top: 1px solid var(--color-std-bg-5);
-        border-left: 1px solid var(--color-std-bg-5);
-        border-right: 1px solid var(--color-std-bg-1);
-        border-bottom: 1px solid var(--color-std-bg-1);
-        border-radius: 4px;
-        font-size: 22pt;
-        text-align: center;
-        line-height: 0;
-        padding: 8px 0;
-        .icon {
-            width: 100%;
-            padding-bottom: 6px;
-            &.positive {
-                color: var(--color-acc-fg-3);
-            }
-        }
-        .title {
-            font-weight: normal;
-            font-size: 8pt;
-            text-align: center;
-            line-height: 8pt;
-            &.positive {
-                color: var(--color-acc-fg-3);
-            }
-        }
-        .hoverable &:hover:not(:disabled) {
-            border: 0;
-            outline: none;
-            color: var(--color-acc-fg-5);
-            background-color: var(--color-acc-bg-3);
-            border-top: 1px solid var(--color-acc-bg-5);
-            border-left: 1px solid var(--color-acc-bg-5);
-            border-right: 1px solid var(--color-acc-bg-1);
-            border-bottom: 1px solid var(--color-acc-bg-1);
-        }
-        &:disabled {
-            cursor: not-allowed;
-            color: var(--color-std-fg-0);
-            background-color: var(--color-std-bg-3);
-            border-top: 1px solid var(--color-std-bg-5);
-            border-left: 1px solid var(--color-std-bg-5);
-            border-right: 1px solid var(--color-std-bg-1);
-            border-bottom: 1px solid var(--color-std-bg-1);
-            .icon {
-                color: var(--color-std-fg-0);
-                &.positive {
-                    color: var(--color-acc-fg-0);
-                }
-            }
-            .title {
-                color: var(--color-std-fg-0);
-                &.positive {
-                    color: var(--color-acc-fg-0);
-                }
-            }
-        }
-    }
-}
+<style lang="stylus">
+.app-pad-feedback
+    display: grid
+    grid-template: \
+        "title title title title title title" \
+        "button1 button2 button3 button4 button5 button6"
+    grid-template-columns: repeat(6, minmax(45px, 1fr))
+    grid-gap: 2px
+    .disabled
+        font-size: 9pt
+        font-weight: 300
+        color: var(--color-acc-fg-3)
+        margin-left: 4px
+    button
+        cursor: pointer
+        color: var(--color-std-fg-3)
+        background-color: var(--color-std-bg-4)
+        border-top: 1px solid var(--color-std-bg-5)
+        border-left: 1px solid var(--color-std-bg-5)
+        border-right: 1px solid var(--color-std-bg-1)
+        border-bottom: 1px solid var(--color-std-bg-1)
+        border-radius: 4px
+        font-size: 22pt
+        text-align: center
+        line-height: 0
+        padding: 8px 0
+        .icon
+            width: 100%
+            padding-bottom: 6px
+            &.positive
+                color: var(--color-acc-fg-3)
+        .title
+            font-weight: normal
+            font-size: 8pt
+            text-align: center
+            line-height: 8pt
+            &.positive
+                color: var(--color-acc-fg-3)
+        .hoverable &:hover:not(:disabled)
+            border: 0
+            outline: none
+            color: var(--color-acc-fg-5)
+            background-color: var(--color-acc-bg-3)
+            border-top: 1px solid var(--color-acc-bg-5)
+            border-left: 1px solid var(--color-acc-bg-5)
+            border-right: 1px solid var(--color-acc-bg-1)
+            border-bottom: 1px solid var(--color-acc-bg-1)
+        &:disabled
+            cursor: not-allowed
+            color: var(--color-std-fg-0)
+            background-color: var(--color-std-bg-3)
+            border-top: 1px solid var(--color-std-bg-5)
+            border-left: 1px solid var(--color-std-bg-5)
+            border-right: 1px solid var(--color-std-bg-1)
+            border-bottom: 1px solid var(--color-std-bg-1)
+            .icon
+                color: var(--color-std-fg-0)
+                &.positive
+                    color: var(--color-acc-fg-0)
+            .title
+                color: var(--color-std-fg-0)
+                &.positive
+                    color: var(--color-acc-fg-0)
 </style>
 
 <script setup lang="ts">

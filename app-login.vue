@@ -46,86 +46,79 @@
     </div>
 </template>
 
-<style lang="less">
-.app-login {
-    display: grid;
-    grid-template: "label" "input" "connect" "banner";
-    grid-gap: 2px;
-    input {
-        resize: none;
-        font-size: 16pt;
-        border: 0;
-        background-color: var(--color-std-bg-2);
-        border-top: 1px solid var(--color-std-bg-1);
-        border-left: 1px solid var(--color-std-bg-1);
-        border-right: 1px solid var(--color-std-bg-5);
-        border-bottom: 1px solid var(--color-std-bg-5);
-        padding: 8px 12px;
-        border-radius: 4px;
-        &::placeholder {
-            color: var(--color-std-fg-1);
-            font-size: 10pt;
-            font-weight: 300;
-        }
+<style lang="stylus">
+.app-login
+    display: grid
+    grid-template: \
+        "label" \
+        "input" \
+        "connect" \
+        "banner"
+    grid-gap: 2px
+    input
+        resize: none
+        font-size: 16pt
+        border: 0
+        background-color: var(--color-std-bg-2)
+        border-top: 1px solid var(--color-std-bg-1)
+        border-left: 1px solid var(--color-std-bg-1)
+        border-right: 1px solid var(--color-std-bg-5)
+        border-bottom: 1px solid var(--color-std-bg-5)
+        padding: 8px 12px
+        border-radius: 4px
+        &::placeholder
+            color: var(--color-std-fg-1)
+            font-size: 10pt
+            font-weight: 300
         .hoverable &:hover,
-        &:focus {
-            border: 0;
-            outline: none;
-            color: var(--color-acc-fg-5);
-            background-color: var(--color-acc-bg-3);
-            border-top: 1px solid var(--color-acc-bg-1);
-            border-left: 1px solid var(--color-acc-bg-1);
-            border-right: 1px solid var(--color-acc-bg-5);
-            border-bottom: 1px solid var(--color-acc-bg-5);
-            &::placeholder {
-                color: var(--color-acc-fg-1);
-            }
-        }
-    }
-    button {
-        cursor: pointer;
-        color: var(--color-std-fg-3);
-        background-color: var(--color-std-bg-4);
-        border-top: 1px solid var(--color-std-bg-5);
-        border-left: 1px solid var(--color-std-bg-5);
-        border-right: 1px solid var(--color-std-bg-1);
-        border-bottom: 1px solid var(--color-std-bg-1);
-        font-size: 14pt;
-        line-height: 18pt;
-        text-align: center;
-        margin-top: 2px;
-        padding: 10px 0;
-        border-radius: 4px;
-        .hoverable &:hover:not(:disabled) {
-            color: var(--color-acc-fg-3);
-            background-color: var(--color-acc-bg-4);
-            border-top: 1px solid var(--color-acc-bg-5);
-            border-left: 1px solid var(--color-acc-bg-5);
-            border-right: 1px solid var(--color-acc-bg-1);
-            border-bottom: 1px solid var(--color-acc-bg-1);
-        }
-        &:disabled {
-            cursor: not-allowed;
-            color: var(--color-std-fg-1);
-            background-color: var(--color-std-bg-4);
-            border-top: 1px solid var(--color-std-bg-5);
-            border-left: 1px solid var(--color-std-bg-5);
-            border-right: 1px solid var(--color-std-bg-1);
-            border-bottom: 1px solid var(--color-std-bg-1);
-        }
-        .icon {
-            margin-left: 8px;
-        }
-    }
-    .banner {
-        width: auto;
-        text-align: center;
-        img {
-            margin-top: 20px;
-            width: 80%;
-        }
-    }
-}
+        &:focus
+            border: 0
+            outline: none
+            color: var(--color-acc-fg-5)
+            background-color: var(--color-acc-bg-3)
+            border-top: 1px solid var(--color-acc-bg-1)
+            border-left: 1px solid var(--color-acc-bg-1)
+            border-right: 1px solid var(--color-acc-bg-5)
+            border-bottom: 1px solid var(--color-acc-bg-5)
+            &::placeholder
+                color: var(--color-acc-fg-1)
+    button
+        cursor: pointer
+        color: var(--color-std-fg-3)
+        background-color: var(--color-std-bg-4)
+        border-top: 1px solid var(--color-std-bg-5)
+        border-left: 1px solid var(--color-std-bg-5)
+        border-right: 1px solid var(--color-std-bg-1)
+        border-bottom: 1px solid var(--color-std-bg-1)
+        font-size: 14pt
+        line-height: 18pt
+        text-align: center
+        margin-top: 2px
+        padding: 10px 0
+        border-radius: 4px
+        .hoverable &:hover:not(:disabled)
+            color: var(--color-acc-fg-3)
+            background-color: var(--color-acc-bg-4)
+            border-top: 1px solid var(--color-acc-bg-5)
+            border-left: 1px solid var(--color-acc-bg-5)
+            border-right: 1px solid var(--color-acc-bg-1)
+            border-bottom: 1px solid var(--color-acc-bg-1)
+        &:disabled
+            cursor: not-allowed
+            color: var(--color-std-fg-1)
+            background-color: var(--color-std-bg-4)
+            border-top: 1px solid var(--color-std-bg-5)
+            border-left: 1px solid var(--color-std-bg-5)
+            border-right: 1px solid var(--color-std-bg-1)
+            border-bottom: 1px solid var(--color-std-bg-1)
+        .icon
+            margin-left: 8px
+    .banner
+        width: auto
+        text-align: center
+        img
+            margin-top: 20px
+            width: 80%
 </style>
 
 <script setup lang="ts">

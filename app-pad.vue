@@ -33,15 +33,15 @@
     </section>
 </template>
 
-<style lang="less">
+<style lang="stylus">
 </style>
 
 <script setup lang="ts">
 import { defineComponent } from "vue"
-import appPadMessage  from "./app-pad-message.vue"
-import appPadVote     from "./app-pad-vote.vue"
-import appPadFeedback from "./app-pad-feedback.vue"
-import appPadFeeling  from "./app-pad-feeling.vue"
+import appPadMessage       from "./app-pad-message.vue"
+import appPadVote          from "./app-pad-vote.vue"
+import appPadFeedback      from "./app-pad-feedback.vue"
+import appPadFeeling       from "./app-pad-feeling.vue"
 </script>
 
 <script lang="ts">

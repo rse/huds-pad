@@ -31,20 +31,17 @@
     </div>
 </template>
 
-<style lang="less">
-.app-info {
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 100%;
-    font-weight: 300;
-    text-align: center;
-    .msg {
-        color: var(--color-std-fg-2);
-    }
-    .err {
-        color: var(--color-sig-fg-2);
-    }
-}
+<style lang="stylus">
+.app-info
+    margin-top: 0
+    margin-bottom: 0
+    width: 100%
+    font-weight: 300
+    text-align: center
+    .msg
+        color: var(--color-std-fg-2)
+    .err
+        color: var(--color-sig-fg-2)
 </style>
 
 <script setup lang="ts">

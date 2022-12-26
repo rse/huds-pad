@@ -122,95 +122,82 @@
     </section>
 </template>
 
-<style lang="less">
-.app-pad-vote {
-    display: grid;
-    grid-template:
-        "title title title"
-        "button1 button2 button3"
-        "button4 button5 button6"
-        "button7 button8 button9"
-        "choose1 choose2 abstain";
-    grid-gap: 2px;
-    .disabled {
-        font-size: 9pt;
-        font-weight: 300;
-        color: var(--color-acc-fg-3);
-        margin-left: 4px;
-    }
-    button {
-        cursor: pointer;
-        color: var(--color-std-fg-3) !important;
-        background-color: var(--color-std-bg-4);
-        border-top: 1px solid var(--color-std-bg-5);
-        border-left: 1px solid var(--color-std-bg-5);
-        border-right: 1px solid var(--color-std-bg-1);
-        border-bottom: 1px solid var(--color-std-bg-1);
-        border-radius: 4px;
-        font-size: 22pt;
-        font-weight: 900;
-        line-height: 18pt;
-        text-align: center;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        &.choice {
-            color: var(--color-std-fg-1);
-            font-weight: bold;
-            font-size: 14pt;
-            .icon {
-                padding-left: 8px;
-                color: var(--color-std-fg-1);
-            }
-        }
-        &.abstain {
-            color: var(--color-std-fg-1);
-            font-weight: normal;
-            font-size: 14pt;
-            .icon {
-                padding-left: 8px;
-                color: var(--color-std-fg-1);
-            }
-        }
-        .hoverable &:hover:not(:disabled) {
-            border: 0;
-            outline: none;
-            color: var(--color-acc-fg-5) !important;
-            background-color: var(--color-acc-bg-3);
-            border-top: 1px solid var(--color-acc-bg-5);
-            border-left: 1px solid var(--color-acc-bg-5);
-            border-right: 1px solid var(--color-acc-bg-1);
-            border-bottom: 1px solid var(--color-acc-bg-1);
-            .icon {
-                color: var(--color-acc-fg-5) !important;
-            }
-        }
-        &:disabled {
-            cursor: not-allowed;
-            color: var(--color-std-fg-0) !important;
-            background-color: var(--color-std-bg-3);
-            border-top: 1px solid var(--color-std-bg-5);
-            border-left: 1px solid var(--color-std-bg-5);
-            border-right: 1px solid var(--color-std-bg-1);
-            border-bottom: 1px solid var(--color-std-bg-1);
-            .icon {
-                color: var(--color-std-fg-0) !important;
-            }
-        }
-        &.active {
-            border: 0;
-            outline: none;
-            color: var(--color-acc-fg-5) !important;
-            background-color: var(--color-acc-bg-3);
-            border-top: 1px solid var(--color-acc-bg-5);
-            border-left: 1px solid var(--color-acc-bg-5);
-            border-right: 1px solid var(--color-acc-bg-1);
-            border-bottom: 1px solid var(--color-acc-bg-1);
-            .icon {
-                color: var(--color-acc-fg-5) !important;
-            }
-        }
-    }
-}
+<style lang="stylus">
+.app-pad-vote
+    display: grid
+    grid-template: \
+        "title title title" \
+        "button1 button2 button3" \
+        "button4 button5 button6" \
+        "button7 button8 button9" \
+        "choose1 choose2 abstain"
+    grid-gap: 2px
+    .disabled
+        font-size: 9pt
+        font-weight: 300
+        color: var(--color-acc-fg-3)
+        margin-left: 4px
+    button
+        cursor: pointer
+        color: var(--color-std-fg-3) !important
+        background-color: var(--color-std-bg-4)
+        border-top: 1px solid var(--color-std-bg-5)
+        border-left: 1px solid var(--color-std-bg-5)
+        border-right: 1px solid var(--color-std-bg-1)
+        border-bottom: 1px solid var(--color-std-bg-1)
+        border-radius: 4px
+        font-size: 22pt
+        font-weight: 900
+        line-height: 18pt
+        text-align: center
+        padding-top: 8px
+        padding-bottom: 8px
+        &.choice
+            color: var(--color-std-fg-1)
+            font-weight: bold
+            font-size: 14pt
+            .icon
+                padding-left: 8px
+                color: var(--color-std-fg-1)
+        &.abstain
+            color: var(--color-std-fg-1)
+            font-weight: normal
+            font-size: 14pt
+            .icon
+                padding-left: 8px
+                color: var(--color-std-fg-1)
+        .hoverable &:hover:not(:disabled)
+            border: 0
+            outline: none
+            color: var(--color-acc-fg-5) !important
+            background-color: var(--color-acc-bg-3)
+            border-top: 1px solid var(--color-acc-bg-5)
+            border-left: 1px solid var(--color-acc-bg-5)
+            border-right: 1px solid var(--color-acc-bg-1)
+            border-bottom: 1px solid var(--color-acc-bg-1)
+            .icon
+                color: var(--color-acc-fg-5) !important
+        &:disabled
+            cursor: not-allowed
+            color: var(--color-std-fg-0) !important
+            background-color: var(--color-std-bg-3)
+            border-top: 1px solid var(--color-std-bg-5)
+            border-left: 1px solid var(--color-std-bg-5)
+            border-right: 1px solid var(--color-std-bg-1)
+            border-bottom: 1px solid var(--color-std-bg-1)
+            .icon
+                color: var(--color-std-fg-0) !important
+        &.active
+            border: 0
+            outline: none
+            color: var(--color-acc-fg-5) !important
+            background-color: var(--color-acc-bg-3)
+            border-top: 1px solid var(--color-acc-bg-5)
+            border-left: 1px solid var(--color-acc-bg-5)
+            border-right: 1px solid var(--color-acc-bg-1)
+            border-bottom: 1px solid var(--color-acc-bg-1)
+            .icon
+                color: var(--color-acc-fg-5) !important
 </style>
 
 <script setup lang="ts">

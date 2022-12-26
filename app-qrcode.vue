@@ -36,29 +36,26 @@
     </div>
 </template>
 
-<style lang="less">
-.app-qrcode {
-    display: grid;
-    grid-template:
-        "title"
-        "qrcode";
-    grid-gap: 2px;
-    .qrcode {
-        background-color: var(--color-std-bg-2);
-        border-top: 1px solid var(--color-std-bg-1);
-        border-left: 1px solid var(--color-std-bg-1);
-        border-right: 1px solid var(--color-std-bg-5);
-        border-bottom: 1px solid var(--color-std-bg-5);
-        border-radius: 4px;
-        width: 100%;
-        text-align: center;
-        .url {
-            margin-top: -10px;
-            margin-bottom: 20px;
-            color: var(--color-acc-fg-5);
-        }
-    }
-}
+<style lang="stylus">
+.app-qrcode
+    display: grid
+    grid-template: \
+        "title" \
+        "qrcode"
+    grid-gap: 2px
+    .qrcode
+        background-color: var(--color-std-bg-2)
+        border-top: 1px solid var(--color-std-bg-1)
+        border-left: 1px solid var(--color-std-bg-1)
+        border-right: 1px solid var(--color-std-bg-5)
+        border-bottom: 1px solid var(--color-std-bg-5)
+        border-radius: 4px
+        width: 100%
+        text-align: center
+        .url
+            margin-top: -10px
+            margin-bottom: 20px
+            color: var(--color-acc-fg-5)
 </style>
 
 <script setup lang="ts">

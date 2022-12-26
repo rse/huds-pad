@@ -40,23 +40,21 @@
     </section>
 </template>
 
-<style lang="less">
-.app-pad-feeling {
-    display: grid;
-    grid-template:
-        "title title"
-        "challenge mood";
-    grid-gap: 2px;
-    .slider {
-        color: var(--color-std-fg-3);
-        background-color: var(--color-std-bg-4);
-        border-top: 1px solid var(--color-std-bg-5);
-        border-left: 1px solid var(--color-std-bg-5);
-        border-right: 1px solid var(--color-std-bg-1);
-        border-bottom: 1px solid var(--color-std-bg-1);
-        border-radius: 4px;
-    }
-}
+<style lang="stylus">
+.app-pad-feeling
+    display: grid
+    grid-template: \
+        "title title" \
+        "challenge mood"
+    grid-gap: 2px
+    .slider
+        color: var(--color-std-fg-3)
+        background-color: var(--color-std-bg-4)
+        border-top: 1px solid var(--color-std-bg-5)
+        border-left: 1px solid var(--color-std-bg-5)
+        border-right: 1px solid var(--color-std-bg-1)
+        border-bottom: 1px solid var(--color-std-bg-1)
+        border-radius: 4px
 </style>
 
 <script setup lang="ts">

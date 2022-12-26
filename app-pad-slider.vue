@@ -41,80 +41,70 @@
     </section>
 </template>
 
-<style lang="less">
-.app-pad-slider {
-    text-align: center;
-    .caption {
-        padding: 0 20px;
-        margin-top: -4px;
-        margin-bottom: 4px;
-        display: flex;
-        flex-direction: row;
+<style lang="stylus">
+.app-pad-slider
+    text-align: center
+    .caption
+        padding: 0 20px
+        margin-top: -4px
+        margin-bottom: 4px
+        display: flex
+        flex-direction: row
         .left,
-        .right {
-            font-size: 8pt;
-            font-weight: 300;
-        }
-        .title {
-            flex-grow: 1;
-            font-size: 8pt;
-            font-weight: normal;
-            text-align: center;
-            width: 100%;
-        }
-    }
-    input {
-        width: calc(100% - 20px);
-        color: var(--color-acc-fg-3);
-        -webkit-appearance: none;
-        background-color: var(--color-std-bg-3);
-        border-top: 1px solid var(--color-std-bg-1);
-        border-left: 1px solid var(--color-std-bg-1);
-        border-right: 1px solid var(--color-std-bg-5);
-        border-bottom: 1px solid var(--color-std-bg-5);
-        outline: none;
-        border-radius: 15px;
-        margin-top: 8px;
-        &::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 21px;
-            width: 21px;
-            border-radius: 15px;
-            background-color: var(--color-std-fg-2);
-            border-top: 1px solid var(--color-std-fg-3);
-            border-left: 1px solid var(--color-std-fg-3);
-            border-right: 1px solid var(--color-std-fg-1);
-            border-bottom: 1px solid var(--color-std-fg-1);
-            cursor: pointer;
-        }
-        &::-webkit-slider-runnable-track {
-            -webkit-appearance: none;
-            border-radius: 15px;
-            background-color: var(--color-std-bg-3);
-            border-top: 1px solid var(--color-std-bg-1);
-            border-left: 1px solid var(--color-std-bg-1);
-            border-right: 1px solid var(--color-std-bg-5);
-            border-bottom: 1px solid var(--color-std-bg-5);
-        }
-        .hoverable &:hover {
-            background-color: var(--color-acc-bg-3);
-            &::-webkit-slider-thumb {
-                background-color: var(--color-acc-fg-2);
-                border-top: 1px solid var(--color-acc-fg-3);
-                border-left: 1px solid var(--color-acc-fg-3);
-                border-right: 1px solid var(--color-acc-fg-1);
-                border-bottom: 1px solid var(--color-acc-fg-1);
-            }
-            &::-webkit-slider-runnable-track {
-                background-color: var(--color-acc-bg-3);
-                border-top: 1px solid var(--color-acc-bg-1);
-                border-left: 1px solid var(--color-acc-bg-1);
-                border-right: 1px solid var(--color-acc-bg-5);
-                border-bottom: 1px solid var(--color-acc-bg-5);
-            }
-        }
-    }
-}
+        .right
+            font-size: 8pt
+            font-weight: 300
+        .title
+            flex-grow: 1
+            font-size: 8pt
+            font-weight: normal
+            text-align: center
+            width: 100%
+    input
+        width: calc(100% - 20px)
+        color: var(--color-acc-fg-3)
+        -webkit-appearance: none
+        background-color: var(--color-std-bg-3)
+        border-top: 1px solid var(--color-std-bg-1)
+        border-left: 1px solid var(--color-std-bg-1)
+        border-right: 1px solid var(--color-std-bg-5)
+        border-bottom: 1px solid var(--color-std-bg-5)
+        outline: none
+        border-radius: 15px
+        margin-top: 8px
+        &::-webkit-slider-thumb
+            -webkit-appearance: none
+            height: 21px
+            width: 21px
+            border-radius: 15px
+            background-color: var(--color-std-fg-2)
+            border-top: 1px solid var(--color-std-fg-3)
+            border-left: 1px solid var(--color-std-fg-3)
+            border-right: 1px solid var(--color-std-fg-1)
+            border-bottom: 1px solid var(--color-std-fg-1)
+            cursor: pointer
+        &::-webkit-slider-runnable-track
+            -webkit-appearance: none
+            border-radius: 15px
+            background-color: var(--color-std-bg-3)
+            border-top: 1px solid var(--color-std-bg-1)
+            border-left: 1px solid var(--color-std-bg-1)
+            border-right: 1px solid var(--color-std-bg-5)
+            border-bottom: 1px solid var(--color-std-bg-5)
+        .hoverable &:hover
+            background-color: var(--color-acc-bg-3)
+            &::-webkit-slider-thumb
+                background-color: var(--color-acc-fg-2)
+                border-top: 1px solid var(--color-acc-fg-3)
+                border-left: 1px solid var(--color-acc-fg-3)
+                border-right: 1px solid var(--color-acc-fg-1)
+                border-bottom: 1px solid var(--color-acc-fg-1)
+            &::-webkit-slider-runnable-track
+                background-color: var(--color-acc-bg-3)
+                border-top: 1px solid var(--color-acc-bg-1)
+                border-left: 1px solid var(--color-acc-bg-1)
+                border-right: 1px solid var(--color-acc-bg-5)
+                border-bottom: 1px solid var(--color-acc-bg-5)
 </style>
 
 <script setup lang="ts">

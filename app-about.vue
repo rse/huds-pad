@@ -46,32 +46,29 @@
     </div>
 </template>
 
-<style lang="less">
-.app-about {
-    display: grid;
-    grid-template:
-        "title"
-        "about";
-    grid-gap: 2px;
-    .about {
-        background-color:        var(--color-std-bg-2);
-        border-top:    1px solid var(--color-std-bg-1);
-        border-left:   1px solid var(--color-std-bg-1);
-        border-right:  1px solid var(--color-std-bg-5);
-        border-bottom: 1px solid var(--color-std-bg-5);
-        border-radius: 4px;
-        width: calc(100% - 40px);
-        padding: 20px;
-        font-size: 12pt;
-        line-height: 125%;
-        p {
-            margin: 0;
-            margin-top: 6px;
-            padding: 0;
-            text-indent: 30px;
-        }
-    }
-}
+<style lang="stylus">
+.app-about
+    display: grid
+    grid-template: \
+        "title" \
+        "about"
+    grid-gap: 2px
+    .about
+        background-color:        var(--color-std-bg-2)
+        border-top:    1px solid var(--color-std-bg-1)
+        border-left:   1px solid var(--color-std-bg-1)
+        border-right:  1px solid var(--color-std-bg-5)
+        border-bottom: 1px solid var(--color-std-bg-5)
+        border-radius: 4px
+        width: calc(100% - 40px)
+        padding: 20px
+        font-size: 12pt
+        line-height: 125%
+        p
+            margin: 0
+            margin-top: 6px
+            padding: 0
+            text-indent: 30px
 </style>
 
 <script setup lang="ts">
