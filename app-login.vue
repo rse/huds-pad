@@ -143,8 +143,7 @@ export default defineComponent({
     methods: {
         importHash () {
             if (this.accessToken !== window.location.hash) {
-                this.accessToken = this.accessToken.trim()
-                this.accessToken = window.location.hash.substring(1)
+                this.accessToken = window.location.hash.substring(1).trim()
                 this.autoconnect()
             }
         },
