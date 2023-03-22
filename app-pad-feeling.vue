@@ -74,7 +74,7 @@ export default defineComponent({
     created () {
         /*  regularly refresh feeling  */
         this.$global.value.feelingRefreshInterval = setInterval(() => {
-            if (this.huds?.client?.connected)
+            if (this.huds?.isConnected())
                 this.huds.sendFeeling(this.mood, this.challenge)
         }, 10 * 60 * 1000)
     },

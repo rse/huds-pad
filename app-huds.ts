@@ -31,11 +31,11 @@ import EventEmitter from "eventemitter2"
 
 /*  HUDS communication  */
 export default class HUDS extends EventEmitter {
-    channel   = ""
-    client    = <MQTT.MqttClient>{ connected: false }
-    clientId  = (new UUID(1)).format()
-    url       = ""
-    id        = ""
+    private channel   = ""
+    private client    = <MQTT.MqttClient>{ connected: false }
+    private clientId  = (new UUID(1)).format()
+    private url       = ""
+    private id        = ""
 
     /*  load settings  */
     async load (settingsFile: string) {
@@ -142,6 +142,11 @@ export default class HUDS extends EventEmitter {
         return this.client
     }
 
+    /*  check we are connected  */
+    isConnected () {
+        return this.client?.connected ?? false
+    }
+
     /*  check whether connection is valid  */
     isValidConnection () {
         /*  Notice: MQTT provides no way to check for the existance of a topic/channel, so
@@ -243,7 +248,7 @@ export default class HUDS extends EventEmitter {
     }
 
     /*  create an arbitrary MQTT message for HUDS  */
-    createMessage (event: string, data: any = {}) {
+    private createMessage (event: string, data: any = {}) {
         data.client = this.clientId
         return JSON.stringify({
             id:    this.id,

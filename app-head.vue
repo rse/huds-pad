@@ -184,7 +184,7 @@ export default defineComponent({
     methods: {
         disconnect () {
             this.huds.endAttendance()
-            this.huds.client.once("close", () => {
+            this.huds.once("close", () => {
                 this.$global.clearMessage()
                 this.$global.clearError()
             })
