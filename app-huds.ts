@@ -22,14 +22,15 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import URI        from "urijs"
-import MQTT       from "mqtt"
-import MQTTPacket from "mqtt-packet"
-import UUID       from "pure-uuid"
-import jsYAML     from "js-yaml"
+import URI          from "urijs"
+import MQTT         from "mqtt"
+import MQTTPacket   from "mqtt-packet"
+import UUID         from "pure-uuid"
+import jsYAML       from "js-yaml"
+import EventEmitter from "eventemitter2"
 
 /*  HUDS communication  */
-export default class HUDS {
+export default class HUDS extends EventEmitter {
     channel   = ""
     client    = <MQTT.MqttClient>{ connected: false }
     clientId  = (new UUID(1)).format()
@@ -62,7 +63,7 @@ export default class HUDS {
     }
 
     /*  connect to MQTT broker  */
-    connect (channel: string, token1: string, token2: string) {
+    async connect (channel: string, token1: string, token2: string) {
         /*  connect to MQTT broker  */
         this.channel = channel
         this.client = MQTT.connect(this.url, {
@@ -84,13 +85,59 @@ export default class HUDS {
             reconnectPeriod: 2  * 1000, /*  2s */
             connectTimeout:  30 * 1000  /* 30s */
         })
-        this.client.once("connect", (connack: MQTTPacket.IConnackPacket) => {
+        this.client.once("connect", (connack: MQTT.IConnackPacket) => {
             if (!connack.sessionPresent) {
                 this.client.subscribe([
                     `stream/${this.channel}/receiver`,
                     "$SYS/broker/clients/connected"
                 ], () => {})
             }
+        })
+        this.client.on("error", (error: Error) => {
+            this.emit("error", error)
+        })
+        this.client.on("connect", (packet: MQTT.IConnackPacket) => {
+            this.emit("connect", packet)
+        })
+        this.client.on("packetsend", (packet: MQTT.Packet) => {
+            this.emit("packet-send", JSON.stringify(packet))
+        })
+        this.client.on("packetreceive", (packet: MQTT.Packet) => {
+            this.emit("packet-receive", JSON.stringify(packet))
+        })
+        this.client.on("message", (topic: string, payload: Buffer, packet: MQTT.IPublishPacket) => {
+            if (topic === "$SYS/broker/clients/connected") {
+                const clients = parseInt(payload.toString())
+                this.emit("clients", clients)
+            }
+            else if (topic === `stream/${this.channel}/receiver`) {
+                let message
+                try {
+                    message = JSON.parse(payload.toString())
+                }
+                catch (ex) {
+                    message = null
+                }
+                this.emit("message", message)
+            }
+        })
+        this.client.on("close", () => {
+            this.emit("close")
+        })
+        this.client.on("end", () => {
+            this.emit("end")
+        })
+        this.client.on("reconnect", () => {
+            this.emit("reconnect")
+        })
+        this.client.on("offline", () => {
+            this.emit("offline")
+        })
+        this.client.on("outgoingEmpty", () => {
+            this.emit("outgoingEmpty")
+        })
+        this.client.on("disconnect", (packet: MQTT.IDisconnectPacket) => {
+            this.emit("disconnect", packet)
         })
         return this.client
     }

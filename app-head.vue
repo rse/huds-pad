@@ -32,7 +32,7 @@
                 <i class="icon fas fa-arrow-alt-circle-left"></i>
             </button>
             <div v-show="$global.value.connected && $global.value.clients > 0" class="attendees"
-                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at MQTT broker.', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at HUDS.', trigger: $global.value.tippyTrigger }">
                 <i class="icon fas fa-users"></i>
                 {{ $global.value.clients }}
             </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="right">
             <div class="traffic" @click="$global.toggleLogTraffic()"
-                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for MQTT network traffic.', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for HUDS network traffic.', trigger: $global.value.tippyTrigger }">
                 <div v-show="!$global.value.logTraffic" v-bind:class="{ active: $global.value.activeTraffic }">
                     <i class="icon fa-solid fa-circle"></i>
                 </div>

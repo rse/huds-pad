@@ -171,7 +171,7 @@ export default defineComponent({
                 this.connect()
             }, 500)
         },
-        connect () {
+        async connect () {
             /*  sanity check situation  */
             if (this.accessToken === "" || this.connectionRunning || this.huds.isReconnecting())
                 return
@@ -185,15 +185,15 @@ export default defineComponent({
             }
             const [ , channel, token1, token2 ] = match
 
-            /*  connect to HUDS MQTT broker  */
+            /*  connect to HUDS  */
             this.connectionRunning = true
-            const client = this.huds.connect(channel, token1, token2)
+            await this.huds.connect(channel, token1, token2)
 
-            /*  react on MQTT broker status  */
-            client.on("connect", async () => {
+            /*  react on HUDS status  */
+            this.huds.on("connect", async () => {
                 const isValidConnection = await this.huds.isValidConnection().catch(() => false)
                 if (!isValidConnection) {
-                    try { client.end() } catch (ev) { } /* eslint brace-style: off */
+                    this.huds.disconnect().catch(() => {})
                     this.$global.setMessage("Status: Connection Error")
                     this.$global.setError("Error: Connection Refused: Not authorized")
                     return
@@ -207,7 +207,7 @@ export default defineComponent({
                     attendanceRefreshInterval = setInterval(() => { this.huds.refreshAttendance() }, 10 * 60 * 1000)
                 this.reconnecting = false
             })
-            client.on("close", () => {
+            this.huds.on("close", () => {
                 this.connectionRunning = false
                 if (!this.huds.isReconnecting())
                     this.$global.setMessage("Status: Disconnected")
@@ -221,77 +221,70 @@ export default defineComponent({
                     this.$global.value.feelingRefreshInterval = null
                 }
             })
-            client.on("disconnect", () => {
+            this.huds.on("disconnect", () => {
                 this.$global.setMessage("Status: Disconnected")
                 this.$global.setConnectionClosed()
             })
-            client.on("offline", () => {
+            this.huds.on("offline", () => {
                 this.$global.setMessage("Status: Offline")
             })
-            client.on("error", (err) => {
+            this.huds.on("error", (err) => {
                 this.$global.setMessage("Status: Communication Error")
                 this.$global.setError(err.toString())
                 if (err.toString().match(/Not authorized/i))
-                    try { client.end() } catch (ev) { } /* eslint brace-style: off */
+                    this.huds.disconnect().catch(() => {})
             })
-            client.on("reconnect", () => {
+            this.huds.on("reconnect", () => {
                 this.$global.setMessage("Status: Reconnecting")
                 this.reconnecting = true
             })
 
-            /*  react on MQTT messages  */
-            client.on("message", (topic: string, message: any) => {
-                if (topic === "$SYS/broker/clients/connected") {
-                    let clients = parseInt(message.toString())
-                    if (this.$global.value.logTraffic)
-                        console.log(`HUDS: RECV: topic=${topic} message=${clients}`)
-                    if (clients > 1)
-                        clients-- /* there will be always US plus the HUDS, so drop the HUDS */
-                    this.$global.setClients(clients)
+            /*  react on HUDS client changes  */
+            this.huds.on("clients", (clients: number) => {
+                if (this.$global.value.logTraffic)
+                    console.log(`HUDS: RECV: clients=${clients}`)
+                if (clients > 1)
+                    clients-- /* there will be always US plus the HUDS, so drop the HUDS */
+                this.$global.setClients(clients)
+            })
+
+            /*  react on HUDS messages  */
+            this.huds.on("message", (message: any) => {
+                if (this.$global.value.logTraffic)
+                    console.log(`HUDS: RECV: message=${JSON.stringify(message)}`)
+                if (typeof message?.event !== "string")
+                    return
+                if (message.event === "voting-begin") {
+                    this.$global.disabledMessaging(false)
+                    this.$global.disabledVoting(true)
+                    this.$global.setVotingType("propose")
+                    this.$global.clearVoting()
                 }
-                else if (topic === `stream/${this.huds.channel}/receiver`) {
-                    try {
-                        message = JSON.parse(message.toString())
-                    }
-                    catch (ex) {
-                        message = null
-                    }
-                    if (this.$global.value.logTraffic)
-                        console.log(`HUDS: RECV: topic=${topic} message=${JSON.stringify(message)}`)
-                    if (typeof message?.event !== "string")
-                        return
-                    if (message.event === "voting-begin") {
-                        this.$global.disabledMessaging(false)
-                        this.$global.disabledVoting(true)
-                        this.$global.setVotingType("propose")
-                        this.$global.clearVoting()
-                    }
-                    else if (message.event === "voting-end") {
-                        this.$global.disabledMessaging(false)
-                        this.$global.disabledVoting(true)
-                        this.$global.setVotingType("propose")
-                        this.$global.clearVoting()
-                    }
-                    else if (message.event === "voting-type") {
-                        if (typeof message.data?.type === "string") {
-                            if (message.data.type === "propose") {
-                                this.$global.disabledMessaging(false)
-                                this.$global.disabledVoting(true)
-                            }
-                            else {
-                                this.$global.disabledMessaging(true)
-                                this.$global.disabledVoting(false)
-                            }
-                            this.$global.setVotingType(message.data.type)
-                            this.$global.clearVoting()
+                else if (message.event === "voting-end") {
+                    this.$global.disabledMessaging(false)
+                    this.$global.disabledVoting(true)
+                    this.$global.setVotingType("propose")
+                    this.$global.clearVoting()
+                }
+                else if (message.event === "voting-type") {
+                    if (typeof message.data?.type === "string") {
+                        if (message.data.type === "propose") {
+                            this.$global.disabledMessaging(false)
+                            this.$global.disabledVoting(true)
                         }
+                        else {
+                            this.$global.disabledMessaging(true)
+                            this.$global.disabledVoting(false)
+                        }
+                        this.$global.setVotingType(message.data.type)
+                        this.$global.clearVoting()
                     }
                 }
             })
 
-            /*  track MQTT communication  */
+            /*  track HUDS communication  */
             let timer: ReturnType<typeof setTimeout> | null = null
-            client.on("packetsend", (packet: any) => {
+            this.huds.on("packet-send", (packet: string) => {
                 this.$global.setActiveTraffic(true)
                 if (timer !== null)
                     clearTimeout(timer)
@@ -300,9 +293,9 @@ export default defineComponent({
                     this.$global.setActiveTraffic(false)
                 }, 250)
                 if (this.$global.value.logTraffic)
-                    console.log(`MQTT: SEND: packet=${JSON.stringify(packet)}`)
+                    console.log(`HUDS: SEND: packet=${packet}`)
             })
-            client.on("packetreceive", (packet: any) => {
+            this.huds.on("packet-receive", (packet: string) => {
                 this.$global.setActiveTraffic(true)
                 if (timer !== null)
                     clearTimeout(timer)
@@ -311,7 +304,7 @@ export default defineComponent({
                     this.$global.setActiveTraffic(false)
                 }, 250)
                 if (this.$global.value.logTraffic)
-                    console.log(`MQTT: RECV: packet=${JSON.stringify(packet)}`)
+                    console.log(`HUDS: RECV: packet=${packet}`)
             })
         },
         async disconnect () {
