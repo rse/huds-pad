@@ -63,7 +63,7 @@
         "vue-tsc":                          "1.2.0",
         "typescript":                       "5.0.2",
         "stylus":                           "0.59.0",
-        "rimraf":                           "4.4.0"
+        "rimraf":                           "4.4.1"
     },
     "upd": [
         "!htmllint"
