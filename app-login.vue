@@ -149,7 +149,7 @@ export default defineComponent({
         },
         async exportHash () {
             this.$global.clearError()
-            if (this.isReconnecting()) {
+            if (this.huds.isReconnecting()) {
                 await this.disconnect().catch(() => {})
                 this.reconnecting = false
             }
@@ -173,7 +173,7 @@ export default defineComponent({
         },
         connect () {
             /*  sanity check situation  */
-            if (this.accessToken === "" || this.connectionRunning || this.huds.client?.reconnecting)
+            if (this.accessToken === "" || this.connectionRunning || this.huds.isReconnecting())
                 return
 
             /*  parse access token  */
@@ -191,8 +191,8 @@ export default defineComponent({
 
             /*  react on MQTT broker status  */
             client.on("connect", async () => {
-                const isValidStream = await this.checkValidStream().catch(() => false)
-                if (!isValidStream) {
+                const isValidConnection = await this.huds.isValidConnection().catch(() => false)
+                if (!isValidConnection) {
                     try { client.end() } catch (ev) { } /* eslint brace-style: off */
                     this.$global.setMessage("Status: Connection Error")
                     this.$global.setError("Error: Connection Refused: Not authorized")
@@ -209,7 +209,7 @@ export default defineComponent({
             })
             client.on("close", () => {
                 this.connectionRunning = false
-                if (!this.isReconnecting())
+                if (!this.huds.isReconnecting())
                     this.$global.setMessage("Status: Disconnected")
                 this.$global.setConnectionClosed()
                 if (attendanceRefreshInterval) {
@@ -319,50 +319,6 @@ export default defineComponent({
             this.$global.clearError()
             await this.huds.endAttendance().catch(() => {})
             return this.huds.disconnect()
-        },
-        checkValidStream () {
-            /*  Notice: MQTT provides no way to check for the existance of a topic/channel, so
-                the only way to check if the topic/channel "stream/<id>/receiver" is an existing one,
-                is to subscribe to a sub-topic, send a dummy message and check if one can receive
-                the dummy message back again.  */
-            return new Promise((resolve, reject) => {
-                const timer = setTimeout(() => {
-                    reject(new Error("timeout on loopback communication"))
-                }, 500)
-                const channel = `stream/${this.huds.channel}/receiver/${this.huds.clientId}/loopback`
-                const msg = "<ping>"
-                this.huds.client.subscribe(channel, (err, granted) => {
-                    if (err) {
-                        clearTimeout(timer)
-                        reject(err)
-                    }
-                    else {
-                        const cb = (topic: string, message: any) => {
-                            if (topic === channel) {
-                                clearTimeout(timer)
-                                this.huds.client.unsubscribe(channel)
-                                this.huds.client.removeListener("message", cb)
-                                if (message.toString() === msg)
-                                    resolve(true)
-                                else
-                                    reject(new Error("invalid message received"))
-                            }
-                        }
-                        this.huds.client.on("message", cb)
-                        this.huds.client.publish(channel, msg, { qos: 2, retain: false }, (err) => {
-                            if (err) {
-                                clearTimeout(timer)
-                                this.huds.client.unsubscribe(channel)
-                                this.huds.client.removeListener("message", cb)
-                                reject(err)
-                            }
-                        })
-                    }
-                })
-            })
-        },
-        isReconnecting () {
-            return this.huds.client ? this.huds.client.reconnecting : false
         }
     }
 })

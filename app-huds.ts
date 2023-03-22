@@ -95,6 +95,54 @@ export default class HUDS {
         return this.client
     }
 
+    /*  check whether connection is valid  */
+    isValidConnection () {
+        /*  Notice: MQTT provides no way to check for the existance of a topic/channel, so
+            the only way to check if the topic/channel "stream/<id>/receiver" is an existing one,
+            is to subscribe to a sub-topic, send a dummy message and check if one can receive
+            the dummy message back again.  */
+        return new Promise((resolve, reject) => {
+            const timer = setTimeout(() => {
+                reject(new Error("timeout on loopback communication"))
+            }, 500)
+            const channel = `stream/${this.channel}/receiver/${this.clientId}/loopback`
+            const msg = "<ping>"
+            this.client.subscribe(channel, (err, granted) => {
+                if (err) {
+                    clearTimeout(timer)
+                    reject(err)
+                }
+                else {
+                    const cb = (topic: string, message: any) => {
+                        if (topic === channel) {
+                            clearTimeout(timer)
+                            this.client.unsubscribe(channel)
+                            this.client.removeListener("message", cb)
+                            if (message.toString() === msg)
+                                resolve(true)
+                            else
+                                reject(new Error("invalid message received"))
+                        }
+                    }
+                    this.client.on("message", cb)
+                    this.client.publish(channel, msg, { qos: 2, retain: false }, (err) => {
+                        if (err) {
+                            clearTimeout(timer)
+                            this.client.unsubscribe(channel)
+                            this.client.removeListener("message", cb)
+                            reject(err)
+                        }
+                    })
+                }
+            })
+        })
+    }
+
+    /*  check whether MQTT client is currently reconnecting  */
+    isReconnecting () {
+        return (this.client?.reconnecting ?? false)
+    }
+
     /*  begin/end attendance (explicitly)  */
     beginAttendance () {
         return this.sendMessageToBroker("attendance", {
