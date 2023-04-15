@@ -27,8 +27,8 @@
 <template>
     <div class="app"
         v-bind:class="{
-            dark:  settings.opts.ui.theme === 'dark',
-            light: settings.opts.ui.theme === 'light' }">
+            dark:  $global.value.theme === 'dark',
+            light: $global.value.theme === 'light' }">
         <main ref="main" v-bind:class="{ hoverable: hoverable }">
             <app-head></app-head>
             <app-info   v-show="settings.opts.ui.info"></app-info>

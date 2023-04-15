@@ -69,6 +69,12 @@
                     <i class="icon fas fa-qrcode"></i>
                 </div>
             </button>
+            <button class="theming" @click="toggleTheme()" v-show="settings.opts.ui.theming"
+                v-tippy="{ placement: 'bottom', content: 'Toggle user interface between<br/>dark and light theme.' }">
+                <div class="theme">
+                    <i class="icon theming fa-solid fa-paint-roller"></i>
+                </div>
+            </button>
             <button class="hints" @click="$global.toggleHints()" v-show="settings.opts.ui.hints"
                 v-tippy="{ placement: 'bottom', content: 'Indicator and toggle for hint<br/>popups on user interface controls.' }">
                 <div v-bind:class="{ active: $global.value.showhints }">
@@ -159,6 +165,8 @@
         color: var(--color-std-fg-1)
     .traffic .active .icon
         color: var(--color-acc-fg-1)
+    .theming .icon
+        width: 18px
     main:not(.hoverable) & .hints
         display: none
     .hints .active .icon
@@ -202,6 +210,12 @@ export default defineComponent({
             else
                 /*  rotate around the Y-axis  */
                 tl.add({ rotateY: [ 0, 360 ] })
+        },
+        toggleTheme () {
+            this.settings.opts.ui.theme =
+                this.settings.opts.ui.theme !== "dark" ? "dark" : "light"
+            this.$global.setTheme(this.settings.opts.ui.theme)
+            this.settings.exportToHash()
         }
     }
 })

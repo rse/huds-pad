@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
         /*  provide Vue "$global" property  */
         global.setPkg(pkg)
         global.setHints(settings.opts.ui.hints)
+        global.setTheme(settings.opts.ui.theme)
         app.config.globalProperties.$global = global
 
         /*  provide Vue "huds" property  */

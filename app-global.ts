@@ -43,6 +43,7 @@ const global = Vue.reactive({
     isVotingDisabled:       true,
     votingType:             "propose",
     clearVoting:            false,
+    theme:                  "",
     feelingRefreshInterval: null,
     msg:                    "",
     err:                    "",
@@ -55,6 +56,9 @@ export default {
     setOnline (online: boolean)  { this.value.online = online },
     toggleQRCode ()              { this.value.showqrcode = !this.value.showqrcode },
     toggleAbout ()               { this.value.showabout  = !this.value.showabout  },
+    setTheme (theme: string) {
+        this.value.theme = theme
+    },
     setHints (active: boolean) {
         this.value.showhints = active
         localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")

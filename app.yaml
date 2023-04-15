@@ -42,6 +42,7 @@ ui:
     online:     true                         # show common online indicator
     qrcode:     true                         # show common qrcode button and area
     hints:      true                         # show common hints button
+    theming:    true                         # show common theming button
 
     token:      true                         # show login token input
     connect:    true                         # show login connect button

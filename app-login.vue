@@ -118,9 +118,9 @@
             margin-top: 20px
             width: 80%
             .st1
-                fill: var(--color-std-fg-5) !important
+                fill: var(--color-std-fg-4) !important
             .st2
-                fill: var(--color-acc-fg-5) !important
+                fill: var(--color-acc-fg-4) !important
 </style>
 
 <script setup lang="ts">
