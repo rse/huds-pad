@@ -64,8 +64,6 @@ export default class Settings {
     public  opts:        typeof opts.infer
     private optsDefault: typeof opts.infer
 
-    private url: URI | undefined
-
     constructor () {
         /*  initialize arguments  */
         this.argsDefault = []
@@ -110,8 +108,8 @@ export default class Settings {
     /*  initialize settings  */
     async init () {
         /*  load persistent settings  */
-        const url = new URI(window.location.href)
-        const yaml = await fetch(url.filename("app.yaml").search("").hash("").toString(), {
+        const url = new URL("app.yaml", import.meta.url).href
+        const yaml = await fetch(url, {
             method: "GET",
             credentials: "same-origin"
         }).then((response) => response.text())
