@@ -25,7 +25,8 @@
 -->
 
 <template>
-    <div class="app-info">
+    <div class="app-info"
+        v-tippy="{ placement: 'bottom', content: 'Global status and/or error<br/>information of the application.', trigger: $global.value.tippyTrigger }">
         <div v-show="$global.value.msg" class="msg">{{ $global.value.msg }}</div>
         <div v-show="$global.value.err" class="err">{{ $global.value.err }}</div>
     </div>
