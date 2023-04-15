@@ -108,7 +108,7 @@
             .icon
                 color: var(--color-acc-fg-1)
     .left
-        width: 110px
+        width: 130px
         display: flex
         flex-direction: row
         justify-content: flex-start
@@ -130,7 +130,7 @@
                 padding-left: 4px
                 padding-right: 4px
     .right
-        width: 110px
+        width: 130px
         display: flex
         flex-direction: row
         justify-content: flex-end
@@ -145,7 +145,7 @@
     .online .icon
         display: inline-block
         font-size: 12pt
-        width: 20px
+        width: 18px
         text-align: center
         position: relative
         padding-right: 2px
@@ -157,16 +157,19 @@
     .traffic .icon
         display: inline-block
         font-size: 10pt
-        width: 20px
+        width: 18px
         text-align: center
         position: relative
         top: 5px
-        left: 2px
         color: var(--color-std-fg-1)
     .traffic .active .icon
         color: var(--color-acc-fg-1)
+    .qrcode .icon
+        width: 16px
     .theming .icon
-        width: 18px
+        width: 16px
+    .hints .icon
+        width: 16px
     main:not(.hoverable) & .hints
         display: none
     .hints .active .icon
