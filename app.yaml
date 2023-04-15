@@ -22,12 +22,32 @@
 ##  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ##
 
-mqtt:
-    #url:      "ws://127.0.0.1:9001/mqtt"
-    url:      "wss://pad.huds.io/mqtt/"
-    #url:      "auto"
-
 huds:
-    #id:       "training"
-    id:       "live-sender"
 
+    api:        "mqtt"
+    url:        "wss://pad.huds.io/mqtt/"
+    peer:       "live-sender"
+
+ui:
+
+    title1:     "HUDS"    # title text (part 1/2)
+    title2:     "Pad"     # title text (part 2/2)
+
+    title:      true      # show common title text (and button for about)
+    about:      true      # show common about area
+    info:       true      # show common info/status area
+    attendees:  true      # show common attendees indicator
+    traffic:    true      # show common traffic indicator
+    online:     true      # show common online indicator
+    qrcode:     true      # show common qrcode button and area
+    hints:      true      # show common hints button
+
+    token:      true      # show login token input
+    connect:    true      # show login connect button
+    slogan:     true      # show login slogan text
+
+    disconnect: true      # show interaction disconnect button
+    message:    true      # show interaction message area
+    vote:       true      # show interaction vote area
+    feedback:   true      # show interaction feedback area
+    feeling:    true      # show interaction feeling area

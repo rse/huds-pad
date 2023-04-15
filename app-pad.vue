@@ -26,10 +26,10 @@
 
 <template>
     <section>
-        <app-pad-message></app-pad-message>
-        <app-pad-vote></app-pad-vote>
-        <app-pad-feedback></app-pad-feedback>
-        <app-pad-feeling></app-pad-feeling>
+        <app-pad-message  v-show="settings.opts.ui.message" ></app-pad-message>
+        <app-pad-vote     v-show="settings.opts.ui.vote"    ></app-pad-vote>
+        <app-pad-feedback v-show="settings.opts.ui.feedback"></app-pad-feedback>
+        <app-pad-feeling  v-show="settings.opts.ui.feeling" ></app-pad-feeling>
     </section>
 </template>
 

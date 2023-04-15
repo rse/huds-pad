@@ -26,21 +26,23 @@
 
 <template>
     <div class="app-login">
-        <h2 style="grid-area: label">ACCESS TOKEN</h2>
-        <input v-model="accessToken"
+        <h2 v-show="settings.opts.ui.token" style="grid-area: label">ACCESS TOKEN</h2>
+        <input v-show="settings.opts.ui.token"
+            v-model="accessToken"
             style="grid-area: input"
             type="text"
             placeholder="Enter your Access Token..."
             v-tippy="{ placement: 'top', content: 'Access Token for connecting<br/>to the live session.', trigger: $global.value.tippyTrigger }"
             v-on:keyup.enter="connect"
             @input="exportHash">
-        <button style="grid-area: connect"
+        <button v-show="settings.opts.ui.connect"
+            style="grid-area: connect"
             v-bind:disabled="!accessToken || connectionRunning || reconnecting"
             @click="connect"
             v-tippy="{ placement: 'bottom', content: 'Connect to the<br/>live session.', trigger: $global.value.tippyTrigger }">
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
-        <div style="grid-area: banner" class="banner">
+        <div v-show="settings.opts.ui.slogan" style="grid-area: banner" class="banner">
             <img src="./app-banner.svg" alt="Your live feedback channel!">
         </div>
     </div>
@@ -142,8 +144,9 @@ export default defineComponent({
     },
     methods: {
         importHash () {
-            if (this.accessToken !== window.location.hash) {
-                this.accessToken = window.location.hash.substring(1).trim()
+            this.settings.importFromHash()
+            if (this.accessToken !== this.settings.args[0]) {
+                this.accessToken = this.settings.args[0]
                 this.autoconnect()
             }
         },
@@ -153,10 +156,11 @@ export default defineComponent({
                 await this.disconnect().catch(() => {})
                 this.reconnecting = false
             }
-            if (this.accessToken !== window.location.hash) {
+            if (this.accessToken !== this.settings.args[0]) {
                 this.accessToken = this.accessToken.trim()
                 suppressHashChangeAction = true
-                window.location.hash = "#" + this.accessToken
+                this.settings.args[0] = this.accessToken
+                this.settings.exportToHash()
                 setTimeout(() => {
                     suppressHashChangeAction = false
                 }, 100)

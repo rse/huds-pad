@@ -27,9 +27,9 @@
 <template>
     <main ref="main" v-bind:class="{ hoverable: hoverable }">
         <app-head></app-head>
-        <app-info></app-info>
-        <app-about  v-show="$global.value.showabout"></app-about>
-        <app-qrcode v-show="$global.value.showqrcode"></app-qrcode>
+        <app-info   v-show="settings.opts.ui.info"></app-info>
+        <app-about  v-show="settings.opts.ui.about && $global.value.showabout"></app-about>
+        <app-qrcode v-show="settings.opts.ui.qrcode && $global.value.showqrcode"></app-qrcode>
         <app-pad    v-show=" $global.value.connected"></app-pad>
         <app-login  v-show="!$global.value.connected"></app-login>
     </main>

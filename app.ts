@@ -43,6 +43,7 @@ import                       "@fortawesome/fontawesome-free/css/all.min.css"
 
 /*  import internal dependencies (code)  */
 import App              from "./app.vue"
+import Settings         from "./app-settings"
 import HUDS             from "./app-huds"
 import global           from "./app-global"
 import pkg              from "./package.json"
@@ -66,16 +67,20 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
             }
         })
 
-        /*  provide global properties  */
+        /*  provide Vue "settings" property  */
+        const settings = new Settings()
+        await settings.init()
+        settings.importFromHash()
+        app.config.globalProperties.settings = settings
+
+        /*  provide Vue "$global" property  */
+        global.setPkg(pkg)
+        global.setHints(settings.opts.ui.hints)
         app.config.globalProperties.$global = global
 
-        /*  provide global Vue "huds" property  */
-        const huds = new HUDS()
-        await huds.load(new URL("./app.yaml", import.meta.url).href)
+        /*  provide Vue "huds" property  */
+        const huds = new HUDS(settings.opts.huds)
         app.config.globalProperties.huds = huds
-
-        /*  load program information  */
-        app.config.globalProperties.pkg = pkg
 
         /*  ensure all fonts are loaded  */
         const fonts = [
@@ -90,7 +95,7 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
         /*  finally mount user interface  */
         app.mount("#app")
     })().catch((err) => {
-        console.error(`app: ERROR: top-level: ${err}`)
+        console.error(`HUDS Pad: ERROR: top-level: ${err}`)
     })
 })
 

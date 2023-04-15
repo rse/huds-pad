@@ -38,4 +38,5 @@ rules:
     stylus/media-feature-colon: null
     stylus/single-line-comment: null
     stylus/selector-list-comma: "always"
+    media-feature-range-notation: null
 

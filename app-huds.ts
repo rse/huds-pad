@@ -22,44 +22,28 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import URI          from "urijs"
 import MQTT         from "mqtt"
 import MQTTPacket   from "mqtt-packet"
 import UUID         from "pure-uuid"
-import jsYAML       from "js-yaml"
 import EventEmitter from "eventemitter2"
 
 /*  HUDS communication  */
 export default class HUDS extends EventEmitter {
     private channel   = ""
-    private client    = <MQTT.MqttClient>{ connected: false }
+    private client    = { connected: false } as MQTT.MqttClient
     private clientId  = (new UUID(1)).format()
+    private api       = ""
     private url       = ""
-    private id        = ""
+    private peer      = ""
 
-    /*  load settings  */
-    async load (settingsFile: string) {
-        /*  load settings  */
-        const data = await fetch(settingsFile, {
-            method: "GET",
-            credentials: "same-origin"
-        }).then((response) => response.text())
-        const settings: any = jsYAML.load(data)
-        this.url = settings.mqtt.url
-        this.id  = settings.huds.id
+    /*  setup object  */
+    constructor (private settings: any = {}) {
+        super()
 
-        /*  optionally automatically determine MQTT broker URL  */
-        if (this.url === "auto") {
-            const uri = URI(window.location.href)
-            if (uri.protocol() === "http")
-                uri.protocol("ws")
-            else if (uri.protocol() === "https")
-                uri.protocol("wss")
-            uri.pathname("/mqtt/")
-            uri.search("")
-            uri.hash("")
-            this.url = uri.toString()
-        }
+        /*  take over optional settings  */
+        this.api  = settings.api
+        this.url  = settings.url
+        this.peer = settings.peer
     }
 
     /*  connect to MQTT broker  */
@@ -139,7 +123,6 @@ export default class HUDS extends EventEmitter {
         this.client.on("disconnect", (packet: MQTT.IDisconnectPacket) => {
             this.emit("disconnect", packet)
         })
-        return this.client
     }
 
     /*  check we are connected  */
@@ -251,7 +234,7 @@ export default class HUDS extends EventEmitter {
     private createMessage (event: string, data: any = {}) {
         data.client = this.clientId
         return JSON.stringify({
-            id:    this.id,
+            id:    this.peer,
             event,
             data
         })

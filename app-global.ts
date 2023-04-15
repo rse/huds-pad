@@ -46,7 +46,8 @@ const global = Vue.reactive({
     feelingRefreshInterval: null,
     msg:                    "",
     err:                    "",
-    clients:                0
+    clients:                0,
+    pkg:                    {}
 })
 
 export default {
@@ -54,6 +55,11 @@ export default {
     setOnline (online: boolean)  { this.value.online = online },
     toggleQRCode ()              { this.value.showqrcode = !this.value.showqrcode },
     toggleAbout ()               { this.value.showabout  = !this.value.showabout  },
+    setHints (active: boolean) {
+        this.value.showhints = active
+        localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
+        this.value.tippyTrigger = this.value.showhints ? "mouseenter focus" : "manual"
+    },
     toggleHints ()               {
         this.value.showhints = !this.value.showhints
         localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
@@ -71,6 +77,7 @@ export default {
     clearMessage ()                       { this.value.msg = ""   },
     setError (text: string)               { this.value.err = text },
     clearError ()                         { this.value.err = ""   },
-    setClients (num: number)              { this.value.clients = num }
+    setClients (num: number)              { this.value.clients = num },
+    setPkg (pkg: object)                  { this.value.pkg = pkg }
 }
 

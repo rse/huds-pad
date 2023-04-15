@@ -31,7 +31,7 @@
         </h2>
         <div class="about">
             This is <a target="_blank" href="https://github.com/rse/huds-pad"><b>HUDS Pad</b></a>,
-            version <b>{{ pkg.version }}</b> ({{ env.MODE }}),
+            version <b>{{ $global.value.pkg.version }}</b> ({{ env.MODE }}),
             the attendee client-side web application (for desktop and mobile devices) for interacting
             with a live video-streaming session leveraging
             <a target="_blank" href="https://engelschall.com">Dr. Ralf S. Engelschall</a>'s

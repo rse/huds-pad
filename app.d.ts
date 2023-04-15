@@ -22,14 +22,15 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import HUDS    from "./app-huds"
-import $global from "./app-global"
+import HUDS     from "./app-huds"
+import Settings from "./app-settings"
+import $global  from "./app-global"
 
 declare module "@vue/runtime-core" {
     interface ComponentCustomProperties {
-        pkg:     any,
-        huds:    HUDS,
-        $global: $global
+        huds:     HUDS,
+        settings: Settings,
+        $global:  $global
     }
 }
 
