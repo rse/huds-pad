@@ -83,10 +83,9 @@ export default defineComponent({
             QRCode.toCanvas(this.$refs.qrcode, this.url, {
                 errorCorrectionLevel: "M",
                 width: Math.min(350, window.innerWidth - 25),
-                color: {
-                    dark:  "#ffffffff",
-                    light: "#00000000"
-                }
+                color: this.settings.opts.ui.theme === "dark" ?
+                    { dark:  "#ffffffff", light: "#00000000" } :
+                    { dark:  "#000000ff", light: "#ffffff00" }
             }, () => {})
         }
     }

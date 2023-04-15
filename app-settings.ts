@@ -35,6 +35,7 @@ export const opts = arktype.type({
         peer:       "string"
     },
     ui: {
+        theme:      "string",
         title1:     "string",
         title2:     "string",
         title:      "boolean",
@@ -77,6 +78,7 @@ export default class Settings {
                 peer:       "live-sender"
             },
             ui: {
+                theme:      "dark",
                 title1:     "HUDS",
                 title2:     "Pad",
                 title:      true,

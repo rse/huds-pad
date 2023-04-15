@@ -43,7 +43,7 @@
             Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
         <div v-show="settings.opts.ui.slogan" style="grid-area: banner" class="banner">
-            <img src="./app-banner.svg" alt="Your live feedback channel!">
+            <app-banner class="svg"/>
         </div>
     </div>
 </template>
@@ -114,13 +114,19 @@
     .banner
         width: auto
         text-align: center
-        img
+        svg
             margin-top: 20px
             width: 80%
+            .st1
+                fill: var(--color-std-fg-5) !important
+            .st2
+                fill: var(--color-acc-fg-5) !important
 </style>
 
 <script setup lang="ts">
+/// <reference types="vite-svg-loader" />
 import { defineComponent } from "vue"
+import AppBanner from "./app-banner.svg?component"
 </script>
 
 <script lang="ts">
@@ -130,6 +136,9 @@ let attendanceRefreshInterval: ReturnType<typeof setInterval> | null = null
 
 export default defineComponent({
     name: "app-login",
+    components: {
+        "app-banner": AppBanner
+    },
     data: () => ({
         accessToken: "",
         connectionRunning: false,

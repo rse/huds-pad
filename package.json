@@ -65,6 +65,7 @@
         "vite":                             "4.2.1",
         "@vitejs/plugin-vue":               "4.1.0",
         "@rollup/plugin-yaml":              "4.0.1",
+        "vite-svg-loader":                  "4.0.0",
         "vue-tsc":                          "1.2.0",
         "typescript":                       "5.0.4",
         "stylus":                           "0.59.0",

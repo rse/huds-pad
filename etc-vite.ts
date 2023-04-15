@@ -25,6 +25,7 @@
 import * as Vite  from "vite"
 import VuePlugin  from "@vitejs/plugin-vue"
 import YAMLPlugin from "@rollup/plugin-yaml"
+import SVGPlugin  from "vite-svg-loader"
 
 export default Vite.defineConfig({
     base: "",
@@ -32,7 +33,8 @@ export default Vite.defineConfig({
     plugins: [
         Vite.splitVendorChunkPlugin(),
         VuePlugin(),
-        YAMLPlugin()
+        YAMLPlugin(),
+        SVGPlugin()
     ],
     resolve: {
         alias: {

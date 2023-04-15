@@ -22,8 +22,8 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/*  global theme color definitions  */
-:root
+/*  global dark theme color definition  */
+.app.dark
     --color-std-bg-1: #000000
     --color-std-bg-2: #0d0d0d
     --color-std-bg-3: #1a1a1a
@@ -63,16 +63,52 @@
     --color-sig-fg-4: #f8e8c8
     --color-sig-fg-5: #fff0d0
 
+/*  global light theme color definition  */
+.app.light
+    --color-std-bg-1: #e0e0e0
+    --color-std-bg-2: #e8e8e8
+    --color-std-bg-3: #f0f0f0
+    --color-std-bg-4: #f8f8f8
+    --color-std-bg-5: #ffffff
+
+    --color-std-fg-0: #000000
+    --color-std-fg-1: #101010
+    --color-std-fg-2: #202020
+    --color-std-fg-3: #303030
+    --color-std-fg-4: #404040
+    --color-std-fg-5: #505050
+
+    --color-acc-bg-1: #d0e0ff
+    --color-acc-bg-2: #d8e8ff
+    --color-acc-bg-3: #e0f0ff
+    --color-acc-bg-4: #e8f4ff
+    --color-acc-bg-5: #f0f8ff
+
+    --color-acc-fg-0: #003366
+    --color-acc-fg-1: #114477
+    --color-acc-fg-2: #225588
+    --color-acc-fg-3: #336699
+    --color-acc-fg-4: #4477aa
+    --color-acc-fg-5: #5588bb
+
+    --color-sig-bg-1: #e0d0b0
+    --color-sig-bg-2: #e8d8b8
+    --color-sig-bg-3: #f0e0c0
+    --color-sig-bg-4: #f8e8c8
+    --color-sig-bg-5: #fff0d0
+
+    --color-sig-fg-0: #702000
+    --color-sig-fg-1: #803800
+    --color-sig-fg-2: #904800
+    --color-sig-fg-3: #a05810
+    --color-sig-fg-4: #b06820
+    --color-sig-fg-5: #c07830
+
 body,
 html
     margin: 0
     padding: 0
     overflow-x: hidden
-    font-family: "TypoPRO Source Sans Pro", sans-serif
-    background-color: var(--color-std-bg-1)
-    color: var(--color-std-fg-3)
-    font-weight: normal
-    user-select: none
 
 textarea,
 input,
@@ -106,16 +142,15 @@ a:hover
     font-family: "TypoPRO Source Sans Pro", sans-serif
     font-size: 9pt
     font-weight: 300
+    background-color: var(--color-std-bg-5) !important
     .tippy-content
         color: var(--color-std-fg-4) !important
-        background-color: #555555c0 !important
         border-radius: 4px
 .tippy-box[data-placement^='top'] > .tippy-arrow::before
-    border-top-color: #555555c0 !important
+    border-top-color: var(--color-std-bg-5) !important
 .tippy-box[data-placement^='bottom'] > .tippy-arrow::before
-    border-bottom-color: #555555c0 !important
+    border-bottom-color: var(--color-std-bg-5) !important
 .tippy-box[data-placement^='left'] > .tippy-arrow::before
-    border-left-color: #555555c0 !important
+    border-left-color: var(--color-std-bg-5) !important
 .tippy-box[data-placement^='right'] > .tippy-arrow::before
-    border-right-color: #555555c0 !important
-
+    border-right-color: var(--color-std-bg-5) !important

@@ -63,7 +63,8 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
                 allowHTML: true,
                 placement: "right",
                 theme: "translucent",
-                delay: [ 600, 50 ]
+                delay: [ 600, 50 ],
+                appendTo: () => document.getElementsByClassName("app")[0]
             }
         })
 
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
             .catch(() => true)
 
         /*  finally mount user interface  */
-        app.mount("#app")
+        app.mount("body")
     })().catch((err) => {
         console.error(`HUDS Pad: ERROR: top-level: ${err}`)
     })

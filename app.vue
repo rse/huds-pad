@@ -25,28 +25,45 @@
 -->
 
 <template>
-    <main ref="main" v-bind:class="{ hoverable: hoverable }">
-        <app-head></app-head>
-        <app-info   v-show="settings.opts.ui.info"></app-info>
-        <app-about  v-show="settings.opts.ui.about && $global.value.showabout"></app-about>
-        <app-qrcode v-show="settings.opts.ui.qrcode && $global.value.showqrcode"></app-qrcode>
-        <app-pad    v-show=" $global.value.connected"></app-pad>
-        <app-login  v-show="!$global.value.connected"></app-login>
-    </main>
+    <div class="app"
+        v-bind:class="{
+            dark:  settings.opts.ui.theme === 'dark',
+            light: settings.opts.ui.theme === 'light' }">
+        <main ref="main" v-bind:class="{ hoverable: hoverable }">
+            <app-head></app-head>
+            <app-info   v-show="settings.opts.ui.info"></app-info>
+            <app-about  v-show="settings.opts.ui.about && $global.value.showabout"></app-about>
+            <app-qrcode v-show="settings.opts.ui.qrcode && $global.value.showqrcode"></app-qrcode>
+            <app-pad    v-show=" $global.value.connected"></app-pad>
+            <app-login  v-show="!$global.value.connected"></app-login>
+        </main>
+    </div>
 </template>
 
 <style lang="stylus">
-main
-    margin: 0 auto
-    padding: 0 10px
-    max-width: 480px
-    min-height: 100vh
-    background-color: var(--color-std-bg-3)
+.app
+    margin: 0
+    padding: 0
+    width: 100vw
+    height: 100vh
+    font-family: "TypoPRO Source Sans Pro", sans-serif
+    background-color: var(--color-std-bg-1)
+    color: var(--color-std-fg-3)
+    font-weight: normal
+    user-select: none
+
+    main
+        margin: 0 auto
+        padding: 0 10px
+        max-width: 480px
+        min-height: 100vh
+        background-color: var(--color-std-bg-3)
 
 @media only screen and (min-width: 480px)
-    main
-        border-left:  1px solid var(--color-std-bg-5)
-        border-right: 1px solid var(--color-std-bg-0)
+    .app
+        main
+            border-left:  1px solid var(--color-std-bg-5)
+            border-right: 1px solid var(--color-std-bg-0)
 </style>
 
 <script setup lang="ts">
