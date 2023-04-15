@@ -31,7 +31,6 @@
         </h2>
         <div class="qrcode">
             <canvas ref="qrcode" class="canvas"></canvas>
-            <div class="url">{{ url }}</div>
         </div>
     </div>
 </template>
@@ -50,10 +49,6 @@
         border-radius: 4px
         width: 100%
         text-align: center
-        .url
-            margin-top: -10px
-            margin-bottom: 20px
-            color: var(--color-acc-fg-5)
 </style>
 
 <script setup lang="ts">
