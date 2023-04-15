@@ -120,7 +120,7 @@
             .st1
                 fill: var(--color-std-fg-4) !important
             .st2
-                fill: var(--color-acc-fg-4) !important
+                fill: var(--color-acc-fg-2) !important
 </style>
 
 <script setup lang="ts">
