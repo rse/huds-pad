@@ -199,9 +199,9 @@ export default class HUDS extends EventEmitter {
     }
 
     /*  send a message/feedback/feeling  */
-    sendMessage (text: string) {
+    sendMessage (text: string, title = "Anonymous Attendee") {
         return this.sendMessageToBroker("message", {
-            title: "Attendee Message",
+            title,
             text
         })
     }

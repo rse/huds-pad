@@ -51,10 +51,12 @@ export const opts = arktype.type({
         connect:    "boolean",
         slogan:     "boolean",
         disconnect: "boolean",
+        name:       "boolean",
         message:    "boolean",
         vote:       "boolean",
         feedback:   "boolean",
-        feeling:    "boolean"
+        feeling:    "boolean",
+        anonymous:  "boolean"
     }
 })
 
@@ -93,10 +95,12 @@ export default class Settings {
                 connect:    true,
                 slogan:     true,
                 disconnect: true,
+                name:       true,
                 message:    true,
                 vote:       true,
                 feedback:   true,
-                feeling:    true
+                feeling:    true,
+                anonymous:  true
             }
         })
         if (!data)

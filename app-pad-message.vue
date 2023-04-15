@@ -35,20 +35,26 @@
                 (temporarily disabled for throttling purposes)
             </span>
         </h2>
+        <input v-show="settings.opts.ui.name"
+            style="grid-area: name"
+            v-model="name"
+            type="text"
+            v-bind:placeholder="settings.opts.ui.anonymous ? 'Type your name (optional)...' : 'Type your name (required)...'"
+            v-tippy="{ placement: 'top', content: 'Your name for messages<br/>(keep blank for anonymity).', trigger: $global.value.tippyTrigger }"/>
         <textarea v-model="text" class="text" rows="4"
             v-bind:disabled="$global.value.isMessagingDisabled || justSent"
-            v-bind:placeholder="'Type a message to be send...'"
+            v-bind:placeholder="'Type your message...'"
             v-on:keyup.escape="clearMessage()"
             v-tippy="{ placement: 'top', content: 'The message to be send<br/>anonymously to the live session.', trigger: $global.value.tippyTrigger }"
         ></textarea>
         <button class="clear"
-            v-bind:disabled="!text || $global.value.isMessagingDisabled || justSent"
+            v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
             v-tippy="{ placement: 'bottom', content: 'Clear the message.', trigger: $global.value.tippyTrigger }"
             @click="clearMessage">
             Clear <i class="icon fas fa-trash-alt"></i>
         </button>
         <button class="send"
-            v-bind:disabled="!text || $global.value.isMessagingDisabled || justSent"
+            v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
             v-tippy="{ placement: 'bottom', content: 'Send the message.', trigger: $global.value.tippyTrigger }"
             @click="sendMessage">
             Send <i class="icon fas fa-share"></i>
@@ -59,7 +65,7 @@
 <style lang="stylus">
 .app-pad-message
     display: grid
-    grid-template: "title title" "message message" "clear send"
+    grid-template: "title title" "name name" "message message" "clear send"
     grid-gap: 2px
     .title
         grid-area: title
@@ -76,7 +82,7 @@
         grid-area: message
         overflow: hidden
         resize: none
-        font-size: 16pt
+        font-size: 14pt
         border: 0
         background-color: var(--color-std-bg-2)
         border-top: 1px solid var(--color-std-bg-1)
@@ -112,6 +118,33 @@
             border-bottom: 1px solid var(--color-std-bg-5)
             &::placeholder
                 color: var(--color-std-fg-0)
+    input
+        resize: none
+        font-size: 14pt
+        border: 0
+        background-color: var(--color-std-bg-2)
+        border-top: 1px solid var(--color-std-bg-1)
+        border-left: 1px solid var(--color-std-bg-1)
+        border-right: 1px solid var(--color-std-bg-5)
+        border-bottom: 1px solid var(--color-std-bg-5)
+        padding: 4px 8px
+        border-radius: 4px
+        &::placeholder
+            color: var(--color-std-fg-1)
+            font-size: 10pt
+            font-weight: 300
+        .hoverable &:hover,
+        &:focus
+            border: 0
+            outline: none
+            color: var(--color-acc-fg-5)
+            background-color: var(--color-acc-bg-3)
+            border-top: 1px solid var(--color-acc-bg-1)
+            border-left: 1px solid var(--color-acc-bg-1)
+            border-right: 1px solid var(--color-acc-bg-5)
+            border-bottom: 1px solid var(--color-acc-bg-5)
+            &::placeholder
+                color: var(--color-acc-fg-1)
     button
         cursor: pointer
         color: var(--color-std-fg-3)
@@ -159,12 +192,13 @@ export default defineComponent({
     name: "app-pad-message",
     data: () => ({
         text: "",
+        name: "",
         justSent: false
     }),
     methods: {
         sendMessage () {
             if (this.text && !this.$global.value.isMessagingDisabled) {
-                this.huds.sendMessage(this.text)
+                this.huds.sendMessage(this.text, this.name !== "" ? this.name : "Anonymous Attendee")
                 this.clearMessage()
                 this.justSent = true
                 setTimeout(() => {

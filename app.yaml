@@ -49,8 +49,11 @@ ui:
     slogan:     true                         # show login slogan text
 
     disconnect: true                         # show interaction disconnect button
+    name:       true                         # show interaction name field (of message)
     message:    true                         # show interaction message area
     vote:       true                         # show interaction vote area
     feedback:   true                         # show interaction feedback area
     feeling:    true                         # show interaction feeling area
+
+    anonymous:  true                         # whether anonymous (with empty name) messages are allowed
 
