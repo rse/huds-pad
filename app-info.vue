@@ -26,11 +26,20 @@
 
 <template>
     <div class="app-info"
-        v-tippy="{ placement: 'bottom', content: 'Global status and/or error<br/>information of the application.', trigger: $global.value.tippyTrigger }">
+        v-tippy="{ placement: 'bottom', content: $t('info.info-hint'), trigger: $global.value.tippyTrigger }">
         <div v-show="$global.value.msg" class="msg">{{ $global.value.msg }}</div>
         <div v-show="$global.value.err" class="err">{{ $global.value.err }}</div>
     </div>
 </template>
+
+<i18n lang="yaml">
+en:
+    info:
+        info-hint:  Global status and/or error<br/>information of the application.
+de:
+    info:
+        info-hint:  Globaler Status- und/oder Fehler-<br/>Information der Anwendung.
+</i18n>
 
 <style lang="stylus">
 .app-info

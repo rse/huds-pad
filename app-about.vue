@@ -27,13 +27,23 @@
 <template>
     <div class="app-about">
         <h2 class="title" style="grid-area: title">
-            ABOUT
+            {{ $t("about.about-label") }}
         </h2>
-        <div class="about">
+        <div class="about" v-html="$t('about.about-text', {
+            version: $global.value.pkg.version, mode: env.MODE })">
+        </div>
+    </div>
+</template>
+
+<i18n lang="yaml">
+en:
+    about:
+        about-label:         ABOUT
+        about-text: |
             This is <a target="_blank" href="https://github.com/rse/huds-pad"><b>HUDS Pad</b></a>,
-            version <b>{{ $global.value.pkg.version }}</b> ({{ env.MODE }}),
+            version <b>{version}</b> ({mode}),
             the attendee client-side web application (for desktop and mobile devices) for interacting
-            with a live video-streaming session leveraging
+            with a live session, leveraging
             <a target="_blank" href="https://engelschall.com">Dr. Ralf S. Engelschall</a>'s
             <a target="_blank" href="https://github.com/rse/huds">Head-Up-Display Server (HUDS)</a> and its
             <a target="_blank" href="https://github.com/rse/huds-hud-training">Training HUD</a>.
@@ -42,9 +52,24 @@
             judgements and quizzes, send feedback with emojis, and share their feeling through
             challenge and mood indicators.
             </p>
-        </div>
-    </div>
-</template>
+de:
+    about:
+        about-label:         ÜBER
+        about-text: |
+            Dies ist <a target="_blank" href="https://github.com/rse/huds-pad"><b>HUDS Pad</b></a>,
+            Version <b>{version}</b> ({mode}),
+            die Client-seitige Web Anwendung (für Desktop und mobile Geräte) von Teilnehmern, um
+            an einer Live-Session teilzunehmen, welche
+            <a target="_blank" href="https://engelschall.com">Dr. Ralf S. Engelschall</a>'s
+            <a target="_blank" href="https://github.com/rse/huds">Head-Up-Display Server (HUDS)</a> und sein
+            <a target="_blank" href="https://github.com/rse/huds-hud-training">Training HUD</a> nutzt.
+            <p>
+            Es ermöglicht Teilnehmern, anonym Textnachrichten zu senden,
+            ihre Stimme zu Vorschlägen, Beurteilungen und Quizze abzugeben,
+            Feedback mit Emojis zu senden und ihre Gefühle durch
+            Herausforderungs- und Stimmungs-Indikatoren zu teilen.
+            </p>
+</i18n>
 
 <style lang="stylus">
 .app-about

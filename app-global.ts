@@ -34,6 +34,7 @@ const global = Vue.reactive({
     online:                 true,
     showqrcode:             false,
     showabout:              false,
+    showconfig:             false,
     showhints:              showhints === "yes",
     tippyTrigger:           showhints === "yes" ? "mouseenter focus" : "manual",
     logTraffic:             false,
@@ -56,6 +57,7 @@ export default {
     setOnline (online: boolean)  { this.value.online = online },
     toggleQRCode ()              { this.value.showqrcode = !this.value.showqrcode },
     toggleAbout ()               { this.value.showabout  = !this.value.showabout  },
+    toggleConfig ()              { this.value.showconfig = !this.value.showconfig },
     setTheme (theme: string) {
         this.value.theme = theme
     },

@@ -27,55 +27,91 @@
 <template>
     <section class="app-pad-feedback">
         <h2 style="grid-area: title">
-            FEEDBACK
+            {{ $t("feedback.feedback-label") }}
             <span v-show="isFeedbackDisabled" class="disabled">
-                (temporarily disabled for throttling reasons)
+                {{ $t("feedback.disabled-label") }}
             </span>
         </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your consent with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: $t('feedback.consent-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsup')">
             <i class="icon positive fas fa-thumbs-up"></i>
-            <span class="title positive">Consent</span>
+            <span class="title positive">{{ $t("feedback.consent-label") }}</span>
         </button>
         <button style="grid-area: button2"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your refusal with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: $t('feedback.refusal-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsdn')">
             <i class="icon fas fa-thumbs-down"></i>
-            <span class="title">Refusal</span>
+            <span class="title">{{ $t("feedback.refusal-label") }}</span>
         </button>
         <button style="grid-area: button3"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your surprise with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: $t('feedback.surprise-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('surprise')">
             <i class="icon positive fas fa-surprise"></i>
-            <span class="title positive">Surprise</span>
+            <span class="title positive">{{ $t("feedback.surprise-label") }}</span>
         </button>
         <button style="grid-area: button4"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your smile with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: $t('feedback.smile-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('smile')">
             <i class="icon positive fas fa-grin-wink"></i>
-            <span class="title positive">Smile</span>
+            <span class="title positive">{{ $t("feedback.smile-label") }}</span>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your frown with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: $t('feedback.frown-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
-            <span class="title">Frown</span>
+            <span class="title">{{ $t("feedback.frown-label") }}</span>
         </button>
         <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: 'Indicate your sadness with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: $t('feedback.sadness-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('sadness')">
             <i class="icon fas fa-sad-tear"></i>
-            <span class="title">Sadness</span>
+            <span class="title">{{ $t("feedback.sadness-label") }}</span>
         </button>
     </section>
 </template>
+
+<i18n lang="yaml">
+en:
+    feedback:
+        feedback-label:    FEEDBACK
+        disabled-label:    (temporarily disabled for throttling reasons)
+        consent-label:     Consent
+        consent-hint:      Indicate your consent with<br/>the current content.
+        refusal-label:     Refusal
+        refusal-hint:      Indicate your refusal with<br/>the current content.
+        surprise-label:    Surprise
+        surprise-hint:     Indicate your surprise with<br/>the current content.
+        smile-label:       Smile
+        smile-hint:        Indicate your smile with<br/>the current content.
+        frown-label:       Frown
+        frown-hint:        Indicate your frown with<br/>the current content.
+        sadness-label:     Sadness
+        sadness-hint:      Indicate your sadness with<br/>the current content.
+de:
+    feedback:
+        feedback-label:    RÜCKMELDUNG
+        disabled-label:    (vorläufig gesperrt aus Drosselungsgründen)
+        consent-label:     Zustimmung
+        consent-hint:      Zeige deine Zustimmung<br/>zum actuellen Inhalt.
+        refusal-label:     Ablehnung
+        refusal-hint:      Zeige deine Ablehnung<br/>zum aktuellen Inhalt.
+        surprise-label:    Überraschung
+        surprise-hint:     Zeige deine Überraschung<br/>zum aktuellen Inhalt.
+        smile-label:       Lächeln
+        smile-hint:        Zeige dein Lächeln<br/>zum aktuellen Inhalt.
+        frown-label:       Stirnrunzeln
+        frown-hint:        Zeige dein Stirnrunzeln<br/>zum aktuellen Inhalt.
+        sadness-label:     Traurigkeit
+        sadness-hint:      Zeige deine Traurigkeit<br/>zum aktuellen Inhalt.
+</i18n>
+
 
 <style lang="stylus">
 .app-pad-feedback

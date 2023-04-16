@@ -27,13 +27,22 @@
 <template>
     <div class="app-qrcode">
         <h2 class="title" style="grid-area: title">
-            QRCODE
+            {{ $t("qrcode.qrcode-label") }}
         </h2>
         <div class="qrcode">
             <canvas ref="qrcode" class="canvas"></canvas>
         </div>
     </div>
 </template>
+
+<i18n lang="yaml">
+en:
+    qrcode:
+        qrcode-label:    QR-CODE
+de:
+    qrcode:
+        qrcode-label:    QR-CODE
+</i18n>
 
 <style lang="stylus">
 .app-qrcode

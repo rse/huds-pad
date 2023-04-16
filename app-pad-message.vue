@@ -27,40 +27,73 @@
 <template>
     <section class="app-pad-message">
         <h2 class="title" style="grid-area: title">
-            MESSAGE
+            {{ $t("message.message-label") }}
             <span v-show="$global.value.isMessagingDisabled" class="disabled">
-                (temporarily disabled until current voting ends)
+                {{ $t("message.until-end-label") }}
             </span>
             <span v-show="!$global.value.isMessagingDisabled && justSent" class="disabled">
-                (temporarily disabled for throttling purposes)
+                {{ $t("message.throttled-label") }}
             </span>
         </h2>
         <input v-show="settings.opts.ui.name"
             style="grid-area: name"
             v-model="name"
             type="text"
-            v-bind:placeholder="settings.opts.ui.anonymous ? 'Type your name (optional)...' : 'Type your name (required)...'"
-            v-tippy="{ placement: 'top', content: 'Your name for messages<br/>(keep blank for anonymity).', trigger: $global.value.tippyTrigger }"/>
+            v-bind:placeholder="settings.opts.ui.anonymous ? $t('message.name-opt-placeholder') : $t('message.name-req-placeholder')"
+            v-tippy="{ placement: 'top', content: settings.opts.ui.anonymous ? $t('message.name-opt-hint') : $t('message.name-req-hint'), trigger: $global.value.tippyTrigger }"/>
         <textarea v-model="text" class="text" rows="4"
             v-bind:disabled="$global.value.isMessagingDisabled || justSent"
-            v-bind:placeholder="'Type your message...'"
+            v-bind:placeholder="$t('message.text-placeholder')"
             v-on:keyup.escape="clearMessage()"
-            v-tippy="{ placement: 'top', content: 'The message to be send<br/>anonymously to the live session.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: $t('message.text-hint'), trigger: $global.value.tippyTrigger }"
         ></textarea>
         <button class="clear"
             v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
-            v-tippy="{ placement: 'bottom', content: 'Clear the message.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'bottom', content: $t('message.clear-hint'), trigger: $global.value.tippyTrigger }"
             @click="clearMessage">
-            Clear <i class="icon fas fa-trash-alt"></i>
+            {{ $t("message.clear-button") }} <i class="icon fas fa-trash-alt"></i>
         </button>
         <button class="send"
             v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
-            v-tippy="{ placement: 'bottom', content: 'Send the message.', trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'bottom', content: $t('message.send-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendMessage">
-            Send <i class="icon fas fa-share"></i>
+            {{ $t("message.send-button") }} <i class="icon fas fa-share"></i>
         </button>
     </section>
 </template>
+
+<i18n lang="yaml">
+en:
+    message:
+        message-label:        MESSAGE
+        until-end-label:      (temporarily disabled until current voting ends)
+        throttled-label:      (temporarily disabled for throttling purposes)
+        name-opt-placeholder: Type your name (optional)...
+        name-req-placeholder: Type your name (required)...
+        name-opt-hint:        Your name for messages<br/>(just keep blank for anonymity).
+        name-req-hint:        Your name for messages.
+        text-placeholder:     Type your message...
+        text-hint:            Your message to be send<br/>(under name or anonymously).
+        clear-button:         Clear
+        clear-hint:           Clearing the message.
+        send-button:          Send
+        send-hint:            Sending the message.
+de:
+    message:
+        message-label:        NACHRICHT
+        until-end-label:      (vorläufig gesperrt bis zum Ende der Abstimmung)
+        throttled-label:      (vorläufig gesperrt aus Drosselungsgründen)
+        name-opt-placeholder: Gib deinen Namen ein (optional)...
+        name-req-placeholder: Gib deinen Namen ein (erforderlich)...
+        name-opt-hint:        Dein Name für Nachrichten<br/>(einfach leer lassen für Anonymität).
+        name-req-hint:        Dein Name für Nachrichten.
+        text-placeholder:     Gib deine Nachricht ein...
+        text-hint:            Deine Nachricht, die gesendet wird<br/>(unter Namen oder anonym).
+        clear-button:         Löschen
+        clear-hint:           Löschen der Nachricht.
+        send-button:          Senden
+        send-hint:            Senden der Nachricht.
+</i18n>
 
 <style lang="stylus">
 .app-pad-message

@@ -19,6 +19,7 @@
     "dependencies": {
         "vue":                              "3.2.47",
         "vue-tippy":                        "6.0.0",
+        "vue-i18n":                         "9.2.2",
         "tippy.js":                         "6.3.7",
         "js-yaml":                          "4.1.0",
         "mqtt":                             "4.3.7",
@@ -50,9 +51,9 @@
         "eslint-plugin-import":             "2.27.5",
         "eslint-plugin-vue":                "9.11.0",
 
-        "stylelint":                        "15.4.0",
+        "stylelint":                        "15.5.0",
         "stylelint-config-html":            "1.1.0",
-        "stylelint-config-standard":        "32.0.0",
+        "stylelint-config-standard":        "33.0.0",
         "stylelint-config-standard-vue":    "1.0.0",
         "stylelint-config-recommended-vue": "1.4.0",
         "stylelint-stylus":                 "0.18.0",
@@ -66,6 +67,7 @@
         "vite":                             "4.2.1",
         "@vitejs/plugin-vue":               "4.1.0",
         "@rollup/plugin-yaml":              "4.0.1",
+        "@intlify/unplugin-vue-i18n":       "0.10.0",
         "vite-svg-loader":                  "4.0.0",
         "vue-tsc":                          "1.2.0",
         "typescript":                       "5.0.4",

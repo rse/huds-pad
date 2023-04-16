@@ -26,27 +26,44 @@
 
 <template>
     <div class="app-login">
-        <h2 v-show="settings.opts.ui.token" style="grid-area: label">ACCESS TOKEN</h2>
+        <h2 v-show="settings.opts.ui.token" style="grid-area: label">{{ $t("login.token-label") }}</h2>
         <input v-show="settings.opts.ui.token"
             v-model="accessToken"
             style="grid-area: input"
             type="text"
-            placeholder="Enter your Access Token..."
-            v-tippy="{ placement: 'top', content: 'Access Token for connecting<br/>to the live session.', trigger: $global.value.tippyTrigger }"
+            v-bind:placeholder="$t('login.token-placeholder')"
+            v-tippy="{ placement: 'top', content: $t('login.token-hint'), trigger: $global.value.tippyTrigger }"
             v-on:keyup.enter="connect"
             @input="exportHash">
         <button v-show="settings.opts.ui.connect"
             style="grid-area: connect"
             v-bind:disabled="!accessToken || connectionRunning || reconnecting"
             @click="connect"
-            v-tippy="{ placement: 'bottom', content: 'Connect to the<br/>live session.', trigger: $global.value.tippyTrigger }">
-            Connect <i class="icon fas fa-arrow-alt-circle-right"></i>
+            v-tippy="{ placement: 'bottom', content: $t('login.connect-hint'), trigger: $global.value.tippyTrigger }">
+            {{ $t("login.connect-label") }} <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
         <div v-show="settings.opts.ui.slogan" style="grid-area: banner" class="banner">
             <app-banner class="svg"/>
         </div>
     </div>
 </template>
+
+<i18n lang="yaml">
+en:
+    login:
+        token-label:         ACCESS TOKEN
+        token-placeholder:   Enter your Access Token...
+        token-hint:          Access Token for connecting<br/>to the live session.
+        connect-label:       Connect
+        connect-hint:        Connect to the<br/>live session.
+de:
+    login:
+        token-label:         ZUGRIFFS-TOKEN
+        token-placeholder:   Geben Sie ihr Zugriffs-Token ein...
+        token-hint:          Zugriffs-Token, um sich zur<br/>Live-Session zu verbinden.
+        connect-label:       Verbinden
+        connect-hint:        Zur Live-Session<br/>verbinden.
+</i18n>
 
 <style lang="stylus">
 .app-login

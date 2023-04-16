@@ -26,19 +26,48 @@
 
 <template>
     <section class="app-pad-feeling">
-        <h2 style="grid-area: title">FEELING</h2>
+        <h2 style="grid-area: title">{{ $t("feeling.feeling-label") }}</h2>
         <app-pad-slider
             style="grid-area: challenge" class="slider"
-            title="CHALLENGE" left="sub" right="over"
-            v-tippy="{ placement: 'top', content: 'Indicate your challenge with<br/>the current session content.', trigger: $global.value.tippyTrigger }"
+            v-bind:title="$t('feeling.challenge-label')"
+            v-bind:left="$t('feeling.challenge-sub-label')"
+            v-bind:right="$t('feeling.challenge-over-label')"
+            v-tippy="{ placement: 'top', content: $t('feeling.challenge-hint'), trigger: $global.value.tippyTrigger }"
             v-on:changed-value="(x) => sendFeeling(mood, x)"></app-pad-slider>
         <app-pad-slider
             style="grid-area: mood" class="slider"
-            title="MOOD" left="tired" right="excited"
-            v-tippy="{ placement: 'top', content: 'Indicate your mood at<br/>the current time.', trigger: $global.value.tippyTrigger }"
+            v-bind:title="$t('feeling.mood-label')"
+            v-bind:left="$t('feeling.mood-tired-label')"
+            v-bind:right="$t('feeling.mood-fresh-label')"
+            v-tippy="{ placement: 'top', content: $t('feeling.mood-hint'), trigger: $global.value.tippyTrigger }"
             v-on:changed-value="(x) => sendFeeling(x, challenge)"></app-pad-slider>
     </section>
 </template>
+
+<i18n lang="yaml">
+en:
+    feeling:
+        feeling-label:         FEELING
+        challenge-label:       CHALLENGE
+        challenge-hint:        Indicate your challenge with<br/>the current content.
+        challenge-sub-label:   sub
+        challenge-over-label:  over
+        mood-label:            MOOD
+        mood-hint:             Indicate your mood at<br/>the current time.
+        mood-tired-label:      tired
+        mood-fresh-label:      fresh
+de:
+    feeling:
+        feeling-label:         BEFINDEN
+        challenge-label:       FORDERUNG
+        challenge-hint:        Zeige deine Forderung durch<br/>den aktuellen Inhalt.
+        challenge-sub-label:   unter
+        challenge-over-label:  über
+        mood-label:            STIMMUNG
+        mood-hint:             Zeige deine Stimmung zum<br/>aktuellen Zeitpunkt.
+        mood-tired-label:      müde
+        mood-fresh-label:      frisch
+</i18n>
 
 <style lang="stylus">
 .app-pad-feeling

@@ -24,8 +24,8 @@
 
 import * as Vite  from "vite"
 import VuePlugin  from "@vitejs/plugin-vue"
-import YAMLPlugin from "@rollup/plugin-yaml"
 import SVGPlugin  from "vite-svg-loader"
+import I18NPlugin from "@intlify/unplugin-vue-i18n/vite"
 
 export default Vite.defineConfig({
     base: "",
@@ -33,8 +33,15 @@ export default Vite.defineConfig({
     plugins: [
         Vite.splitVendorChunkPlugin(),
         VuePlugin(),
-        YAMLPlugin(),
-        SVGPlugin()
+        SVGPlugin(),
+        I18NPlugin({
+            strictMessage:   false,
+            escapeHtml:      false,
+            runtimeOnly:     true,
+            compositionOnly: false,
+            defaultSFCLang:  "yaml",
+            globalSFCScope:  true
+        })
     ],
     resolve: {
         alias: {

@@ -28,25 +28,25 @@
     <div class="app-pad-head">
         <div class="left">
             <button v-show="settings.opts.ui.disconnect && $global.value.connected" @click="disconnect()"
-                v-tippy="{ placement: 'bottom', content: 'Disconnect connection<br/>with the live session.', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: $t('head.disconnect-hint'), trigger: $global.value.tippyTrigger }">
                 <i class="icon fas fa-arrow-alt-circle-left"></i>
             </button>
             <div v-show="settings.opts.ui.attendees && $global.value.connected && $global.value.clients > 0" class="attendees"
-                v-tippy="{ placement: 'bottom', content: 'Indicator for active application<br/>connections at HUDS.', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: $t('head.attendees-hint'), trigger: $global.value.tippyTrigger }">
                 <i class="icon fas fa-users"></i>
                 {{ $global.value.clients }}
             </div>
         </div>
         <div class="title">
             <h1 ref="h1" @click="$global.toggleAbout()" v-show="settings.opts.ui.title"
-                v-tippy="{ placement: 'bottom', content: settings.opts.ui.about ? 'Toggle the information<br/>about this application.' : '', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: settings.opts.ui.about ? $t('head.about-hint') : '', trigger: $global.value.tippyTrigger }">
                 <span class="title1">{{ settings.opts.ui.title1 }}</span>
                 <span class="title2">{{ settings.opts.ui.title2 }}</span>
             </h1>
         </div>
         <div class="right">
             <div class="traffic" @click="$global.toggleLogTraffic()" v-show="settings.opts.ui.traffic"
-                v-tippy="{ placement: 'bottom', content: 'Indicator and debug toggle<br/>for HUDS network traffic.', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: $t('head.traffic-hint'), trigger: $global.value.tippyTrigger }">
                 <div v-show="!$global.value.logTraffic" v-bind:class="{ active: $global.value.activeTraffic }">
                     <i class="icon fa-solid fa-circle"></i>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="online" v-show="settings.opts.ui.online"
-                v-tippy="{ placement: 'bottom', content: 'Indicator for network<br/>online status.', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: $t('head.online-hint'), trigger: $global.value.tippyTrigger }">
                 <div v-show="$global.value.online">
                     <i class="icon yes fa-solid fa-plug-circle-check"></i>
                 </div>
@@ -64,26 +64,41 @@
                 </div>
             </div>
             <button class="qrcode" @click="$global.toggleQRCode()" v-show="settings.opts.ui.qrcode"
-                v-tippy="{ placement: 'bottom', content: 'Show a QR code for the<br/>easy transitioning to a</br>mobile device.', trigger: $global.value.tippyTrigger }">
+                v-tippy="{ placement: 'bottom', content: $t('head.qrcode-hint'), trigger: $global.value.tippyTrigger }">
                 <div v-bind:class="{ active: $global.value.showqrcode }">
                     <i class="icon fas fa-qrcode"></i>
                 </div>
             </button>
-            <button class="theming" @click="toggleTheme()" v-show="settings.opts.ui.theming"
-                v-tippy="{ placement: 'bottom', content: 'Toggle user interface between<br/>dark and light theme.' }">
-                <div class="theme">
-                    <i class="icon theming fa-solid fa-paint-roller"></i>
-                </div>
-            </button>
-            <button class="hints" @click="$global.toggleHints()" v-show="settings.opts.ui.hints"
-                v-tippy="{ placement: 'bottom', content: 'Indicator and toggle for hint<br/>popups on user interface controls.' }">
-                <div v-bind:class="{ active: $global.value.showhints }">
-                    <i class="icon fa-solid fa-circle-info"></i>
+            <button class="i18n" @click="$global.toggleConfig()" v-show="settings.opts.ui.config"
+                v-tippy="{ placement: 'bottom', content: $t('head.config-hint') }">
+                <div v-bind:class="{ active: $global.value.showconfig }">
+                    <i class="icon fa-solid fa-gear"></i>
                 </div>
             </button>
         </div>
     </div>
 </template>
+
+<i18n lang="yaml">
+en:
+    head:
+        disconnect-hint:     Disconnect<br/>from live session.
+        attendees-hint:      Indicator for active<br/>connections at HUDS.
+        about-hint:          Toggle for information<br/>about this application.
+        traffic-hint:        Indicator and debug toggle<br/>for HUDS network traffic.
+        online-hint:         Indicator for network<br/>online status.
+        qrcode-hint:         Show a QR code for the easy<br/>transitioning to a mobile device.
+        config-hint:         Show settings for changing<br/>theme, language and hints.
+de:
+    head:
+        disconnect-hint:     Von Live Session<br/>trennen.
+        attendees-hint:      Indikator für aktive<br/>Verbindungen zu HUDS.
+        about-hint:          Schalte um für die Information<br/>über diese Anwendung.
+        traffic-hint:        Indikator und Debug-Schalter<br/>für HUDS Netzwerkverkehr.
+        online-hint:         Indikator für Netzwerk-<br/>Online-Status.
+        qrcode-hint:         Zeige QR-Code für den leichten<br/>Umstieg auf ein Mobilgerät.
+        config-hint:         Zeige Einstellungen um<br/>Farbschema, Sprache und Hinweise zu ändern.
+</i18n>
 
 <style lang="stylus">
 .app-pad-head
@@ -166,10 +181,6 @@
         color: var(--color-acc-fg-1)
     .qrcode .icon
         width: 16px
-    .theming .icon
-        width: 16px
-    .hints .icon
-        width: 16px
     main:not(.hoverable) & .hints
         display: none
     .hints .active .icon
@@ -213,14 +224,7 @@ export default defineComponent({
             else
                 /*  rotate around the Y-axis  */
                 tl.add({ rotateY: [ 0, 360 ] })
-        },
-        toggleTheme () {
-            this.settings.opts.ui.theme =
-                this.settings.opts.ui.theme !== "dark" ? "dark" : "light"
-            this.$global.setTheme(this.settings.opts.ui.theme)
-            this.settings.exportToHash()
         }
     }
 })
 </script>
-

@@ -30,6 +30,7 @@ huds:
 
 ui:
     theme:      "dark"                       # select dark or light theme
+    language:   "en"                         # select english (en) or german (de) language
 
     title1:     "HUDS"                       # title text (part 1/2)
     title2:     "Pad"                        # title text (part 2/2)
@@ -42,6 +43,7 @@ ui:
     online:     true                         # show common online indicator
     qrcode:     true                         # show common qrcode button and area
     hints:      true                         # show common hints button
+    config:     true                         # show common config button
     theming:    true                         # show common theming button
 
     token:      true                         # show login token input

@@ -28,7 +28,9 @@
 /*  import external dependencies (code)  */
 import * as Vue         from "vue"
 import VueTippy         from "vue-tippy"
+import * as VueI18N     from "vue-i18n"
 import FontFaceObserver from "fontfaceobserver"
+import jsYAML           from "js-yaml"
 
 /*  import external dependencies (style)  */
 import                       "tippy.js/dist/tippy.css"
@@ -83,6 +85,13 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
         /*  provide Vue "huds" property  */
         const huds = new HUDS(settings.opts.huds)
         app.config.globalProperties.huds = huds
+
+        /*  add Vue I18N plugin  */
+        app.use(VueI18N.createI18n({
+            locale: settings.opts.ui.language,
+            fallbackLocale: "en",
+            messages: { "en": {}, "de": {} }
+        }))
 
         /*  ensure all fonts are loaded  */
         const fonts = [

@@ -34,6 +34,7 @@
             <app-info   v-show="settings.opts.ui.info"></app-info>
             <app-about  v-show="settings.opts.ui.about && $global.value.showabout"></app-about>
             <app-qrcode v-show="settings.opts.ui.qrcode && $global.value.showqrcode"></app-qrcode>
+            <app-config v-show="settings.opts.ui.config && $global.value.showconfig"></app-config>
             <app-pad    v-show=" $global.value.connected"></app-pad>
             <app-login  v-show="!$global.value.connected"></app-login>
         </main>
@@ -71,6 +72,7 @@ import { defineComponent } from "vue"
 import AppHead             from "./app-head.vue"
 import AppAbout            from "./app-about.vue"
 import AppQRCode           from "./app-qrcode.vue"
+import AppConfig           from "./app-config.vue"
 import AppPad              from "./app-pad.vue"
 import AppLogin            from "./app-login.vue"
 import AppInfo             from "./app-info.vue"
@@ -83,6 +85,7 @@ export default defineComponent({
         "app-head":   AppHead,
         "app-about":  AppAbout,
         "app-qrcode": AppQRCode,
+        "app-config": AppConfig,
         "app-pad":    AppPad,
         "app-login":  AppLogin,
         "app-info":   AppInfo
