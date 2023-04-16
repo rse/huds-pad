@@ -197,32 +197,40 @@ export default defineComponent({
         },
         getHints () {
             void (this.invalidated)
-            return this.$global.value.showhints
+            return this.settings.opts.ui.hints
         },
         getDebug () {
             void (this.invalidated)
-            return this.$global.value.debug
+            return this.settings.opts.ui.debug
         }
     },
     methods: {
         setLanguage (language: string) {
-            this.settings.opts.ui.language = language
             this.$i18n.locale = language
+            this.settings.opts.ui.language = language
+            this.settings.exportToLocalStorage()
             this.settings.exportToHash()
             this.invalidated++
         },
         setTheme (theme: string) {
-            this.settings.opts.ui.theme = theme
             this.$global.setTheme(theme)
+            this.settings.opts.ui.theme = theme
+            this.settings.exportToLocalStorage()
             this.settings.exportToHash()
             this.invalidated++
         },
         setHints (enabled: boolean) {
             this.$global.setHints(enabled)
+            this.settings.opts.ui.hints = enabled
+            this.settings.exportToLocalStorage()
+            this.settings.exportToHash()
             this.invalidated++
         },
         setDebug (enabled: boolean) {
             this.$global.setDebug(enabled)
+            this.settings.opts.ui.debug = enabled
+            this.settings.exportToLocalStorage()
+            this.settings.exportToHash()
             this.invalidated++
         }
     }

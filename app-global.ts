@@ -24,19 +24,13 @@
 
 import * as Vue from "vue"
 
-let showhints = localStorage.getItem("huds-pad-show-hints")
-if (typeof showhints !== "string" || !showhints.match(/^(?:yes|no)$/)) {
-    showhints = "yes"
-    localStorage.setItem("huds-pad-show-hints", showhints)
-}
-
 const global = Vue.reactive({
     online:                 true,
     showqrcode:             false,
     showabout:              false,
     showconfig:             false,
-    showhints:              showhints === "yes",
-    tippyTrigger:           showhints === "yes" ? "mouseenter focus" : "manual",
+    showhints:              false,
+    tippyTrigger:           "manual",
     debug:                  false,
     activeTraffic:          false,
     connected:              false,
@@ -63,7 +57,6 @@ export default {
     },
     setHints (active: boolean) {
         this.value.showhints = active
-        localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
         this.value.tippyTrigger = this.value.showhints ? "mouseenter focus" : "manual"
     },
     setDebug (active: boolean) {

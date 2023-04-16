@@ -127,9 +127,30 @@ export default class Settings {
 
         /*  merge options  */
         this.optsDefault = mergeOptions(this.optsDefault, data2)
+    }
 
-        /*  initially create final options  */
-        this.importFromHash()
+    /*  import settings from browser local storage  */
+    importFromLocalStorage () {
+        const theme = localStorage.getItem("huds-pad-settings-ui-theme")
+        if (theme !== null && theme.match(/^(?:dark|light)$/))
+            this.opts = mergeOptions(this.opts, { ui: { theme } })
+        const language = localStorage.getItem("huds-pad-settings-ui-language")
+        if (language !== null && language.match(/^(?:en|de)$/))
+            this.opts = mergeOptions(this.opts, { ui: { language } })
+        const hints = localStorage.getItem("huds-pad-settings-ui-hints")
+        if (hints !== null && hints.match(/^(?:yes|no)$/))
+            this.opts = mergeOptions(this.opts, { ui: { hints: hints === "yes" } })
+        const debug = localStorage.getItem("huds-pad-settings-ui-debug")
+        if (debug !== null && debug.match(/^(?:yes|no)$/))
+            this.opts = mergeOptions(this.opts, { ui: { debug: debug === "yes" } })
+    }
+
+    /*  export settings to browser local storage  */
+    exportToLocalStorage () {
+        localStorage.setItem("huds-pad-settings-ui-theme",    this.opts.ui.theme)
+        localStorage.setItem("huds-pad-settings-ui-language", this.opts.ui.language)
+        localStorage.setItem("huds-pad-settings-ui-hints",    this.opts.ui.hints ? "yes" : "no")
+        localStorage.setItem("huds-pad-settings-ui-debug",    this.opts.ui.debug ? "yes" : "no")
     }
 
     /*  import settings from URL hash  */
@@ -137,7 +158,6 @@ export default class Settings {
         /*  override settings with URL parameters  */
         const url = new URI(new URI(window.location.href).hash().replace(/^#/, ""))
         this.args = url.segment()
-        this.opts = mergeOptions(this.optsDefault, {})
         const params = Object.fromEntries(Object.entries(url.search(true)).map(([ key, val ]) => {
             if      (val === null)                     val = true
             else if (val === "true"  || val === "yes") val = true
