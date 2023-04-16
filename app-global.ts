@@ -66,11 +66,6 @@ export default {
         localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
         this.value.tippyTrigger = this.value.showhints ? "mouseenter focus" : "manual"
     },
-    toggleHints ()               {
-        this.value.showhints = !this.value.showhints
-        localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
-        this.value.tippyTrigger = this.value.showhints ? "mouseenter focus" : "manual"
-    },
     setDebug (active: boolean) {
         this.value.debug = active
     },
