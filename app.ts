@@ -73,15 +73,10 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
         /*  provide Vue "settings" property  */
         const settings = new Settings()
         await settings.init()
-        console.log(settings.opts.ui.theme)
         settings.importFromLocalStorage()
-        console.log(settings.opts.ui.theme)
         settings.importFromHash()
-        console.log(settings.opts.ui.theme)
         settings.exportToLocalStorage()
-        console.log(settings.opts.ui.theme)
         settings.exportToHash()
-        console.log(settings.opts.ui.theme)
         app.config.globalProperties.settings = settings
 
         /*  provide Vue "$global" property  */
