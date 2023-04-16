@@ -98,7 +98,7 @@ en:
         hints-no-hint:       Switch to disabled hints.
         debug-yes-label:     Enabled<br/>Debugging
         debug-yes-hint:      Switch to enable<br>debugging on the console.
-        debug-no-label:      Disabled<br/>Debugging.
+        debug-no-label:      Disabled<br/>Debugging
         debug-no-hint:       Switch to disabled<br>debugging on the console.
 de:
     config:
