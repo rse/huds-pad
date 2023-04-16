@@ -69,7 +69,7 @@
                     <i class="icon fas fa-qrcode"></i>
                 </div>
             </button>
-            <button class="i18n" @click="$global.toggleConfig()" v-show="settings.opts.ui.config"
+            <button class="config" @click="$global.toggleConfig()" v-show="settings.opts.ui.config"
                 v-tippy="{ placement: 'bottom', content: $t('head.config-hint') }">
                 <div v-bind:class="{ active: $global.value.showconfig }">
                     <i class="icon fa-solid fa-gear"></i>
@@ -181,11 +181,9 @@ de:
         color: var(--color-acc-fg-1)
     .qrcode .icon
         width: 16px
-    main:not(.hoverable) & .hints
-        display: none
-    .hints .active .icon
-        color: var(--color-acc-fg-1)
     .qrcode .active .icon
+        color: var(--color-acc-fg-1)
+    .config .active .icon
         color: var(--color-acc-fg-1)
 </style>
 
