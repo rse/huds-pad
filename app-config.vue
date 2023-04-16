@@ -188,19 +188,19 @@ export default defineComponent({
     }),
     computed: {
         getLanguage () {
-            void(this.invalidated)
+            void (this.invalidated)
             return this.settings.opts.ui.language
         },
         getTheme () {
-            void(this.invalidated)
+            void (this.invalidated)
             return this.settings.opts.ui.theme
         },
         getHints () {
-            void(this.invalidated)
+            void (this.invalidated)
             return this.$global.value.showhints
         },
         getDebug () {
-            void(this.invalidated)
+            void (this.invalidated)
             return this.$global.value.debug
         }
     },

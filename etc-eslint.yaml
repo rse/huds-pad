@@ -85,6 +85,7 @@ rules:
     require-atomic-updates:              off
     quote-props:                         off
     lines-between-class-members:         off
+    no-void:                             off
 
     "vue/html-indent":                   off
     "vue/v-bind-style":                  [ "error", "longform" ]
