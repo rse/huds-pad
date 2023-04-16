@@ -44,9 +44,7 @@ ui:
     traffic:    true                         # show common traffic indicator
     online:     true                         # show common online indicator
     qrcode:     true                         # show common qrcode button and area
-    hints:      true                         # show common hints button
     config:     true                         # show common config button
-    theming:    true                         # show common theming button
 
     token:      true                         # show login token input
     connect:    true                         # show login connect button
