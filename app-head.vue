@@ -97,7 +97,7 @@ de:
         traffic-hint:        Indikator und Debug-Schalter<br/>für HUDS Netzwerkverkehr.
         online-hint:         Indikator für Netzwerk-<br/>Online-Status.
         qrcode-hint:         Zeige QR-Code für den leichten<br/>Umstieg auf ein Mobilgerät.
-        config-hint:         Zeige Einstellungen um<br/>Farbschema, Sprache und Hinweise zu ändern.
+        config-hint:         Zeige Einstellungen, um<br/>Farbschema, Sprache und Hinweise zu ändern.
 </i18n>
 
 <style lang="stylus">
