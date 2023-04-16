@@ -37,6 +37,8 @@ export const opts = arktype.type({
     ui: {
         theme:      "string",
         language:   "string",
+        hints:      "boolean",
+        debug:      "boolean",
         title1:     "string",
         title2:     "string",
         title:      "boolean",
@@ -46,7 +48,6 @@ export const opts = arktype.type({
         traffic:    "boolean",
         online:     "boolean",
         qrcode:     "boolean",
-        hints:      "boolean",
         config:     "boolean",
         theming:    "boolean",
         token:      "boolean",
@@ -83,6 +84,8 @@ export default class Settings {
             ui: {
                 theme:      "dark",
                 language:   "en",
+                hints:      true,
+                debug:      false,
                 title1:     "HUDS",
                 title2:     "Pad",
                 title:      true,
@@ -92,7 +95,6 @@ export default class Settings {
                 traffic:    true,
                 online:     true,
                 qrcode:     true,
-                hints:      true,
                 config:     true,
                 theming:    true,
                 token:      true,

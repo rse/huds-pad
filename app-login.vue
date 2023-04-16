@@ -271,7 +271,7 @@ export default defineComponent({
 
             /*  react on HUDS client changes  */
             this.huds.on("clients", (clients: number) => {
-                if (this.$global.value.logTraffic)
+                if (this.$global.value.debug)
                     console.log(`HUDS: RECV: clients=${clients}`)
                 if (clients > 1)
                     clients-- /* there will be always US plus the HUDS, so drop the HUDS */
@@ -280,7 +280,7 @@ export default defineComponent({
 
             /*  react on HUDS messages  */
             this.huds.on("message", (message: any) => {
-                if (this.$global.value.logTraffic)
+                if (this.$global.value.debug)
                     console.log(`HUDS: RECV: message=${JSON.stringify(message)}`)
                 if (typeof message?.event !== "string")
                     return
@@ -322,7 +322,7 @@ export default defineComponent({
                     timer = null
                     this.$global.setActiveTraffic(false)
                 }, 250)
-                if (this.$global.value.logTraffic)
+                if (this.$global.value.debug)
                     console.log(`HUDS: SEND: packet=${packet}`)
             })
             this.huds.on("packet-receive", (packet: string) => {
@@ -333,7 +333,7 @@ export default defineComponent({
                     timer = null
                     this.$global.setActiveTraffic(false)
                 }, 250)
-                if (this.$global.value.logTraffic)
+                if (this.$global.value.debug)
                     console.log(`HUDS: RECV: packet=${packet}`)
             })
         },

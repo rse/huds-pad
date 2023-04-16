@@ -37,7 +37,7 @@ const global = Vue.reactive({
     showconfig:             false,
     showhints:              showhints === "yes",
     tippyTrigger:           showhints === "yes" ? "mouseenter focus" : "manual",
-    logTraffic:             false,
+    debug:                  false,
     activeTraffic:          false,
     connected:              false,
     isMessagingDisabled:    false,
@@ -71,10 +71,9 @@ export default {
         localStorage.setItem("huds-pad-show-hints", this.value.showhints ? "yes" : "no")
         this.value.tippyTrigger = this.value.showhints ? "mouseenter focus" : "manual"
     },
-    setLogTraffic (active: boolean) {
-        this.value.logTraffic = active
+    setDebug (active: boolean) {
+        this.value.debug = active
     },
-    toggleLogTraffic ()                   { this.value.logTraffic = !this.value.logTraffic },
     setActiveTraffic (active: boolean)    { this.value.activeTraffic = active },
     setConnectionEstablished ()           { this.value.connected = true  },
     setConnectionClosed ()                { this.value.connected = false },

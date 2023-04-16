@@ -97,9 +97,9 @@ en:
         hints-no-label:      Disabled<br/>Hints
         hints-no-hint:       Switch to disabled hints.
         debug-yes-label:     Enabled<br/>Debugging
-        debug-yes-hint:      Switch to enable<br>network debugging.
+        debug-yes-hint:      Switch to enable<br>debugging on the console.
         debug-no-label:      Disabled<br/>Debugging.
-        debug-no-hint:       Switch to disabled<br>network debugging.
+        debug-no-hint:       Switch to disabled<br>debugging on the console.
 de:
     config:
         config-label:        EINSTELLUNGEN
@@ -116,9 +116,9 @@ de:
         hints-no-label:      Ausgeschaltete<br/>Hinweise
         hints-no-hint:       Wechsle zu ausgeschalteten Hinweisen.
         debug-yes-label:     Eingeschaltetes<br/>Debugging
-        debug-yes-hint:      Wechsle zu eingeschaltetem<br>Netzwerk-Debugging.
+        debug-yes-hint:      Wechsle zu eingeschaltetem<br>Debugging auf der Konsole.
         debug-no-label:      Ausgeschaltetes<br/>Debugging
-        debug-no-hint:       Wechsle zu ausgeschaltetem<br>Netzwerk-Debugging.
+        debug-no-hint:       Wechsle zu ausgeschaltetem<br>Debugging auf der Konsole.
 </i18n>
 
 <style lang="stylus">
@@ -201,7 +201,7 @@ export default defineComponent({
         },
         getDebug () {
             void(this.invalidated)
-            return this.$global.value.logTraffic
+            return this.$global.value.debug
         }
     },
     methods: {
@@ -222,7 +222,7 @@ export default defineComponent({
             this.invalidated++
         },
         setDebug (enabled: boolean) {
-            this.$global.setLogTraffic(enabled)
+            this.$global.setDebug(enabled)
             this.invalidated++
         }
     }

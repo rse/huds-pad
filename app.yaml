@@ -31,6 +31,8 @@ huds:
 ui:
     theme:      "dark"                       # select dark or light theme
     language:   "en"                         # select english (en) or german (de) language
+    hints:      true                         # show UI control hints
+    debug:      false                        # show debug information in console
 
     title1:     "HUDS"                       # title text (part 1/2)
     title2:     "Pad"                        # title text (part 2/2)
