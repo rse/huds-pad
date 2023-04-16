@@ -45,7 +45,7 @@
             </h1>
         </div>
         <div class="right">
-            <div class="traffic" @click="$global.toggleLogTraffic()" v-show="settings.opts.ui.traffic"
+            <div class="traffic" v-show="settings.opts.ui.traffic"
                 v-tippy="{ placement: 'bottom', content: $t('head.traffic-hint'), trigger: $global.value.tippyTrigger }">
                 <div v-show="!$global.value.logTraffic" v-bind:class="{ active: $global.value.activeTraffic }">
                     <i class="icon fa-solid fa-circle"></i>
