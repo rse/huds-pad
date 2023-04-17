@@ -185,7 +185,7 @@ de:
         &.abstain
             color: var(--color-std-fg-1)
             font-weight: normal
-            font-size: 10pt
+            font-size: 14pt
             .icon
                 padding-left: 8px
                 color: var(--color-std-fg-1)
