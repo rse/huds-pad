@@ -1,6 +1,6 @@
 {
     "name":                                 "huds-pad",
-    "version":                              "2.3.2",
+    "version":                              "2.3.3",
     "private":                              true,
     "homepage":                             "https://github.com/rse/huds-pad",
     "description":                          "Head-Up-Display Server (HUDS)",
