@@ -127,6 +127,7 @@ export default class Settings {
 
         /*  merge options  */
         this.optsDefault = mergeOptions(this.optsDefault, data2)
+        this.opts = this.optsDefault
     }
 
     /*  import settings from browser local storage  */
