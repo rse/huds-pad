@@ -204,15 +204,16 @@ export default class Settings {
                     const valDef = def[key]
                     let val = obj[key]
                     if (val !== valDef) {
+                        let pre = prefix
                         if (typeof val === "boolean" && val)
                             val = null
                         else if (typeof val === "boolean" && !val) {
                             val = null
-                            prefix = `!${prefix}`
+                            pre = `!${pre}`
                         }
                         else
                             val = val.toString()
-                        out[`${prefix}${key}`] = val
+                        out[`${pre}${key}`] = val
                     }
                 }
             }
