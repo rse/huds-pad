@@ -1,9 +1,9 @@
 {
     "name":                                 "huds-pad",
-    "version":                              "2.3.3",
+    "version":                              "2.3.4",
     "private":                              true,
     "homepage":                             "https://github.com/rse/huds-pad",
-    "description":                          "Head-Up-Display Server (HUDS)",
+    "description":                          "Head-Up-Display Server (HUDS) Pad",
     "author": {
         "name":                             "Dr. Ralf S. Engelschall",
         "email":                            "rse@engelschall.com",
