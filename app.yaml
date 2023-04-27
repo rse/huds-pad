@@ -59,3 +59,8 @@ ui:
 
     anonymous:  true                         # whether anonymous (with empty name) messages are allowed
 
+custom:
+
+    css:        false
+    js:         false
+

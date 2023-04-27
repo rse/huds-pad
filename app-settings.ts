@@ -59,6 +59,10 @@ export const opts = arktype.type({
         feedback:   "boolean",
         feeling:    "boolean",
         anonymous:  "boolean"
+    },
+    custom: {
+        css:        "boolean",
+        js:         "boolean"
     }
 })
 
@@ -105,6 +109,10 @@ export default class Settings {
                 feedback:   true,
                 feeling:    true,
                 anonymous:  true
+            },
+            custom: {
+                css:        false,
+                js:         false
             }
         })
         if (!data)

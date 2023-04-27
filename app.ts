@@ -79,6 +79,23 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
         settings.exportToHash()
         app.config.globalProperties.settings = settings
 
+        /*  optionally inject custom CSS/JS  */
+        if (settings.opts.custom.css) {
+            const head = document.getElementsByTagName("head")[0]
+            const link = document.createElement("link")
+            link.rel   = "stylesheet"
+            link.type  = "text/css"
+            link.href  = "app.css"
+            head.appendChild(link)
+        }
+        if (settings.opts.custom.js) {
+            const head   = document.getElementsByTagName("head")[0]
+            const script = document.createElement("script")
+            script.type  = "text/javascript"
+            script.src   = "app.js"
+            head.appendChild(script)
+        }
+
         /*  provide Vue "$global" property  */
         global.setPkg(pkg)
         global.setTheme(settings.opts.ui.theme)
