@@ -63,4 +63,5 @@ custom:
 
     css:        false                        # whether to load a custom deployed CSS file
     js:         false                        # whether to load a custom deployed JS  file
+    origin:     "https://pad.huds.io"        # origin from where to accept window messages
 

@@ -62,7 +62,8 @@ export const opts = arktype.type({
     },
     custom: {
         css:        "boolean",
-        js:         "boolean"
+        js:         "boolean",
+        origin:     "string"
     }
 })
 
@@ -112,7 +113,8 @@ export default class Settings {
             },
             custom: {
                 css:        false,
-                js:         false
+                js:         false,
+                origin:     "https://pad.huds.io"
             }
         })
         if (!data)
