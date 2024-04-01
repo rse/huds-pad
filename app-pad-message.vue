@@ -229,16 +229,21 @@ export default defineComponent({
         justSent: false
     }),
     mounted () {
-        if (this.settings?.opts?.custom?.origin !== "") {
-            window.addEventListener("message", (ev) => {
-                if (ev.origin !== this.settings?.opts?.custom?.origin)
-                    return
-                if (typeof ev.data === "object"
-                    && ev.data.cmd === "set-message-name"
-                    && typeof ev.data.name === "string")
-                    this.name = ev.data.name
-            }, false)
-        }
+        window.addEventListener("message", (ev) => {
+            let matched = false
+            for (const origin of (this.settings?.opts?.custom?.origins ?? "").split(/\s+/)) {
+                if (ev.origin === origin) {
+                    matched = true
+                    break
+                }
+            }
+            if (!matched)
+                return
+            if (typeof ev.data === "object"
+                && ev.data.cmd === "set-message-name"
+                && typeof ev.data.name === "string")
+                this.name = ev.data.name
+        }, false)
     },
     methods: {
         sendMessage () {
