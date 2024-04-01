@@ -137,34 +137,51 @@ export default class HUDS extends EventEmitter {
             is to subscribe to a sub-topic, send a dummy message and check if one can receive
             the dummy message back again.  */
         return new Promise((resolve, reject) => {
-            const timer = setTimeout(() => {
-                reject(new Error("timeout on loopback communication"))
-            }, 500)
             const channel = `stream/${this.channel}/receiver/${this.clientId}/loopback`
             const msg = "<ping>"
+            let cleanup: () => void = () => {}
+            const onMessage = (topic: string, message: any) => {
+                if (topic !== channel)
+                    return
+                cleanup()
+                if (message.toString() === msg)
+                    resolve(true)
+                else
+                    reject(new Error("invalid message received"))
+            }
+            let subscribed = false
+            let listening  = false
+            let timer: ReturnType<typeof setTimeout> | null = null
+            cleanup = () => {
+                if (subscribed) {
+                    this.client.unsubscribe(channel)
+                    subscribed = false
+                }
+                if (listening) {
+                    this.client.removeListener("message", onMessage)
+                    listening = false
+                }
+                if (timer !== null) {
+                    clearTimeout(timer)
+                    timer = null
+                }
+            }
+            timer = setTimeout(() => {
+                cleanup()
+                reject(new Error("timeout on loopback communication"))
+            }, 500)
             this.client.subscribe(channel, (err, granted) => {
                 if (err) {
-                    clearTimeout(timer)
+                    cleanup()
                     reject(err)
                 }
                 else {
-                    const cb = (topic: string, message: any) => {
-                        if (topic === channel) {
-                            clearTimeout(timer)
-                            this.client.unsubscribe(channel)
-                            this.client.removeListener("message", cb)
-                            if (message.toString() === msg)
-                                resolve(true)
-                            else
-                                reject(new Error("invalid message received"))
-                        }
-                    }
-                    this.client.on("message", cb)
+                    subscribed = true
+                    this.client.on("message", onMessage)
+                    listening = true
                     this.client.publish(channel, msg, { qos: 2, retain: false }, (err) => {
                         if (err) {
-                            clearTimeout(timer)
-                            this.client.unsubscribe(channel)
-                            this.client.removeListener("message", cb)
+                            cleanup()
                             reject(err)
                         }
                     })
