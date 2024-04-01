@@ -85,9 +85,9 @@
         "lint:eslint":                      "eslint --config etc-eslint.yaml --ext ts,vue *.vue *.ts",
         "lint:stylelint":                   "stylelint --config etc-stylelint.yaml *.styl *.vue",
         "lint:htmllint":                    "htmllint --rc etc-htmllint.json *.html",
-        "start":                            "vite --config etc-vite.ts --logLevel info --mode development",
-        "build":                            "vite --config etc-vite.ts build --logLevel info --mode production",
-        "preview":                          "vite --config etc-vite.ts preview --logLevel info",
+        "start":                            "vite --config etc-vite.mts --logLevel info --mode development",
+        "build":                            "vite --config etc-vite.mts build --logLevel info --mode production",
+        "preview":                          "vite --config etc-vite.mts preview --logLevel info",
         "clean":                            "rimraf dist",
         "clean:dist":                       "rimraf dist node_modules"
     }
