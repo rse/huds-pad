@@ -56,7 +56,7 @@ export default class HUDS extends EventEmitter {
             will: {
                 /*  use an MQTT "last will" message to end attendance (implicitly)  */
                 topic:   `stream/${this.channel}/sender`,
-                payload: this.createMessage("attendance", { event: "end" }),
+                payload: Buffer.from(this.createMessage("attendance", { event: "end" })),
                 qos:     2,
                 retain:  false
             },
