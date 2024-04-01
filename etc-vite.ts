@@ -45,7 +45,6 @@ export default Vite.defineConfig({
     ],
     resolve: {
         alias: {
-            mqtt: "mqtt/dist/mqtt.js"
         }
     },
     build: {
