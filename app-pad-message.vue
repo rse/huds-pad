@@ -233,9 +233,9 @@ export default defineComponent({
             window.addEventListener("message", (ev) => {
                 if (ev.origin !== this.settings?.opts?.custom?.origin)
                     return
-                if (typeof ev.data === "object" &&
-                    ev.data.cmd === "set-message-name" &&
-                    typeof ev.data.name === "string")
+                if (typeof ev.data === "object"
+                    && ev.data.cmd === "set-message-name"
+                    && typeof ev.data.name === "string")
                     this.name = ev.data.name
             }, false)
         }
