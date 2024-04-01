@@ -22,10 +22,11 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import * as Vite  from "vite"
-import VuePlugin  from "@vitejs/plugin-vue"
-import SVGPlugin  from "vite-svg-loader"
-import I18NPlugin from "@intlify/unplugin-vue-i18n/vite"
+import * as Vite         from "vite"
+import VuePlugin         from "@vitejs/plugin-vue"
+import SVGPlugin         from "vite-svg-loader"
+import I18NPlugin        from "@intlify/unplugin-vue-i18n/vite"
+import { nodePolyfills } from "vite-plugin-node-polyfills"
 
 export default Vite.defineConfig({
     base: "",
@@ -41,6 +42,13 @@ export default Vite.defineConfig({
             compositionOnly: false,
             defaultSFCLang:  "yaml",
             globalSFCScope:  true
+        }),
+        nodePolyfills({
+            globals: {
+                Buffer: true,
+                global: true
+            },
+            protocolImports: true
         })
     ],
     resolve: {
