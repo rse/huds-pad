@@ -138,8 +138,8 @@ en:
 de:
     vote:
         vote-label:            ABSTIMMUNG
-        until-new-label:       (vorläufig gesperrt bis eine neue Abstimmung startet)
-        until-end-label:       (vorläufig gesperrt bis die aktuelle Abstimmung endet)
+        until-new-label:       (vorläufig gesperrt bis neue Abstimmung startet)
+        until-end-label:       (vorläufig gesperrt bis aktuelle Abstimmung endet)
         answer-hint:           "Stimme für Antwort #{num}<br/>(nur ein Versuch)."
         answer-yes-label:      JA
         answer-yes-hint:       Stimme mit einer JA-Antwort<br/>(nur ein Versuch).
@@ -185,9 +185,9 @@ de:
         &.abstain
             color: var(--color-std-fg-1)
             font-weight: normal
-            font-size: 14pt
+            font-size: 12pt
             .icon
-                padding-left: 8px
+                padding-left: 4px
                 color: var(--color-std-fg-1)
         .hoverable &:hover:not(:disabled)
             border: 0

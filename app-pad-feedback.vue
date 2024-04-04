@@ -37,42 +37,42 @@
             v-tippy="{ placement: 'top', content: $t('feedback.consent-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsup')">
             <i class="icon positive fas fa-thumbs-up"></i>
-            <span class="title positive">{{ $t("feedback.consent-label") }}</span>
+            <div class="title positive">{{ $t("feedback.consent-label") }}</div>
         </button>
         <button style="grid-area: button2"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: $t('feedback.refusal-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsdn')">
             <i class="icon fas fa-thumbs-down"></i>
-            <span class="title">{{ $t("feedback.refusal-label") }}</span>
+            <div class="title">{{ $t("feedback.refusal-label") }}</div>
         </button>
         <button style="grid-area: button3"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: $t('feedback.surprise-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('surprise')">
             <i class="icon positive fas fa-surprise"></i>
-            <span class="title positive">{{ $t("feedback.surprise-label") }}</span>
+            <div class="title positive">{{ $t("feedback.surprise-label") }}</div>
         </button>
         <button style="grid-area: button4"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: $t('feedback.smile-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('smile')">
             <i class="icon positive fas fa-grin-wink"></i>
-            <span class="title positive">{{ $t("feedback.smile-label") }}</span>
+            <div class="title positive">{{ $t("feedback.smile-label") }}</div>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: $t('feedback.frown-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
-            <span class="title">{{ $t("feedback.frown-label") }}</span>
+            <div class="title">{{ $t("feedback.frown-label") }}</div>
         </button>
         <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: $t('feedback.sadness-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('sadness')">
             <i class="icon fas fa-sad-tear"></i>
-            <span class="title">{{ $t("feedback.sadness-label") }}</span>
+            <div class="title">{{ $t("feedback.sadness-label") }}</div>
         </button>
     </section>
 </template>
@@ -147,6 +147,8 @@ de:
             font-size: 8pt
             text-align: center
             line-height: 8pt
+            overflow: hidden
+            text-overflow: ellipsis
             &.positive
                 color: var(--color-acc-fg-3)
         .hoverable &:hover:not(:disabled)
