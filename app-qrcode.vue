@@ -57,7 +57,10 @@ de:
         border-bottom: 1px solid var(--color-std-bg-5)
         border-radius: 4px
         width: 100%
-        text-align: center
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
 </style>
 
 <script setup lang="ts">
@@ -86,7 +89,7 @@ export default defineComponent({
         renderQRCode () {
             QRCode.toCanvas(this.$refs.qrcode, this.url, {
                 errorCorrectionLevel: "M",
-                width: Math.min(350, window.innerWidth - 25),
+                width: Math.min(360, window.innerWidth - 25),
                 color: this.settings.opts.ui.theme === "dark" ?
                     { dark:  "#ffffffff", light: "#00000000" } :
                     { dark:  "#000000ff", light: "#ffffff00" }
