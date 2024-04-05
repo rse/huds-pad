@@ -288,7 +288,7 @@ export default defineComponent({
                     this.justRaised = true
                     setTimeout(() => {
                         this.justRaised = false
-                    }, 15 * 1000)
+                    }, 10 * 1000)
                 }
             }
         },
@@ -299,7 +299,7 @@ export default defineComponent({
                 this.justSent = true
                 setTimeout(() => {
                     this.justSent = false
-                }, 15 * 1000)
+                }, 10 * 1000)
             }
         },
         clearMessage () {
