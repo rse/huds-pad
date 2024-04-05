@@ -273,8 +273,13 @@ export default defineComponent({
                 this.name = ev.data.name
         }, false)
         this.$watch("$global.value.raisedhand", () => {
-            if (!this.$global.value.raisedhand)
+            if (!this.$global.value.raisedhand) {
                 this.raisedHand = false
+                this.justRaised = true
+                setTimeout(() => {
+                    this.justRaised = false
+                }, 10 * 1000)
+            }
         })
     },
     methods: {
