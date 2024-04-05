@@ -38,6 +38,7 @@ const global = Vue.reactive({
     isVotingDisabled:       true,
     votingType:             "propose",
     clearVoting:            false,
+    raisedhand:             false,
     theme:                  "",
     feelingRefreshInterval: null,
     msg:                    "",

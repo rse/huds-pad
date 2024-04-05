@@ -46,6 +46,11 @@ export default class HUDS extends EventEmitter {
         this.peer = settings.peer
     }
 
+    /*  return generated client id  */
+    id () {
+        return this.clientId
+    }
+
     /*  connect to MQTT broker  */
     async connect (channel: string, token1: string, token2: string) {
         /*  connect to MQTT broker  */
@@ -220,6 +225,13 @@ export default class HUDS extends EventEmitter {
         return this.sendMessageToBroker("message", {
             title,
             text
+        })
+    }
+    raiseHand (name: string, text: string, raised: boolean) {
+        return this.sendMessageToBroker("raisehand", {
+            name,
+            text,
+            raised
         })
     }
     sendFeedback (type: string) {

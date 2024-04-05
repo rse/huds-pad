@@ -310,6 +310,12 @@ export default defineComponent({
                         this.$global.clearVoting()
                     }
                 }
+                else if (message.event === "raisehand-teardown") {
+                    if (typeof message.data?.client === "string"
+                        && message.data?.client === this.huds.id())
+                        if (this.$global.value.raisedhand)
+                            this.$global.value.raisedhand = false
+                }
             })
 
             /*  track HUDS communication  */

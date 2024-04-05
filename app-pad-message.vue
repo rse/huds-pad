@@ -42,23 +42,33 @@
             v-bind:placeholder="settings.opts.ui.anonymous ? $t('message.name-opt-placeholder') : $t('message.name-req-placeholder')"
             v-tippy="{ placement: 'top', content: settings.opts.ui.anonymous ? $t('message.name-opt-hint') : $t('message.name-req-hint'), trigger: $global.value.tippyTrigger }"/>
         <textarea v-model="text" class="text" rows="4"
+            style="grid-area: message"
             v-bind:disabled="$global.value.isMessagingDisabled || justSent"
             v-bind:placeholder="$t('message.text-placeholder')"
             v-on:keyup.escape="clearMessage()"
             v-tippy="{ placement: 'top', content: $t('message.text-hint'), trigger: $global.value.tippyTrigger }"
         ></textarea>
-        <button class="clear"
-            v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
-            v-tippy="{ placement: 'bottom', content: $t('message.clear-hint'), trigger: $global.value.tippyTrigger }"
-            @click="clearMessage">
-            {{ $t("message.clear-button") }} <i class="icon fas fa-trash-alt"></i>
-        </button>
-        <button class="send"
-            v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
-            v-tippy="{ placement: 'bottom', content: $t('message.send-hint'), trigger: $global.value.tippyTrigger }"
-            @click="sendMessage">
-            {{ $t("message.send-button") }} <i class="icon fas fa-share"></i>
-        </button>
+        <div class="buttons" style="grid-area: buttons">
+            <button class="raisehand" v-if="settings.opts.ui.raise"
+                v-bind:disabled="!name || justRaised"
+                v-bind:class="{ active: raisedHand }"
+                v-tippy="{ placement: 'bottom', content: $t('message.raisehand-hint'), trigger: $global.value.tippyTrigger }"
+                @click="raiseHand">
+                {{ $t("message.raisehand-button") }} <i class="icon fas fa-hand"></i>
+            </button>
+            <button class="clear"
+                v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
+                v-tippy="{ placement: 'bottom', content: $t('message.clear-hint'), trigger: $global.value.tippyTrigger }"
+                @click="clearMessage">
+                {{ $t("message.clear-button") }} <i class="icon fas fa-trash-alt"></i>
+            </button>
+            <button class="send" v-if="settings.opts.ui.send"
+                v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
+                v-tippy="{ placement: 'bottom', content: $t('message.send-hint'), trigger: $global.value.tippyTrigger }"
+                @click="sendMessage">
+                {{ $t("message.send-button") }} <i class="icon fas fa-share"></i>
+            </button>
+        </div>
     </section>
 </template>
 
@@ -74,6 +84,8 @@ en:
         name-req-hint:        Your name for messages.
         text-placeholder:     Type your message...
         text-hint:            Your message to be send<br/>(under name or anonymously).
+        raisehand-button:     Raise
+        raisehand-hint:       Raise your hand.
         clear-button:         Clear
         clear-hint:           Clearing the message.
         send-button:          Send
@@ -89,6 +101,8 @@ de:
         name-req-hint:        Dein Name für Nachrichten.
         text-placeholder:     Gib deine Nachricht ein...
         text-hint:            Deine Nachricht, die gesendet wird<br/>(unter Namen oder anonym).
+        raisehand-button:     Heben
+        raisehand-hint:       Hebe deine Hand.
         clear-button:         Löschen
         clear-hint:           Löschen der Nachricht.
         send-button:          Senden
@@ -98,14 +112,15 @@ de:
 <style lang="stylus">
 .app-pad-message
     display: grid
-    grid-template: "title title" "name name" "message message" "clear send"
+    grid-template: "title" "name" "message" "buttons"
     grid-gap: 2px
-    .title
-        grid-area: title
-    .clear
-        grid-area: clear
-    .send
-        grid-area: send
+    .buttons
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+        button
+            flex: 1
     .disabled
         font-size: 9pt
         font-weight: 300
@@ -214,6 +229,17 @@ de:
                 color: var(--color-std-fg-0)
         .icon
             margin-left: 8px
+        &.active
+            border: 0
+            outline: none
+            color: var(--color-acc-fg-5) !important
+            background-color: var(--color-acc-bg-3)
+            border-top: 1px solid var(--color-acc-bg-5)
+            border-left: 1px solid var(--color-acc-bg-5)
+            border-right: 1px solid var(--color-acc-bg-1)
+            border-bottom: 1px solid var(--color-acc-bg-1)
+            .icon
+                color: var(--color-acc-fg-5) !important
 </style>
 
 <script setup lang="ts">
@@ -226,7 +252,9 @@ export default defineComponent({
     data: () => ({
         text: "",
         name: "",
-        justSent: false
+        raisedHand: false,
+        justSent: false,
+        justRaised: false
     }),
     mounted () {
         window.addEventListener("message", (ev) => {
@@ -244,8 +272,26 @@ export default defineComponent({
                 && typeof ev.data.name === "string")
                 this.name = ev.data.name
         }, false)
+        this.$watch("$global.value.raisedhand", () => {
+            if (!this.$global.value.raisedhand)
+                this.raisedHand = false
+        })
     },
     methods: {
+        raiseHand () {
+            if (this.name !== "") {
+                this.raisedHand = !this.raisedHand
+                if (this.raisedHand)
+                    this.$global.value.raisedhand = true
+                this.huds.raiseHand(this.name, this.text, this.raisedHand)
+                if (!this.raisedHand) {
+                    this.justRaised = true
+                    setTimeout(() => {
+                        this.justRaised = false
+                    }, 15 * 1000)
+                }
+            }
+        },
         sendMessage () {
             if (this.text && !this.$global.value.isMessagingDisabled) {
                 this.huds.sendMessage(this.text, this.name !== "" ? this.name : "Anonymous Attendee")

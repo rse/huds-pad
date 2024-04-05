@@ -53,6 +53,8 @@ ui:
     disconnect: true                         # show interaction disconnect button
     name:       true                         # show interaction name field (of message)
     message:    true                         # show interaction message area
+    raise:      true                         # show interaction raise button
+    send:       true                         # show interaction send button
     vote:       true                         # show interaction vote area
     feedback:   true                         # show interaction feedback area
     feeling:    true                         # show interaction feeling area
