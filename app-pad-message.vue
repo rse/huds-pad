@@ -43,7 +43,6 @@
             v-tippy="{ placement: 'top', content: settings.opts.ui.anonymous ? $t('message.name-opt-hint') : $t('message.name-req-hint'), trigger: $global.value.tippyTrigger }"/>
         <textarea v-model="text" class="text" rows="4"
             style="grid-area: message"
-            v-bind:disabled="$global.value.isMessagingDisabled || justSent"
             v-bind:placeholder="$t('message.text-placeholder')"
             v-on:keyup.escape="clearMessage()"
             v-tippy="{ placement: 'top', content: $t('message.text-hint'), trigger: $global.value.tippyTrigger }"
@@ -57,7 +56,7 @@
                 {{ $t("message.raisehand-button") }} <i class="icon fas fa-hand"></i>
             </button>
             <button class="clear"
-                v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
+                v-bind:disabled="!text"
                 v-tippy="{ placement: 'bottom', content: $t('message.clear-hint'), trigger: $global.value.tippyTrigger }"
                 @click="clearMessage">
                 {{ $t("message.clear-button") }} <i class="icon fas fa-trash-alt"></i>
