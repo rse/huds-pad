@@ -289,6 +289,7 @@ export default defineComponent({
                 if (this.raisedHand)
                     this.$global.value.raisedhand = true
                 this.huds.raiseHand(this.name, this.text, this.raisedHand)
+                this.clearMessage()
                 if (!this.raisedHand) {
                     this.justRaised = true
                     setTimeout(() => {
