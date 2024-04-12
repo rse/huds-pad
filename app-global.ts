@@ -44,6 +44,7 @@ const global = Vue.reactive({
     msg:                    "",
     err:                    "",
     clients:                0,
+    attendees:              0,
     pkg:                    {}
 })
 
@@ -75,6 +76,7 @@ export default {
     setError (text: string)               { this.value.err = text },
     clearError ()                         { this.value.err = ""   },
     setClients (num: number)              { this.value.clients = num },
+    setAttendees (num: number)            { this.value.attendees = num },
     setPkg (pkg: object)                  { this.value.pkg = pkg }
 }
 

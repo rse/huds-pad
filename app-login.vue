@@ -316,6 +316,10 @@ export default defineComponent({
                         if (this.$global.value.raisedhand)
                             this.$global.value.raisedhand = false
                 }
+                else if (message.event === "attendees") {
+                    if (typeof message.data?.attendees === "number")
+                        this.$global.setAttendees(message.data.attendees)
+                }
             })
 
             /*  track HUDS communication  */

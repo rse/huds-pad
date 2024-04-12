@@ -34,7 +34,7 @@
             <div v-show="settings.opts.ui.attendees && $global.value.connected && $global.value.clients > 0" class="attendees"
                 v-tippy="{ placement: 'bottom', content: $t('head.attendees-hint'), trigger: $global.value.tippyTrigger }">
                 <i class="icon fas fa-users"></i>
-                {{ $global.value.clients }}
+                {{ $global.value.attendees }}/{{ $global.value.clients }}
             </div>
         </div>
         <div class="title">
