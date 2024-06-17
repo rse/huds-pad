@@ -119,6 +119,41 @@
             @click="vote('abstain')">
             {{ $t("vote.answer-abstain-label") }} <span class="icon"><i class="fas fa-ban"></i></span>
         </button>
+        <button style="grid-area: evalM2"
+            v-bind:class="{ active: votingChoice === '-2' }"
+            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
+            v-tippy="{ placement: 'top', content: $t('vote.answer-eval-hint', { eval: '-2' }), trigger: $global.value.tippyTrigger }"
+            @click="vote('-2')">
+            -2
+        </button>
+        <button style="grid-area: evalM1"
+            v-bind:class="{ active: votingChoice === '-1' }"
+            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
+            v-tippy="{ placement: 'top', content: $t('vote.answer-eval-hint', { eval: '-1' }), trigger: $global.value.tippyTrigger }"
+            @click="vote('-1')">
+            -1
+        </button>
+        <button style="grid-area: eval0"
+            v-bind:class="{ active: votingChoice === '0' }"
+            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
+            v-tippy="{ placement: 'top', content: $t('vote.answer-eval-hint', { eval: '0' }), trigger: $global.value.tippyTrigger }"
+            @click="vote('0')">
+            0
+        </button>
+        <button style="grid-area: evalP1"
+            v-bind:class="{ active: votingChoice === '+1' }"
+            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
+            v-tippy="{ placement: 'top', content: $t('vote.answer-eval-hint', { eval: '+1' }), trigger: $global.value.tippyTrigger }"
+            @click="vote('+1')">
+            +1
+        </button>
+        <button style="grid-area: evalP2"
+            v-bind:class="{ active: votingChoice === '+2' }"
+            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
+            v-tippy="{ placement: 'top', content: $t('vote.answer-eval-hint', { eval: '+2' }), trigger: $global.value.tippyTrigger }"
+            @click="vote('+2')">
+            +2
+        </button>
     </section>
 </template>
 
@@ -135,6 +170,7 @@ en:
         answer-no-hint:        Vote with a NO answer<br/>(one attempt only).
         answer-abstain-label:  Abstain
         answer-abstain-hint:   Indicate your abstain<br/>from the voting<br/>(one attempt only).
+        answer-eval-hint:      "Vote with evaluation {eval}<br/>(one attempt only)."
 de:
     vote:
         vote-label:            ABSTIMMUNG
@@ -147,13 +183,14 @@ de:
         answer-no-hint:        Stimme mit einer NEIN-Antwort<br/>(nur ein Versuch).
         answer-abstain-label:  Enthalten
         answer-abstain-hint:   Zeige deine Enthaltung<br/>von der Abstimmung<br/>(nur ein Versuch).
+        answer-eval-hint:      "Stimme mit der Bewertung {eval}<br/>(nur ein Versuch)."
 </i18n>
 
 <style lang="stylus">
 .app-pad-vote
     display: grid
-    grid-template: "title title title" "button1 button2 button3" "button4 button5 button6" "button7 button8 button9" "choose1 choose2 abstain"
-    grid-template-columns: repeat(3, 1fr)
+    grid-template: "title title title title title title" "button1 button1 button2 button2 button3 button3" "button4 button4 button5 button5 button6 button6" "button7 button7 button8 button8 button9 button9" "choose1 choose1 choose2 choose2 abstain abstain" "evalM2 evalM1 eval0 eval0 evalP1 evalP2"
+    grid-template-columns: repeat(6, 1fr)
     grid-gap: 2px
     .disabled
         font-size: 9pt
