@@ -37,63 +37,63 @@
         </h2>
         <button style="grid-area: button1"
             v-bind:class="{ active: votingChoice === '1' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 1 }), trigger: $global.value.tippyTrigger }"
             @click="vote('1')">
             1
         </button>
         <button style="grid-area: button2"
             v-bind:class="{ active: votingChoice === '2' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 2 }), trigger: $global.value.tippyTrigger }"
             @click="vote('2')">
             2
         </button>
         <button style="grid-area: button3"
             v-bind:class="{ active: votingChoice === '3' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 3 }), trigger: $global.value.tippyTrigger }"
             @click="vote('3')">
             3
         </button>
         <button style="grid-area: button4"
             v-bind:class="{ active: votingChoice === '4' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 4 }), trigger: $global.value.tippyTrigger }"
             @click="vote('4')">
             4
         </button>
         <button style="grid-area: button5"
             v-bind:class="{ active: votingChoice === '5' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 5 }), trigger: $global.value.tippyTrigger }"
             @click="vote('5')">
             5
         </button>
         <button style="grid-area: button6"
             v-bind:class="{ active: votingChoice === '6' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 6 }), trigger: $global.value.tippyTrigger }"
             @click="vote('6')">
             6
         </button>
         <button style="grid-area: button7"
             v-bind:class="{ active: votingChoice === '7' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 7 }), trigger: $global.value.tippyTrigger }"
             @click="vote('7')">
             7
         </button>
         <button style="grid-area: button8"
             v-bind:class="{ active: votingChoice === '8' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 8 }), trigger: $global.value.tippyTrigger }"
             @click="vote('8')">
             8
         </button>
         <button style="grid-area: button9"
             v-bind:class="{ active: votingChoice === '9' }"
-            v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'quiz'"
+            v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: $t('vote.answer-hint', { num: 9 }), trigger: $global.value.tippyTrigger }"
             @click="vote('9')">
             9
