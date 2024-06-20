@@ -130,7 +130,7 @@ de:
         overflow: hidden
         resize: none
         font-size: 14pt
-        line-height: 110%;
+        line-height: 110%
         border: 0
         background-color: var(--color-std-bg-2)
         border-top: 1px solid var(--color-std-bg-1)
