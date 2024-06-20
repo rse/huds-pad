@@ -32,7 +32,7 @@
         "fontfaceobserver":                 "2.3.0",
         "@fortawesome/fontawesome-free":    "6.5.2",
         "typopro-web":                      "4.2.7",
-        "arktype":                          "1.0.29-alpha",
+        "arktype":                          "2.0.0-dev.24",
         "merge-options":                    "3.0.4",
 
         "@types/urijs":                     "1.19.25",

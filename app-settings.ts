@@ -81,7 +81,7 @@ export default class Settings {
         this.args = this.argsDefault
 
         /*  initialize settings  */
-        const { data, problems } = opts({
+        const data = opts({
             huds: {
                 api:        "mqtt",
                 url:        "wss://pad.huds.io/mqtt/",
@@ -121,8 +121,8 @@ export default class Settings {
                 origins:    "https://pad.huds.io"
             }
         })
-        if (!data)
-            throw new Error(`failed to create settings options default: ${problems.summary}`)
+        if (data instanceof arktype.type.errors)
+            throw new Error(`failed to create settings options default: ${data.summary}`)
         this.optsDefault = data
         this.opts = this.optsDefault
     }
@@ -135,9 +135,9 @@ export default class Settings {
             method: "GET",
             credentials: "same-origin"
         }).then((response) => response.text())
-        const { data: data2, problems: problems2 } = opts(jsYAML.load(yaml))
-        if (!data2)
-            throw new Error(`failed to create load setting options: ${problems2.summary}`)
+        const data2 = opts(jsYAML.load(yaml))
+        if (data2 instanceof arktype.type.errors)
+            throw new Error(`failed to create load setting options: ${data2.summary}`)
 
         /*  merge options  */
         this.optsDefault = mergeOptions(this.optsDefault, data2)
