@@ -30,7 +30,6 @@ import * as Vue         from "vue"
 import VueTippy         from "vue-tippy"
 import * as VueI18N     from "vue-i18n"
 import FontFaceObserver from "fontfaceobserver"
-import jsYAML           from "js-yaml"
 
 /*  import external dependencies (style)  */
 import                       "tippy.js/dist/tippy.css"
