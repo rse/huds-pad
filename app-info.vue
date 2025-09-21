@@ -26,7 +26,7 @@
 
 <template>
     <div class="app-info"
-        v-tippy="{ placement: 'bottom', content: $t('info.info-hint'), trigger: $global.value.tippyTrigger }">
+        v-tippy="{ placement: 'bottom', content: t('info.info-hint'), trigger: $global.value.tippyTrigger }">
         <div v-show="$global.value.msg" class="msg">{{ $global.value.msg }}</div>
         <div v-show="$global.value.err" class="err">{{ $global.value.err }}</div>
     </div>
@@ -56,6 +56,8 @@ de:
 
 <script setup lang="ts">
 import { defineComponent } from "vue"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">

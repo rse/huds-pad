@@ -26,20 +26,20 @@
 
 <template>
     <section class="app-pad-feeling">
-        <h2 style="grid-area: title">{{ $t("feeling.feeling-label") }}</h2>
+        <h2 style="grid-area: title">{{ t("feeling.feeling-label") }}</h2>
         <app-pad-slider
             style="grid-area: challenge" class="slider"
-            v-bind:title="$t('feeling.challenge-label')"
-            v-bind:left="$t('feeling.challenge-sub-label')"
-            v-bind:right="$t('feeling.challenge-over-label')"
-            v-tippy="{ placement: 'top', content: $t('feeling.challenge-hint'), trigger: $global.value.tippyTrigger }"
+            v-bind:title="t('feeling.challenge-label')"
+            v-bind:left="t('feeling.challenge-sub-label')"
+            v-bind:right="t('feeling.challenge-over-label')"
+            v-tippy="{ placement: 'top', content: t('feeling.challenge-hint'), trigger: $global.value.tippyTrigger }"
             v-on:changed-value="(x: number) => sendFeeling(mood, x)"></app-pad-slider>
         <app-pad-slider
             style="grid-area: mood" class="slider"
-            v-bind:title="$t('feeling.mood-label')"
-            v-bind:left="$t('feeling.mood-tired-label')"
-            v-bind:right="$t('feeling.mood-fresh-label')"
-            v-tippy="{ placement: 'top', content: $t('feeling.mood-hint'), trigger: $global.value.tippyTrigger }"
+            v-bind:title="t('feeling.mood-label')"
+            v-bind:left="t('feeling.mood-tired-label')"
+            v-bind:right="t('feeling.mood-fresh-label')"
+            v-tippy="{ placement: 'top', content: t('feeling.mood-hint'), trigger: $global.value.tippyTrigger }"
             v-on:changed-value="(x: number) => sendFeeling(x, challenge)"></app-pad-slider>
     </section>
 </template>
@@ -87,6 +87,8 @@ de:
 <script setup lang="ts">
 import { defineComponent } from "vue"
 import AppPadSlider from "./app-pad-slider.vue"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">

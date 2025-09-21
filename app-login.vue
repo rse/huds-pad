@@ -26,21 +26,21 @@
 
 <template>
     <div class="app-login">
-        <h2 v-show="settings.opts.ui.token" style="grid-area: label">{{ $t("login.token-label") }}</h2>
+        <h2 v-show="settings.opts.ui.token" style="grid-area: label">{{ t("login.token-label") }}</h2>
         <input v-show="settings.opts.ui.token"
             v-model="accessToken"
             style="grid-area: input"
             type="text"
-            v-bind:placeholder="$t('login.token-placeholder')"
-            v-tippy="{ placement: 'top', content: $t('login.token-hint'), trigger: $global.value.tippyTrigger }"
+            v-bind:placeholder="t('login.token-placeholder')"
+            v-tippy="{ placement: 'top', content: t('login.token-hint'), trigger: $global.value.tippyTrigger }"
             v-on:keyup.enter="connect"
             @input="exportHash">
         <button v-show="settings.opts.ui.connect"
             style="grid-area: connect"
             v-bind:disabled="!accessToken || connectionRunning || reconnecting"
             @click="connect"
-            v-tippy="{ placement: 'bottom', content: $t('login.connect-hint'), trigger: $global.value.tippyTrigger }">
-            {{ $t("login.connect-label") }} <i class="icon fas fa-arrow-alt-circle-right"></i>
+            v-tippy="{ placement: 'bottom', content: t('login.connect-hint'), trigger: $global.value.tippyTrigger }">
+            {{ t("login.connect-label") }} <i class="icon fas fa-arrow-alt-circle-right"></i>
         </button>
         <div v-show="settings.opts.ui.slogan" style="grid-area: banner" class="banner">
             <app-banner class="svg"/>
@@ -144,6 +144,8 @@ de:
 /// <reference types="vite-svg-loader" />
 import { defineComponent } from "vue"
 import AppBanner from "./app-banner.svg?component"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">

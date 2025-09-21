@@ -27,45 +27,45 @@
 <template>
     <section class="app-pad-message">
         <h2 class="title" style="grid-area: title">
-            {{ $t("message.message-label") }}
+            {{ t("message.message-label") }}
             <span v-show="$global.value.isMessagingDisabled" class="disabled">
-                {{ $t("message.until-end-label") }}
+                {{ t("message.until-end-label") }}
             </span>
             <span v-show="!$global.value.isMessagingDisabled && justSent" class="disabled">
-                {{ $t("message.throttled-label") }}
+                {{ t("message.throttled-label") }}
             </span>
         </h2>
         <input v-show="settings.opts.ui.name"
             style="grid-area: name"
             v-model="name"
             type="text"
-            v-bind:placeholder="settings.opts.ui.anonymous ? $t('message.name-opt-placeholder') : $t('message.name-req-placeholder')"
-            v-tippy="{ placement: 'top', content: settings.opts.ui.anonymous ? $t('message.name-opt-hint') : $t('message.name-req-hint'), trigger: $global.value.tippyTrigger }"/>
+            v-bind:placeholder="settings.opts.ui.anonymous ? t('message.name-opt-placeholder') : t('message.name-req-placeholder')"
+            v-tippy="{ placement: 'top', content: settings.opts.ui.anonymous ? t('message.name-opt-hint') : t('message.name-req-hint'), trigger: $global.value.tippyTrigger }"/>
         <textarea v-model="text" class="text" rows="4"
             style="grid-area: message"
-            v-bind:placeholder="$t('message.text-placeholder')"
+            v-bind:placeholder="t('message.text-placeholder')"
             v-on:keyup.escape="clearMessage()"
-            v-tippy="{ placement: 'top', content: $t('message.text-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('message.text-hint'), trigger: $global.value.tippyTrigger }"
         ></textarea>
         <div class="buttons" style="grid-area: buttons">
             <button class="raisehand" v-if="settings.opts.ui.raise"
                 v-bind:disabled="!name || justRaised"
                 v-bind:class="{ active: raisedHand }"
-                v-tippy="{ placement: 'bottom', content: $t('message.raisehand-hint'), trigger: $global.value.tippyTrigger }"
+                v-tippy="{ placement: 'bottom', content: t('message.raisehand-hint'), trigger: $global.value.tippyTrigger }"
                 @click="raiseHand">
-                {{ $t("message.raisehand-button") }} <i class="icon fas fa-hand"></i>
+                {{ t("message.raisehand-button") }} <i class="icon fas fa-hand"></i>
             </button>
             <button class="clear"
                 v-bind:disabled="!text"
-                v-tippy="{ placement: 'bottom', content: $t('message.clear-hint'), trigger: $global.value.tippyTrigger }"
+                v-tippy="{ placement: 'bottom', content: t('message.clear-hint'), trigger: $global.value.tippyTrigger }"
                 @click="clearMessage">
-                {{ $t("message.clear-button") }} <i class="icon fas fa-trash-alt"></i>
+                {{ t("message.clear-button") }} <i class="icon fas fa-trash-alt"></i>
             </button>
             <button class="send" v-if="settings.opts.ui.send"
                 v-bind:disabled="(!name && !settings.opts.ui.anonymous) || !text || $global.value.isMessagingDisabled || justSent"
-                v-tippy="{ placement: 'bottom', content: $t('message.send-hint'), trigger: $global.value.tippyTrigger }"
+                v-tippy="{ placement: 'bottom', content: t('message.send-hint'), trigger: $global.value.tippyTrigger }"
                 @click="sendMessage">
-                {{ $t("message.send-button") }} <i class="icon fas fa-share"></i>
+                {{ t("message.send-button") }} <i class="icon fas fa-share"></i>
             </button>
         </div>
     </section>
@@ -244,6 +244,8 @@ de:
 
 <script setup lang="ts">
 import { defineComponent } from "vue"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">

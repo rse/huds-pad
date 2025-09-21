@@ -27,9 +27,9 @@
 <template>
     <div class="app-about">
         <h2 class="title" style="grid-area: title">
-            {{ $t("about.about-label") }}
+            {{ t("about.about-label") }}
         </h2>
-        <div class="about" v-html="$t('about.about-text', {
+        <div class="about" v-html="t('about.about-text', {
             version: $global.value.pkg.version, mode: env.MODE })">
         </div>
     </div>
@@ -96,6 +96,8 @@ de:
 
 <script setup lang="ts">
 import { defineComponent } from "vue"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">

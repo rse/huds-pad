@@ -27,55 +27,55 @@
 <template>
     <div class="app-config">
         <h2 class="title" style="grid-area: title">
-            {{ $t("config.config-label") }}
+            {{ t("config.config-label") }}
         </h2>
         <button style="grid-area: button1" v-bind:class="{ active: getTheme === 'dark' }"
-            v-tippy="{ placement: 'top', content: $t('config.theme-dark-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.theme-dark-hint'), trigger: $global.value.tippyTrigger }"
             @click="setTheme('dark')">
             <i class="icon fas fa-paint-roller"></i>
-            <span class="title" v-html="$t('config.theme-dark-label')"></span>
+            <span class="title" v-html="t('config.theme-dark-label')"></span>
         </button>
         <button style="grid-area: button2" v-bind:class="{ active: getTheme === 'light' }"
-            v-tippy="{ placement: 'top', content: $t('config.theme-light-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.theme-light-hint'), trigger: $global.value.tippyTrigger }"
             @click="setTheme('light')">
             <i class="icon fas fa-paint-roller"></i>
-            <span class="title" v-html="$t('config.theme-light-label')"></span>
+            <span class="title" v-html="t('config.theme-light-label')"></span>
         </button>
         <button style="grid-area: button3" v-bind:class="{ active: getLanguage === 'en' }"
-            v-tippy="{ placement: 'top', content: $t('config.lang-en-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.lang-en-hint'), trigger: $global.value.tippyTrigger }"
             @click="setLanguage('en')">
             <i class="icon fas fa-globe"></i>
-            <span class="title" v-html="$t('config.lang-en-label')"></span>
+            <span class="title" v-html="t('config.lang-en-label')"></span>
         </button>
         <button style="grid-area: button4" v-bind:class="{ active: getLanguage === 'de' }"
-            v-tippy="{ placement: 'top', content: $t('config.lang-de-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.lang-de-hint'), trigger: $global.value.tippyTrigger }"
             @click="setLanguage('de')">
             <i class="icon fas fa-globe"></i>
-            <span class="title" v-html="$t('config.lang-de-label')"></span>
+            <span class="title" v-html="t('config.lang-de-label')"></span>
         </button>
         <button style="grid-area: button5" v-bind:class="{ active: getHints === true }"
-            v-tippy="{ placement: 'top', content: $t('config.hints-yes-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.hints-yes-hint'), trigger: $global.value.tippyTrigger }"
             @click="setHints(true)">
             <i class="icon fas fa-circle-info"></i>
-            <span class="title" v-html="$t('config.hints-yes-label')"></span>
+            <span class="title" v-html="t('config.hints-yes-label')"></span>
         </button>
         <button style="grid-area: button6" v-bind:class="{ active: getHints === false }"
-            v-tippy="{ placement: 'top', content: $t('config.hints-no-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.hints-no-hint'), trigger: $global.value.tippyTrigger }"
             @click="setHints(false)">
             <i class="icon fas fa-circle-info"></i>
-            <span class="title" v-html="$t('config.hints-no-label')"></span>
+            <span class="title" v-html="t('config.hints-no-label')"></span>
         </button>
         <button style="grid-area: button7" v-bind:class="{ active: getDebug === true }"
-            v-tippy="{ placement: 'top', content: $t('config.debug-yes-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.debug-yes-hint'), trigger: $global.value.tippyTrigger }"
             @click="setDebug(true)">
             <i class="icon fas fa-bug"></i>
-            <span class="title" v-html="$t('config.debug-yes-label')"></span>
+            <span class="title" v-html="t('config.debug-yes-label')"></span>
         </button>
         <button style="grid-area: button8" v-bind:class="{ active: getDebug === false }"
-            v-tippy="{ placement: 'top', content: $t('config.debug-no-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('config.debug-no-hint'), trigger: $global.value.tippyTrigger }"
             @click="setDebug(false)">
             <i class="icon fas fa-bug"></i>
-            <span class="title" v-html="$t('config.debug-no-label')"></span>
+            <span class="title" v-html="t('config.debug-no-label')"></span>
         </button>
     </div>
 </template>
@@ -178,6 +178,8 @@ de:
 
 <script setup lang="ts">
 import { defineComponent } from "vue"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">

@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", (ev: Event) => {
 
         /*  add Vue I18N plugin  */
         app.use(VueI18N.createI18n({
+            legacy: false,
             locale: settings.opts.ui.language,
             fallbackLocale: "en",
             messages: { "en": {}, "de": {} }

@@ -27,52 +27,52 @@
 <template>
     <section class="app-pad-feedback">
         <h2 style="grid-area: title">
-            {{ $t("feedback.feedback-label") }}
+            {{ t("feedback.feedback-label") }}
             <span v-show="isFeedbackDisabled" class="disabled">
-                {{ $t("feedback.disabled-label") }}
+                {{ t("feedback.disabled-label") }}
             </span>
         </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: $t('feedback.consent-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('feedback.consent-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsup')">
             <i class="icon positive fas fa-thumbs-up"></i>
-            <div class="title positive">{{ $t("feedback.consent-label") }}</div>
+            <div class="title positive">{{ t("feedback.consent-label") }}</div>
         </button>
         <button style="grid-area: button2"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: $t('feedback.refusal-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('feedback.refusal-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsdn')">
             <i class="icon fas fa-thumbs-down"></i>
-            <div class="title">{{ $t("feedback.refusal-label") }}</div>
+            <div class="title">{{ t("feedback.refusal-label") }}</div>
         </button>
         <button style="grid-area: button3"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: $t('feedback.surprise-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('feedback.surprise-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('surprise')">
             <i class="icon positive fas fa-surprise"></i>
-            <div class="title positive">{{ $t("feedback.surprise-label") }}</div>
+            <div class="title positive">{{ t("feedback.surprise-label") }}</div>
         </button>
         <button style="grid-area: button4"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: $t('feedback.smile-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('feedback.smile-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('smile')">
             <i class="icon positive fas fa-grin-wink"></i>
-            <div class="title positive">{{ $t("feedback.smile-label") }}</div>
+            <div class="title positive">{{ t("feedback.smile-label") }}</div>
         </button>
         <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: $t('feedback.frown-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('feedback.frown-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
-            <div class="title">{{ $t("feedback.frown-label") }}</div>
+            <div class="title">{{ t("feedback.frown-label") }}</div>
         </button>
         <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
-            v-tippy="{ placement: 'top', content: $t('feedback.sadness-hint'), trigger: $global.value.tippyTrigger }"
+            v-tippy="{ placement: 'top', content: t('feedback.sadness-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('sadness')">
             <i class="icon fas fa-sad-tear"></i>
-            <div class="title">{{ $t("feedback.sadness-label") }}</div>
+            <div class="title">{{ t("feedback.sadness-label") }}</div>
         </button>
     </section>
 </template>
@@ -180,6 +180,8 @@ de:
 
 <script setup lang="ts">
 import { defineComponent } from "vue"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">

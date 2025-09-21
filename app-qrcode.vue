@@ -27,7 +27,7 @@
 <template>
     <div class="app-qrcode">
         <h2 class="title" style="grid-area: title">
-            {{ $t("qrcode.qrcode-label") }}
+            {{ t("qrcode.qrcode-label") }}
         </h2>
         <div class="qrcode">
             <canvas ref="qrcode" class="canvas"></canvas>
@@ -66,6 +66,8 @@ de:
 <script setup lang="ts">
 import { defineComponent } from "vue"
 import QRCode from "qrcode"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
 </script>
 
 <script lang="ts">
