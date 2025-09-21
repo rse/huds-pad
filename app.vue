@@ -105,11 +105,11 @@ export default defineComponent({
         /*  avoid distracting :hover on touch devices  */
         let lastTouchTime = 0
         document.addEventListener("touchstart", () => {
-            lastTouchTime = (new Date()).getUTCMilliseconds()
+            lastTouchTime = Date.now()
             this.hoverable = false
         }, true)
         document.addEventListener("mousemove", () => {
-            if ((new Date()).getUTCMilliseconds() - lastTouchTime < 500)
+            if (Date.now() - lastTouchTime < 500)
                 return
             this.hoverable = true
         }, true)
