@@ -67,7 +67,7 @@
         "vite":                             "5.4.20",
         "@vitejs/plugin-vue":               "6.0.1",
         "@rollup/plugin-yaml":              "4.1.2",
-        "@intlify/unplugin-vue-i18n":       "5.3.1",
+        "@intlify/unplugin-vue-i18n":       "6.0.8",
         "vite-svg-loader":                  "5.1.0",
         "vite-plugin-node-polyfills":       "0.24.0",
         "vue-tsc":                          "3.0.7",
