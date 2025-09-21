@@ -40,3 +40,11 @@ rules:
     stylus/selector-list-comma: "always"
     media-feature-range-notation: null
 
+    #   to get rid of deprecation warnings in "stylelint-stylus"
+    stylus/at-rule-name-space-after: null
+    stylus/selector-pseudo-class-case: null
+    stylus/no-eol-whitespace: null
+    stylus/number-no-trailing-zeros: null
+    stylus/at-rule-empty-line-before: null
+    stylus/selector-list-comma-space-before: null
+
