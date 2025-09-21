@@ -27,6 +27,7 @@ import Settings from "./app-settings"
 import $global  from "./app-global"
 
 declare module "@vue/runtime-core" {
+    /* eslint no-unused-vars: off */
     interface ComponentCustomProperties {
         huds:     HUDS,
         settings: Settings,

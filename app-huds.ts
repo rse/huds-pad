@@ -23,7 +23,6 @@
 */
 
 import MQTT         from "mqtt"
-import MQTTPacket   from "mqtt-packet"
 import UUID         from "pure-uuid"
 import EventEmitter from "eventemitter2"
 

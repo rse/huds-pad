@@ -119,6 +119,7 @@ export default defineComponent({
         left:  { type: String, default: "" },
         right: { type: String, default: "" }
     },
+    emits: [ "changed-value" ],
     data: () => ({
         value: 3
     }),

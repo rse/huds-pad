@@ -43,13 +43,15 @@
         "@types/object-path":               "0.11.4"
     },
     "devDependencies": {
-        "eslint":                           "8.57.0",
-        "@typescript-eslint/parser":        "7.13.1",
-        "@typescript-eslint/eslint-plugin": "7.13.1",
-        "@vue/eslint-config-typescript":    "13.0.0",
-        "eslint-config-standard":           "17.1.0",
+        "eslint":                           "9.36.0",
+        "@eslint/js":                       "9.36.0",
+        "typescript-eslint":                "8.44.0",
+        "@typescript-eslint/eslint-plugin": "8.44.0",
+        "@typescript-eslint/parser":        "8.44.0",
+        "@vue/eslint-config-typescript":    "14.6.0",
+        "neostandard":                      "0.12.2",
         "eslint-plugin-import":             "2.32.0",
-        "eslint-plugin-vue":                "9.28.0",
+        "eslint-plugin-vue":                "10.4.0",
 
         "stylelint":                        "16.24.0",
         "stylelint-config-html":            "1.1.0",
@@ -77,11 +79,6 @@
     },
     "upd": [
         "!htmllint",
-        "!eslint",
-        "!eslint-plugin-vue",
-        "!@typescript-eslint/parser",
-        "!@typescript-eslint/eslint-plugin",
-        "!@vue/eslint-config-typescript",
         "!@intlify/unplugin-vue-i18n"
     ],
     "scripts": {
@@ -89,7 +86,7 @@
         "lint:watch":                       "nodemon --exec \"npm run lint\" --watch . --ext html,styl,ts,vue",
         "lint":                             "npm-run-all --print-label --silent --sequential lint:vue-tsc lint:eslint lint:stylelint lint:htmllint",
         "lint:vue-tsc":                     "vue-tsc --project etc-tsc.json --noEmit",
-        "lint:eslint":                      "eslint --config etc-eslint.yaml --ext ts,vue *.vue *.ts",
+        "lint:eslint":                      "eslint --config etc-eslint.mjs --ext ts,vue *.vue *.ts",
         "lint:stylelint":                   "stylelint --config etc-stylelint.yaml *.styl *.vue",
         "lint:htmllint":                    "htmllint --rc etc-htmllint.json *.html",
         "start":                            "vite --config etc-vite.mts --logLevel info --mode development",
