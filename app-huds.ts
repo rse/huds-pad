@@ -276,7 +276,7 @@ export default class HUDS extends EventEmitter {
                 reject(new Error("still not connected"))
             try {
                 this.client?.end()
-                this.client = <MQTT.MqttClient>{ connected: false }
+                this.client = { connected: false } as MQTT.MqttClient
                 resolve(true)
             }
             catch (error) {
