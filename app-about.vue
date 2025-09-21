@@ -75,7 +75,7 @@ de:
 .app-about
     display: grid
     grid-template: "title" "about"
-    grid-gap: 2px
+    gap: 2px
     .about
         background-color:        var(--color-std-bg-2)
         border-top:    1px solid var(--color-std-bg-1)

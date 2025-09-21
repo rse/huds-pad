@@ -191,7 +191,7 @@ de:
     display: grid
     grid-template: "title title title title title title" "button1 button1 button2 button2 button3 button3" "button4 button4 button5 button5 button6 button6" "button7 button7 button8 button8 button9 button9" "choose1 choose1 choose2 choose2 abstain abstain" "evalM2 evalM1 eval0 eval0 evalP1 evalP2"
     grid-template-columns: repeat(6, minmax(0, 1fr))
-    grid-gap: 2px
+    gap: 2px
     .disabled
         font-size: 9pt
         font-weight: 300

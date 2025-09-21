@@ -69,7 +69,7 @@ de:
 .app-login
     display: grid
     grid-template: "label" "input" "connect" "banner"
-    grid-gap: 2px
+    gap: 2px
     input
         resize: none
         font-size: 16pt

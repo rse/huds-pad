@@ -118,7 +118,7 @@ de:
     display: grid
     grid-template: "title title title title title title" "button1 button2 button3 button4 button5 button6"
     grid-template-columns: repeat(6, minmax(45px, 1fr))
-    grid-gap: 2px
+    gap: 2px
     .disabled
         font-size: 9pt
         font-weight: 300

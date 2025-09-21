@@ -112,7 +112,7 @@ de:
 .app-pad-message
     display: grid
     grid-template: "title" "name" "message" "buttons"
-    grid-gap: 2px
+    gap: 2px
     .buttons
         display: flex
         flex-direction: row
