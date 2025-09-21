@@ -81,7 +81,8 @@
         "!eslint-plugin-vue",
         "!@typescript-eslint/parser",
         "!@typescript-eslint/eslint-plugin",
-        "!@vue/eslint-config-typescript"
+        "!@vue/eslint-config-typescript",
+        "!@intlify/unplugin-vue-i18n"
     ],
     "scripts": {
         "dev":                              "stmux -w always -m beep,system -- [ \"npm run lint:watch\" : \"npm start\" ]",
