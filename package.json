@@ -79,7 +79,8 @@
         "!htmllint",
         "!eslint",
         "!@typescript-eslint/parser",
-        "!@typescript-eslint/eslint-plugin"
+        "!@typescript-eslint/eslint-plugin",
+        "!@vue/eslint-config-typescript"
     ],
     "scripts": {
         "dev":                              "stmux -w always -m beep,system -- [ \"npm run lint:watch\" : \"npm start\" ]",
