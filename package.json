@@ -19,7 +19,7 @@
     "dependencies": {
         "vue":                              "3.5.21",
         "vue-tippy":                        "6.7.1",
-        "vue-i18n":                         "10.0.8",
+        "vue-i18n":                         "11.1.12",
         "tippy.js":                         "6.3.7",
         "js-yaml":                          "4.1.0",
         "mqtt":                             "5.14.1",
