@@ -32,7 +32,6 @@ export default Vite.defineConfig({
     base: "",
     assetsInclude: [ "app.yaml" ],
     plugins: [
-        Vite.splitVendorChunkPlugin(),
         VuePlugin(),
         SVGPlugin(),
         I18NPlugin({
@@ -51,10 +50,6 @@ export default Vite.defineConfig({
             protocolImports: true
         })
     ],
-    resolve: {
-        alias: {
-        }
-    },
     build: {
         outDir:                 "dist",
         assetsDir:              "",
@@ -69,6 +64,10 @@ export default Vite.defineConfig({
                     if (assetInfo.name === "app.yaml")
                         spec = "index.yaml"
                     return spec
+                },
+                manualChunks: (id) => {
+                    if (id.includes("node_modules"))
+                        return "vendor"
                 }
             }
         }
