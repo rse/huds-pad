@@ -33,14 +33,14 @@
             v-bind:left="$t('feeling.challenge-sub-label')"
             v-bind:right="$t('feeling.challenge-over-label')"
             v-tippy="{ placement: 'top', content: $t('feeling.challenge-hint'), trigger: $global.value.tippyTrigger }"
-            v-on:changed-value="(x) => sendFeeling(mood, x)"></app-pad-slider>
+            v-on:changed-value="(x: number) => sendFeeling(mood, x)"></app-pad-slider>
         <app-pad-slider
             style="grid-area: mood" class="slider"
             v-bind:title="$t('feeling.mood-label')"
             v-bind:left="$t('feeling.mood-tired-label')"
             v-bind:right="$t('feeling.mood-fresh-label')"
             v-tippy="{ placement: 'top', content: $t('feeling.mood-hint'), trigger: $global.value.tippyTrigger }"
-            v-on:changed-value="(x) => sendFeeling(x, challenge)"></app-pad-slider>
+            v-on:changed-value="(x: number) => sendFeeling(x, challenge)"></app-pad-slider>
     </section>
 </template>
 
