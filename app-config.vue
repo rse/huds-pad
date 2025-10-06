@@ -95,11 +95,11 @@ en:
         hints-yes-label:     Enabled<br/>Hints
         hints-yes-hint:      Switch to enable hints.
         hints-no-label:      Disabled<br/>Hints
-        hints-no-hint:       Switch to disabled hints.
+        hints-no-hint:       Switch to disable hints.
         debug-yes-label:     Enabled<br/>Debugging
         debug-yes-hint:      Switch to enable<br>debugging on the console.
         debug-no-label:      Disabled<br/>Debugging
-        debug-no-hint:       Switch to disabled<br>debugging on the console.
+        debug-no-hint:       Switch to disable<br>debugging on the console.
 de:
     config:
         config-label:        EINSTELLUNGEN
