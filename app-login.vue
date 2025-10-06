@@ -276,7 +276,7 @@ export default defineComponent({
                 if (this.$global.value.debug)
                     console.log(`HUDS: RECV: clients=${clients}`)
                 if (clients > 1)
-                    clients-- /* there will be always US plus the HUDS, so drop the HUDS */
+                    clients-- /*  there will be always US plus the HUDS, so drop the HUDS  */
                 this.$global.setClients(clients)
             })
 
