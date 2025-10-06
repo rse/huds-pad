@@ -96,7 +96,7 @@ export default defineComponent({
     created () {
         /*  prevent rubberband effect on app swipes in iOS Safari  */
         (window as any).allowTouchMove = (el: HTMLElement) => {
-            el.addEventListener("touchmove", (ev: Event) => {
+            el.addEventListener("touchmove", (ev: TouchEvent) => {
                 (ev as any)._allowTouchMove = true
             })
         }
@@ -115,7 +115,7 @@ export default defineComponent({
         }, true)
 
         /*  prevent rubberband effect on app swipes in iOS Safari  */
-        document.body.addEventListener("touchmove", (ev: Event) => {
+        document.body.addEventListener("touchmove", (ev: TouchEvent) => {
             if (!(ev as any)._allowTouchMove && window.innerHeight === (this.$refs.main as HTMLElement).clientHeight)
                 ev.preventDefault()
         }, { passive: false })

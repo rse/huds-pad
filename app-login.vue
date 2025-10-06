@@ -281,7 +281,7 @@ export default defineComponent({
             })
 
             /*  react on HUDS messages  */
-            this.huds.on("message", (message: any) => {
+            this.huds.on("message", (message: { event?: string, data?: any }) => {
                 if (this.$global.value.debug)
                     console.log(`HUDS: RECV: message=${JSON.stringify(message)}`)
                 if (typeof message?.event !== "string")
