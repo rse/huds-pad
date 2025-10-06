@@ -106,7 +106,7 @@ de:
         lang-en-label:       Englische<br/>Sprache
         lang-en-hint:        Wechsle zu englischer Sprache.
         lang-de-label:       Deutsche<br/>Sprache
-        lang-de-hint:        Wechsle zu deutcher Sprache.
+        lang-de-hint:        Wechsle zu deutscher Sprache.
         theme-dark-label:    Dunkles<br/>Farbschema
         theme-dark-hint:     Wechsle zu dunklem Farbschema.
         theme-light-label:   Helles<br/>Farbschema
