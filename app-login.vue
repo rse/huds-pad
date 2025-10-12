@@ -341,7 +341,7 @@ export default defineComponent({
 
             /*  track HUDS communication  */
             let timer: ReturnType<typeof setTimeout> | null = null
-            this.huds.on("packet-send", (packet: string) => {
+            const handleTrafficPacket = (direction: string, packet: string) => {
                 this.$global.setActiveTraffic(true)
                 if (timer !== null)
                     clearTimeout(timer)
@@ -350,18 +350,13 @@ export default defineComponent({
                     this.$global.setActiveTraffic(false)
                 }, 250)
                 if (this.$global.value.debug)
-                    console.log(`HUDS: SEND: packet=${packet}`)
+                    console.log(`HUDS: ${direction}: packet=${packet}`)
+            }
+            this.huds.on("packet-send", (packet: string) => {
+                handleTrafficPacket("SEND", packet)
             })
             this.huds.on("packet-receive", (packet: string) => {
-                this.$global.setActiveTraffic(true)
-                if (timer !== null)
-                    clearTimeout(timer)
-                timer = setTimeout(() => {
-                    timer = null
-                    this.$global.setActiveTraffic(false)
-                }, 250)
-                if (this.$global.value.debug)
-                    console.log(`HUDS: RECV: packet=${packet}`)
+                handleTrafficPacket("RECV", packet)
             })
         },
         async disconnect () {
