@@ -38,11 +38,17 @@
             </div>
         </div>
         <div class="title">
-            <h1 ref="h1" @click="$global.toggleAbout()" v-show="settings.opts.ui.title"
+            <h1 ref="name" class="name" @click="$global.toggleAbout()" v-show="settings.opts.ui.title"
                 v-tippy="{ placement: 'bottom', content: settings.opts.ui.about ? t('head.about-hint') : '', trigger: $global.value.tippyTrigger }">
                 <span class="title1">{{ settings.opts.ui.title1 }}</span>
                 <span class="title2">{{ settings.opts.ui.title2 }}</span>
             </h1>
+            <div ref="rank" class="rank"
+                v-show="settings.opts.ui.rank && $global.value.votingRanking !== ''"
+                v-bind:class="{ 'rank-last': $global.value.votingRanking === 'X' }"
+                v-tippy="{ placement: 'bottom', content: settings.opts.ui.rank ? t('head.rank-hint') : '', trigger: $global.value.tippyTrigger }">
+                {{ $global.value.votingRanking }}
+            </div>
         </div>
         <div class="right">
             <div class="traffic" v-show="settings.opts.ui.traffic"
@@ -89,6 +95,7 @@ en:
         online-hint:         Indicator for network<br/>online status.
         qrcode-hint:         Show a QR code for the easy<br/>transitioning to a mobile device.
         config-hint:         Show settings for changing<br/>theme, language and hints.
+        rank-hint:           Your ranking across all quizzes.<br/>"1" means highest rank.<br/>"2"..."N" mean intermediate ranks.<br/>"X" means lowest rank.
 de:
     head:
         disconnect-hint:     Von Live Session<br/>trennen.
@@ -98,6 +105,7 @@ de:
         online-hint:         Indikator für Netzwerk-<br/>Online-Status.
         qrcode-hint:         Zeige QR-Code für den leichten<br/>Umstieg auf ein Mobilgerät.
         config-hint:         Zeige Einstellungen, um<br/>Farbschema, Sprache und Hinweise zu ändern.
+        rank-hint:           Dein Rang über alle Quizze hinweg.<br/>"1" bedeutet höchster Rang.<br/>"2"..."N" bedeuten mittlere Ränge.<br/>"X" bedeutet niedrigster Rang.
 </i18n>
 
 <style lang="stylus">
@@ -132,7 +140,28 @@ de:
     .title
         flex-grow: 1
         perspective: 300px
-        h1
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+        .rank
+            z-index: 100
+            display: inline-block
+            width: 30px
+            height: 30px
+            line-height: 30px
+            border-radius: 50%
+            background-color: var(--color-acc-bg-2)
+            color: var(--color-acc-fg-4)
+            font-size: 18px
+            font-weight: 700
+            text-align: center
+            margin-left: 10px
+            overflow: hidden
+            &.rank-last
+                background-color: var(--color-sig-bg-2)
+                color: var(--color-sig-fg-4)
+        .name
             transform-origin: 50% 50%
             transform-style:  preserve-3d
             line-height: 0
@@ -198,6 +227,16 @@ const { t } = useI18n()
 let i = 0
 export default defineComponent({
     name: "app-head",
+    created () {
+        this.$watch("$global.value.votingRanking", () => {
+            const rank = this.$refs.rank as HTMLElement
+            anime.animate(rank, {
+                scale: [ 1.0, 1.2, 0.8, 1.2, 0.8, 1.2, 1.0 ],
+                ease: "inOutSine",
+                duration: 4000
+            })
+        })
+    },
     mounted () {
         /*  animate the title initially and then every 5 minutes  */
         setTimeout( () => { this.animate() },      4 * 1000)
@@ -213,19 +252,28 @@ export default defineComponent({
             this.huds.disconnect()
         },
         animate () {
-            const el = this.$refs.h1 as HTMLElement
+            const name = this.$refs.name as HTMLElement
+            const rank = this.$refs.rank as HTMLElement
             const tl = anime.createTimeline({
                 defaults: {
                     duration: 2000,
                     ease:     "inOutQuad"
                 }
             })
-            if (i++ % 2 === 0)
-                /*  rotate around the X-axis  */
-                tl.add(el, { rotateX: [ 0, 360 ] })
-            else
-                /*  rotate around the Y-axis  */
-                tl.add(el, { rotateY: [ 0, 360 ] })
+            if (i++ % 2 === 0) {
+                /*  rotate name around the X-axis  */
+                tl.add(name, { rotateX: [ 0, 360 ] })
+
+                /*  rotate rank around the Y-axis  */
+                tl.add(rank, { rotateY: [ 0, 360 ] })
+            }
+            else {
+                /*  rotate name around the Y-axis  */
+                tl.add(name, { rotateY: [ 0, 360 ] })
+
+                /*  rotate rank around the X-axis  */
+                tl.add(rank, { rotateX: [ 0, 360 ] })
+            }
         }
     }
 })

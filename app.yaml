@@ -38,6 +38,7 @@ ui:
     title2:     "Pad"                        # title text (part 2/2)
 
     title:      true                         # show common title text (and button for about)
+    rank:       true                         # show common rank badge
     about:      true                         # show common about area
     info:       true                         # show common info/status area
     attendees:  true                         # show common attendees indicator

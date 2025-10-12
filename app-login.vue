@@ -312,6 +312,21 @@ export default defineComponent({
                         this.$global.clearVoting()
                     }
                 }
+                else if (message.event === "voting-reveal")
+                    this.$global.disabledVoting(true)
+                else if (message.event === "voting-disclose") {
+                    if (typeof message.data?.choice === "string") {
+                        this.$global.disabledVoting(true)
+                        this.$global.setVotingChoiceWon(message.data.choice)
+                    }
+                }
+                else if (message.event === "voting-ranking") {
+                    if (typeof message.data?.ranking === "object") {
+                        const ranking = message.data.ranking[this.huds.id()]
+                        if (ranking !== undefined)
+                            this.$global.setVotingRanking(ranking)
+                    }
+                }
                 else if (message.event === "raisehand-teardown") {
                     if (typeof message.data?.client === "string"
                         && message.data?.client === this.huds.id())

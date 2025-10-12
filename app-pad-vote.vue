@@ -28,127 +28,127 @@
     <section class="app-pad-vote">
         <h2 class="title" style="grid-area: title">
             {{ t("vote.vote-label") }}
-            <span v-show="$global.value.isVotingDisabled && votingChoice === ''" class="disabled">
+            <span v-show="$global.value.isVotingDisabled && $global.value.votingChoiceOwn === ''" class="disabled">
                 {{ t("vote.until-new-label") }}
             </span>
-            <span v-show="$global.value.isVotingDisabled && votingChoice !== ''" class="disabled">
+            <span v-show="$global.value.isVotingDisabled && $global.value.votingChoiceOwn !== ''" class="disabled">
                 {{ t("vote.until-end-label") }}
             </span>
         </h2>
         <button style="grid-area: button1"
-            v-bind:class="{ active: votingChoice === '1' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '1', won: $global.value.votingChoiceWon === '1' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 1 }), trigger: $global.value.tippyTrigger }"
             @click="vote('1')">
             1
         </button>
         <button style="grid-area: button2"
-            v-bind:class="{ active: votingChoice === '2' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '2', won: $global.value.votingChoiceWon === '2' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 2 }), trigger: $global.value.tippyTrigger }"
             @click="vote('2')">
             2
         </button>
         <button style="grid-area: button3"
-            v-bind:class="{ active: votingChoice === '3' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '3', won: $global.value.votingChoiceWon === '3' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 3 }), trigger: $global.value.tippyTrigger }"
             @click="vote('3')">
             3
         </button>
         <button style="grid-area: button4"
-            v-bind:class="{ active: votingChoice === '4' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '4', won: $global.value.votingChoiceWon === '4' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 4 }), trigger: $global.value.tippyTrigger }"
             @click="vote('4')">
             4
         </button>
         <button style="grid-area: button5"
-            v-bind:class="{ active: votingChoice === '5' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '5', won: $global.value.votingChoiceWon === '5' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 5 }), trigger: $global.value.tippyTrigger }"
             @click="vote('5')">
             5
         </button>
         <button style="grid-area: button6"
-            v-bind:class="{ active: votingChoice === '6' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '6', won: $global.value.votingChoiceWon === '6' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 6 }), trigger: $global.value.tippyTrigger }"
             @click="vote('6')">
             6
         </button>
         <button style="grid-area: button7"
-            v-bind:class="{ active: votingChoice === '7' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '7', won: $global.value.votingChoiceWon === '7' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 7 }), trigger: $global.value.tippyTrigger }"
             @click="vote('7')">
             7
         </button>
         <button style="grid-area: button8"
-            v-bind:class="{ active: votingChoice === '8' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '8', won: $global.value.votingChoiceWon === '8' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 8 }), trigger: $global.value.tippyTrigger }"
             @click="vote('8')">
             8
         </button>
         <button style="grid-area: button9"
-            v-bind:class="{ active: votingChoice === '9' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '9', won: $global.value.votingChoiceWon === '9' }"
             v-bind:disabled="$global.value.isVotingDisabled || !$global.value.votingType.match(/^(?:quiz|choose)$/)"
             v-tippy="{ placement: 'top', content: t('vote.answer-hint', { num: 9 }), trigger: $global.value.tippyTrigger }"
             @click="vote('9')">
             9
         </button>
         <button style="grid-area: choose1" class="choice"
-            v-bind:class="{ active: votingChoice === 'yes' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === 'yes', won: $global.value.votingChoiceWon === 'yes' }"
             v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'judge'"
             v-tippy="{ placement: 'bottom', content: t('vote.answer-yes-hint'), trigger: $global.value.tippyTrigger }"
             @click="vote('yes')">
             {{ t("vote.answer-yes-label") }} <span class="icon"><i class="fas fa-thumbs-up"></i></span>
         </button>
         <button style="grid-area: choose2" class="choice"
-            v-bind:class="{ active: votingChoice === 'no' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === 'no', won: $global.value.votingChoiceWon === 'no' }"
             v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'judge'"
             v-tippy="{ placement: 'bottom', content: t('vote.answer-no-hint'), trigger: $global.value.tippyTrigger }"
             @click="vote('no')">
             {{ t("vote.answer-no-label") }} <span class="icon"><i class="fas fa-thumbs-down"></i></span>
         </button>
         <button style="grid-area: abstain" class="abstain"
-            v-bind:class="{ active: votingChoice === 'abstain' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === 'abstain' }"
             v-bind:disabled="$global.value.isVotingDisabled"
             v-tippy="{ placement: 'bottom', content: t('vote.answer-abstain-hint'), trigger: $global.value.tippyTrigger }"
             @click="vote('abstain')">
             {{ t("vote.answer-abstain-label") }} <span class="icon"><i class="fas fa-ban"></i></span>
         </button>
         <button style="grid-area: evalM2"
-            v-bind:class="{ active: votingChoice === '-2' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '-2' }"
             v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
             v-tippy="{ placement: 'top', content: t('vote.answer-eval-hint', { eval: '-2' }), trigger: $global.value.tippyTrigger }"
             @click="vote('-2')">
             -2
         </button>
         <button style="grid-area: evalM1"
-            v-bind:class="{ active: votingChoice === '-1' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '-1' }"
             v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
             v-tippy="{ placement: 'top', content: t('vote.answer-eval-hint', { eval: '-1' }), trigger: $global.value.tippyTrigger }"
             @click="vote('-1')">
             -1
         </button>
         <button style="grid-area: eval0"
-            v-bind:class="{ active: votingChoice === '0' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '0' }"
             v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
             v-tippy="{ placement: 'top', content: t('vote.answer-eval-hint', { eval: '0' }), trigger: $global.value.tippyTrigger }"
             @click="vote('0')">
             0
         </button>
         <button style="grid-area: evalP1"
-            v-bind:class="{ active: votingChoice === '+1' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '+1' }"
             v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
             v-tippy="{ placement: 'top', content: t('vote.answer-eval-hint', { eval: '+1' }), trigger: $global.value.tippyTrigger }"
             @click="vote('+1')">
             +1
         </button>
         <button style="grid-area: evalP2"
-            v-bind:class="{ active: votingChoice === '+2' }"
+            v-bind:class="{ active: $global.value.votingChoiceOwn === '+2' }"
             v-bind:disabled="$global.value.isVotingDisabled || $global.value.votingType !== 'evaluate'"
             v-tippy="{ placement: 'top', content: t('vote.answer-eval-hint', { eval: '+2' }), trigger: $global.value.tippyTrigger }"
             @click="vote('+2')">
@@ -163,27 +163,27 @@ en:
         vote-label:            VOTE
         until-new-label:       (temporarily disabled until new voting starts)
         until-end-label:       (temporarily disabled until current voting ends)
-        answer-hint:           "Vote for answer #{num}<br/>(one attempt only)."
+        answer-hint:           "Vote for answer #{num}."
         answer-yes-label:      YES
-        answer-yes-hint:       Vote with a YES answer<br/>(one attempt only).
+        answer-yes-hint:       Vote with a YES answer.
         answer-no-label:       NO
-        answer-no-hint:        Vote with a NO answer<br/>(one attempt only).
+        answer-no-hint:        Vote with a NO answer.
         answer-abstain-label:  Abstain
-        answer-abstain-hint:   Indicate your abstain<br/>from the voting<br/>(one attempt only).
-        answer-eval-hint:      "Vote with evaluation {eval}<br/>(one attempt only)."
+        answer-abstain-hint:   Indicate your abstain<br/>from the voting.
+        answer-eval-hint:      "Vote with evaluation {eval}."
 de:
     vote:
         vote-label:            ABSTIMMUNG
         until-new-label:       (vorläufig gesperrt bis neue Abstimmung startet)
         until-end-label:       (vorläufig gesperrt bis aktuelle Abstimmung endet)
-        answer-hint:           "Stimme für Antwort #{num}<br/>(nur ein Versuch)."
+        answer-hint:           "Stimme für Antwort #{num}."
         answer-yes-label:      JA
-        answer-yes-hint:       Stimme mit einer JA-Antwort<br/>(nur ein Versuch).
+        answer-yes-hint:       Stimme mit einer JA-Antwort.
         answer-no-label:       NEIN
-        answer-no-hint:        Stimme mit einer NEIN-Antwort<br/>(nur ein Versuch).
+        answer-no-hint:        Stimme mit einer NEIN-Antwort.
         answer-abstain-label:  Enthalten
-        answer-abstain-hint:   Zeige deine Enthaltung<br/>von der Abstimmung<br/>(nur ein Versuch).
-        answer-eval-hint:      "Stimme mit der Bewertung {eval}<br/>(nur ein Versuch)."
+        answer-abstain-hint:   Zeige deine Enthaltung<br/>von der Abstimmung.
+        answer-eval-hint:      "Stimme mit der Bewertung {eval}."
 </i18n>
 
 <style lang="stylus">
@@ -258,6 +258,17 @@ de:
             border-bottom: 1px solid var(--color-acc-bg-1)
             .icon
                 color: var(--color-acc-fg-5) !important
+        &.won
+            border: 0
+            outline: none
+            color: var(--color-sig-fg-5) !important
+            background-color: var(--color-sig-bg-3)
+            border-top: 1px solid var(--color-sig-bg-5)
+            border-left: 1px solid var(--color-sig-bg-5)
+            border-right: 1px solid var(--color-sig-bg-1)
+            border-bottom: 1px solid var(--color-sig-bg-1)
+            .icon
+                color: var(--color-sig-fg-5) !important
 </style>
 
 <script setup lang="ts">
@@ -269,19 +280,10 @@ const { t } = useI18n()
 <script lang="ts">
 export default defineComponent({
     name: "app-pad-vote",
-    data: () => ({
-        votingChoice: ""
-    }),
-    created () {
-        this.$watch("$global.value.clearVoting", () => {
-            this.votingChoice = ""
-        })
-    },
     methods: {
         vote (value: string) {
             this.huds.sendMessage(value)
-            this.$global.disabledVoting(true)
-            setTimeout(() => { this.votingChoice = value }, 100)
+            setTimeout(() => { this.$global.setVotingChoiceOwn(value) }, 100)
         }
     }
 })

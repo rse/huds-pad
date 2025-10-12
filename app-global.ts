@@ -37,6 +37,9 @@ const global = Vue.reactive({
     isMessagingDisabled:    false,
     isVotingDisabled:       true,
     votingType:             "propose",
+    votingChoiceOwn:        "",
+    votingChoiceWon:        "",
+    votingRanking:          "",
     clearVoting:            false,
     raisedhand:             false,
     theme:                  "",
@@ -70,7 +73,14 @@ export default {
     disabledMessaging (disabled: boolean) { this.value.isMessagingDisabled = disabled },
     disabledVoting (disabled: boolean)    { this.value.isVotingDisabled    = disabled },
     setVotingType (type: string)          { this.value.votingType = type },
-    clearVoting ()                        { this.value.clearVoting = !this.value.clearVoting },
+    setVotingChoiceOwn (choice: string)   { this.value.votingChoiceOwn = choice },
+    setVotingChoiceWon (choice: string)   { this.value.votingChoiceWon = choice },
+    setVotingRanking (ranking: string)    { this.value.votingRanking = ranking },
+    clearVoting ()                        {
+        this.value.clearVoting = !this.value.clearVoting
+        this.value.votingChoiceOwn = ""
+        this.value.votingChoiceWon = ""
+    },
     setMessage (text: string)             { this.value.msg = text },
     clearMessage ()                       { this.value.msg = ""   },
     setError (text: string)               { this.value.err = text },
