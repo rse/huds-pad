@@ -43,7 +43,7 @@ const global = Vue.reactive({
     clearVoting:            false,
     raisedhand:             false,
     theme:                  "",
-    feelingRefreshInterval: null,
+    feelingRefreshInterval: null as ReturnType<typeof setInterval> | null,
     msg:                    "",
     err:                    "",
     clients:                0,

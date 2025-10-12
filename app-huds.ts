@@ -272,7 +272,7 @@ export default class HUDS extends EventEmitter {
     disconnect () {
         return new Promise((resolve, reject) => {
             if (!this.client?.connected)
-                reject(new Error("still not connected"))
+                reject(new Error("not connected"))
             try {
                 this.client?.end()
                 this.client = { connected: false } as MQTT.MqttClient
