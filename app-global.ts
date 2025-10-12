@@ -87,6 +87,6 @@ export default {
     clearError ()                         { this.value.err = ""   },
     setClients (num: number)              { this.value.clients = num },
     setAttendees (num: number)            { this.value.attendees = num },
-    setPkg (pkg: object)                  { this.value.pkg = pkg }
+    setPkg (pkg: Record<string, any>)     { this.value.pkg = pkg }
 }
 
