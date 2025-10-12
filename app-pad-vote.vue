@@ -269,6 +269,16 @@ de:
             border-bottom: 1px solid var(--color-sig-bg-1)
             .icon
                 color: var(--color-sig-fg-5) !important
+        &:disabled.active
+            color: var(--color-acc-fg-1) !important
+            background-color: var(--color-acc-bg-1)
+            border-top: 1px solid var(--color-acc-bg-3)
+            border-left: 1px solid var(--color-acc-bg-3)
+        &:disabled.won
+            color: var(--color-sig-fg-1) !important
+            background-color: var(--color-sig-bg-1)
+            border-top: 1px solid var(--color-sig-bg-3)
+            border-left: 1px solid var(--color-sig-bg-3)
 </style>
 
 <script setup lang="ts">
