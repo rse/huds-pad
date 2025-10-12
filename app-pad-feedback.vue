@@ -99,7 +99,7 @@ de:
         feedback-label:    RÜCKMELDUNG
         disabled-label:    (vorläufig gesperrt aus Drosselungsgründen)
         consent-label:     Zustimmung
-        consent-hint:      Zeige deine Zustimmung<br/>zum actuellen Inhalt.
+        consent-hint:      Zeige deine Zustimmung<br/>zum aktuellen Inhalt.
         refusal-label:     Ablehnung
         refusal-hint:      Zeige deine Ablehnung<br/>zum aktuellen Inhalt.
         surprise-label:    Überraschung
