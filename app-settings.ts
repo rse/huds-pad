@@ -137,12 +137,12 @@ export default class Settings {
             method: "GET",
             credentials: "same-origin"
         }).then((response) => response.text())
-        const data2 = opts(jsYAML.load(yaml))
-        if (data2 instanceof arktype.type.errors)
-            throw new Error(`failed to create load setting options: ${data2.summary}`)
+        const loadedOpts = opts(jsYAML.load(yaml))
+        if (loadedOpts instanceof arktype.type.errors)
+            throw new Error(`failed to create load setting options: ${loadedOpts.summary}`)
 
         /*  merge options  */
-        this.optsDefault = mergeOptions(this.optsDefault, data2)
+        this.optsDefault = mergeOptions(this.optsDefault, loadedOpts)
         this.opts = this.optsDefault
     }
 
