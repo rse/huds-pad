@@ -118,6 +118,7 @@ de:
         flex-direction: row
         justify-content: center
         align-items: center
+        gap: 1px
         button
             flex: 1
     .disabled

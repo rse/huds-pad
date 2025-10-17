@@ -34,40 +34,47 @@
         </h2>
         <button style="grid-area: button1"
             v-bind:disabled="isFeedbackDisabled"
+            v-tippy="{ placement: 'top', content: t('feedback.applause-hint'), trigger: $global.value.tippyTrigger }"
+            @click="sendFeedback('applause')">
+            <i class="icon positive fas fa-hands-clapping"></i>
+            <div class="title positive">{{ t("feedback.applause-label") }}</div>
+        </button>
+        <button style="grid-area: button2"
+            v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: t('feedback.consent-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsup')">
             <i class="icon positive fas fa-thumbs-up"></i>
             <div class="title positive">{{ t("feedback.consent-label") }}</div>
         </button>
-        <button style="grid-area: button2"
+        <button style="grid-area: button3"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: t('feedback.refusal-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('thumbsdn')">
             <i class="icon fas fa-thumbs-down"></i>
             <div class="title">{{ t("feedback.refusal-label") }}</div>
         </button>
-        <button style="grid-area: button3"
+        <button style="grid-area: button4"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: t('feedback.surprise-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('surprise')">
             <i class="icon positive fas fa-surprise"></i>
             <div class="title positive">{{ t("feedback.surprise-label") }}</div>
         </button>
-        <button style="grid-area: button4"
+        <button style="grid-area: button5"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: t('feedback.smile-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('smile')">
             <i class="icon positive fas fa-grin-wink"></i>
             <div class="title positive">{{ t("feedback.smile-label") }}</div>
         </button>
-        <button style="grid-area: button5"
+        <button style="grid-area: button6"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: t('feedback.frown-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('frown')">
             <i class="icon fas fa-angry"></i>
             <div class="title">{{ t("feedback.frown-label") }}</div>
         </button>
-        <button style="grid-area: button6"
+        <button style="grid-area: button7"
             v-bind:disabled="isFeedbackDisabled"
             v-tippy="{ placement: 'top', content: t('feedback.sadness-hint'), trigger: $global.value.tippyTrigger }"
             @click="sendFeedback('sadness')">
@@ -94,6 +101,8 @@ en:
         frown-hint:        Indicate your frown with<br/>the current content.
         sadness-label:     Sadness
         sadness-hint:      Indicate your sadness with<br/>the current content.
+        applause-label:    Applause
+        applause-hint:     Indicate your applause with<br/>the current content.
 de:
     feedback:
         feedback-label:    RÜCKMELDUNG
@@ -110,15 +119,17 @@ de:
         frown-hint:        Zeige dein Stirnrunzeln<br/>zum aktuellen Inhalt.
         sadness-label:     Traurigkeit
         sadness-hint:      Zeige deine Traurigkeit<br/>zum aktuellen Inhalt.
+        applause-label:    Beifall
+        applause-hint:     Zeige deinen Beifall<br/>zum aktuellen Inhalt.
 </i18n>
 
 
 <style lang="stylus">
 .app-pad-feedback
     display: grid
-    grid-template: "title title title title title title" "button1 button2 button3 button4 button5 button6"
-    grid-template-columns: repeat(6, minmax(45px, 1fr))
-    gap: 2px
+    grid-template: "title title title title title title title" "button1 button2 button3 button4 button5 button6 button7"
+    grid-template-columns: repeat(7, minmax(45px, 1fr))
+    gap: 1px
     .disabled
         font-size: 9pt
         font-weight: 300

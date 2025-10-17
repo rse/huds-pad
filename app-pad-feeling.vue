@@ -73,7 +73,7 @@ de:
 .app-pad-feeling
     display: grid
     grid-template: "title title" "challenge mood"
-    gap: 2px
+    gap: 1px
     .slider
         color: var(--color-std-fg-3)
         background-color: var(--color-std-bg-4)
