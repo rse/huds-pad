@@ -28,12 +28,13 @@ import EventEmitter from "eventemitter2"
 
 /*  HUDS communication  */
 export default class HUDS extends EventEmitter {
-    private channel   = ""
-    private client    = { connected: false } as MQTT.MqttClient
-    private clientId  = (new UUID(1)).format()
-    private api       = ""
-    private url       = ""
-    private peer      = ""
+    private channel    = ""
+    private client     = { connected: false } as MQTT.MqttClient
+    private clientId   = ""
+    private persistent = false
+    private api        = ""
+    private url        = ""
+    private peer       = ""
 
     /*  setup object  */
     constructor (private settings: any = {}) {
@@ -50,8 +51,47 @@ export default class HUDS extends EventEmitter {
         return this.clientId
     }
 
+    /*  return whether client id is persistent across page loads  */
+    isPersistentId () {
+        return this.persistent
+    }
+
+    /*  determine client id: reuse the id persisted in localStorage (as the server-side
+        voting ranking is attributed to the client id) if no other tab currently holds it
+        (guarded via the Web Locks API), else fall back to a fresh ephemeral id  */
+    private async determineClientId () {
+        if (this.clientId !== "")
+            return
+        let id: string | null = null
+        if ("locks" in navigator) {
+            id = await new Promise<string | null>((resolve) => {
+                navigator.locks.request("huds-pad-client-id", { ifAvailable: true }, (lock) => {
+                    if (lock === null) {
+                        resolve(null)
+                        return
+                    }
+                    let stored = localStorage.getItem("huds-pad-client-id")
+                    if (stored === null) {
+                        stored = (new UUID(1)).format()
+                        localStorage.setItem("huds-pad-client-id", stored)
+                    }
+                    resolve(stored)
+
+                    /*  hold the lock until the tab closes  */
+                    return new Promise(() => {})
+                }).catch(() => { resolve(null) })
+            })
+        }
+        this.persistent = id !== null
+        this.clientId   = id ?? (new UUID(1)).format()
+        console.log("clientId: " + this.clientId + " persistent: " + this.persistent)
+    }
+
     /*  connect to MQTT broker  */
     async connect (channel: string, token1: string, token2: string) {
+        /*  determine our client identity  */
+        await this.determineClientId()
+
         /*  connect to MQTT broker  */
         this.channel = channel
         this.client = MQTT.connect(this.url, {

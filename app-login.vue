@@ -233,6 +233,13 @@ export default defineComponent({
                 this.$global.setMessage("Status: Connected")
                 this.$global.clearError()
                 this.$global.setConnectionEstablished()
+
+                /*  restore the persisted voting ranking of this channel  */
+                if (this.huds.isPersistentId() && this.$global.value.votingRanking === "") {
+                    const ranking = localStorage.getItem(`huds-pad-voting-ranking-${channel}`)
+                    if (ranking !== null)
+                        this.$global.setVotingRanking(ranking)
+                }
                 await this.huds.beginAttendance()
                 await this.huds.sendFeeling(3, 3)
                 if (!attendanceRefreshInterval)
@@ -323,8 +330,13 @@ export default defineComponent({
                 else if (message.event === "voting-ranking") {
                     if (typeof message.data?.ranking === "object") {
                         const ranking = message.data.ranking[this.huds.id()]
-                        if (ranking !== undefined)
+                        if (ranking !== undefined) {
                             this.$global.setVotingRanking(ranking)
+
+                            /*  persist the voting ranking of this channel  */
+                            if (this.huds.isPersistentId())
+                                localStorage.setItem(`huds-pad-voting-ranking-${channel}`, ranking)
+                        }
                     }
                 }
                 else if (message.event === "raisehand-teardown") {
