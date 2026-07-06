@@ -23,7 +23,7 @@
 */
 
 import URI          from "urijs"
-import jsYAML       from "js-yaml"
+import * as jsYAML  from "js-yaml"
 import objectPath   from "object-path"
 import mergeOptions from "merge-options"
 import * as arktype from "arktype"
